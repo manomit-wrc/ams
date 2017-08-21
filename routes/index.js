@@ -6,10 +6,8 @@ module.exports = function(app, passport) {
 	app.get('/admin', function(req, res) {
 
 		var msg = req.flash('loginMessage')[0];
-		res.render('admin/login',{layout:'login',message: msg}); 
+		res.render('admin/login',{layout:'login',message: msg});
 	});
-
-	
 
 	// process the login form
 	app.post('/admin', passport.authenticate('local-login', {
@@ -28,8 +26,8 @@ module.exports = function(app, passport) {
         res.redirect('/admin');
     });
 
-	
-	
+
+
 };
 
 // route middleware to make sure
