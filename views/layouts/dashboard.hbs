@@ -407,7 +407,7 @@ $(function () {
 <!-- ./wrapper -->
       <script type="text/javascript">
 	$(document).ready(function(e){
-		$("#inputAvators").change(function(e){
+		$("#avator").change(function(e){
 			
 			if (this.files && this.files[0]) {
 		        var reader = new FileReader();
@@ -429,6 +429,7 @@ $(function () {
 	      "info": true,
 	      "autoWidth": false
 	    });
+    $('.alert').fadeOut(6000);
 	});
 </script>
   	</body>

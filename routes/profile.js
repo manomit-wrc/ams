@@ -1,5 +1,6 @@
-module.exports = function(app) {
- 
+module.exports = function(app, admin) {
+ 	
+ 	var Admin = admin;
 	var multer  = require('multer');
 	var im = require('imagemagick');
 	var fileExt = '';
@@ -11,7 +12,7 @@ module.exports = function(app) {
 	  filename: function (req, file, cb) {
 	    fileExt = file.mimetype.split('/')[1];
 	    if (fileExt == 'jpeg'){ fileExt = 'jpg';}
-	    fileName = req.user.user_seq_no + '-' + Date.now() + '.' + fileExt;
+	    fileName = req.user.id + '-' + Date.now() + '.' + fileExt;
 	    cb(null, fileName);
 	  }
 	})
@@ -64,7 +65,25 @@ module.exports = function(app) {
 	              console.log('100x100 thumbnail created');
 	            });
 	    }
-        res.render('admin/profile', {layout: 'dashboard'}); // I assume I upload a picture, thus, {img:...}. Also, I'm passing csrf token here as well, so that one is able to upload again after having done so already - if not, it will report invalid csrf token, so we need it since the server would have regenerated it after the first upload.
+
+	    Admin.update({
+    		first_name: req.body.first_name,
+    		last_name: req.body.last_name,
+    		address: req.body.address,
+    		phone_no: req.body.phone_no,
+    		avator: fileName
+	    },{ where: { id: req.user.id } }).then(function(result){
+	    	res.render('admin/profile', {
+	        layout: 'dashboard',
+	        success_message: "Profile updated successfully"
+	        });
+	    }).catch(function(err){
+	    	var validation_error = err.errors;
+	    	res.render('admin/profile', {
+	        layout: 'dashboard',
+	        error_message: validation_error[0].message
+	        });
+	    });
   	});
 
 
