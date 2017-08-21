@@ -19,16 +19,16 @@ var models = require("./models");
 require('./config/passport')(passport,models.admin);
 
 // view engine setup
-
+// Database test
 models.sequelize.sync().then(function() {
- 
+
     console.log('Nice! Database looks fine')
- 
- 
+
+
 }).catch(function(err) {
- 
+
     console.log(err, "Something went wrong with the Database Update!")
- 
+
 });
 
 app.set('views', path.join(__dirname, 'views'));
