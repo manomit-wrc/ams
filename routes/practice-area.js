@@ -16,7 +16,7 @@ module.exports = function(app, practiceArea) {
 		res.render('admin/practice-area/add',{layout:'dashboard'});
 	});
 
-	//for add operation
+	//for add process
 	app.post('/admin/practice-area/add', function(req, res){
 		PracticeArea.create({
 			code: req.body.code,
@@ -33,6 +33,44 @@ module.exports = function(app, practiceArea) {
 	        body: req.body
 	        });
 		});
+	});
+
+	//for delete 
+	app.get('/admin/practice-area/delete/:pid', function(req, res){
+		PracticeArea.destroy({
+		    where: {
+		       id:req.params['pid']
+		    }
+		}).then(function(response){
+			req.flash('succ_add_msg', 'Practice area deleted successfully');
+			res.redirect('/admin/practice-area');
+		});
+	});
+
+	//for edit view
+	app.get('/admin/practice-area/edit/:pid', function(req, response){
+		PracticeArea.findById(req.params['pid']).then(function(practiceArea){
+			response.render('admin/practice-area/edit',{layout:'dashboard', practiceArea:practiceArea,error_message:req.flash('error_message')[0]});
+		});
+	});
+
+	//for edit process
+	app.post('/admin/practice-area/edit/:pid', function(req, res){
+		PracticeArea.update({
+    		code: req.body.code,
+			name: req.body.practice_name,
+			remarks: req.body.remarks
+	    },{ where: { id: req.params['pid'] } }).then(function(result){
+	    	req.flash('succ_add_msg', 'Practice area edited successfully');
+	    	res.redirect('/admin/practice-area');
+	    }).catch(function(err){
+	    	
+	    	var validation_error = err.errors;
+	    	req.flash('error_message', validation_error[0].message);
+	    	var redirectUrl = '/admin/practice-area/edit/' + req.params['pid'];
+  			res.redirect(redirectUrl);
+	    	
+	    });
 	});
 
 };
