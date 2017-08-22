@@ -16,7 +16,7 @@
    <!-- DataTables -->
   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/dataTables.bootstrap.css">
 
-  
+
   <!-- jvectormap -->
   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/jquery-jvectormap-1.2.2.css">
 
@@ -52,10 +52,11 @@
     	<!-- Left side column. contains the logo and sidebar -->
       {{> sidebar }}
     	 <!-- Content Wrapper. Contains page content -->
-      
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
    {{{body}}}
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -108,7 +109,7 @@
 <link media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-toggle.min.css">
 
 <script src="/admin/js/bootstrap-toggle.min.js"></script>
-
+<script src="/admin/js/validate.js"></script>
 
 
 
@@ -129,14 +130,14 @@ function deldata(url){
       }, function(isConfirm){
         if (isConfirm){
           window.location.href= url;
-        }       
+        }
       });
    /* function(){
     swal("Deleted!", "Your imaginary file has been deleted.", "success");
     });*/
 }
-  
-$(function () {  
+
+$(function () {
     //Initialize Select2 Elements
     $(".js-example-basic-multiple").select2();
     //$("#example1").DataTable();
@@ -157,7 +158,7 @@ $(function () {
 
 
   <script>
-    
+
 
     $(document).ready(function(){
       setTimeout(function() {
@@ -408,7 +409,7 @@ $(function () {
       <script type="text/javascript">
 	$(document).ready(function(e){
 		$("#avator").change(function(e){
-			
+
 			if (this.files && this.files[0]) {
 		        var reader = new FileReader();
 

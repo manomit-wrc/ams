@@ -20,16 +20,16 @@ var models = require("./models");
 require('./config/passport')(passport,models.Admin);
 
 // view engine setup
-
+// Database test
 models.sequelize.sync().then(function() {
- 
+
     console.log('Nice! Database looks fine')
- 
- 
+
+
 }).catch(function(err) {
- 
+
     console.log(err, "Something went wrong with the Database Update!")
- 
+
 });
 
 app.set('views', path.join(__dirname, 'views'));
@@ -74,7 +74,11 @@ app.use(function(req, res, next){
 
 require('./routes/profile')(app, models.Admin);
 require('./routes/section')(app, models.Section);
+
 require('./routes/practice-area')(app, models.PracticeArea);
+
+require('./routes/codecategory')(app, models.Codecategory);
+
 
 
 // catch 404 and forward to error handler
