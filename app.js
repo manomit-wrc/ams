@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 
 var exphbs  = require('express-handlebars');
@@ -16,7 +17,7 @@ var port     = process.env.PORT || 8080;
 var passport = require('passport');
 var flash    = require('connect-flash');
 var models = require("./models");
-require('./config/passport')(passport,models.admin);
+require('./config/passport')(passport,models.Admin);
 
 // view engine setup
 // Database test
@@ -58,6 +59,12 @@ app.use(function(req, res, next){
   if (req.isAuthenticated())
   {
     delete req.user.password;
+    if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
+      res.locals.image = "/profile/thumbs/"+req.user.avator;
+    }
+    else {
+      res.locals.image = "/user2-160x160.jpg";
+    }
     res.locals.user = req.user;
     return next();
   }
@@ -65,7 +72,9 @@ app.use(function(req, res, next){
 });
 
 
-require('./routes/profile')(app);
+require('./routes/profile')(app, models.Admin);
+require('./routes/section')(app, models.Section);
+require('./routes/codecategory')(app, models.Codecategory);
 
 
 // catch 404 and forward to error handler
