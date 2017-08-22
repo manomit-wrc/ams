@@ -11,7 +11,7 @@ var exphbs  = require('express-handlebars');
 
 var app = express();
 
-var port     = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -45,7 +45,7 @@ app.use(session({
 	secret: 'W$q4=25*8%v-}UV',
 	resave: true,
 	saveUninitialized: true
- } )); // session secret
+ })); // session secret
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
