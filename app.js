@@ -74,6 +74,7 @@ app.use(function(req, res, next){
 
 require('./routes/profile')(app, models.Admin);
 require('./routes/section')(app, models.Section);
+require('./routes/practice-area')(app, models.PracticeArea);
 
 
 // catch 404 and forward to error handler
