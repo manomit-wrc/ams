@@ -78,6 +78,7 @@ require('./routes/section')(app, models.Section);
 require('./routes/practice-area')(app, models.PracticeArea);
 
 require('./routes/codecategory')(app, models.Codecategory);
+require('./routes/designation')(app, models.Designation);
 
 
 
