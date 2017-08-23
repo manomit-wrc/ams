@@ -26,8 +26,6 @@ module.exports = function(app, passport) {
         res.redirect('/admin');
     });
 
-
-
 };
 
 // route middleware to make sure
