@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty:
         {
           args: true,
-          msg: 'Please enter name'
+          msg: 'Please enter category name'
         },
 
       }
