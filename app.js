@@ -86,13 +86,12 @@ app.use(function(req, res, next){
 
 require('./routes/profile')(app, models.Admin);
 require('./routes/section')(app, models.Section);
-
 require('./routes/practice-area')(app, models.PracticeArea);
-
 require('./routes/codecategory')(app, models.Codecategory);
 require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
 require('./routes/designation')(app, models.Designation);
 require('./routes/firmcodes')(app, models.Firmcodes, models.Codemaster); //we will be passing firm models shortly
+require('./routes/import-excel')(app, models.Admin,fs);
 
 
 

@@ -6,28 +6,34 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(10)
       },
       group_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(10),
+          allowNull: false,
       },
       firm_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(10),
+          allowNull: false,
       },
       group_code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50),
+          allowNull: false,
       },
       group: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50),
+          allowNull: false,
       },
       created_by: {
         type: Sequelize.STRING
       },
       remarks: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(255)
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+          allowNull: false,
+        
       },
       createdAt: {
         allowNull: false,

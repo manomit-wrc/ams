@@ -1,13 +1,49 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var Firmgroup = sequelize.define('Firmgroup', {
-    group_id: DataTypes.INTEGER,
-    firm_id: DataTypes.INTEGER,
-    group_code: DataTypes.STRING,
-    group: DataTypes.STRING,
-    created_by: DataTypes.STRING,
-    remarks: DataTypes.STRING,
-    status: DataTypes.STRING
+    group_id:
+    {
+      type:DataTypes.INTEGER,
+      allowNull:false
+
+    },
+    firm_id:
+    {
+      type: DataTypes.INTEGER,
+      allowNull:false
+
+    },
+    group_code:
+    {
+      type:DataTypes.STRING,
+      allowNull:false
+
+    },
+    group:
+    {
+      type:DataTypes.STRING,
+      allowNull:false
+
+    },
+    created_by:
+    {
+      type:DataTypes.STRING,
+      allowNull:false
+
+    },
+    remarks:
+    {
+      type:DataTypes.STRING,
+      allowNull:false
+
+    },
+    status:
+    {
+      type: DataTypes.STRING,
+      allowNull:false,
+      DefaultValue='1'
+
+    },
   }, {
     classMethods: {
       associate: function(models) {
