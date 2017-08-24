@@ -59,7 +59,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     status:{
       type: DataTypes.STRING,
-      defaultValue: '1'
+      defaultValue:'1'
+
     },
 
   }, {

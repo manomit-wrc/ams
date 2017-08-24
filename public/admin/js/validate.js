@@ -78,5 +78,30 @@ document.getElementById("longdescription_error").innerHTML = "";
 }
 
 }
+function codeMasterChkVal(val){
+  if(val.search(/\S/) == '-1'){
+      $("#code_error").show();
+      $("#code_error").html("Please enter code");
 
+      $("#shortdescription_error").show();
+      $("#shortdescription_error").html("Please enter short description");
+
+      $("#longdescription_error").show();
+      $("#longdescription_error").html("Please enter long description");
+
+  } else{
+    $("#code_error").hide();
+    $("#shortdescription_error").hide();
+    $("#longdescription_error").hide();
+  }
+}
+function categoryidChk(val){
+  if(val == ' '){
+    $("#categoryid_error").show();
+    $("#categoryid_error").html("Please enter code");
+
+  } else {
+    $("#categoryid_error").hide();
+  }
+}
 /* Code masters validation -END */
