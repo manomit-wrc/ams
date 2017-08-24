@@ -32,7 +32,7 @@
                               <select class="form-control" name="categoryid" >
                                   <option value="">Select One</option>
                                   {{#each codecategory}}
-                                      <option value="{{this.id}}" {{#if_eq this.id codemaster.categoryid}} selected = "selected" {{/if_eq}}>{{this.categoryname}}</option>
+                                      <option value="{{this.id}}" {{#if_eq this.id Codemaster.categoryid}} selected = "selected" {{/if_eq}}>{{this.categoryname}}</option>
                                   {{/each}}
                               </select>
                               <span class="text-danger"> </span>

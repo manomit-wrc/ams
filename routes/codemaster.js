@@ -44,6 +44,7 @@ module.exports = function(app, codemaster, codecategory) {
 	app.get('/admin/codemaster/edit/:id', function(req, res){
 		Codemaster.findById(req.params['id']).then(function(codemaster){
       Codecategory.findAll().then(function(codecategory){
+      		//console.log(codemaster);
 			res.render('admin/codemaster/edit', {
 	        layout: 'dashboard',
 	        codemaster:codemaster,
