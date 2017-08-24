@@ -53,7 +53,10 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: { name: 'email', msg: 'Email is already registered.' },
+    },
     password: {
       type: DataTypes.STRING,
       validate: 
@@ -66,7 +69,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     avator: DataTypes.STRING,
-    role_code: DataTypes.STRING
+    role_code: DataTypes.STRING,
+    reg_type: DataTypes.STRING(1),
+    remarks: DataTypes.TEXT,
+    group: DataTypes.STRING(50)
   }, {
     classMethods: {
       associate: function(models) {
