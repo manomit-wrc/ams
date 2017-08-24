@@ -37,6 +37,7 @@ var hbs = exphbs.create({
 extname: '.hbs', //we will be creating this layout shortly
 helpers: {
     if_eq: function (a, b, opts) {
+
         if (a == b) // Or === depending on your needs
             return opts.fn(this);
         else
@@ -91,7 +92,8 @@ require('./routes/practice-area')(app, models.PracticeArea);
 require('./routes/codecategory')(app, models.Codecategory);
 require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
 require('./routes/designation')(app, models.Designation);
-
+require('./routes/group')(app, models.Group);
+require('./routes/app-profile')(app, models.AppProfile, models.Admin);
 
 
 // catch 404 and forward to error handler

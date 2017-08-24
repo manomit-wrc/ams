@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var PracticeArea = sequelize.define('PracticeArea', {
+  var Group = sequelize.define('Group', {
     code: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -12,18 +12,18 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
-    name: {
+    group: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: 
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter name'
+          msg: 'Please enter group name'
         },
       }
     },
-    remarks: {
+    remark: {
       type: DataTypes.STRING,
       validate: 
       { 
@@ -38,12 +38,12 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.INTEGER,
         defaultValue: '1'
       }
-    }, {
+  }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
       }
     }
   });
-  return PracticeArea;
+  return Group;
 };

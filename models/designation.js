@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     status: {
         type: DataTypes.INTEGER,
-        DefaultValue: '1'
+        defaultValue: '1'
       }
   }, {
     classMethods: {
