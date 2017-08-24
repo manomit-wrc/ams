@@ -89,7 +89,11 @@ require('./routes/section')(app, models.Section);
 require('./routes/practice-area')(app, models.PracticeArea);
 
 require('./routes/codecategory')(app, models.Codecategory);
+<<<<<<< HEAD
 require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
+=======
+require('./routes/designation')(app, models.Designation);
+>>>>>>> 2b1f8989df65a9855819668403e9a42b8f8ed605
 
 
 
