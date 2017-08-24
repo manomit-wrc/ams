@@ -55,7 +55,11 @@ module.exports = function(app, codemaster, codecategory) {
 
 	app.post('/admin/codemaster/edit/:id', function(req, res){
 		Codemaster.update({
-    		categoryname: req.body.categoryname,
+      categoryid: req.body.categoryid,
+      code: req.body.code,
+      shortdescription: req.body.shortdescription,
+      longdescription: req.body.longdescription,
+      remarks: req.body.remarks,
 	    },{ where: { id: req.params['id'] } }).then(function(result){
 	    	res.redirect('/admin/codemaster');
 	    }).catch(function(err){

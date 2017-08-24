@@ -24,7 +24,7 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/codemaster/edit{{codemaster.id}}" class="form-horizontal" >
+                <form name="frmProfile" method="post" action="/admin/codemaster/edit/{{codemaster.id}}" class="form-horizontal" >
 
                   <div class="form-group ">
                     <label class="col-sm-2 control-label">Category:</label>
@@ -32,7 +32,7 @@
                               <select class="form-control" name="categoryid" >
                                   <option value="">Select One</option>
                                   {{#each codecategory}}
-                                      <option value="{{this.id}}" {{#if_eq this.id codemaster.categoryid}} selected = "selected" {{/if_eq}}>{{this.categoryname}}</option>
+                                      <option value="{{this.id}}" {{#if_eq this.id ../codemaster.categoryid}} selected = "selected" {{/if_eq}}>{{this.categoryname}}</option>
                                   {{/each}}
                               </select>
                               <span class="text-danger"> </span>
