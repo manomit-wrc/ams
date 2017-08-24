@@ -20,6 +20,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
+      status: {
+        type: Sequelize.STRING,
+        defaultValue: '1'
+      }
     });
   },
   down: function(queryInterface, Sequelize) {

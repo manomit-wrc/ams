@@ -13,11 +13,15 @@ module.exports = function(sequelize, DataTypes) {
 
       }
     },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: '1'
+    },
 
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        
       }
     }
   });

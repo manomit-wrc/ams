@@ -25,8 +25,8 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>Category</th>
                   <th>Code</th>
-                  <th>Category Name</th>
                   <th>Short Description</th>
                   <th>Long Description</th>
                   <th>Remarks</th>
@@ -36,12 +36,11 @@
                 <tbody>
                     {{#each codemaster}}
                      <tr>
+                      <td>{{this.Codecategory.categoryname}}</td>
                       <td>{{this.code}}</td>
-                      <td>{{this.categoryid}}</td>
                       <td>{{this.shortdescription}}</td>
                       <td>{{this.longdescription}}</td>
-                      <td>{{this.remarks}}
-                      </td>
+                      <td>{{this.remarks}}</td>
                       <td><a href="/admin/codemaster/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/codemaster/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                     </tr>
                      {{/each}}

@@ -33,7 +33,18 @@ models.sequelize.sync().then(function() {
 });
 
 app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs', exphbs({extname: '.hbs'}));
+var hbs = exphbs.create({
+extname: '.hbs', //we will be creating this layout shortly
+helpers: {
+    if_eq: function (a, b, opts) {
+        if (a == b) // Or === depending on your needs
+            return opts.fn(this);
+        else
+            return opts.inverse(this);
+    }
+}
+});
+app.engine('.hbs', hbs.engine);
 app.set('view engine', 'hbs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -78,7 +89,7 @@ require('./routes/section')(app, models.Section);
 require('./routes/practice-area')(app, models.PracticeArea);
 
 require('./routes/codecategory')(app, models.Codecategory);
-require('./routes/codemaster')(app, models.Codemaster);
+require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
 
 
 

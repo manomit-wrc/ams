@@ -1,26 +1,39 @@
-module.exports = function(app, CodeMaster) {
+module.exports = function(app, codemaster, codecategory) {
 
- 	var CodeMaster = CodeMaster;
+ 	var Codemaster = codemaster;
+  var Codecategory = codecategory;
 
-	app.get('/admin/codecategory', function(req, res) {
-		Codecategory.findAll().then(function(codecategory){
-			res.render('admin/codecategory/index',{layout:'dashboard', codecategory:codecategory});
+	app.get('/admin/codemaster', function(req, res) {
+    Codemaster.belongsTo(Codecategory, {foreignKey: 'categoryid'});
+    Codemaster.findAll({
+      include: [{model: Codecategory}]
+    }).then(function(codemaster){
+      console.log(codemaster);
+			res.render('admin/codemaster/index',{layout:'dashboard', codemaster:codemaster});
 		});
 
 	});
 
-	app.get('/admin/codecategory/add', function(req, res){
-		res.render('admin/codecategory/add',{layout:'dashboard'});
+	app.get('/admin/codemaster/add', function(req, res){
+    Codecategory.findAll().then(function(codecategory){
+			res.render('admin/codemaster/add',{layout:'dashboard', codecategory:codecategory});
+		});
 	});
 
-	app.post('/admin/codecategory/add', function(req, res){
-		Codecategory.create({
-			categoryname: req.body.categoryname,
+	app.post('/admin/codemaster/add', function(req, res){
+		Codemaster.create({
+			categoryid: req.body.categoryid,
+      code: req.body.code,
+      shortdescription: req.body.shortdescription,
+      longdescription: req.body.longdescription,
+      remarks: req.body.remarks,
+      createdby:`1`
 		}).then(function(result){
-			res.redirect('/admin/codecategory');
+
+			res.redirect('/admin/codemaster');
 		}).catch(function(err){
 			var validation_error = err.errors;
-	    	res.render('admin/codecategory/add', {
+	    	res.render('admin/codemaster/add', {
 	        layout: 'dashboard',
 	        error_message: validation_error[0].message,
 	        body: req.body
@@ -28,32 +41,35 @@ module.exports = function(app, CodeMaster) {
 		});
 	});
 
-	app.get('/admin/codecategory/edit/:id', function(req, res){
-		Codecategory.findById(req.params['id']).then(function(codecategory){
-			res.render('admin/codecategory/edit', {
+	app.get('/admin/codemaster/edit/:id', function(req, res){
+		Codemaster.findById(req.params['id']).then(function(codemaster){
+      Codecategory.findAll().then(function(codecategory){
+			res.render('admin/codemaster/edit', {
 	        layout: 'dashboard',
-	        codecategory:codecategory
+	        codemaster:codemaster,
+          codecategory:codecategory
 	        });
+        });
 		});
 	});
 
-	app.post('/admin/codecategory/edit/:id', function(req, res){
-		Codecategory.update({
+	app.post('/admin/codemaster/edit/:id', function(req, res){
+		Codemaster.update({
     		categoryname: req.body.categoryname,
 	    },{ where: { id: req.params['id'] } }).then(function(result){
-	    	res.redirect('/admin/codecategory');
+	    	res.redirect('/admin/codemaster');
 	    }).catch(function(err){
 
 	    });
 	});
 
-	app.get('/admin/codecategory/delete/:id', function(req, res){
-		Codecategory.destroy({
+	app.get('/admin/codemaster/delete/:id', function(req, res){
+		Codemaster.destroy({
 		    where: {
 		       id:req.params['id']
 		    }
 		}).then(function(response){
-			res.redirect('/admin/codecategory');
+			res.redirect('/admin/codemaster');
 		});
 	});
 

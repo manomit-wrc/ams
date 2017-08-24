@@ -1,59 +1,73 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var CodeMaster = sequelize.define('CodeMaster', {
-    categoryid: {
+  var Codemaster = sequelize.define('Codemaster', {
+    categoryid:{
       type:DataTypes.INTEGER,
       allowNull: false,
-      validate:{
-         notEmpty:{
-           args: true,
-           msg: 'Please select a code category'
-         },
-      }
-
-    },
-    code:{
-      type:  DataTypes.STRING,
-      allowNull:false,
-      validate:{
-        notEmpty:{
-          args:true,
-          msg:' Please select code'
+      validate:
+      { notEmpty:
+        {
+          args: true,
+          msg: 'Please select a category'
         },
       }
     },
-    shortdescription: {
-      type:  DataTypes.STRING,
-      allowNull:false,
-      validate:{
-        notEmpty:{
-          args:true,
-          msg:' Please enter Short description'
+
+    code:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:
+      { notEmpty:
+        {
+          args: true,
+          msg: 'Please enter code'
+        },
+      }
+    },
+
+    shortdescription:{
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:
+      { notEmpty:
+        {
+          args: true,
+          msg: 'Please enter short description'
         },
       }
     },
 
     longdescription:{
-      type:  DataTypes.STRING,
-      allowNull:false,
-      validate:{
-        notEmpty:{
-          args:true,
-          msg:' Please enter Long description'
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate:
+      { notEmpty:
+        {
+          args: true,
+          msg: 'First enter long description'
         },
       }
     },
+    remarks:{
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
 
-    remarks: DataTypes.STRING,
-    createdby: DataTypes.STRING,
+    createdby:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    status:{
+      type: DataTypes.STRING,
+      defaultValue: '1'
+    },
 
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
-        CodeMaster.belongsTo(models.Codecategory, {foreignKey:'categoryid'})
       }
     }
   });
-  return CodeMaster;
+
+  return Codemaster;
 };
