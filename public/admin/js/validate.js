@@ -80,3 +80,100 @@ document.getElementById("longdescription_error").innerHTML = "";
 }
 
 /* Code masters validation -END */
+
+
+// practice area form validation
+
+function validatePracticearea(){
+    var code = $('#code').val();
+    var name = $('#name').val();
+
+  if(code ==''){
+      document.getElementById('code').style.border = '1px solid red !important';
+      $("#code_error").css("display", "block");
+      document.getElementById("code_error").innerHTML = "Please enter area code";
+      document.getElementById('code').focus();
+      return false;
+  }else{
+      $("#code_error").css("display", "none");
+      document.getElementById('code').style.border = '';
+      document.getElementById("code_error").innerHTML = "";
+  }
+
+  if(name ==''){
+      document.getElementById('name').style.border = '1px solid red !important';
+      $("#name_error").css("display", "block");
+      document.getElementById("name_error").innerHTML = "Please select category name";
+      document.getElementById('name').focus();
+      return false;
+  }else{
+      $("#name_error").css("display", "none");
+      document.getElementById('name').style.border = '';
+      document.getElementById("name_error").innerHTML = "";
+  }
+}
+// end validation
+
+// Designation form validation
+
+function validateDesignation(){
+    var code = $('#code').val();
+    var designation = $('#designation').val();
+
+  if(code ==''){
+      document.getElementById('code').style.border = '1px solid red !important';
+      $("#code_error").css("display", "block");
+      document.getElementById("code_error").innerHTML = "Please enter designation code";
+      document.getElementById('code').focus();
+      return false;
+  }else{
+      $("#code_error").css("display", "none");
+      document.getElementById('code').style.border = '';
+      document.getElementById("code_error").innerHTML = "";
+  }
+
+  if(designation ==''){
+      document.getElementById('designation').style.border = '1px solid red !important';
+      $("#designation_error").css("display", "block");
+      document.getElementById("designation_error").innerHTML = "Please enter designation name";
+      document.getElementById('designation').focus();
+      return false;
+  }else{
+      $("#designation_error").css("display", "none");
+      document.getElementById('designation').style.border = '';
+      document.getElementById("designation_error").innerHTML = "";
+  }
+}
+// end validation
+
+// Designation form validation
+
+function validateGroup(){
+    var code = $('#code').val();
+    var group_name = $('#group_name').val();
+
+  if(code ==''){
+      document.getElementById('code').style.border = '1px solid red !important';
+      $("#code_error").css("display", "block");
+      document.getElementById("code_error").innerHTML = "Please enter designation code";
+      document.getElementById('code').focus();
+      return false;
+  }else{
+      $("#code_error").css("display", "none");
+      document.getElementById('code').style.border = '';
+      document.getElementById("code_error").innerHTML = "";
+  }
+
+  if(group_name ==''){
+      document.getElementById('group_name').style.border = '1px solid red !important';
+      $("#group_error").css("display", "block");
+      document.getElementById("group_error").innerHTML = "Please enter designation name";
+      document.getElementById('group_name').focus();
+      return false;
+  }else{
+      $("#group_error").css("display", "none");
+      document.getElementById('group_name').style.border = '';
+      document.getElementById("group_error").innerHTML = "";
+  }
+}
+// end validation

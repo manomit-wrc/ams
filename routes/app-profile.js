@@ -9,7 +9,7 @@ module.exports = function(app, appProfile, admin) {
 		AppProfile.findAll({
 			include: [{model: Admin}]
 		}).then(function(appProfile){
-			//console.log(practiceArea[0].dataValues.id);
+			console.log(appProfile);
 			res.render('admin/app-profile/index',{layout:'dashboard', appProfile:appProfile,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 		

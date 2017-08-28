@@ -95,6 +95,10 @@ require('./routes/designation')(app, models.Designation);
 require('./routes/group')(app, models.Group);
 require('./routes/app-profile')(app, models.AppProfile, models.Admin);
 
+require('./routes/import-excel')(app, models.Admin,fs);
+
+
+
 
 // catch 404 and forward to error handler
 

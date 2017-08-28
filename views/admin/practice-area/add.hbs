@@ -11,8 +11,7 @@
 <section class="content">
         <div class="col-md-12">
           <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              
+            <ul class="nav nav-tabs"> 
               <li class="active"><a href="#settings" data-toggle="tab">Practice Area - Add</a></li>
             </ul>
             <div class="tab-content">
@@ -23,7 +22,7 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/practice-area/add" class="form-horizontal" >
+                <form name="frmProfile" method="post" action="/admin/practice-area/add" class="form-horizontal" onsubmit="return validatePracticearea()">
                   
                   <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Code</label>
@@ -31,6 +30,7 @@
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="code" placeholder="Enter Practice Code" name="code" value="{{body.code}}">
                       <span class="text-danger"></span>
+                      <div class="alert alert-danger fade in alert-dismissable" id="code_error" style="display:none; margin-top:5px;"></div>
                     </div>
                   </div>
 
@@ -40,6 +40,7 @@
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="name" placeholder="Enter Practice Name" name="practice_name" value="{{body.practice_name}}">
                       <span class="text-danger"></span>
+                      <div class="alert alert-danger fade in alert-dismissable" id="name_error" style="display:none; margin-top:5px;"></div>
                     </div>
                   </div>
 

@@ -22,7 +22,7 @@ module.exports = function(app, group) {
 		Group.findAndCountAll({
 		   where: {
 		      group: {
-		        $like: '%'+req.body.practice_name+'%'
+		        $like: '%'+req.body.group_name+'%'
 		      }
 		   }
 		})
@@ -48,7 +48,7 @@ module.exports = function(app, group) {
 				});
 			} else {
 		    	req.flash('error_message', 'Group already exists');
-		    	var redirectUrl = '/admin/practice-area/add';
+		    	var redirectUrl = '/admin/group/add';
 	  			res.redirect(redirectUrl);
 	  		}
 		  	

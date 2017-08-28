@@ -18,23 +18,38 @@ module.exports = function(app, designation) {
 
 	//for add process
 	app.post('/admin/designation/add', function(req, res){
-
-		
-		Designation.create({
-			code: req.body.code,
-			designation: req.body.designation,
-			remarks: req.body.remarks
-		}).then(function(result){
-			req.flash('succ_add_msg', 'Designation added successfully');
-			res.redirect('/admin/designation');
-		}).catch(function(err){
-			var validation_error = err.errors;
-	    	res.render('admin/designation/add', {
-	        layout: 'dashboard',
-	        error_message: validation_error[0].message,
-	        body: req.body
-	        });
-		});
+		Designation.findAndCountAll({
+		   where: {
+		      designation: {
+		        $like: '%'+req.body.designation+'%'
+		      }
+		   }
+		})
+		.then(function(result) {
+			//console.log(result.count);
+			var count = result.count;
+			if(count == 0) {
+				Designation.create({
+					code: req.body.code,
+					designation: req.body.designation,
+					remarks: req.body.remarks
+				}).then(function(result){
+					req.flash('succ_add_msg', 'Designation added successfully');
+					res.redirect('/admin/designation');
+				}).catch(function(err){
+					var validation_error = err.errors;
+			    	res.render('admin/designation/add', {
+			        layout: 'dashboard',
+			        error_message: validation_error[0].message,
+			        body: req.body
+			        });
+				});
+			} else {
+		    	req.flash('error_message', 'Designation already exists');
+		    	var redirectUrl = '/admin/practice-area/add';
+	  			res.redirect(redirectUrl);
+	  		}
+	  	});
 	});
 
 	//for delete 
