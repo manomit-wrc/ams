@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Firmgroups', {
+    return queryInterface.createTable('FirmGroups', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING(50),
           allowNull: false,
       },
-      group: {
+      group_name: {
         type: Sequelize.STRING(50),
           allowNull: false,
       },
@@ -33,7 +33,7 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
           allowNull: false,
-        
+
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +46,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Firmgroups');
+    return queryInterface.dropTable('FirmGroups');
   }
 };
