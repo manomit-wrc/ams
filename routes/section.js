@@ -1,14 +1,17 @@
 module.exports = function(app, section) {
- 	
+
  	var Section = section;
-	
+	/*########### Listing - Begin #############*/
 	app.get('/admin/section', function(req, res) {
-		Section.findAll().then(function(section){
+		Section.findAll({where: {
+      status:'1';
+    }}).then(function(section){
 			res.render('admin/section/index',{layout:'dashboard', section:section});
 		});
-		
-	});
 
+	});
+  /*########### Listing - End #############*/
+  /*@@@@@@@@@@ Add - Begin @@@@@@@@@@@@@*/
 	app.get('/admin/section/add', function(req, res){
 		res.render('admin/section/add',{layout:'dashboard'});
 	});
@@ -29,6 +32,8 @@ module.exports = function(app, section) {
 	        });
 		});
 	});
+    /*@@@@@@@@@@ Add - End @@@@@@@@@@@@@*/
+    /*@@@@@@@@@@ Edit - Begin @@@@@@@@@@@@@*/
 
 	app.get('/admin/section/edit/:id', function(req, res){
 		Section.findById(req.params['id']).then(function(section){
@@ -38,7 +43,7 @@ module.exports = function(app, section) {
 	        });
 		});
 	});
-	
+
 	app.post('/admin/section/edit/:id', function(req, res){
 		Section.update({
     		name: req.body.name,
@@ -47,10 +52,11 @@ module.exports = function(app, section) {
 	    },{ where: { id: req.params['id'] } }).then(function(result){
 	    	res.redirect('/admin/section');
 	    }).catch(function(err){
-	    	
+
 	    });
 	});
-
+/*@@@@@@@@@@ Edit - End @@@@@@@@@@@@@*/
+/*@@@@@@@@@@ Delete - Begin @@@@@@@@@@@@@*/
 	app.get('/admin/section/delete/:id', function(req, res){
 		Section.destroy({
 		    where: {
@@ -60,5 +66,5 @@ module.exports = function(app, section) {
 			res.redirect('/admin/section');
 		});
 	});
-
+/*@@@@@@@@@@ Delete - End @@@@@@@@@@@@@*/
 };

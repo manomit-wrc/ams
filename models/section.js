@@ -4,8 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: 
-      { notEmpty: 
+      validate:
+      { notEmpty:
         {
           args: true,
           msg: 'Please enter name'
@@ -15,8 +15,8 @@ module.exports = function(sequelize, DataTypes) {
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
-      validate: 
-      { notEmpty: 
+      validate:
+      { notEmpty:
         {
           args: true,
           msg: 'Please enter description'
@@ -25,15 +25,21 @@ module.exports = function(sequelize, DataTypes) {
     },
     remarks: {
       type: DataTypes.TEXT,
-      validate: 
-      { 
-        notEmpty: 
+      validate:
+      {
+        notEmpty:
         {
           args: true,
           msg: 'Please enter remarks'
         },
       }
-    }
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: '1'
+
+    },
+
   }, {
     classMethods: {
       associate: function(models) {
