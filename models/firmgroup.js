@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Firmgroup = sequelize.define('Firmgroup', {
+  var FirmGroup = sequelize.define('FirmGroup', {
     group_id:
     {
       type:DataTypes.INTEGER,
@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull:false
 
     },
-    group:
+    group_name:
     {
       type:DataTypes.STRING,
       allowNull:false
@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
     {
       type: DataTypes.STRING,
       allowNull:false,
-      DefaultValue='1'
+      DefaultValue:'1'
 
     },
   }, {
@@ -51,5 +51,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Firmgroup;
+  return FirmGroup;
 };

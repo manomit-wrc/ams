@@ -91,6 +91,7 @@ require('./routes/codecategory')(app, models.Codecategory);
 require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
 require('./routes/designation')(app, models.Designation);
 require('./routes/firmcodes')(app, models.Firmcodes, models.Codemaster); //we will be passing firm models shortly
+require('./routes/firmgroup')(app, models.FirmGroup, models.Group); //we will be passing firm models shortly
 require('./routes/import-excel')(app, models.Admin,fs);
 
 
