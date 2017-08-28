@@ -93,6 +93,7 @@ require('./routes/designation')(app, models.Designation);
 require('./routes/group')(app, models.Group);
 require('./routes/app-profile')(app, models.AppProfile, models.Admin);
 require('./routes/firmcodes')(app, models.Firmcodes, models.Codemaster); //we will be passing firm models shortly
+require('./routes/firmgroup')(app, models.FirmGroup, models.Group); //we will be passing firm models shortly
 require('./routes/import-excel')(app, models.Admin,fs);
 
 
