@@ -1,0 +1,72 @@
+<section class="content-header">
+  <h1>
+    Designation
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="active">Designation - Edit</li>
+  </ol>
+</section>
+
+<section class="content">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              
+              <li class="active"><a href="#settings" data-toggle="tab">Designation - Edit</a></li>
+            </ul>
+            <div class="tab-content">
+            	
+              	{{#if error_message}}
+              	<div class="alert alert-danger" id="result77">
+              	{{error_message}}
+              	</div>
+              	{{/if}}
+               <div class="tab-pane active" id="settings">
+                <form name="frmProfile" method="post" action="/admin/designation/edit/{{designation.id}}" class="form-horizontal" >
+                  
+                  <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Code</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="code" placeholder="Enter designation Code" name="code" value="{{designation.code}}">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="description" class="col-sm-2 control-label">designation</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="designation" placeholder="Enter designation Name" name="designation" value="{{designation.designation}}">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="remarks" class="col-sm-2 control-label">Remarks</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{designation.remarks}}</textarea>
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Edit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+</section>

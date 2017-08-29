@@ -1,0 +1,57 @@
+<section class="content-header">
+  <h1>
+    Import User Data
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="active">Import User Data</li>
+  </ol>
+</section>
+
+<section class="content">
+      <div class="row">
+       
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              
+              <li class="active"><a href="#settings" data-toggle="tab">Import User Data</a></li>
+            </ul>
+            <div class="tab-content">
+            	{{#if success_message}}
+              	<div class="alert alert-success" id="result77">
+              	{{success_message}}
+              	</div>
+              	{{/if}}
+              	{{#if error_message}}
+              	<div class="alert alert-danger" id="result77">
+              	{{error_message}}
+              	</div>
+              	{{/if}}
+               <div class="tab-pane active" id="settings">
+                <form name="frmImport" method="post" action="/admin/import-excel" class="form-horizontal" enctype="multipart/form-data">
+                  <div class="form-group ">
+                    <label for="excel_file" class="col-sm-2 control-label">File</label>
+
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="excel_file" name="excel_file" >
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+</section>
