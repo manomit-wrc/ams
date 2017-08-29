@@ -89,8 +89,11 @@ require('./routes/section')(app, models.Section);
 require('./routes/practice-area')(app, models.PracticeArea);
 require('./routes/codecategory')(app, models.Codecategory);
 require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
+require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
+require('./routes/budgetcodetype')(app, models.budgetcodetype);
 require('./routes/designation')(app, models.Designation);
 require('./routes/group')(app, models.Group);
+require('./routes/jurisdiction')(app, models.Jurisdiction);
 require('./routes/app-profile')(app, models.AppProfile, models.Admin);
 require('./routes/firmcodes')(app, models.Firmcodes, models.Codemaster); //we will be passing firm models shortly
 require('./routes/firmgroup')(app, models.FirmGroup, models.Group); //we will be passing firm models shortly

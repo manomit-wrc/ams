@@ -1,25 +1,26 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Groups', {
+    return queryInterface.createTable('budgetcodetypes', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(10)
       },
       code: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
-      group: {
-        type: Sequelize.STRING
+      budget_code_type: {
+        allowNull: false,
+        type: Sequelize.STRING(255)
       },
-      remark: {
-        type: Sequelize.STRING
+      remarks: {
+        type: Sequelize.STRING (255)
       },
       status: {
-        type: Sequelize.INTEGER,
-        defaultValue: 1
+        type: Sequelize.INTEGER(1)
       },
       createdAt: {
         allowNull: false,
@@ -32,6 +33,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Groups');
+    return queryInterface.dropTable('budgetcodetypes');
   }
 };

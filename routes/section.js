@@ -4,7 +4,7 @@ module.exports = function(app, section) {
 	/*########### Listing - Begin #############*/
 	app.get('/admin/section', function(req, res) {
 		Section.findAll({where: {
-      status:'1';
+      status:'1',
     }}).then(function(section){
 			res.render('admin/section/index',{layout:'dashboard', section:section});
 		});
@@ -16,22 +16,46 @@ module.exports = function(app, section) {
 		res.render('admin/section/add',{layout:'dashboard'});
 	});
 
-	app.post('/admin/section/add', function(req, res){
-		Section.create({
-			name: req.body.name,
-			description: req.body.description,
-			remarks: req.body.remarks
-		}).then(function(result){
-			res.redirect('/admin/section');
-		}).catch(function(err){
-			var validation_error = err.errors;
-	    	res.render('admin/section/add', {
-	        layout: 'dashboard',
-	        error_message: validation_error[0].message,
-	        body: req.body
-	        });
-		});
-	});
+  app.post('/admin/section/add', function(req, res){
+    Section.findAndCountAll({
+       where: {
+            name: {
+            $like: '%'+req.body.name+'%'
+          }
+       }
+    })
+    .then(function(result) {
+      // console.log(result.count);
+      var count = result.count;
+      if(count == 0) {
+
+        Section.create({
+        name: req.body.name,
+  			description: req.body.description,
+  			remarks: req.body.remarks
+
+        }).then(function(result){
+
+          req.flash('succ_add_msg', 'Section added successfully');
+          res.redirect('/admin/section');
+        }).catch(function(err){
+          var validation_error = err.errors;
+            res.render('admin/section/add', {
+                layout: 'dashboard',
+                error_message: validation_error[0].message,
+                body: req.body
+              });
+        });
+      } else {
+          req.flash('error_message', 'Section already exists');
+          var redirectUrl = '/admin/section/add';
+          res.redirect(redirectUrl);
+        }
+
+    });
+
+  });
+
     /*@@@@@@@@@@ Add - End @@@@@@@@@@@@@*/
     /*@@@@@@@@@@ Edit - Begin @@@@@@@@@@@@@*/
 
