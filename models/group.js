@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Group = sequelize.define('Group', {
+  var Group = sequelize.define('group', {
     code: {
       type: DataTypes.STRING,
       allowNull: false,

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Designation = sequelize.define('Designation', {
+  var Designation = sequelize.define('designation', {
 
     code: {
       type: DataTypes.STRING,
@@ -40,6 +40,13 @@ module.exports = function(sequelize, DataTypes) {
         defaultValue: '1'
       }
   }, {
+    scopes: {
+    status: {
+      where: {
+        status: 1
+      }
+    }
+  },
     classMethods: {
       associate: function(models) {
         // associations can be defined here

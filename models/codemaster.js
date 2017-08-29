@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Codemaster = sequelize.define('Codemaster', {
+  var Codemaster = sequelize.define('codemaster', {
     categoryid:{
       type:DataTypes.INTEGER,
       allowNull: false,

@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Codecategory = sequelize.define('Codecategory', {
+  var Codecategory = sequelize.define('codecategory', {
     categoryname: {
       type: DataTypes.STRING,
       allowNull: false,

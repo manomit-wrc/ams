@@ -17,7 +17,7 @@ var port = process.env.PORT || 8080;
 var passport = require('passport');
 var flash    = require('connect-flash');
 var models = require("./models");
-require('./config/passport')(passport,models.Admin);
+require('./config/passport')(passport,models.admin);
 
 // view engine setup
 // Database test
@@ -42,6 +42,30 @@ helpers: {
             return opts.fn(this);
         else
             return opts.inverse(this);
+    },
+    eq: function (v1, v2) {
+        return v1 === v2;
+    },
+    ne: function (v1, v2) {
+        return v1 !== v2;
+    },
+    lt: function (v1, v2) {
+        return v1 < v2;
+    },
+    gt: function (v1, v2) {
+        return v1 > v2;
+    },
+    lte: function (v1, v2) {
+        return v1 <= v2;
+    },
+    gte: function (v1, v2) {
+        return v1 >= v2;
+    },
+    and: function (v1, v2) {
+        return v1 && v2;
+    },
+    or: function (v1, v2) {
+        return v1 || v2;
     }
 }
 });
@@ -78,23 +102,26 @@ app.use(function(req, res, next){
       res.locals.image = "/user2-160x160.jpg";
     }
     res.locals.user = req.user;
+    res.locals.active = req.path.split('/')[2];
+    
     return next();
   }
   res.redirect('/admin');
 });
 
 
-require('./routes/profile')(app, models.Admin);
-require('./routes/section')(app, models.Section);
-require('./routes/practice-area')(app, models.PracticeArea);
-require('./routes/codecategory')(app, models.Codecategory);
-require('./routes/codemaster')(app, models.Codemaster, models.Codecategory);
-require('./routes/designation')(app, models.Designation);
-require('./routes/group')(app, models.Group);
-require('./routes/app-profile')(app, models.AppProfile, models.Admin);
-require('./routes/firmcodes')(app, models.Firmcodes, models.Codemaster); //we will be passing firm models shortly
-require('./routes/firmgroup')(app, models.FirmGroup, models.Group); //we will be passing firm models shortly
-require('./routes/import-excel')(app, models.Admin,fs);
+require('./routes/profile')(app, models.admin);
+require('./routes/section')(app, models.section);
+require('./routes/practice-area')(app, models.practicearea);
+require('./routes/codecategory')(app, models.codecategory);
+require('./routes/codemaster')(app, models.codemaster, models.codecategory);
+require('./routes/designation')(app, models.designation);
+require('./routes/group')(app, models.group);
+require('./routes/app-profile')(app, models.appprofile, models.admin);
+require('./routes/firmcodes')(app, models.firmcodes, models.codemaster); //we will be passing firm models shortly
+require('./routes/firmgroup')(app, models.firmGroup, models.group); //we will be passing firm models shortly
+require('./routes/import-excel')(app, models.admin,fs);
+require('./routes/firm')(app,models);
 
 
 

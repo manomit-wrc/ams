@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var FirmGroup = sequelize.define('FirmGroup', {
+  var FirmGroup = sequelize.define('firmgroup', {
     group_id:
     {
       type:DataTypes.INTEGER,

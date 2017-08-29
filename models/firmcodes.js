@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Firmcodes = sequelize.define('Firmcodes', {
+  var Firmcodes = sequelize.define('firmcodes', {
 
     code_master_id:
     {
