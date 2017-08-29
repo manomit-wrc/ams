@@ -17,7 +17,9 @@ var port = process.env.PORT || 8080;
 var passport = require('passport');
 var flash    = require('connect-flash');
 var models = require("./models");
+
 require('./config/passport')(passport,models.admin);
+
 
 // view engine setup
 // Database test
@@ -42,6 +44,7 @@ helpers: {
             return opts.fn(this);
         else
             return opts.inverse(this);
+
     },
     eq: function (v1, v2) {
         return v1 === v2;
@@ -66,6 +69,7 @@ helpers: {
     },
     or: function (v1, v2) {
         return v1 || v2;
+
     }
 }
 });
@@ -102,12 +106,14 @@ app.use(function(req, res, next){
       res.locals.image = "/user2-160x160.jpg";
     }
     res.locals.user = req.user;
+
     res.locals.active = req.path.split('/')[2];
-    
+
     return next();
   }
   res.redirect('/admin');
 });
+
 
 
 require('./routes/profile')(app, models.admin);
@@ -123,6 +129,9 @@ require('./routes/firmgroup')(app, models.firmGroup, models.group); //we will be
 require('./routes/import-excel')(app, models.admin,fs);
 require('./routes/firm')(app,models);
 
+
+require('./routes/role')(app, models.role);
+require('./routes/industry-type')(app, models.industrytype);
 
 
 
