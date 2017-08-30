@@ -127,7 +127,7 @@ require('./routes/firmgroup')(app, models.firmGroup, models.group); //we will be
 require('./routes/import-excel')(app, models.admin,fs);
 require('./routes/firm')(app,models);
 
-
+require('./routes/jurisdiction')(app, models.jurisdiction);
 require('./routes/role')(app, models.role);
 require('./routes/industry-type')(app, models.industrytype);
 require('./routes/budgetcodetype')(app, models.budgetcodetype);

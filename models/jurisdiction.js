@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Jurisdiction = sequelize.define('Jurisdiction', {
+  var Jurisdiction = sequelize.define('jurisdiction', {
     jurisdiction_code:{
         type:DataTypes.STRING,
         allowNull: false,
