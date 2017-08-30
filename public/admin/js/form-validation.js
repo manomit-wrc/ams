@@ -37,7 +37,7 @@ $(document).ready(function(e){
 			}
 		},
 		submitHandler:function(form) {
-			alert("Hello");
+			form.submit();
 		}
 	});
 });
