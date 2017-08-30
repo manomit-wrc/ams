@@ -6,6 +6,13 @@ $(document).ready(function(e){
 			},
 			last_name: {
 				required: true
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			password: {
+				required: true
 			}
 		}
 	});
