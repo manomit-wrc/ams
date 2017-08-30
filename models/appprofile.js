@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var AppProfile = sequelize.define('AppProfile', {
+  var AppProfile = sequelize.define('appprofile', {
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,

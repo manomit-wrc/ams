@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var PracticeArea = sequelize.define('PracticeArea', {
+  var PracticeArea = sequelize.define('practicearea', {
     code: {
       type: DataTypes.STRING,
       allowNull: false,

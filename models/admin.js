@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Admin = sequelize.define('Admin', {
+  var Admin = sequelize.define('admin', {
     first_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -72,7 +72,21 @@ module.exports = function(sequelize, DataTypes) {
     role_code: DataTypes.STRING,
     reg_type: DataTypes.STRING(1),
     remarks: DataTypes.TEXT,
-    group: DataTypes.STRING(50)
+    group: DataTypes.STRING(50),
+    gender: DataTypes.STRING(20),
+    designation_id: DataTypes.INTEGER,
+    is_attorney: DataTypes.INTEGER(1),
+    fax: DataTypes.STRING(100),
+    mobile: DataTypes.STRING(100),
+    website: DataTypes.STRING(255),
+    social: DataTypes.STRING(255),
+    address_2: DataTypes.TEXT,
+    address_3: DataTypes.TEXT,
+    country_id: DataTypes.INTEGER,
+    state_id: DataTypes.INTEGER,
+    city_id: DataTypes.INTEGER,
+    zipcode: DataTypes.STRING,
+    firm_id: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

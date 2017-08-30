@@ -6,7 +6,7 @@ module.exports = function(app, firmgroup, codemaster) {
 	app.get('/admin/firmgroup', function(req, res) {
     FirmGroup.belongsTo(Codemaster, {foreignKey: 'group_id'});
     FirmGroup.findAll({
-      include: [{model: FirmGroup}]
+      include: [{model: Codemaster}]
     }).then(function(firmcodes){
       console.log(firmgroup);
 			res.render('admin/firmgroup/index',{layout:'dashboard', firmgroup:firmgroup});
