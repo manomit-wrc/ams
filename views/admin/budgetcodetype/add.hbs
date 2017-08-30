@@ -1,10 +1,10 @@
 <section class="content-header">
   <h1>
-    Section
+    Budget Code Type
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard">Dashboard</a></li>
-    <li class="active">Section - Add</li>
+    <li class="active">Budget Code Type - Add</li>
   </ol>
 </section>
 
@@ -13,7 +13,7 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 
-              <li class="active"><a href="#settings" data-toggle="tab">Section - Add</a></li>
+              <li class="active"><a href="#settings" data-toggle="tab">Budget Code Type - Add</a></li>
             </ul>
             <div class="tab-content">
 
@@ -23,23 +23,25 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/section/add" class="form-horizontal" >
+                <form name="frmProfile" method="post" action="/admin/budgetcodetype/add" class="form-horizontal" onsubmit="return validateBudgetcodetype()">
 
-                  <div class="form-group ">
-                    <label for="name" class="col-sm-2 control-label">Name</label>
+                  <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Budget Code</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="name" placeholder="Enter Section Name" name="name" value="{{body.name}}" >
+                      <input type="text" class="form-control" id="code" placeholder="Enter budget Code" name="code" value="{{body.code}}" onkeyup="return checkBudgetValue(this.value)">
                       <span class="text-danger"></span>
+                      <div class="alert alert-danger fade in alert-dismissable" id="code_error" style="display:none; margin-top:5px;"></div>
                     </div>
                   </div>
 
                   <div class="form-group ">
-                    <label for="description" class="col-sm-2 control-label">Description</label>
+                    <label for="description" class="col-sm-2 control-label">Budget Code Type</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="description" placeholder="Enter Description" name="description" >{{body.description}}</textarea>
+                      <input type="text" class="form-control" id="budget_code_type" placeholder="Enter Budget code type" name="budget_code_type" value="{{body.budget_code_type}}" onkeyup="return checkBudgetValue(this.value)">
                       <span class="text-danger"></span>
+                      <div class="alert alert-danger fade in alert-dismissable" id="budget_code_type_error" style="display:none; margin-top:5px;"></div>
                     </div>
                   </div>
 
