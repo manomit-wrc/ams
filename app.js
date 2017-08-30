@@ -114,8 +114,6 @@ app.use(function(req, res, next){9
   res.redirect('/admin');
 });
 
-
-
 require('./routes/profile')(app, models.admin);
 require('./routes/section')(app, models.section);
 require('./routes/practice-area')(app, models.practicearea);
@@ -132,7 +130,7 @@ require('./routes/firm')(app,models);
 
 require('./routes/role')(app, models.role);
 require('./routes/industry-type')(app, models.industrytype);
-
+require('./routes/budgetcodetype')(app, models.budgetcodetype);
 
 
 // catch 404 and forward to error handler

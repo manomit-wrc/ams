@@ -119,15 +119,6 @@ module.exports = {
              allowNull: true,
              after: 'group'
            }
-         ),
-         queryInterface.addColumn(
-           'admins',
-           'firm_id',
-           {
-             type: Sequelize.INTEGER,
-             allowNull: true,
-             after: 'group'
-           }
          )
        ];
   },

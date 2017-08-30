@@ -335,6 +335,93 @@ function validateIndustry(){
         document.getElementById('industry').style.border = '';
         document.getElementById("industry_error").innerHTML = "";
     }
-
 }
 // end validation
+
+//Jurisdiction validation - Begin//
+function validateJurisdiction(){
+  var jurisdiction_code = $('#jurisdiction_code').val();
+  var jurisdiction = $('#jurisdiction').val();
+
+
+  if(jurisdiction_code ==''){
+  document.getElementById('jurisdiction_code').style.border = '1px solid red !important';
+  $("#jurisdiction_code_error").css("display", "block");
+  document.getElementById("jurisdiction_code_error").innerHTML = "Please enter jurisdiction code";
+  document.getElementById('jurisdiction_code').focus();
+  return false;
+}else{
+  $("#jurisdiction_code_error").css("display", "none");
+  document.getElementById('jurisdiction_code').style.border = '';
+  document.getElementById("jurisdiction_code_error").innerHTML = "";
+}
+if(jurisdiction ==''){
+document.getElementById('jurisdiction').style.border = '1px solid red !important';
+$("#jurisdiction_error").css("display", "block");
+document.getElementById("jurisdiction_error").innerHTML = "Please enter jurisdiction";
+document.getElementById('jurisdiction').focus();
+return false;
+}else{
+$("#jurisdiction_error").css("display", "none");
+document.getElementById('jurisdiction').style.border = '';
+document.getElementById("jurisdiction_error").innerHTML = "";
+}
+
+}
+function checkJurisValue(val){
+  if(val.search(/\S/) == '-1'){
+      $("#jurisdiction_code_error").show();
+      $("#jurisdiction_code_error").html("Please enter jurisdiction code");
+
+      $("#jurisdiction_error").show();
+      $("#jurisdiction_error").html("Please enter jurisdiction");
+
+  } else{
+    $("#jurisdiction_code_error").hide();
+    $("#jurisdiction_error").hide();
+  }
+}
+//jurisdiction validation - End//
+//Budget code type validation - Begin//
+function validateBudgetcodetype(){
+  var code = $('#code').val();
+  var budget_code_type = $('#budget_code_type').val();
+
+  if(code ==''){
+  document.getElementById('code').style.border = '1px solid red !important';
+  $("#code_error").css("display", "block");
+  document.getElementById("code_error").innerHTML = "Please enter budget code";
+  document.getElementById('code').focus();
+  return false;
+}else{
+  $("#code_error").css("display", "none");
+  document.getElementById('code').style.border = '';
+  document.getElementById("code_error").innerHTML = "";
+}
+if(budget_code_type ==''){
+document.getElementById('budget_code_type').style.border = '1px solid red !important';
+$("#budget_code_type_error").css("display", "block");
+document.getElementById("budget_code_type_error").innerHTML = "Please enter jurisdiction";
+document.getElementById('budget_code_type').focus();
+return false;
+}else{
+$("#budget_code_type_error").css("display", "none");
+document.getElementById('budget_code_type').style.border = '';
+document.getElementById("budget_code_type_error").innerHTML = "";
+}
+
+}
+function checkBudgetValue(val){
+  if(val.search(/\S/) == '-1'){
+      $("#code_error").show();
+      $("#code_error").html("Please enter budget code");
+
+      $("#budget_code_type_error").show();
+      $("#budget_code_type_error").html("Please enter jurisdiction");
+
+  } else{
+    $("#code_error").hide();
+    $("#budget_code_type_error").hide();
+  }
+}
+//jurisdiction validation - End//

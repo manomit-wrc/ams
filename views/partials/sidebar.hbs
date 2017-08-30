@@ -7,10 +7,10 @@
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
 
-        <li class="treeview {{#if (or (eq active "codecategory")(eq active "codemaster"))}} active{{/if}} 
-        {{#if (or (eq active "firmcodes")(eq active "section"))}} active{{/if}} 
-        {{#if (or (eq active "practice-area")(eq active "firmgroup"))}} active{{/if}} 
-        {{#if (or (eq active "designation")(eq active "group"))}} active{{/if}} 
+        <li class="treeview {{#if (or (eq active "codecategory")(eq active "codemaster"))}} active{{/if}}
+        {{#if (or (eq active "firmcodes")(eq active "section"))}} active{{/if}}
+        {{#if (or (eq active "practice-area")(eq active "firmgroup"))}} active{{/if}}
+        {{#if (or (eq active "designation")(eq active "group"))}} active{{/if}}
         {{#if (or (eq active "app-profile")(eq active "import-excel"))}} active{{/if}}
         {{#if (eq active "import-user")}} active {{/if}}">
 
@@ -21,6 +21,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
+
 
             <li class="{{#if (eq active "codecategory")}} active {{/if}}"><a href="/admin/codecategory"><i class="fa fa-list"></i>Code category</a></li>
             <li class="{{#if (eq active "codemaster")}} active {{/if}}"><a href="/admin/codemaster"><i class="fa fa-table"></i>Code master</a></li>
@@ -35,10 +36,10 @@
             <li class="{{#if (eq active "app-profile")}} active {{/if}}"><a href="/admin/app-profile"><i class="fa fa-user" aria-hidden="true"></i>App Profiles</a></li>
             <li class="{{#if (eq active "import-excel")}} active {{/if}}"><a href="/admin/import-excel"><i class="fa fa-briefcase" aria-hidden="true"></i>Import Excel Data</a></li>
             <li class="{{#if (eq active "import-user")}} active {{/if}}"><a href="/admin/import-user"><i class="fa fa-briefcase" aria-hidden="true"></i>Import User List</a></li>
-
-            <li class="{{#if (eq active "app-profile")}} active {{/if}}"><a href="/admin/role"><i class="fa fa-tasks" aria-hidden="true"></i>Role</a></li>
-            <li class="{{#if (eq active "app-profile")}} active {{/if}}"><a href="/admin/industry-type"><i class="fa fa-industry" aria-hidden="true"></i>Industry Type</a></li>
-
+            <li class=""><a href="/admin/role"><i class="fa fa-tasks" aria-hidden="true"></i>Role</a></li>
+            <li class=""><a href="/admin/industry-type"><i class="fa fa-industry" aria-hidden="true"></i>Industry Type</a></li>
+            <li class=""><a href="/admin/jurisdiction"><i class="fa fa-map-marker" aria-hidden="true"></i>Jurisdiction</a></li>
+            <li class=""><a href="/admin/budgetcodetype"><i class="fa fa-money" aria-hidden="true"></i>Budget Code Type</a></li>
           </ul>
         </li>
 

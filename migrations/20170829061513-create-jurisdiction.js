@@ -1,21 +1,26 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('sections', {
+    return queryInterface.createTable('Jurisdictions', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER(10)
       },
-      name: {
-        type: Sequelize.STRING
+      jurisdiction_code: {
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
-      description: {
-        type: Sequelize.TEXT
+      jurisdiction: {
+        allowNull: false,
+        type: Sequelize.STRING(255)
       },
       remarks: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING(255)
+      },
+      status: {
+        type: Sequelize.INTEGER(1)
       },
       createdAt: {
         allowNull: false,
@@ -24,13 +29,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      name: {
-        type: Sequelize.STRING(1)
-      },
+      }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('sections');
+    return queryInterface.dropTable('Jurisdictions');
   }
 };
