@@ -24,34 +24,11 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     address: {
-      type: DataTypes.TEXT,
-      validate: 
-      { 
-        notEmpty: 
-        {
-          args: true,
-          msg: 'Address can not be blank'
-        },
-      }
+      type: DataTypes.TEXT
     },
     phone_no: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: 
-      { notEmpty: 
-        {
-          args: true,
-          msg: 'Phone no can not be blank'
-        },
-        isNumeric: {
-          atgs: true,
-          msg: 'Phone number must be numeric'
-        },
-        len: {
-          args: [10,10],
-          msg: 'Phone no must have 10 digits'
-        }
-      }
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,

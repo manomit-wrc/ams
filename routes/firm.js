@@ -1,6 +1,6 @@
 module.exports = function(app, models) {
 	
-
+	var md5 = require('md5');
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
 		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
@@ -60,6 +60,27 @@ module.exports = function(app, models) {
 			else {
 				res.send(true);
 			}
+		});
+	});
+
+	app.post('/admin/firm/add', function(req, res){
+		
+		models.admin.create({
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			password: md5(req.body.password),
+			role_code: 'FIRMADM',
+			reg_type: 'I',
+			phone_no: ''
+		}).then(function(admin){
+			models.firm.create({
+				user_id: admin.id
+			}).then(function(firm){
+				res.redirect('/admin/firm');
+			}).catch(function(err){
+				
+			});
 		});
 	});
 };
