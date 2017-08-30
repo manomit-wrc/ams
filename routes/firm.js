@@ -2,7 +2,7 @@ module.exports = function(app, models) {
 	
 
 	app.get('/admin/firm',function(req, res){
-		models.admin.belongsTo(models.firm,{foreignKey: 'firm_id'});
+		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
 		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
 		models.admin.belongsTo(models.state,{foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
@@ -45,5 +45,21 @@ module.exports = function(app, models) {
 		    	jurisdiction: result[5]
 		    });
 		  });
+	});
+
+	app.post('/admin/firm/check-firm-email', function(req, res){
+		models.admin.findAll({
+		  where: {
+		    email: req.body.email
+		  },
+		  raw: true,
+		}).then(function(email){
+			if(email.length > 0) {
+				res.send(false);
+			}
+			else {
+				res.send(true);
+			}
+		});
 	});
 };
