@@ -36,8 +36,8 @@
             <li class="{{#if (eq active "import-excel")}} active {{/if}}"><a href="/admin/import-excel"><i class="fa fa-briefcase" aria-hidden="true"></i>Import Excel Data</a></li>
             <li class="{{#if (eq active "import-user")}} active {{/if}}"><a href="/admin/import-user"><i class="fa fa-briefcase" aria-hidden="true"></i>Import User List</a></li>
 
-            <li class=""><a href="/admin/role"><i class="fa fa-tasks" aria-hidden="true"></i>Role</a></li>
-            <li class=""><a href="/admin/industry-type"><i class="fa fa-industry" aria-hidden="true"></i>Industry Type</a></li>
+            <li class="{{#if (eq active "app-profile")}} active {{/if}}"><a href="/admin/role"><i class="fa fa-tasks" aria-hidden="true"></i>Role</a></li>
+            <li class="{{#if (eq active "app-profile")}} active {{/if}}"><a href="/admin/industry-type"><i class="fa fa-industry" aria-hidden="true"></i>Industry Type</a></li>
 
           </ul>
         </li>
@@ -51,8 +51,6 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{#if (eq active "firm")}} active {{/if}}"><a href="/admin/firm"><i class="fa fa-list"></i>Firms</a></li>
-
-
           </ul>
         </li>
       </ul>

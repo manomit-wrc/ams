@@ -32,7 +32,7 @@ function validateCodemasters(){
   var longdescription = $('#longdescription').val();
 
   if(categoryid ==''){
-<<<<<<< HEAD
+
   document.getElementById('categoryid').style.border = '1px solid red !important';
   $("#categoryid_error").css("display", "block");
   document.getElementById("categoryid_error").innerHTML = "Please select category name";
@@ -77,7 +77,7 @@ $("#longdescription_error").css("display", "none");
 document.getElementById('longdescription').style.border = '';
 document.getElementById("longdescription_error").innerHTML = "";
 }
-=======
+  if(categoryid ==''){
     document.getElementById('categoryid').style.border = '1px solid red !important';
     $("#categoryid_error").css("display", "block");
     document.getElementById("categoryid_error").innerHTML = "Please select category name";
@@ -122,7 +122,7 @@ document.getElementById("longdescription_error").innerHTML = "";
     document.getElementById('longdescription').style.border = '';
     document.getElementById("longdescription_error").innerHTML = "";
   }
->>>>>>> 83c2278067b5d5a7e7f81c6290075a2c78ab3d07
+
 
 }
 function codeMasterChkVal(val){
@@ -146,10 +146,7 @@ function categoryidChk(val){
   if(val == ' '){
     $("#categoryid_error").show();
     $("#categoryid_error").html("Please enter code");
-<<<<<<< HEAD
 
-=======
->>>>>>> 83c2278067b5d5a7e7f81c6290075a2c78ab3d07
   } else {
     $("#categoryid_error").hide();
   }
@@ -195,7 +192,6 @@ function validateDesignation(){
     var code = $('#code').val();
     var designation = $('#designation').val();
 
-<<<<<<< HEAD
   if(code ==''){
       document.getElementById('code').style.border = '1px solid red !important';
       $("#code_error").css("display", "block");
@@ -251,7 +247,7 @@ function validateGroup(){
       document.getElementById('group_name').style.border = '';
       document.getElementById("group_error").innerHTML = "";
   }
-=======
+
     if(code ==''){
         document.getElementById('code').style.border = '1px solid red !important';
         $("#code_error").css("display", "block");
@@ -339,6 +335,6 @@ function validateIndustry(){
         document.getElementById('industry').style.border = '';
         document.getElementById("industry_error").innerHTML = "";
     }
->>>>>>> 83c2278067b5d5a7e7f81c6290075a2c78ab3d07
+
 }
 // end validation
