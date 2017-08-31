@@ -64,7 +64,6 @@ module.exports = function(app, models) {
 	});
 
 	app.post('/admin/firm/add', function(req, res){
-		
 		models.admin.create({
 			first_name: req.body.first_name,
 			last_name: req.body.last_name,
@@ -77,7 +76,8 @@ module.exports = function(app, models) {
 			models.firm.create({
 				user_id: admin.id
 			}).then(function(firm){
-				res.redirect('/admin/firm');
+				//res.redirect('/admin/firm');
+				res.send(true);
 			}).catch(function(err){
 				
 			});

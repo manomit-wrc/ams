@@ -95,7 +95,7 @@ app.use(flash());
 
 
 require('./routes/index')(app, passport);
-app.use(function(req, res, next){9
+app.use(function(req, res, next){
   if (req.isAuthenticated())
   {
     delete req.user.password;
