@@ -7,7 +7,7 @@ module.exports = function(app, budgetcode, budgetcodetype) {
     budgetcode.findAll({
       include: [{model: budgetcodetype}]
     }).then(function(budgetcode){
-      console.log(budgetcode);
+      //console.log(budgetcode);
 			res.render('admin/budgetcode/index',{layout:'dashboard', budgetcode:budgetcode});
 		});
 
@@ -59,25 +59,21 @@ module.exports = function(app, budgetcode, budgetcodetype) {
 
 	app.get('/admin/budgetcode/edit/:id', function(req, res){
 		budgetcode.findById(req.params['id']).then(function(budgetcode){
-      budgetcodetype.findAll().then(function(budgetcodetype){
-      		//console.log(codemaster);
-			res.render('admin/budgetcode/edit', {
-	        layout: 'dashboard',
-	        budgetcode:budgetcode,
-          budgetcodetype:budgetcodetype,
-          error_message:req.flash('error_message')[0]
+	      	budgetcodetype.findAll().then(function(budgetcodetype){
+	      		//console.log(codemaster);
+				res.render('admin/budgetcode/edit', {layout: 'dashboard', budgetcode:budgetcode, budgetcodetype:budgetcodetype, error_message:req.flash('error_message')[0] });
 	        });
-        });
 		});
 	});
 
 	app.post('/admin/budgetcode/edit/:id', function(req, res){
 		budgetcode.update({
-      budget_code_type_id: req.body.budget_code_type_id,
-      code: req.body.code,
-      budget_code: req.body.budget_code,
-      remarks: req.body.remarks
+		      budget_code_type_id: req.body.budget_code_type_id,
+		      code: req.body.code,
+		      budget_code: req.body.budget_code,
+		      remarks: req.body.remarks
 	    },{ where: { id: req.params['id'] } }).then(function(result){
+	    	req.flash('succ_add_msg', 'Budget code edited successfully');
 	    	res.redirect('/admin/budgetcode');
 	    }).catch(function(err){
 

@@ -29,10 +29,10 @@
                   <div class="form-group ">
                     <label class="col-sm-2 control-label">Budget Code Type:</label>
                           <div class="col-sm-10">
-                              <select class="form-control" name="categoryid">
+                              <select class="form-control" name="budget_code_type_id">
                                   <option value="">Select One</option>
                                   {{#each budgetcodetype}}
-                                      <option value="{{this.id}}" {{#if_eq this.id ../budgetcode.budget_code_type_id}} selected = "selected" {{/if_eq}}>{{this.budgetcodetype.budget_code_type}} - {{this.budgetcodetype.code}}</option>
+                                      <option value="{{this.id}}" {{#if_eq this.id ../budgetcode.budget_code_type_id}} selected = "selected" {{/if_eq}}>{{this.budget_code_type}} - {{this.code}}</option>
                                   {{/each}}
                               </select>
                               <span class="text-danger"> </span>
