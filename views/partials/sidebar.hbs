@@ -14,7 +14,7 @@
         {{#if (or (eq active "role")(eq active "app-profile"))}} active{{/if}}
         {{#if (or (eq active "import-excel")(eq active "import-user"))}} active {{/if}}
         {{#if (or (eq active "industry-type")(eq active "jurisdiction"))}} active {{/if}}
-        {{#if (or (eq active "budgetcodetype")(eq active "jurisdiction"))}} active {{/if}}">
+        {{#if (or (eq active "budgetcodetype")(eq active "budgetcode"))}} active {{/if}}">
 
 
           <a href="javascript:void(0)">
@@ -39,6 +39,7 @@
             <li class="{{#if (eq active "industry-type")}} active {{/if}}"><a href="/admin/industry-type"><i class="fa fa-industry" aria-hidden="true"></i>Industry Type</a></li>
             <li class="{{#if (eq active "jurisdiction")}} active {{/if}}"><a href="/admin/jurisdiction"><i class="fa fa-map-marker" aria-hidden="true"></i>Jurisdiction</a></li>
             <li class="{{#if (eq active "budgetcodetype")}} active {{/if}}"><a href="/admin/budgetcodetype"><i class="fa fa-money" aria-hidden="true"></i>Budget Code Type</a></li>
+            <li class="{{#if (eq active "budgetcode")}} active {{/if}}"><a href="/admin/budgetcode"><i class="fa fa-tags" aria-hidden="true"></i>Budget Code</a></li>
 
           </ul>
         </li>
