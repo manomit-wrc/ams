@@ -35,9 +35,9 @@ module.exports = function(app, budgetcode, budgetcodetype) {
 
 		budgetcode.create({
 			budget_code_type_id: req.body.budget_code_type_id,
-      code: req.body.code,
-      budget_code: req.body.budget_code,
-      remarks: req.body.remarks
+		      code: req.body.code,
+		      budget_code: req.body.budget_code,
+		      remarks: req.body.remarks
 		}).then(function(result){
       req.flash('succ_add_msg', 'Budget Code added successfully');
 			res.redirect('/admin/budgetcode');
