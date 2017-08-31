@@ -33,8 +33,9 @@ module.exports = function(app, models) {
 		    models.codemaster.findAll({attributes: ['id', 'shortdescription'],where: {categoryid:7}})
 
 		]).then(function(values) {
+			
 		    var result = JSON.parse(JSON.stringify(values));
-		    
+		    //console.log(result);
 		    res.render('admin/firm/add',{
 		    	layout:'dashboard', 
 		    	designation:result[0],
@@ -76,8 +77,8 @@ module.exports = function(app, models) {
 			models.firm.create({
 				user_id: admin.id
 			}).then(function(firm){
-				//res.redirect('/admin/firm');
-				res.send(true);
+				res.redirect('/admin/firm');
+				//res.send(true);
 			}).catch(function(err){
 				
 			});
