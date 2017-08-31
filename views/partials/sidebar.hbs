@@ -44,7 +44,7 @@
           </ul>
         </li>
 
-        <li class="treeview {{#if (eq active "firm")}} active {{/if}}">
+        <li class="treeview {{#if (or (eq active "firm")(eq active my-profile))}} active {{/if}}">
           <a href="javascript:void(0)">
             <i class="fa fa-cog"></i> <span>Firm Operation</span>
             <span class="pull-right-container">
@@ -53,8 +53,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{#if (eq active "firm")}} active {{/if}}"><a href="/admin/firm"><i class="fa fa-list"></i>Firms</a></li>
-
-
+            <li class="{{#if (eq active "my-profile")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-list"></i>My Profile</a></li>
 
           </ul>
         </li>
