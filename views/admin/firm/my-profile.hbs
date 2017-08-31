@@ -173,7 +173,7 @@
                         <div style=" width: 100%; display: inline-block">
                           <div class="form-group required level1">
                             <label class="control-label">Level 1</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_1" class="form-control" onchange="getlevel2(this.value)">
+                            <select name="designation_code_radio_type[]" id="designation_code_1" class="form-control">
                                 <option value="">Select Designation</option>
                                 <option value="1">Designation 1</option>
                                 <option value="1">Designation 2</option>
@@ -259,38 +259,6 @@
       </div>
       <!-- /.row -->
     <div>
-<script>
-$('.level1').show();
-$('.level2').hide();
-$('.level3').hide();
-$('.level4').hide();
-$('.approval_process').on('click', function(){
-var approval_process = $(this).val();
-if(approval_process === '1'){
-   $('.level1').show();
-   $('.level2').hide();
-   $('.level3').hide();
-   $('.level4').hide();
-} else if(approval_process === '2') {
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').hide();
-    $('.level4').hide();
-} else if(approval_process === '3'){
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').show();
-    $('.level4').hide();
-} else if(approval_process === '4') {
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').show();
-    $('.level4').show();
-}
 
-});
-</script>
-<link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
-<script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
 </section>
 </section>
