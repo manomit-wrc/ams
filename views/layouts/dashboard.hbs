@@ -158,12 +158,43 @@ $(function () {
     });
 });
 </script>
+<script>
+$('.level1').show();
+$('.level2').hide();
+$('.level3').hide();
+$('.level4').hide();
+$('.approval_process').on('click', function(){
+var approval_process = $(this).val();
+if(approval_process === '1'){
+   $('.level1').show();
+   $('.level2').hide();
+   $('.level3').hide();
+   $('.level4').hide();
+} else if(approval_process === '2') {
+    $('.level1').show();
+    $('.level2').show();
+    $('.level3').hide();
+    $('.level4').hide();
+} else if(approval_process === '3'){
+    $('.level1').show();
+    $('.level2').show();
+    $('.level3').show();
+    $('.level4').hide();
+} else if(approval_process === '4') {
+    $('.level1').show();
+    $('.level2').show();
+    $('.level3').show();
+    $('.level4').show();
+}
 
+});
+</script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.css" >
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 
-
+<link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
+<script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
   <script>
 
 

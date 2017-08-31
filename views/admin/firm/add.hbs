@@ -16,10 +16,7 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Firm Admin Credential</a></li>
-              <li class=""><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
-              <li class=""><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
-              <li class=""><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
+              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Firm Admin Credential</a></li>    
             </ul>
             <div class="tab-content">
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
@@ -71,38 +68,6 @@
       </div>
       <!-- /.row -->
     <div>
-<script>
-$('.level1').show();
-$('.level2').hide();
-$('.level3').hide();
-$('.level4').hide();
-$('.approval_process').on('click', function(){
-var approval_process = $(this).val();
-if(approval_process === '1'){
-   $('.level1').show();
-   $('.level2').hide();
-   $('.level3').hide();
-   $('.level4').hide();
-} else if(approval_process === '2') {
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').hide();
-    $('.level4').hide();
-} else if(approval_process === '3'){
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').show();
-    $('.level4').hide();
-} else if(approval_process === '4') {
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').show();
-    $('.level4').show();
-}
 
-});
-</script>
-<link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
-<script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
 </section>
 </section>
