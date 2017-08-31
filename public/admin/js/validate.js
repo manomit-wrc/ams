@@ -335,7 +335,6 @@ function validateIndustry(){
         document.getElementById('industry').style.border = '';
         document.getElementById("industry_error").innerHTML = "";
     }
-
 }
 // end validation
 

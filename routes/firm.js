@@ -32,7 +32,7 @@ module.exports = function(app, models) {
 		    models.practicearea.findAll({attributes: ['id', 'name']}),
 		    models.codemaster.findAll({attributes: ['id', 'shortdescription'],where: {categoryid:7}})
 
-		  ]).then(function(values) {
+		]).then(function(values) {
 		    var result = JSON.parse(JSON.stringify(values));
 		    
 		    res.render('admin/firm/add',{
@@ -44,7 +44,7 @@ module.exports = function(app, models) {
 		    	practice_area: result[4],
 		    	jurisdiction: result[5]
 		    });
-		  });
+		});
 	});
 
 	app.post('/admin/firm/check-firm-email', function(req, res){
@@ -64,7 +64,6 @@ module.exports = function(app, models) {
 	});
 
 	app.post('/admin/firm/add', function(req, res){
-		
 		models.admin.create({
 			first_name: req.body.first_name,
 			last_name: req.body.last_name,
@@ -77,7 +76,8 @@ module.exports = function(app, models) {
 			models.firm.create({
 				user_id: admin.id
 			}).then(function(firm){
-				res.redirect('/admin/firm');
+				//res.redirect('/admin/firm');
+				res.send(true);
 			}).catch(function(err){
 				
 			});
