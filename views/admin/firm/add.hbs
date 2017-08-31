@@ -1,7 +1,7 @@
 <section class="content-header">
       <h1>
         Add Firm
-        
+
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -12,14 +12,16 @@
       <section class="content">
 
       <div class="row">
-        
+
         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Firm Admin Credential</a></li>
-              
+              <li class=""><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
+              <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>
             </ul>
             <div class="tab-content">
+              <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="activity">
                 <form class="form-horizontal" name="frmFirm" id="frmFirm" method="post" action="/admin/firm/add">
                   <div class="form-group">
@@ -43,7 +45,7 @@
                       <input type="text" class="form-control" id="email" name="email" placeholder="Email">
                     </div>
                   </div>
-                  
+
                   <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">Password</label>
 
@@ -51,7 +53,7 @@
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                   </div>
-                  
+
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>
@@ -59,7 +61,131 @@
                   </div>
                 </form>
               </div>
-             
+
+              <!-- /@@@@@@@@@@@@ second tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="generalInfo">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmName" placeholder="Firm Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Firm ID</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmId" placeholder="Firm ID">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Firm Code</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firm_code" placeholder="Firm Code">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Registration</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmRegistration" placeholder="Firm Registration number">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
+                    <div class="col-sm-10">
+                      <select name="sections[]" id="sections"  multiple="multiple" class="form-control">
+                          <option value="">Select Sections</option>
+                          <option value="1">Sections 1</option>
+                          <option value="2">Sections2</option>
+                          <option value="3">Sections 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
+                    <div class="col-sm-10">
+                      <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
+                          <option value="">Select Practice Area</option>
+                          <option value="1">Practice area 1</option>
+                          <option value="2">Practice area 2</option>
+                          <option value="3">Practice area 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
+                    <div class="col-sm-10">
+                      <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
+                          <option value="">Select Firm Jurisdiction</option>
+                          <option value="1">Firm Jurisdiction 1</option>
+                          <option value="2">Firm Jurisdiction2</option>
+                          <option value="3">Firm Jurisdiction 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- /@@@@@@@@@@@@ third tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="settings">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputName" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
             </div>
             <!-- /.tab-content -->
           </div>
@@ -68,6 +194,8 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+      <link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
+      <script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
 
     <div>
 </section>
