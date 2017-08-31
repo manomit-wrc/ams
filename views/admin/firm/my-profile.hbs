@@ -1,0 +1,296 @@
+<section class="content-header">
+      <h1>
+        Add Firm
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/admin/firm">Firms</a></li>
+        <li class="active">Add</li>
+      </ol>
+
+      <section class="content">
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Firm Admin Credential</a></li>
+              <li class=""><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
+              <li class=""><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
+              <li class=""><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
+            </ul>
+            <div class="tab-content">
+              <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane active" id="activity">
+                <form class="form-horizontal" name="frmFirm" id="frmFirm" method="post" action="/admin/firm/add">
+                  <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">First Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- /@@@@@@@@@@@@ second tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="generalInfo">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmName" placeholder="Firm Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Firm ID</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmId" placeholder="Firm ID">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Firm Code</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firm_code" placeholder="Firm Code">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Registration</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmRegistration" placeholder="Firm Registration number">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
+                    <div class="col-sm-10">
+                      <select name="sections[]" id="sections"  multiple="multiple" class="form-control">
+                          <option value="">Select Sections</option>
+                          <option value="1">Sections 1</option>
+                          <option value="2">Sections2</option>
+                          <option value="3">Sections 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
+                    <div class="col-sm-10">
+                      <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
+                          <option value="">Select Practice Area</option>
+                          <option value="1">Practice area 1</option>
+                          <option value="2">Practice area 2</option>
+                          <option value="3">Practice area 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
+                    <div class="col-sm-10">
+                      <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
+                          <option value="">Select Firm Jurisdiction</option>
+                          <option value="1">Firm Jurisdiction 1</option>
+                          <option value="2">Firm Jurisdiction 2</option>
+                          <option value="3">Firm Jurisdiction 3</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- /@@@@@@@@@@@@ third tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="approval">
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Single Point Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="spName" placeholder="Single Point Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Single Point Contact</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="spContact" placeholder="Single Point Contact">
+                    </div>
+                  </div>
+                  <div class="col-md-12" style="padding-left: 0; padding-right: 0; margin-bottom: 20px;">
+                        <div style=" width: 100%; display: inline-block">
+                          <h3 class="hint"> Approval Process Information </h3>
+                        <div class="form-group approval_process">
+                            <label class="control-label">How many level/s for the approval process ?</label>
+                            <br>
+                            <div class="radio-list">
+                                <label class="radio-inline">
+                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process" value="1" checked="checked">  1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process"   value="2">  2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process"   value="3">  3
+                                </label>
+                                <label class="radio-inline">
+                                     <input type="radio" name="approval_process" class="approval_process" id="approval_process"   value="4">  4
+                                </label>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div style=" width: 100%; display: inline-block">
+                          <div class="form-group required level1">
+                            <label class="control-label">Level 1</label>
+                            <select name="designation_code_radio_type[]" id="designation_code_1" class="form-control" onchange="getlevel2(this.value)">
+                                <option value="">Select Designation</option>
+                                <option value="1">Designation 1</option>
+                                <option value="1">Designation 2</option>
+                                <option value="1">Designation 3</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group required level2">
+                            <label class="control-label">Level 2</label>
+                            <select name="designation_code_radio_type[]" id="designation_code_2" class="form-control">
+                                <option value="">Select Designation</option>
+                                <option value="1">Designation 1</option>
+                                <option value="1">Designation 2</option>
+                                <option value="1">Designation 3</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group required level3">
+                            <label class="control-label">Level 3</label>
+                            <select name="designation_code_radio_type[]" id="designation_code_3" class="form-control">
+                                <option value="">Select Designation</option>
+                                <option value="1">Designation 1</option>
+                                <option value="1">Designation 2</option>
+                                <option value="1">Designation 3</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group required level4">
+                            <label class="control-label">Level 4</label>
+                            <select name="designation_code_radio_type[]" id="designation_code_4" class="form-control">
+                                <option value="">Select Designation</option>
+                                <option value="1">Designation 1</option>
+                                <option value="1">Designation 2</option>
+                                <option value="1">Designation 3</option>
+                            </select>
+                          </div>
+                        </div>
+                        </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /@@@@@@@@@@@@ fourth tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="picture">
+                <form class="form-horizontal">
+                  <div style=" width: 100%; display: inline-block;">
+                  <h3 class="hint">Profile Picture</h3>
+                  <div class="form-group">
+                      <div class="fileinput fileinput-new" data-provides="fileinput">
+                          <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                          </div>
+                          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                          <div style=" height: 60px">
+                              <span class="btn default btn-file">
+                                  <span class="fileinput-new"> Select image </span>
+                                  <span class="fileinput-exists"> Change </span>
+                                  <input type="file" name="profile_photo" id="profile_photo" class="control-label">
+                                  <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                          </div>
+                      </div>
+                      <div class="clearfix margin-top-10">
+                          <span class="label label-danger" style=" margin-right:10px ">NOTE! </span>
+                          <span>Firm image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <div>
+<script>
+$('.level1').show();
+$('.level2').hide();
+$('.level3').hide();
+$('.level4').hide();
+$('.approval_process').on('click', function(){
+var approval_process = $(this).val();
+if(approval_process === '1'){
+   $('.level1').show();
+   $('.level2').hide();
+   $('.level3').hide();
+   $('.level4').hide();
+} else if(approval_process === '2') {
+    $('.level1').show();
+    $('.level2').show();
+    $('.level3').hide();
+    $('.level4').hide();
+} else if(approval_process === '3'){
+    $('.level1').show();
+    $('.level2').show();
+    $('.level3').show();
+    $('.level4').hide();
+} else if(approval_process === '4') {
+    $('.level1').show();
+    $('.level2').show();
+    $('.level3').show();
+    $('.level4').show();
+}
+
+});
+</script>
+<link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
+<script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
+</section>
+</section>
