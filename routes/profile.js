@@ -1,5 +1,5 @@
 module.exports = function(app, admin) {
- 	
+ 	var md5 = require('md5');
  	var Admin = admin;
 	var multer  = require('multer');
 	var im = require('imagemagick');
@@ -46,7 +46,7 @@ module.exports = function(app, admin) {
 	
 	app.get('/admin/profile', function(req, res) {
 
-		res.render('admin/profile',{layout:'dashboard'});
+		res.render('admin/profile',{layout:'dashboard', success_message:req.flash('success_message')[0]});
 	});
 
 	app.post('/admin/profile', upload.single('avator'),  function(req, res) {
@@ -86,5 +86,40 @@ module.exports = function(app, admin) {
 	    });
   	});
 
+	//check password for site admin change password//
+  	app.post('/admin/check_password', function(req, res){
+		Admin.findAll({
+		  where: {
+		    password: md5(req.body.old_password),
+		    id: req.user.id
+		  },
+		  raw: true,
+		}).then(function(result){
+			if(result.length > 0) {
+				res.send(true);
+			}
+			else {
+				res.send(false);
+			}
+		});
+	});
+	//end//
 
+	// site admin change password//
+	app.post('/admin/change_password', function(req, res){
+		Admin.update({
+    		password: md5(req.body.new_password)
+	    },{ where: { id: req.user.id } }).then(function(result){
+	    	req.flash('success_message', 'Password changed successfully');
+	    	res.redirect('/admin/profile');
+	    }).catch(function(err){
+	    	
+	    	var validation_error = err.errors;
+	    	req.flash('error_message', validation_error[0].message);
+	    	var redirectUrl = '/admin/profile';
+  			res.redirect(redirectUrl);
+	    	
+	    });
+	});
+	//end//
 };

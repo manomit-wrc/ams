@@ -5,7 +5,6 @@ module.exports = function(app, designation) {
 	// for index
 	app.get('/admin/designation', function(req, res) {
 		Designation.findAll().then(function(designation){
-			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/designation/index',{layout:'dashboard', designation:designation,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 		
@@ -13,7 +12,7 @@ module.exports = function(app, designation) {
 
 	//for add view
 	app.get('/admin/designation/add', function(req, res){
-		res.render('admin/designation/add',{layout:'dashboard'});
+		res.render('admin/designation/add',{layout:'dashboard', error_designation_message:req.flash('error_designation_message')[0]});
 	});
 
 	//for add process
@@ -21,7 +20,7 @@ module.exports = function(app, designation) {
 		Designation.findAndCountAll({
 		   where: {
 		      designation: {
-		        $like: '%'+req.body.designation+'%'
+		        $eq: req.body.designation
 		      }
 		   }
 		})
@@ -45,8 +44,8 @@ module.exports = function(app, designation) {
 			        });
 				});
 			} else {
-		    	req.flash('error_message', 'Designation already exists');
-		    	var redirectUrl = '/admin/practice-area/add';
+		    	req.flash('error_designation_message', 'Designation already exists');
+		    	var redirectUrl = '/admin/designation/add';
 	  			res.redirect(redirectUrl);
 	  		}
 	  	});
