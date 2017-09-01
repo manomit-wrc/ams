@@ -37,8 +37,9 @@ $(document).ready(function(e){
 			}
 		},
 		submitHandler:function(form) {
-			//form.submit();
-			console.log($(this).serialize());
+			form.submit();
+			//console.log($(this).serialize());
+			console.log(req.body);
 		}
 	});
 });
