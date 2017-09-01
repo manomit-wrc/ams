@@ -279,6 +279,73 @@ if(approval_process === '1'){
 	      "autoWidth": false
 	    });
     $('.alert').fadeOut(6000);
+
+    $("#country_id").change(function(e){
+      var country_id = $(this).val();
+      $("#state_id").find('option').not(':first').remove();
+
+      if(country_id) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-state",
+          data: {country_id:country_id},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.states.length;i++) {
+              $("#state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
+            }
+          }
+        });
+        
+      }
+      $('#state_id option:eq(1)').attr('selected', 'selected');
+      $( "#state_id" ).trigger( "change" );
+
+    });
+
+    $("#state_id").change(function(e){
+      var state_id = $(this).val();
+      $("#city_id").find('option').not(':first').remove();
+      if(state_id) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-city",
+          data: {state_id:state_id},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.cities.length;i++) {
+              $("#city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
+            }
+          }
+        });
+
+        
+      }
+      $('#city_id option:eq(1)').attr('selected', 'selected');
+      $( "#city_id" ).trigger( "change" );
+    });
+
+    $("#city_id").change(function(e){
+      
+      var city_name = $("#city_id option:selected").text();;
+      $("#zipcode").find('option').not(':first').remove();
+      if(city_name) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-zipcode",
+          data: {city_name:city_name},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.zipcodes.length;i++) {
+              $("#zipcode").append('<option value="'+response.zipcodes[i].zip+'">'+response.zipcodes[i].zip+'</option>');
+            }
+          }
+        });
+
+        $('#zipcode option:eq(1)').attr('selected', 'selected');
+        
+      }
+    });
 	});
 </script>
   	</body>

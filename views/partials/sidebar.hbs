@@ -6,7 +6,7 @@
        <!--  <li class="header">MAIN NAVIGATION</li> -->
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
-
+        {{#if_eq user.role_code "SITEADM"}}
         <li class="treeview {{#if (or (eq active "codecategory")(eq active "codemaster"))}} active{{/if}}
         {{#if (or (eq active "firmcodes")(eq active "section"))}} active{{/if}}
         {{#if (or (eq active "practice-area")(eq active "firmgroup"))}} active{{/if}}
@@ -43,8 +43,9 @@
 
           </ul>
         </li>
-
-        <li class="treeview {{#if (or (eq active "firm")(eq active my-profile))}} active {{/if}}">
+        {{/if_eq}}
+        {{#if_eq user.role_code "SITEADM"}}
+        <li class="treeview {{#if (or (eq active "firm")(eq active "firm"))}} active {{/if}}">
           <a href="javascript:void(0)">
             <i class="fa fa-cog"></i> <span>Firm Operation</span>
             <span class="pull-right-container">
@@ -53,10 +54,14 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{#if (eq active "firm")}} active {{/if}}"><a href="/admin/firm"><i class="fa fa-list"></i>Firms</a></li>
-            <li class="{{#if (eq active "my-profile")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-list"></i>My Profile</a></li>
-
           </ul>
         </li>
+        {{/if_eq}}
+
+        {{#if_eq user.role_code "FIRMADM"}}
+        <li class="{{#if (eq active "my-profile")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
+        
+        {{/if_eq}}
       </ul>
     </section>
     <!-- /.sidebar -->
