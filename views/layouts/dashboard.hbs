@@ -279,8 +279,20 @@ if(approval_process === '1'){
 	      "autoWidth": false
 	    });
     $('.alert').fadeOut(6000);
+		
+		var country_id = $("#country_id").val();
+		var state_id = {{user.state_id}};
+		var city_id = {{user.city_id}};
+		var zipcode = {{user.zipcode}};
+		var flag = 0;
+		if(country_id) {
 
+			setTimeout(function() {
+        $("#country_id").trigger('change');
+    },10);
+		}
     $("#country_id").change(function(e){
+
       var country_id = $(this).val();
       $("#state_id").find('option').not(':first').remove();
 
@@ -292,21 +304,30 @@ if(approval_process === '1'){
           async: false,
           success:function(response) {
             for(var i=0;i<response.states.length;i++) {
+
               $("#state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
             }
           }
         });
-        
+
       }
-      $('#state_id option:eq(1)').attr('selected', 'selected');
+			if(state_id) {
+				$("#state_id").val(state_id);
+			}
+			else {
+				$('#state_id option:eq(1)').attr('selected', 'selected');
+			}
+
       $( "#state_id" ).trigger( "change" );
 
     });
 
     $("#state_id").change(function(e){
       var state_id = $(this).val();
+
       $("#city_id").find('option').not(':first').remove();
       if(state_id) {
+				 flag = 1;
         $.ajax({
           type: "POST",
           url: "/admin/firm/get-city",
@@ -314,22 +335,29 @@ if(approval_process === '1'){
           async: false,
           success:function(response) {
             for(var i=0;i<response.cities.length;i++) {
+
               $("#city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
             }
           }
         });
 
-        
+
       }
-      $('#city_id option:eq(1)').attr('selected', 'selected');
+			if(city_id && flag == 0) {
+				$("#city_id").val(city_id);
+			}
+			else {
+				$('#city_id option:eq(1)').attr('selected', 'selected');
+			}
       $( "#city_id" ).trigger( "change" );
     });
 
     $("#city_id").change(function(e){
-      
+
       var city_name = $("#city_id option:selected").text();;
       $("#zipcode").find('option').not(':first').remove();
       if(city_name) {
+				flag = 1;
         $.ajax({
           type: "POST",
           url: "/admin/firm/get-zipcode",
@@ -341,9 +369,14 @@ if(approval_process === '1'){
             }
           }
         });
+				if(zipcode && flag == 0) {
+					$("#zipcode").val(zipcode);
+				}
+				else {
+					$('#zipcode option:eq(1)').attr('selected', 'selected');
+				}
 
-        $('#zipcode option:eq(1)').attr('selected', 'selected');
-        
+
       }
     });
 	});

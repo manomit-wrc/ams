@@ -15,7 +15,7 @@ module.exports = function(app, models) {
       		include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
 		}
     	).then(function(firms){
-      		//console.log(firms);
+      		// console.log(firms);
 			res.render('admin/firm/index',{layout:'dashboard', firms:firms});
 		});
 	});
@@ -87,15 +87,30 @@ module.exports = function(app, models) {
 
 
 	app.get('/admin/firm/my-profile',function(req, res){
+		var id = req.user.id;
+		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
+		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
+		models.admin.belongsTo(models.state,{foreignKey: 'state_id'});
+		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
+		models.admin.belongsTo(models.designation,{foreignKey: 'designation_id'});
 		Promise.all([
 			models.country.findAll({
 				order:[
 					['code', 'DESC']
 				]
-			})
+			}),
+			models.admin.findAll({
+			 where: {
+					 role_code: 'FIRMADM',
+					 id:id
+				},
+					 include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
+		 }
+			 )
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0]});
+			console.log(req.user);
+			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0], firm_details: result[1][0]});
 		});
 
 	});
@@ -133,6 +148,8 @@ module.exports = function(app, models) {
 		});
 	});
 	//@#@#@#@#@#@#@# first tab update in "my-profile" @#@#@#@#@#@#@#//
+
+
 	app.post("/admin/firm/update-address", function(req, res){
 		var id = req.user.id;
 		models.admin.update({

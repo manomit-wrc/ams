@@ -29,14 +29,14 @@
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="address" name="address" placeholder="Address 1">
+                      <input type="text" class="form-control" id="address" name="address" placeholder="Address 1" value="{{firm_details.address}}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="address_2" class="col-sm-2 control-label">Address Line 2</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address 2">
+                      <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address 2" value="{{firm_details.address_2}}">
                     </div>
                   </div>
 
@@ -44,7 +44,7 @@
                     <label for="address_3" class="col-sm-2 control-label">Address Line 3</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3">
+                      <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3" value="{{firm_details.address_3}}">
                     </div>
                   </div>
 
@@ -63,7 +63,7 @@
                       <select class="form-control col-sm-2" id="country_id" name="country_id">
                         <option value="">Select Country</option>
                         {{#each countries}}
-                        <option value="{{this.id}}">{{this.name}}</option>
+                        <option value="{{this.id}}" {{#if_eq this.id ../firm_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
                         {{/each}}
                       </select>
                     </div>
