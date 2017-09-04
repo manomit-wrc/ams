@@ -279,14 +279,13 @@ if(approval_process === '1'){
 	      "autoWidth": false
 	    });
     $('.alert').fadeOut(6000);
-		
+
 		var country_id = $("#country_id").val();
 		var state_id = {{user.state_id}};
 		var city_id = {{user.city_id}};
 		var zipcode = {{user.zipcode}};
 		var flag = 0;
 		if(country_id) {
-
 			setTimeout(function() {
         $("#country_id").trigger('change');
     },10);

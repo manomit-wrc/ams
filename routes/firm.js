@@ -93,6 +93,7 @@ module.exports = function(app, models) {
 		models.admin.belongsTo(models.state,{foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
 		models.admin.belongsTo(models.designation,{foreignKey: 'designation_id'});
+	
 		Promise.all([
 			models.country.findAll({
 				order:[
@@ -109,7 +110,7 @@ module.exports = function(app, models) {
 			 )
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(req.user);
+			console.log(result);
 			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0], firm_details: result[1][0]});
 		});
 
@@ -172,5 +173,5 @@ module.exports = function(app, models) {
 		});
 	});
 
-app.post("/admin/firm/")
+// app.post("/admin/firm/")
 };

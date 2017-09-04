@@ -9,19 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       code: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       registration_no: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       contact_person_name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       contact_person_role: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       level_1_designation: {
         type: Sequelize.INTEGER
@@ -35,6 +40,18 @@ module.exports = {
       level_4_designation: {
         type: Sequelize.INTEGER
       },
+      section:{
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      practice_area:{
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
+      jurisdiction:{
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -42,6 +59,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      status:{
+        allowNull: false,
+        type: Sequelize.INTEGER(1)
       }
     });
   },

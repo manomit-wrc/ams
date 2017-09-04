@@ -100,7 +100,7 @@ $(document).ready(function(e){
 			}
 		}
 	});
-
+//@#@#@#@#@#@ First tab of "my-profile" #@#@#@#@#@#//
 	$("#frmFirmAddress").validate({
 		rules: {
 			address: {
@@ -183,9 +183,61 @@ $(document).ready(function(e){
 			    }
 			});
 		}
-	});
 
-	$("#").validate({
 
 	});
+	//@#@#@#@#@#@# Second tab of "my-profile" #@#@#@#@#@#@#@//
+	// $("#formgeneralInfo").validate({
+	// 	rules{
+	// 		firmName:{
+	// 			required: true
+	// 		},
+	// 		firmId: {
+	// 			required: true
+	// 		},
+	// 		firmRegistration: {
+	// 			required: true
+	// 		},
+	// 		firm_code: {
+	// 			required: true
+	// 		},
+	// 		"sections[]": {
+	// 		    required: true
+	// 		 },
+	// 		 "practice_area[]": {
+ // 			    required: true
+ // 			 },
+	// 		 "firm_jurisdiction[]": {
+ // 			    required: true
+ // 			 }
+	//
+	// 	},
+	// 	messages{
+	// 		firmName:{
+	// 			required: "Please enter Firm Name"
+	// 		},
+	// 		firmId: {
+	// 			required: "Please enter Firm ID"
+	// 		},
+	// 		firmRegistration: {
+	// 			required: "Please enter Firm Registration"
+	// 		},
+	// 		firm_code: {
+	// 			required: "Please enter Firm Code"
+	// 		},
+	// 		"sections[]": {
+	// 		    required: "Please select sections"
+	// 		 },
+	// 		 "practice_area[]": {
+ // 			    required: "Please select practice area"
+ // 			 },
+	// 		 "firm_jurisdiction[]": {
+ // 			    required: "Please enter select firm jurisdiction"
+ // 			 }
+	// 	},
+	// 	submitHandler:function(form) {
+	// 			form.submit();
+	// 	}
+	//
+	// });
 });
