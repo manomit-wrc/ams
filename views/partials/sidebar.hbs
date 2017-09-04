@@ -14,7 +14,9 @@
         {{#if (or (eq active "role")(eq active "app-profile"))}} active{{/if}}
         {{#if (or (eq active "import-excel")(eq active "import-user"))}} active {{/if}}
         {{#if (or (eq active "industry-type")(eq active "jurisdiction"))}} active {{/if}}
-        {{#if (or (eq active "budgetcodetype")(eq active "budgetcode"))}} active {{/if}}">
+        {{#if (or (eq active "budgetcodetype")(eq active "budgetcode"))}} active {{/if}}
+        {{#if (or (eq active "job-type")(eq active "job-type"))}} active {{/if}}
+        {{#if (or (eq active "attorney-type")(eq active "attorney-type"))}} active {{/if}}">
 
 
           <a href="javascript:void(0)">
@@ -40,6 +42,8 @@
             <li class="{{#if (eq active "jurisdiction")}} active {{/if}}"><a href="/admin/jurisdiction"><i class="fa fa-map-marker" aria-hidden="true"></i>Jurisdiction</a></li>
             <li class="{{#if (eq active "budgetcodetype")}} active {{/if}}"><a href="/admin/budgetcodetype"><i class="fa fa-money" aria-hidden="true"></i>Budget Code Type</a></li>
             <li class="{{#if (eq active "budgetcode")}} active {{/if}}"><a href="/admin/budgetcode"><i class="fa fa-tags" aria-hidden="true"></i>Budget Code</a></li>
+            <li class="{{#if (eq active "job-type")}} active {{/if}}"><a href="/admin/job-type"><i class="fa fa-suitcase" aria-hidden="true"></i>Job Types</a></li>
+            <li class="{{#if (eq active "attorney-type")}} active {{/if}}"><a href="/admin/attorney-type"><i class="fa fa-user" aria-hidden="true"></i>Attorney Types</a></li>
 
           </ul>
         </li>
@@ -59,7 +63,7 @@
         {{/if_eq}}
 
         {{#if_eq user.role_code "FIRMADM"}}
-        <li class="{{#if (eq active "my-profile")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
+          <li class="{{#if (eq active "my-profile")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
         
         {{/if_eq}}
       </ul>

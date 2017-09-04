@@ -425,3 +425,67 @@ function checkBudgetValue(val){
   }
 }
 //jurisdiction validation - End//
+
+//Job type validation - Begin//
+function validateJobType(){
+  var code = $('#code').val();
+  var job = $('#job').val();
+
+
+  if(code ==''){
+      document.getElementById('code').style.border = '1px solid red !important';
+      $("#code_error").css("display", "block");
+      document.getElementById("code_error").innerHTML = "Please enter job type code";
+      document.getElementById('code').focus();
+      return false;
+  }else{
+      $("#code_error").css("display", "none");
+      document.getElementById('code').style.border = '';
+      document.getElementById("code_error").innerHTML = "";
+  }
+  if(job ==''){
+      document.getElementById('job').style.border = '1px solid red !important';
+      $("#job_error").css("display", "block");
+      document.getElementById("job_error").innerHTML = "Please enter job type";
+      document.getElementById('job').focus();
+      return false;
+  }else{
+      $("#job_error").css("display", "none");
+      document.getElementById('job').style.border = '';
+      document.getElementById("job_error").innerHTML = "";
+  }
+
+}
+// end validation
+
+//Attorney type validation - Begin//
+function validateAttorneyType(){
+  var code = $('#code').val();
+  var attorney = $('#attorney').val();
+
+
+  if(code ==''){
+      document.getElementById('code').style.border = '1px solid red !important';
+      $("#code_error").css("display", "block");
+      document.getElementById("code_error").innerHTML = "Please enter attorney type code";
+      document.getElementById('code').focus();
+      return false;
+  }else{
+      $("#code_error").css("display", "none");
+      document.getElementById('code').style.border = '';
+      document.getElementById("code_error").innerHTML = "";
+  }
+  if(attorney ==''){
+      document.getElementById('attorney').style.border = '1px solid red !important';
+      $("#attorney_error").css("display", "block");
+      document.getElementById("attorney_error").innerHTML = "Please enter attorney type";
+      document.getElementById('attorney').focus();
+      return false;
+  }else{
+      $("#attorney_error").css("display", "none");
+      document.getElementById('attorney').style.border = '';
+      document.getElementById("attorney_error").innerHTML = "";
+  }
+
+}
+// end validation
