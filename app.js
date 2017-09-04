@@ -130,6 +130,7 @@ require('./routes/firmcodes')(app, models.firmcodes, models.codemaster); //we wi
 require('./routes/firmgroup')(app, models.firmGroup, models.group); //we will be passing firm models shortly
 require('./routes/import-excel')(app, models.admin,fs);
 require('./routes/firm')(app,models);
+require('./routes/attorney')(app,models);
 
 
 require('./routes/jurisdiction')(app, models.jurisdiction);
