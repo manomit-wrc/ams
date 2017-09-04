@@ -4,25 +4,25 @@ $(document).ready(function(e){
         if ($(this).hasClass('disabled')) {
             return false;
         }
-        
+
     });
     $('#firm-tab').click(function(event){
         if ($(this).hasClass('disabled')) {
             return false;
         }
-        
+
     });
     $('#approval-tab').click(function(event){
         if ($(this).hasClass('disabled')) {
             return false;
         }
-        
+
     });
     $('#photo-tab').click(function(event){
         if ($(this).hasClass('disabled')) {
             return false;
         }
-        
+
     });
 	$("#frmFirm").validate({
 		rules: {
@@ -82,8 +82,8 @@ $(document).ready(function(e){
 				required: true
 			},
 			confirm_password: {
-				required: true,	
-				equalTo: "#new_password"			
+				required: true,
+				equalTo: "#new_password"
 			}
 		},
 		messages: {
@@ -155,7 +155,7 @@ $(document).ready(function(e){
 			}
 		},
 		submitHandler:function(form) {
-			
+
 			$.ajax({
 				type: "POST",
 				url: "/admin/firm/update-address",
@@ -183,5 +183,9 @@ $(document).ready(function(e){
 			    }
 			});
 		}
+	});
+
+	$("#").validate({
+
 	});
 });

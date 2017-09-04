@@ -1,5 +1,5 @@
 module.exports = function(app, models) {
-	
+
 	var md5 = require('md5');
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
@@ -33,11 +33,11 @@ module.exports = function(app, models) {
 		    models.codemaster.findAll({attributes: ['id', 'shortdescription'],where: {categoryid:7}})
 
 		]).then(function(values) {
-			
+
 		    var result = JSON.parse(JSON.stringify(values));
 		    //console.log(result);
 		    res.render('admin/firm/add',{
-		    	layout:'dashboard', 
+		    	layout:'dashboard',
 		    	designation:result[0],
 		    	country:result[1],
 		    	group: result[2],
@@ -80,7 +80,7 @@ module.exports = function(app, models) {
 				res.redirect('/admin/firm');
 				//res.send(true);
 			}).catch(function(err){
-				
+
 			});
 		});
 	});
@@ -88,12 +88,16 @@ module.exports = function(app, models) {
 
 	app.get('/admin/firm/my-profile',function(req, res){
 		Promise.all([
-			models.country.findAll()
+			models.country.findAll({
+				order:[
+					['code', 'DESC']
+				]
+			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
 			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0]});
 		});
-    	
+
 	});
 
 	app.post("/admin/firm/get-state", function(req, res){
@@ -128,9 +132,28 @@ module.exports = function(app, models) {
 			res.send({zipcodes:zipcodes});
 		});
 	});
-
+	//@#@#@#@#@#@#@# first tab update in "my-profile" @#@#@#@#@#@#@#//
 	app.post("/admin/firm/update-address", function(req, res){
-		res.send("1");
-		
-	})
+		var id = req.user.id;
+		models.admin.update({
+			address: req.body.address,
+			address_2: req.body.address_2,
+			address_3: req.body.address_3,
+			phone_no: req.body.phone_no,
+			country_id: req.body.country_id,
+			state_id: req.body.state_id,
+			city_id: req.body.city_id,
+			zipcode: req.body.zipcode,
+			fax: req.body.fax,
+			mobile: req.body.mobile,
+			website: req.body.website,
+			social: req.body.social
+		}, {where: {id :id}}).then(function(result){
+			res.send("1");
+		}).catch(function(err){
+
+		});
+	});
+
+app.post("/admin/firm/")
 };
