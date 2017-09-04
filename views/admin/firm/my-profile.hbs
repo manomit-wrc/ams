@@ -16,15 +16,15 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
-              <li class=""><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
-              <li class=""><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
-              <li class=""><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
+              <li class="active tab" id="address-tab"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
+              <li class="tab" id="firm-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
+              <li class="tab" id="approval-tab"><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
+              <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
             </ul>
             <div class="tab-content">
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="activity">
-                <form class="form-horizontal" name="frmFirm" id="frmFirm" method="post" action="/admin/firm/add">
+                <form class="form-horizontal" name="frmFirmAddress" id="frmFirmAddress" method="post" action="/admin/firm/add">
                   <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
@@ -45,6 +45,14 @@
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone_no" class="col-sm-2 control-label">Phone No</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Phone">
                     </div>
                   </div>
 
@@ -91,6 +99,38 @@
                         <option value="">Select Pincode</option>
                         
                       </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fax" class="col-sm-2 control-label">Fax</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="fax" name="fax" placeholder="Fax">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mobile" class="col-sm-2 control-label">Mobile</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="website" class="col-sm-2 control-label">Website URL</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="website" name="website" placeholder="Website Url">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="social" class="col-sm-2 control-label">Social URL</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="social" name="social" placeholder="Social Url">
                     </div>
                   </div>
 

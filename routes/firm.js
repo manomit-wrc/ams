@@ -128,4 +128,9 @@ module.exports = function(app, models) {
 			res.send({zipcodes:zipcodes});
 		});
 	});
+
+	app.post("/admin/firm/update-address", function(req, res){
+		res.send("1");
+		
+	})
 };
