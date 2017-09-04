@@ -33,8 +33,9 @@ module.exports = function(app, models) {
 		    models.codemaster.findAll({attributes: ['id', 'shortdescription'],where: {categoryid:7}})
 
 		]).then(function(values) {
+			
 		    var result = JSON.parse(JSON.stringify(values));
-		    
+		    //console.log(result);
 		    res.render('admin/firm/add',{
 		    	layout:'dashboard', 
 		    	designation:result[0],
@@ -76,11 +77,55 @@ module.exports = function(app, models) {
 			models.firm.create({
 				user_id: admin.id
 			}).then(function(firm){
-				//res.redirect('/admin/firm');
-				res.send(true);
+				res.redirect('/admin/firm');
+				//res.send(true);
 			}).catch(function(err){
 				
 			});
+		});
+	});
+
+
+	app.get('/admin/firm/my-profile',function(req, res){
+		Promise.all([
+			models.country.findAll()
+		]).then(function(values){
+			var result = JSON.parse(JSON.stringify(values));
+			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0]});
+		});
+    	
+	});
+
+	app.post("/admin/firm/get-state", function(req, res){
+		models.state.findAll({
+		  where: {
+		    country_id: req.body.country_id
+		  },
+		  raw: true,
+		}).then(function(states){
+			res.send({states:states});
+		});
+	});
+
+	app.post("/admin/firm/get-city", function(req, res){
+		models.city.findAll({
+		  where: {
+		    state_id: req.body.state_id
+		  },
+		  raw: true,
+		}).then(function(cities){
+			res.send({cities:cities});
+		});
+	});
+
+	app.post("/admin/firm/get-zipcode", function(req, res){
+		models.zipCode.findAll({
+		  where: {
+		    city_name: req.body.city_name
+		  },
+		  raw: true,
+		}).then(function(zipcodes){
+			res.send({zipcodes:zipcodes});
 		});
 	});
 };

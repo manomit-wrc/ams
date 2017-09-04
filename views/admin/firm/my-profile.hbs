@@ -16,7 +16,7 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Firm Admin Credential</a></li>
+              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
               <li class=""><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
               <li class=""><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
               <li class=""><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
@@ -26,32 +26,71 @@
               <div class="tab-pane active" id="activity">
                 <form class="form-horizontal" name="frmFirm" id="frmFirm" method="post" action="/admin/firm/add">
                   <div class="form-group">
-                    <label for="first_name" class="col-sm-2 control-label">First Name</label>
+                    <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                      <input type="text" class="form-control" id="address" name="address" placeholder="Address 1">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+                    <label for="address_2" class="col-sm-2 control-label">Address Line 2</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="email" class="col-sm-2 control-label">Email</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                      <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address 2">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <label for="address_3" class="col-sm-2 control-label">Address Line 3</label>
 
                     <div class="col-sm-10">
-                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                      <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="country_id" class="col-sm-2 control-label">Country</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="country_id" name="country_id">
+                        <option value="">Select Country</option>
+                        {{#each countries}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="state_id" class="col-sm-2 control-label">State</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="state_id" name="state_id">
+                        <option value="">Select State</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="city_id" class="col-sm-2 control-label">City</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="city_id" name="city_id">
+                        <option value="">Select City</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="zipcode" class="col-sm-2 control-label">Pincode</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="zipcode" name="zipcode">
+                        <option value="">Select Pincode</option>
+                        
+                      </select>
                     </div>
                   </div>
 
@@ -92,7 +131,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Section</label>
                     <div class="col-sm-10">
                       <select name="sections[]" id="sections"  multiple="multiple" class="form-control js-example-basic-multiple">
                           <option value="">Select Sections</option>
