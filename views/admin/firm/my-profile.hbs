@@ -16,27 +16,27 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
-              <li class=""><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
-              <li class=""><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
-              <li class=""><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
+              <li class="active tab" id="address-tab"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
+              <li class="tab" id="firm-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Firm details</a></li>
+              <li class="tab" id="approval-tab"><a href="#approval" data-toggle="tab" aria-expanded="false">Approval Levels</a></li>
+              <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
             </ul>
             <div class="tab-content">
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="activity">
-                <form class="form-horizontal" name="frmFirm" id="frmFirm" method="post" action="/admin/firm/add">
+                <form class="form-horizontal" name="frmFirmAddress" id="frmFirmAddress" method="post" action="#">
                   <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="address" name="address" placeholder="Address 1">
+                      <input type="text" class="form-control" id="address" name="address" placeholder="Address 1" value="{{firm_details.address}}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="address_2" class="col-sm-2 control-label">Address Line 2</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address 2">
+                      <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address 2" value="{{firm_details.address_2}}">
                     </div>
                   </div>
 
@@ -44,7 +44,15 @@
                     <label for="address_3" class="col-sm-2 control-label">Address Line 3</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3">
+                      <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3" value="{{firm_details.address_3}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone_no" class="col-sm-2 control-label">Phone No</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Phone">
                     </div>
                   </div>
 
@@ -55,7 +63,7 @@
                       <select class="form-control col-sm-2" id="country_id" name="country_id">
                         <option value="">Select Country</option>
                         {{#each countries}}
-                        <option value="{{this.id}}">{{this.name}}</option>
+                        <option value="{{this.id}}" {{#if_eq this.id ../firm_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
                         {{/each}}
                       </select>
                     </div>
@@ -67,7 +75,7 @@
                     <div class="col-sm-10">
                       <select class="form-control col-sm-2" id="state_id" name="state_id">
                         <option value="">Select State</option>
-                        
+
                       </select>
                     </div>
                   </div>
@@ -78,7 +86,7 @@
                     <div class="col-sm-10">
                       <select class="form-control col-sm-2" id="city_id" name="city_id">
                         <option value="">Select City</option>
-                        
+
                       </select>
                     </div>
                   </div>
@@ -89,8 +97,40 @@
                     <div class="col-sm-10">
                       <select class="form-control col-sm-2" id="zipcode" name="zipcode">
                         <option value="">Select Pincode</option>
-                        
+
                       </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fax" class="col-sm-2 control-label">Fax</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="fax" name="fax" placeholder="Fax">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mobile" class="col-sm-2 control-label">Mobile</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="website" class="col-sm-2 control-label">Website URL</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="website" name="website" placeholder="Website Url">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="social" class="col-sm-2 control-label">Social URL</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="social" name="social" placeholder="Social Url">
                     </div>
                   </div>
 

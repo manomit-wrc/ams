@@ -1,5 +1,5 @@
 module.exports = function(app, models) {
-	
+
 	var md5 = require('md5');
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
@@ -15,7 +15,7 @@ module.exports = function(app, models) {
       		include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
 		}
     	).then(function(firms){
-      		//console.log(firms);
+      		// console.log(firms);
 			res.render('admin/firm/index',{layout:'dashboard', firms:firms});
 		});
 	});
@@ -33,11 +33,11 @@ module.exports = function(app, models) {
 		    models.codemaster.findAll({attributes: ['id', 'shortdescription'],where: {categoryid:7}})
 
 		]).then(function(values) {
-			
+
 		    var result = JSON.parse(JSON.stringify(values));
 		    //console.log(result);
 		    res.render('admin/firm/add',{
-		    	layout:'dashboard', 
+		    	layout:'dashboard',
 		    	designation:result[0],
 		    	country:result[1],
 		    	group: result[2],
@@ -80,20 +80,39 @@ module.exports = function(app, models) {
 				res.redirect('/admin/firm');
 				//res.send(true);
 			}).catch(function(err){
-				
+
 			});
 		});
 	});
 
 
 	app.get('/admin/firm/my-profile',function(req, res){
+		var id = req.user.id;
+		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
+		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
+		models.admin.belongsTo(models.state,{foreignKey: 'state_id'});
+		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
+		models.admin.belongsTo(models.designation,{foreignKey: 'designation_id'});
 		Promise.all([
-			models.country.findAll()
+			models.country.findAll({
+				order:[
+					['code', 'DESC']
+				]
+			}),
+			models.admin.findAll({
+			 where: {
+					 role_code: 'FIRMADM',
+					 id:id
+				},
+					 include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
+		 }
+			 )
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0]});
+			console.log(req.user);
+			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0], firm_details: result[1][0]});
 		});
-    	
+
 	});
 
 	app.post("/admin/firm/get-state", function(req, res){
@@ -128,4 +147,30 @@ module.exports = function(app, models) {
 			res.send({zipcodes:zipcodes});
 		});
 	});
+	//@#@#@#@#@#@#@# first tab update in "my-profile" @#@#@#@#@#@#@#//
+
+
+	app.post("/admin/firm/update-address", function(req, res){
+		var id = req.user.id;
+		models.admin.update({
+			address: req.body.address,
+			address_2: req.body.address_2,
+			address_3: req.body.address_3,
+			phone_no: req.body.phone_no,
+			country_id: req.body.country_id,
+			state_id: req.body.state_id,
+			city_id: req.body.city_id,
+			zipcode: req.body.zipcode,
+			fax: req.body.fax,
+			mobile: req.body.mobile,
+			website: req.body.website,
+			social: req.body.social
+		}, {where: {id :id}}).then(function(result){
+			res.send("1");
+		}).catch(function(err){
+
+		});
+	});
+
+app.post("/admin/firm/")
 };

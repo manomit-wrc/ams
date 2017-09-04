@@ -80,8 +80,12 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(cookieParser());
 
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
 	secret: 'W$q4=25*8%v-}UV',
 	resave: true,
