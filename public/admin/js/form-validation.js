@@ -177,8 +177,8 @@ $(document).ready(function(e){
 			    	if(response == "1") {
 			    		$('#address-tab').removeClass("disabled");
 			    		$("#firm-tab").addClass("active").removeClass("disabled");
-			    		$("#activity").removeClass("active");
-			    		$("#generalInfo").addClass("active");
+			    		$("#approval-tab").removeClass("active");
+			    		$("#photo-tab").removeClass("active");
 			    	}
 			    }
 			});
@@ -245,9 +245,9 @@ $(document).ready(function(e){
 				success:function(response) {
 					if(response == "2") {
 						$('#address-tab').removeClass("disabled");
-						$("#firm-tab").removeClass("disabled");
-						$("#activity").removeClass("active").removeClass("disabled");
-						$("#generalInfo").addClass("active");
+						$("#firm-tab").removeClass("active").removeClass("disabled");
+						$("#approval-tab").addClass("active").removeClass("disabled");
+						$("#photo-tab").removeClass("active");
 					}
 				}
 

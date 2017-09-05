@@ -118,20 +118,29 @@ module.exports = function(app, models) {
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
 			console.log(result);
-			var firm_table_array_details = result[1][0]['firms'];
-			// for(var k in result[1][0]['firms']){
-			// 	firm_table_array_details.push(k, result[1][0][k]);
-			// }
-			// console.log(firm_table_array_details);
-			res.render('admin/firm/my-profile',{
-				layout:'dashboard',
-				countries: result[0],
-				firm_details: result[1][0],
-				firm_table_array_details: firm_table_array_details[0],
-				section: result[2],
-				practicearea: result[3],
-				jurisdiction: result[4]
-			});
+			   var firm_table_array_details = result[1][0]['firms'];
+
+			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
+			   var practice_area_array = JSON.parse("[" + firm_table_array_details[0]['practice_area'] + "]");
+			   var jurisdiction_array = JSON.parse("[" + firm_table_array_details[0]['jurisdiction'] + "]");
+
+			   // for(var k in result[1][0]['firms']){
+			   //  firm_table_array_details.push(k, result[1][0][k]);
+			   // }
+			   // console.log(firm_table_array_details);
+			   res.render('admin/firm/my-profile',{
+			    layout:'dashboard',
+			    countries: result[0],
+			    firm_details: result[1][0],
+			    firm_table_array_details: firm_table_array_details[0],
+			    section: result[2],
+			    practicearea: result[3],
+			    jurisdiction: result[4],
+			    section_array: section_array,
+			    practice_area_array: practice_area_array,
+			    jurisdiction_array: jurisdiction_array,
+					firm: result[5][0]
+			   });
 		});
 
 	});
