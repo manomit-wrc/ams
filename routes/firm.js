@@ -104,15 +104,21 @@ module.exports = function(app, models) {
 					 role_code: 'FIRMADM',
 					 id:id
 				},
-					 include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
+				include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
 		 	}),
 			models.section.findAll({attributes: ['id', 'name']}),
 		  models.practicearea.findAll({attributes: ['id', 'name']}),
-		  models.jurisdiction.findAll({attributes: ['id', 'jurisdiction']})
+		  models.jurisdiction.findAll({attributes: ['id', 'jurisdiction']}),
+			models.firm.findAll({
+				where: {
+					user_id:id
+				},
+				include: [{model: models.section}, {model: models.practicearea}]
+			})
 
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result[4]);
+			console.log(result);
 			var firm_table_array_details = result[1][0]['firms'];
 			// for(var k in result[1][0]['firms']){
 			// 	firm_table_array_details.push(k, result[1][0][k]);
@@ -191,14 +197,19 @@ module.exports = function(app, models) {
 app.post("/admin/firm/update-generalInfo", function(req, res){
 
 var firm_id = req.body.firmId;
-console.log(req.body);
+// console.log(req.body);
+var section = req.body.sections.toString();
+var practice_area = req.body.practice_area.toString();
+var jurisdiction = req.body.firm_jurisdiction.toString();
+// console.log(section);
+
 models.firm.update({
 	name: req.body.firmName,
 	code: req.body.firm_code,
 	registration_no: req.body.firmRegistration,
-	section: req.body.sections,
-	practice_area: req.body.practice_area,
-	jurisdiction: req.body.firm_jurisdiction
+	section: section,
+	practice_area: practice_area,
+	jurisdiction: jurisdiction
 }, {where: {id: firm_id}}).then(function(result){
 	res.send("2");
 }).catch(function(err){

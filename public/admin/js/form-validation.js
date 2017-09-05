@@ -226,7 +226,7 @@ $(document).ready(function(e){
  			    required: "Please select practice area"
  			 },
 			 "firm_jurisdiction[]": {
- 			    required: "Please enter select firm jurisdiction"
+ 			    required: "Please select firm jurisdiction"
  			 }
 		},
 		submitHandler:function(form) {

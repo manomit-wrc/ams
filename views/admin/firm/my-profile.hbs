@@ -172,7 +172,6 @@
                           {{#each section}}
                           <option value="{{this.id}}">{{this.name}}</option>
                           {{/each}}
-
                       </select>
                     </div>
                   </div>
@@ -191,7 +190,7 @@
                     <div class="col-sm-10">
                       <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
                         {{#each jurisdiction}}
-                          <option value="{{this.id}}">{{this.jurisdiction}}</option>
+                          <option value="{{this.id}}" >{{this.jurisdiction}}</option>
                           {{/each}}
                       </select>
                     </div>
