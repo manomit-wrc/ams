@@ -176,9 +176,9 @@ $(document).ready(function(e){
 			    success:function(response) {
 			    	if(response == "1") {
 			    		$('#address-tab').removeClass("disabled");
-			    		$("#firm-tab").addClass("active").removeClass("disabled");
-			    		$("#approval-tab").removeClass("active");
-			    		$("#photo-tab").removeClass("active");
+						$("#firm-tab").addClass("active").removeClass("disabled");
+						$("#activity").removeClass("active");
+						$("#generalInfo").addClass("active");
 			    	}
 			    }
 			});
@@ -244,10 +244,10 @@ $(document).ready(function(e){
 				},
 				success:function(response) {
 					if(response == "2") {
-						$('#address-tab').removeClass("disabled");
-						$("#firm-tab").removeClass("active").removeClass("disabled");
+						$('#firm-tab').removeClass("disabled");
 						$("#approval-tab").addClass("active").removeClass("disabled");
-						$("#photo-tab").removeClass("active");
+						$("#generalInfo").removeClass("active");
+						$("#approval").addClass("active");
 					}
 				}
 
