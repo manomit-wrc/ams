@@ -191,7 +191,7 @@ module.exports = function(app, models) {
 app.post("/admin/firm/update-generalInfo", function(req, res){
 
 var firm_id = req.body.firmId;
-// console.log(firm_id);
+console.log(req.body);
 models.firm.update({
 	name: req.body.firmName,
 	code: req.body.firm_code,
@@ -202,7 +202,7 @@ models.firm.update({
 }, {where: {id: firm_id}}).then(function(result){
 	res.send("2");
 }).catch(function(err){
-	
+
 });
 
 });
