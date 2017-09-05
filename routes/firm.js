@@ -112,14 +112,18 @@ module.exports = function(app, models) {
 			models.firm.findAll({
 				where: {
 					user_id:id
-				},
-				include: [{model: models.section}, {model: models.practicearea}]
+				}
 			})
 
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result);
+			
 			var firm_table_array_details = result[1][0]['firms'];
+			
+			var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
+			var practice_area_array = JSON.parse("[" + firm_table_array_details[0]['practice_area'] + "]");
+			var jurisdiction_array = JSON.parse("[" + firm_table_array_details[0]['jurisdiction'] + "]");
+			
 			// for(var k in result[1][0]['firms']){
 			// 	firm_table_array_details.push(k, result[1][0][k]);
 			// }
@@ -131,7 +135,10 @@ module.exports = function(app, models) {
 				firm_table_array_details: firm_table_array_details[0],
 				section: result[2],
 				practicearea: result[3],
-				jurisdiction: result[4]
+				jurisdiction: result[4],
+				section_array: section_array,
+				practice_area_array: practice_area_array,
+				jurisdiction_array: jurisdiction_array
 			});
 		});
 

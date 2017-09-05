@@ -170,7 +170,7 @@
                     <div class="col-sm-10">
                       <select name="sections[]" id="sections" multiple="multiple" class="form-control">
                           {{#each section}}
-                          <option value="{{this.id}}">{{this.name}}</option>
+                          <option value="{{this.id}}" {{#inArray ../section_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -180,7 +180,7 @@
                     <div class="col-sm-10">
                       <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
                           {{#each practicearea}}
-                          <option value="{{this.id}}">{{this.name}}</option>
+                          <option value="{{this.id}}" {{#inArray ../practice_area_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -190,7 +190,7 @@
                     <div class="col-sm-10">
                       <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
                         {{#each jurisdiction}}
-                          <option value="{{this.id}}" >{{this.jurisdiction}}</option>
+                          <option value="{{this.id}}" {{#inArray ../jurisdiction_array this.id}} selected="selected" {{/inArray}}>{{this.jurisdiction}}</option>
                           {{/each}}
                       </select>
                     </div>

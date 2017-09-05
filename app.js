@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 
 
+
 var exphbs  = require('express-handlebars');
 
 var app = express();
@@ -45,6 +46,14 @@ helpers: {
         else
             return opts.inverse(this);
 
+    },
+    inArray: function(array, value, block) {
+      if (array.indexOf(value) !== -1) {
+        return block.fn(this);
+    } 
+    else {
+      return block.inverse(this);
+    }
     },
     eq: function (v1, v2) {
         return v1 === v2;
