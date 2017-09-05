@@ -104,7 +104,7 @@ module.exports = function(app, models) {
 					 role_code: 'FIRMADM',
 					 id:id
 				},
-				include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
+					include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
 		 	}),
 			models.section.findAll({attributes: ['id', 'name']}),
 		  models.practicearea.findAll({attributes: ['id', 'name']}),
@@ -117,13 +117,8 @@ module.exports = function(app, models) {
 
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			
+			console.log(result);
 			var firm_table_array_details = result[1][0]['firms'];
-			
-			var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
-			var practice_area_array = JSON.parse("[" + firm_table_array_details[0]['practice_area'] + "]");
-			var jurisdiction_array = JSON.parse("[" + firm_table_array_details[0]['jurisdiction'] + "]");
-			
 			// for(var k in result[1][0]['firms']){
 			// 	firm_table_array_details.push(k, result[1][0][k]);
 			// }
@@ -135,10 +130,7 @@ module.exports = function(app, models) {
 				firm_table_array_details: firm_table_array_details[0],
 				section: result[2],
 				practicearea: result[3],
-				jurisdiction: result[4],
-				section_array: section_array,
-				practice_area_array: practice_area_array,
-				jurisdiction_array: jurisdiction_array
+				jurisdiction: result[4]
 			});
 		});
 
