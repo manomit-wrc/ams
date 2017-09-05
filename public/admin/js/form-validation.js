@@ -234,6 +234,7 @@ $(document).ready(function(e){
 				type: "POST",
 				url: "/admin/firm/update-generalInfo",
 				data: {
+					firmId: $("#firmId").val(),
 					firmName: $("#firmName").val(),
 					firmRegistration: $("#firmRegistration").val(),
 					firm_code: $("#firm_code").val(),
