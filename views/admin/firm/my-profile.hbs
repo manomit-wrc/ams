@@ -168,7 +168,7 @@
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Section</label>
                     <div class="col-sm-10">
-                      <select name="sections[]" id="sections" multiple="multiple" class="form-control js-example-basic-multiple">
+                      <select name="sections[]" id="sections" multiple="multiple" class="form-control">
                           {{#each section}}
                           <option value="{{this.id}}">{{this.name}}</option>
                           {{/each}}
@@ -179,7 +179,7 @@
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
                     <div class="col-sm-10">
-                      <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control js-example-basic-multiple">
+                      <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
                           {{#each practicearea}}
                           <option value="{{this.id}}">{{this.name}}</option>
                           {{/each}}
@@ -189,7 +189,7 @@
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
                     <div class="col-sm-10">
-                      <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control js-example-basic-multiple">
+                      <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
                         {{#each jurisdiction}}
                           <option value="{{this.id}}">{{this.jurisdiction}}</option>
                           {{/each}}
