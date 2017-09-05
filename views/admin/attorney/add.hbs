@@ -1,0 +1,87 @@
+<section class="content-header">
+      <h1>
+        Add Attorney
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/admin/firm">Attorney</a></li>
+        <li class="active">Add</li>
+      </ol>
+
+      <section class="content">
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">Attorney Credential</a></li>    
+            </ul>
+            <div class="tab-content">
+              <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane active" id="activity">
+                <form class="form-horizontal" name="frmFirm" id="frmFirm" method="post" action="/admin/attorney/add">
+
+                  <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">Select Firm</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control" name="firm_id" id="firm_id">
+                          <option value="">Select One</option>
+                          {{#each firm}}
+                              <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="first_name" class="col-sm-2 control-label">First Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <div>
+
+</section>
+</section>

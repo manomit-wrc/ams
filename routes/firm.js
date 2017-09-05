@@ -93,7 +93,7 @@ module.exports = function(app, models) {
 		models.admin.belongsTo(models.state,{foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
 		models.admin.belongsTo(models.designation,{foreignKey: 'designation_id'});
-	
+
 		Promise.all([
 			models.country.findAll({
 				order:[
@@ -106,11 +106,11 @@ module.exports = function(app, models) {
 					 id:id
 				},
 					 include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
-		 }
+		 	}
 			 )
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result);
+
 			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0], firm_details: result[1][0]});
 		});
 

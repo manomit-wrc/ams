@@ -43,7 +43,7 @@
             <li class="{{#if (eq active "budgetcodetype")}} active {{/if}}"><a href="/admin/budgetcodetype"><i class="fa fa-money" aria-hidden="true"></i>Budget Code Type</a></li>
             <li class="{{#if (eq active "budgetcode")}} active {{/if}}"><a href="/admin/budgetcode"><i class="fa fa-tags" aria-hidden="true"></i>Budget Code</a></li>
             <li class="{{#if (eq active "job-type")}} active {{/if}}"><a href="/admin/job-type"><i class="fa fa-suitcase" aria-hidden="true"></i>Job Types</a></li>
-            <li class="{{#if (eq active "attorney-type")}} active {{/if}}"><a href="/admin/attorney-type"><i class="fa fa-user" aria-hidden="true"></i>Attorney Types</a></li>
+            <li class="{{#if (eq active "attorney-type")}} active {{/if}}"><a href="/admin/attorney-type"><i class="fa fa-male" aria-hidden="true"></i>Attorney Types</a></li>
 
           </ul>
         </li>
@@ -56,8 +56,13 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+
           <ul class="treeview-menu">
             <li class="{{#if (eq active "firm")}} active {{/if}}"><a href="/admin/firm"><i class="fa fa-list"></i>Firms</a></li>
+          </ul>
+
+          <ul class="treeview-menu">
+            <li class="{{#if (eq active "attorney")}} active {{/if}}"><a href="/admin/attorney"><i class="fa fa-list-alt" aria-hidden="true"></i>Attorney</a></li>
           </ul>
         </li>
         {{/if_eq}}
