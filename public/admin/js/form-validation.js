@@ -188,7 +188,7 @@ $(document).ready(function(e){
 	});
 	//@#@#@#@#@#@# Second tab of "my-profile" #@#@#@#@#@#@#@//
 	$("#formgeneralInfo").validate({
-		rules{
+		rules: {
 			firmName:{
 				required: true
 			},
@@ -209,7 +209,7 @@ $(document).ready(function(e){
  			 }
 
 		},
-		messages{
+		messages: {
 			firmName:{
 				required: "Please enter Firm Name"
 			},
@@ -241,7 +241,7 @@ $(document).ready(function(e){
 					sections: $("#sections").val(),
 					practice_area: $("#practice_area").val(),
 					firm_jurisdiction: $("#firm_jurisdiction").val()
-				}
+				},
 				success:function(response) {
 					if(response == "2") {
 						$('#address-tab').removeClass("disabled");
@@ -251,7 +251,8 @@ $(document).ready(function(e){
 					}
 				}
 
-		}
+		});
 
-	});
+	}
+});
 });
