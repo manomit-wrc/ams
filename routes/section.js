@@ -39,7 +39,9 @@ module.exports = function(app, section) {
           req.flash('succ_add_msg', 'Section added successfully');
           res.redirect('/admin/section');
         }).catch(function(err){
+          
           var validation_error = err.errors;
+          console.log(validation_error[0].message);
             res.render('admin/section/add', {
                 layout: 'dashboard',
                 error_message: validation_error[0].message,

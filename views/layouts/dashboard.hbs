@@ -33,6 +33,14 @@
   <!-- custom css add here. -->
   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/custom.css">
 
+  <script src="/admin/js/jquery-2.2.3.min.js"></script>
+
+  <!-- Bootstrap 3.3.6 -->
+  <script src="/admin/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -68,10 +76,7 @@
   <!-- /.content-wrapper -->
     	</div>
 <!-- jQuery 2.2.3 -->
-<script src="/admin/js/jquery-2.2.3.min.js"></script>
 
-<!-- Bootstrap 3.3.6 -->
-<script src="/admin/js/bootstrap.min.js"></script>
 
 <!-- Select2 -->
 <script src="/admin/js/select2.full.min.js"></script>
@@ -116,8 +121,7 @@
 
 <script src="/admin/js/bootstrap-toggle.min.js"></script>
 <script src="/admin/js/validate.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
+
 <script src="/admin/js/form-validation.js"></script>
 
 <script>
@@ -307,9 +311,9 @@ $('#firm_jurisdiction').multiselect({
     $('.alert').fadeOut(6000);
 
 		var country_id = $("#country_id").val();
-		var state_id = {{user.state_id}};
-		var city_id = {{user.city_id}};
-		var zipcode = {{user.zipcode}};
+		var state_id = "{{user.state_id}}";
+		var city_id = "{{user.city_id}}";
+		var zipcode = "{{user.zipcode}}";
 		var flag = 0;
 		if(country_id) {
 			setTimeout(function() {

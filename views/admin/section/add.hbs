@@ -23,13 +23,13 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/section/add" class="form-horizontal" >
+                <form name="frmSection" id="frmSection" method="post" action="/admin/section/add" class="form-horizontal" >
 
                   <div class="form-group ">
                     <label for="name" class="col-sm-2 control-label">Name</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="name" placeholder="Enter Section Name" name="name" value="{{body.name}}" >
+                      <input type="text" class="form-control input-control" id="name" placeholder="Enter Section Name" name="name" value="{{body.name}}" >
                       <span class="text-danger"></span>
                     </div>
                   </div>
@@ -38,7 +38,7 @@
                     <label for="description" class="col-sm-2 control-label">Description</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="description" placeholder="Enter Description" name="description" >{{body.description}}</textarea>
+                      <textarea class="form-control input-control" id="description" placeholder="Enter Description" name="description" >{{body.description}}</textarea>
                       <span class="text-danger"></span>
                     </div>
                   </div>
@@ -47,7 +47,7 @@
                     <label for="remarks" class="col-sm-2 control-label">Remarks</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{body.remarks}}</textarea>
+                      <textarea class="form-control input-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{body.remarks}}</textarea>
                       <span class="text-danger"></span>
                     </div>
                   </div>
@@ -70,3 +70,42 @@
       <!-- /.row -->
 
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+
+  $("#frmSection").validate({
+    rules: {
+      name: {
+        required: true
+      },
+      description: {
+        required:  true
+      },
+      remarks: {
+        required:  true
+      }
+    },
+    messages: {
+      name: {
+        required: "Please enter section name"
+      },
+      description: {
+        required:  "Please enter description"
+      },
+      remarks: {
+        required:  "Please enter remarks"
+      }
+    }
+  });
+});
+</script>

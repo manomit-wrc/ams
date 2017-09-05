@@ -29,7 +29,7 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmImport" method="post" action="/admin/import-excel" class="form-horizontal" enctype="multipart/form-data">
+                <form name="frmImport" id="frmImport" method="post" action="/admin/import-excel" class="form-horizontal" enctype="multipart/form-data">
                   <div class="form-group ">
                     <label for="excel_file" class="col-sm-2 control-label">File</label>
 
@@ -55,3 +55,22 @@
       </div>
       <!-- /.row -->
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+  $("#frmImport").validate({
+    rules: {
+      excel_file: {
+        required: true,
+        extension: 'xls|xlsx'
+      }
+    },
+    messages: {
+      excel_file: {
+        required: "Please select file",
+        extension: 'File type must be excel'
+      }
+    }
+  });
+});
+</script>
