@@ -187,57 +187,70 @@ $(document).ready(function(e){
 
 	});
 	//@#@#@#@#@#@# Second tab of "my-profile" #@#@#@#@#@#@#@//
-	// $("#formgeneralInfo").validate({
-	// 	rules{
-	// 		firmName:{
-	// 			required: true
-	// 		},
-	// 		firmId: {
-	// 			required: true
-	// 		},
-	// 		firmRegistration: {
-	// 			required: true
-	// 		},
-	// 		firm_code: {
-	// 			required: true
-	// 		},
-	// 		"sections[]": {
-	// 		    required: true
-	// 		 },
-	// 		 "practice_area[]": {
- // 			    required: true
- // 			 },
-	// 		 "firm_jurisdiction[]": {
- // 			    required: true
- // 			 }
-	//
-	// 	},
-	// 	messages{
-	// 		firmName:{
-	// 			required: "Please enter Firm Name"
-	// 		},
-	// 		firmId: {
-	// 			required: "Please enter Firm ID"
-	// 		},
-	// 		firmRegistration: {
-	// 			required: "Please enter Firm Registration"
-	// 		},
-	// 		firm_code: {
-	// 			required: "Please enter Firm Code"
-	// 		},
-	// 		"sections[]": {
-	// 		    required: "Please select sections"
-	// 		 },
-	// 		 "practice_area[]": {
- // 			    required: "Please select practice area"
- // 			 },
-	// 		 "firm_jurisdiction[]": {
- // 			    required: "Please enter select firm jurisdiction"
- // 			 }
-	// 	},
-	// 	submitHandler:function(form) {
-	// 			form.submit();
-	// 	}
-	//
-	// });
+	$("#formgeneralInfo").validate({
+		rules{
+			firmName:{
+				required: true
+			},
+			firmRegistration: {
+				required: true
+			},
+			firm_code: {
+				required: true
+			},
+			"sections[]": {
+			    required: true
+			 },
+			 "practice_area[]": {
+ 			    required: true
+ 			 },
+			 "firm_jurisdiction[]": {
+ 			    required: true
+ 			 }
+
+		},
+		messages{
+			firmName:{
+				required: "Please enter Firm Name"
+			},
+			firmRegistration: {
+				required: "Please enter Firm Registration"
+			},
+			firm_code: {
+				required: "Please enter Firm Code"
+			},
+			"sections[]": {
+			    required: "Please select sections"
+			 },
+			 "practice_area[]": {
+ 			    required: "Please select practice area"
+ 			 },
+			 "firm_jurisdiction[]": {
+ 			    required: "Please enter select firm jurisdiction"
+ 			 }
+		},
+		submitHandler:function(form) {
+			$.ajax({
+				type: "POST",
+				url: "/admin/firm/update-generalInfo",
+				data: {
+					firmName: $("#firmName").val(),
+					firmRegistration: $("#firmRegistration").val(),
+					firm_code: $("#firm_code").val(),
+					sections: $("#sections").val(),
+					practice_area: $("#practice_area").val(),
+					firm_jurisdiction: $("#firm_jurisdiction").val()
+				}
+				success:function(response) {
+					if(response == "2") {
+						$('#address-tab').removeClass("disabled");
+						$("#firm-tab").removeClass("disabled");
+						$("#activity").removeClass("active").removeClass("disabled");
+						$("#generalInfo").addClass("active");
+					}
+				}
+
+		}
+
+	});
 });

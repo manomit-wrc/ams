@@ -151,12 +151,7 @@
                       <input type="text" class="form-control" id="firmName" name="firmName" placeholder="Firm Name">
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Firm ID</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="firmId" name="firmId" placeholder="Firm ID">
-                    </div>
-                  </div>
+                      <input type="hidden" class="form-control" id="firmId" name="firmId" placeholder="Firm ID" value="{{firm_table_array_details.id}}">
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-2 control-label">Firm Code</label>
                     <div class="col-sm-10">
@@ -174,10 +169,10 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Section</label>
                     <div class="col-sm-10">
                       <select name="sections[]" id="sections" multiple="multiple" class="form-control js-example-basic-multiple">
-                          <option value="">Select Sections</option>
-                          <option value="1">Sections 1</option>
-                          <option value="2">Sections2</option>
-                          <option value="3">Sections 3</option>
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+
                       </select>
                     </div>
                   </div>
@@ -185,10 +180,9 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
                     <div class="col-sm-10">
                       <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control js-example-basic-multiple">
-                          <option value="">Select Practice Area</option>
-                          <option value="1">Practice area 1</option>
-                          <option value="2">Practice area 2</option>
-                          <option value="3">Practice area 3</option>
+                          {{#each practicearea}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
                       </select>
                     </div>
                   </div>
@@ -196,10 +190,9 @@
                     <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
                     <div class="col-sm-10">
                       <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control js-example-basic-multiple">
-                          <option value="">Select Firm Jurisdiction</option>
-                          <option value="1">Firm Jurisdiction 1</option>
-                          <option value="2">Firm Jurisdiction 2</option>
-                          <option value="3">Firm Jurisdiction 3</option>
+                        {{#each jurisdiction}}
+                          <option value="{{this.id}}">{{this.jurisdiction}}</option>
+                          {{/each}}
                       </select>
                     </div>
                   </div>

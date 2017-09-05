@@ -30,7 +30,7 @@ module.exports = function(app, models) {
 		    models.group.findAll(),
 		    models.section.findAll({attributes: ['id', 'name']}),
 		    models.practicearea.findAll({attributes: ['id', 'name']}),
-		    models.codemaster.findAll({attributes: ['id', 'shortdescription'],where: {categoryid:7}})
+		    models.jurisdiction.findAll({attributes: ['id', 'jurisdiction']})
 
 		]).then(function(values) {
 
@@ -93,7 +93,6 @@ module.exports = function(app, models) {
 		models.admin.belongsTo(models.state,{foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
 		models.admin.belongsTo(models.designation,{foreignKey: 'designation_id'});
-
 		Promise.all([
 			models.country.findAll({
 				order:[
@@ -106,12 +105,28 @@ module.exports = function(app, models) {
 					 id:id
 				},
 					 include: [{model: models.firm},{model: models.country},{model: models.state},{model: models.city},{model:models.designation}]
-		 	}
-			 )
+		 	}),
+			models.section.findAll({attributes: ['id', 'name']}),
+		  models.practicearea.findAll({attributes: ['id', 'name']}),
+		  models.jurisdiction.findAll({attributes: ['id', 'jurisdiction']})
+
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-
-			res.render('admin/firm/my-profile',{layout:'dashboard',countries: result[0], firm_details: result[1][0]});
+			console.log(result[4]);
+			var firm_table_array_details = result[1][0]['firms'];
+			// for(var k in result[1][0]['firms']){
+			// 	firm_table_array_details.push(k, result[1][0][k]);
+			// }
+			// console.log(firm_table_array_details);
+			res.render('admin/firm/my-profile',{
+				layout:'dashboard',
+				countries: result[0],
+				firm_details: result[1][0],
+				firm_table_array_details: firm_table_array_details[0],
+				section: result[2],
+				practicearea: result[3],
+				jurisdiction: result[4]
+			});
 		});
 
 	});
@@ -173,5 +188,22 @@ module.exports = function(app, models) {
 		});
 	});
 
-// app.post("/admin/firm/")
+app.post("/admin/firm/update-generalInfo", function(req, res){
+
+var firm_id = req.body.firmId;
+// console.log(firm_id);
+models.firm.update({
+	name: req.body.firmName,
+	code: req.body.firm_code,
+	registration_no: req.body.firmRegistration,
+	section: req.body.sections,
+	practice_area: req.body.practice_area,
+	jurisdiction: req.body.firm_jurisdiction
+}, {where: {id: firm_id}}).then(function(result){
+	res.send("2");
+}).catch(function(err){
+	
+});
+
+});
 };
