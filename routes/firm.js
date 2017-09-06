@@ -8,7 +8,9 @@ module.exports = function(app, models) {
 		models.admin.belongsTo(models.city,{foreignKey: 'city_id'});
 		models.admin.belongsTo(models.designation,{foreignKey: 'designation_id'});
 
-		models.admin.findAll({
+		models.admin.findAll({order:[
+          ['id', 'ASC']
+        ],
 			where: {
 		      role_code: 'FIRMADM'
 		   },

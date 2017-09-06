@@ -4,7 +4,9 @@ module.exports = function(app, jurisdiction) {
 
 	// for index
 	app.get('/admin/jurisdiction', function(req, res) {
-		Jurisdiction.findAll().then(function(jurisdiction){
+		Jurisdiction.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(jurisdiction){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/jurisdiction/index',{layout:'dashboard', jurisdiction:jurisdiction,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

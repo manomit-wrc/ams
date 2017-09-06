@@ -4,11 +4,13 @@ module.exports = function(app, budgetcode, budgetcodetype) {
   var budgetcodetype = budgetcodetype;
 	app.get('/admin/budgetcode', function(req, res) {
     budgetcode.belongsTo(budgetcodetype, {foreignKey: 'budget_code_type_id'});
-    budgetcode.findAll({
+    budgetcode.findAll({order:[
+          ['id', 'ASC']
+        ],
       include: [{model: budgetcodetype}]
     }).then(function(budgetcode){
       //console.log(budgetcode);
-			res.render('admin/budgetcode/index',{layout:'dashboard', budgetcode:budgetcode});
+			res.render('admin/budgetcode/index',{layout:'dashboard', budgetcode:budgetcode,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 
 	});
@@ -86,6 +88,7 @@ module.exports = function(app, budgetcode, budgetcodetype) {
 		       id:req.params['id']
 		    }
 		}).then(function(response){
+			req.flash('succ_add_msg', 'Budget code deleted successfully');
 			res.redirect('/admin/budgetcode');
 		});
 	});

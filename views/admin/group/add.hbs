@@ -23,15 +23,14 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/group/add" class="form-horizontal" onsubmit="return validateGroup()">
+                <form name="frmGroup" id="frmGroup" method="post" action="/admin/group/add" class="form-horizontal" >
                   
                   <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Code</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="code" placeholder="Enter Group Code" name="code" value="{{body.code}}">
-                      <span class="text-danger"></span>
-                      <div class="alert alert-danger fade in alert-dismissable" id="code_error" style="display:none; margin-top:5px;"></div>
+                      <input type="text" class="form-control input-control" id="code" placeholder="Enter Group Code" name="code" value="{{body.code}}">
+                      
                     </div>
                   </div>
 
@@ -39,9 +38,8 @@
                     <label for="description" class="col-sm-2 control-label">Group</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="group_name" placeholder="Enter Group Name" name="group_name" value="{{body.group}}">
-                      <span class="text-danger"></span>
-                      <div class="alert alert-danger fade in alert-dismissable" id="group_error" style="display:none; margin-top:5px;"></div>
+                      <input type="text" class="form-control input-control" id="group_name" placeholder="Enter Group Name" name="group_name" value="{{body.group}}">
+                      
                     </div>
                   </div>
 
@@ -49,7 +47,7 @@
                     <label for="remarks" class="col-sm-2 control-label">Remarks</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{body.remark}}</textarea>
+                      <textarea class="form-control input-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{body.remark}}</textarea>
                       <span class="text-danger"></span>
                     </div>
                   </div>
@@ -72,3 +70,42 @@
       <!-- /.row -->
 
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+
+  $("#frmGroup").validate({
+    rules: {
+      code: {
+        required: true
+      },
+      group_name: {
+        required:  true
+      },
+      remarks: {
+        required:  true
+      }
+    },
+    messages: {
+      code: {
+        required: "Please enter group code"
+      },
+      group_name: {
+        required:  "Please enter group name"
+      },
+      remarks: {
+        required:  "Please enter remarks"
+      }
+    }
+  });
+});
+</script>

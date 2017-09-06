@@ -4,7 +4,9 @@ module.exports = function(app, job_type) {
 	
 	// for index
 	app.get('/admin/job-type', function(req, res) {
-		JobType.findAll().then(function(job_type){
+		JobType.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(job_type){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/job-type/index',{layout:'dashboard', job_type:job_type,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

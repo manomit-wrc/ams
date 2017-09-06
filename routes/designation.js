@@ -4,7 +4,9 @@ module.exports = function(app, designation) {
 	
 	// for index
 	app.get('/admin/designation', function(req, res) {
-		Designation.findAll().then(function(designation){
+		Designation.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(designation){
 			res.render('admin/designation/index',{layout:'dashboard', designation:designation,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 		

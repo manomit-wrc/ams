@@ -5,8 +5,10 @@ module.exports = function(app, section) {
 	app.get('/admin/section', function(req, res) {
 		Section.findAll({where: {
       status:'1',
-    }}).then(function(section){
-			res.render('admin/section/index',{layout:'dashboard', section:section});
+    },order:[
+          ['id', 'ASC']
+        ]}).then(function(section){
+			res.render('admin/section/index',{layout:'dashboard', section:section,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 
 	});
@@ -19,9 +21,7 @@ module.exports = function(app, section) {
   app.post('/admin/section/add', function(req, res){
     Section.findAndCountAll({
        where: {
-            name: {
-            $like: '%'+req.body.name+'%'
-          }
+            name: req.body.name
        }
     })
     .then(function(result) {

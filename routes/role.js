@@ -4,7 +4,9 @@ module.exports = function(app, role) {
 	
 	// for index
 	app.get('/admin/role', function(req, res) {
-		Role.findAll().then(function(role){
+		Role.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(role){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/role/index',{layout:'dashboard', role:role,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

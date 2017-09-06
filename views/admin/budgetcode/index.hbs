@@ -1,11 +1,11 @@
 <section class="content-header">
       <h1>
-        Budeget Code List
+        Budget Code List
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Budeget Code List</li>
+        <li class="active">Budget Code List</li>
       </ol>
     </section>
 
@@ -13,19 +13,20 @@
     <section class="content">
       <div class="row">
         <div class="col-xs-12">
-          {{#if succ_add_msg}}
-            <div class="alert alert-success" id="result77">
-            {{succ_add_msg}}
-            </div>
-          {{/if}}
+          
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Budeget Code List</h3>
+              <h3 class="box-title">Budget Code List</h3>
             </div>
             <!-- /.box-header -->
             <div class="topbtn"><a href="/admin/budgetcode/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
             <div class="box-body">
+            {{#if succ_add_msg}}
+            <div class="alert alert-success" id="result77">
+            {{succ_add_msg}}
+            </div>
+          {{/if}}
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

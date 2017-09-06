@@ -136,7 +136,7 @@ require('./routes/designation')(app, models.designation);
 require('./routes/group')(app, models.group);
 require('./routes/app-profile')(app, models.appprofile, models.admin);
 require('./routes/firmcodes')(app, models.firmcodes, models.codemaster); //we will be passing firm models shortly
-require('./routes/firmgroup')(app, models.firmGroup, models.group); //we will be passing firm models shortly
+require('./routes/firmgroup')(app, models.firmgroup, models.group); //we will be passing firm models shortly
 require('./routes/import-excel')(app, models.admin,fs);
 require('./routes/firm')(app,models);
 require('./routes/jurisdiction')(app, models.jurisdiction);

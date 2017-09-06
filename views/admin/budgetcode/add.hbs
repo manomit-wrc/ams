@@ -1,10 +1,10 @@
 <section class="content-header">
   <h1>
-    Budeget Code
+    Budget Code
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard">Dashboard</a></li>
-    <li class="active">Budeget Code - Add</li>
+    <li class="active">Budget Code - Add</li>
 
   </ol>
 </section>
@@ -14,7 +14,7 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 
-              <li class="active"><a href="#settings" data-toggle="tab">Budeget Code - Add</a></li>
+              <li class="active"><a href="#settings" data-toggle="tab">Budget Code - Add</a></li>
             </ul>
             <div class="tab-content">
 
@@ -24,28 +24,26 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/budgetcode/add" class="form-horizontal" onsubmit="return validateCodemasters()">
+                <form name="frmBudget" id="frmBudget" method="post" action="/admin/budgetcode/add" class="form-horizontal">
 
                   <div class="form-group ">
                     <label class="col-sm-2 control-label">Budget Code Type:</label>
                           <div class="col-sm-10">
-                              <select class="form-control" name="budget_code_type_id" id="budget_code_type_id" onchange="return budgetcodeChk(this.value)">
+                              <select class="form-control" name="budget_code_type_id" id="budget_code_type_id" >
                                   <option value="">Select One</option>
                                   {{#each budgetcodetype}}
                                       <option value="{{this.id}}">{{this.budget_code_type}} - {{this.code}}</option>
                                   {{/each}}
                               </select>
-                              <span class="text-danger"> </span>
-                              <div class="alert alert-danger fade in alert-dismissable" id="budget_code_type_id_error" style="display:none; margin-top:5px;"></div>
+                              
                           </div>
                       </div>
                   <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Code</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="code" placeholder="Enter Code" name="code" value="{{body.code}}" onkeyup="return budget_codeChkVal(this.value)">
-                      <span class="text-danger"></span>
-                      <div class="alert alert-danger fade in alert-dismissable" id="code_error" style="display:none; margin-top:5px;"></div>
+                      <input type="text" class="form-control input-control" id="code" placeholder="Enter Code" name="code" value="{{body.code}}" >
+                      
                     </div>
                   </div>
 
@@ -53,16 +51,15 @@
                     <label for="description" class="col-sm-2 control-label">Budget Code</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="budget_code" placeholder="Enter Budget Code" name="budget_code" value="{{body.budget_code}}" onkeyup="return budget_codeChkVal(this.value)">
-                      <span class="text-danger"></span>
-                      <div class="alert alert-danger fade in alert-dismissable" id="budget_code_error" style="display:none; margin-top:5px;"></div>
+                      <input type="text" class="form-control input-control" id="budget_code" placeholder="Enter Budget Code" name="budget_code" value="{{body.budget_code}}" >
+                      
                     </div>
                   </div>
 
                   <div class="form-group ">
                     <label for="remarks" class="col-sm-2 control-label">Remarks</label>
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="remarks" placeholder="Enter Remarks" name="remarks" onkeyup="return codeMasterChkVal(this.value)">{{body.remarks}}</textarea>
+                      <textarea class="form-control input-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{body.remarks}}</textarea>
                       <span class="text-danger"></span>
 
                     </div>
@@ -86,3 +83,48 @@
       <!-- /.row -->
 
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+
+  $("#frmBudget").validate({
+    rules: {
+      budget_code_type_id: {
+        required: true
+      },
+      code: {
+        required:  true
+      },
+      budget_code: {
+        required: true
+      },
+      remarks: {
+        required: true
+      }
+    },
+    messages: {
+      budget_code_type_id: {
+        required: "Please enter budget type"
+      },
+      code: {
+        required:  "Please enter budget code"
+      },
+      budget_code: {
+        required: "Please enter budget name"
+      },
+      remarks: {
+        required: "Pleae enter remarks"
+      }
+    }
+  });
+});
+</script>

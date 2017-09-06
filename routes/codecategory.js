@@ -3,7 +3,9 @@ module.exports = function(app, codecategory) {
  	var Codecategory = codecategory;
 
 	app.get('/admin/codecategory', function(req, res) {
-		Codecategory.findAll().then(function(codecategory){
+		Codecategory.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(codecategory){
 			res.render('admin/codecategory/index',{layout:'dashboard', codecategory:codecategory});
 		});
 

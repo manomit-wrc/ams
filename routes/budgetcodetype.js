@@ -6,7 +6,9 @@ module.exports = function(app, budgetcodetype) {
 	app.get('/admin/budgetcodetype', function(req, res) {
 		budgetcodetype.findAll({where: {
       status:'1',
-    }}).then(function(budgetcodetype){
+    },order:[
+          ['id', 'ASC']
+        ]}).then(function(budgetcodetype){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/budgetcodetype/index',{layout:'dashboard', budgetcodetype:budgetcodetype,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

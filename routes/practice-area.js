@@ -4,7 +4,9 @@ module.exports = function(app, practiceArea) {
 	
 	// for index
 	app.get('/admin/practice-area', function(req, res) {
-		PracticeArea.findAll().then(function(practiceArea){
+		PracticeArea.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(practiceArea){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/practice-area/index',{layout:'dashboard', practiceArea:practiceArea,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
@@ -21,14 +23,13 @@ module.exports = function(app, practiceArea) {
 		
 		PracticeArea.findAndCountAll({
 		   where: {
-		      name: {
-		        $like: '%'+req.body.practice_name+'%'
-		      }
-		   }
+    			code: req.body.code
+  			}
 		})
 		.then(function(result) {
 			//console.log(result.count);
 			var count = result.count;
+			console.log(count);
 			if(count == 0) {
 
 				PracticeArea.create({

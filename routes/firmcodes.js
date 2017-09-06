@@ -6,7 +6,9 @@ module.exports = function(app, firmcodes, codemaster) {
 
 	app.get('/admin/firmcodes', function(req, res) {
     Firmcodes.belongsTo(Firmcodes, {foreignKey: 'code_master_id'});
-    Firmcodes.findAll({
+    Firmcodes.findAll({order:[
+          ['id', 'ASC']
+        ],
       include: [{model: Firmcodes}]
     }).then(function(firmcodes){
       console.log(firmcodes);

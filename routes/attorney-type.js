@@ -4,7 +4,9 @@ module.exports = function(app, attorney_type) {
 	
 	// for index
 	app.get('/admin/attorney-type', function(req, res) {
-		AttorneyType.findAll().then(function(attorney_type){
+		AttorneyType.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(attorney_type){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/attorney-type/index',{layout:'dashboard', attorney_type:attorney_type,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

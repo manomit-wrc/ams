@@ -4,7 +4,9 @@ module.exports = function(app, group) {
 	
 	// for index
 	app.get('/admin/group', function(req, res) {
-		Group.findAll().then(function(group){
+		Group.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(group){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/group/index',{layout:'dashboard', group:group,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

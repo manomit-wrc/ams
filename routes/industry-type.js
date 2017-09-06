@@ -4,7 +4,9 @@ module.exports = function(app, industry_type) {
 	
 	// for index
 	app.get('/admin/industry-type', function(req, res) {
-		IndustryType.findAll().then(function(industryType){
+		IndustryType.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(industryType){
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/industry-type/index',{layout:'dashboard', industryType:industryType,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});

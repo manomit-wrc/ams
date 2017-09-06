@@ -23,15 +23,14 @@
               	</div>
               	{{/if}}
                <div class="tab-pane active" id="settings">
-                <form name="frmProfile" method="post" action="/admin/jurisdiction/add" class="form-horizontal" onsubmit="return validateJurisdiction()">
+                <form name="frmJurisdiction" id="frmJurisdiction" method="post" action="/admin/jurisdiction/add" class="form-horizontal" >
 
                   <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Jurisdiction Code</label>
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="jurisdiction_code" placeholder="Enter Jurisdiction Code" name="jurisdiction_code" value="{{body.jurisdiction_code}}" onkeyup="return checkJurisValue(this.value)">
-                      <span class="text-danger"></span>
-                      <div class="alert alert-danger fade in alert-dismissable" id="jurisdiction_code_error" style="display:none; margin-top:5px;"></div>
+                      
                     </div>
                   </div>
 
@@ -40,8 +39,7 @@
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="jurisdiction" placeholder="Enter Jurisdiction" name="jurisdiction" value="{{body.jurisdiction}}" onkeyup="return checkJurisValue(this.value)">
-                      <span class="text-danger"></span>
-                      <div class="alert alert-danger fade in alert-dismissable" id="jurisdiction_error" style="display:none; margin-top:5px;"></div>
+                      
                     </div>
                   </div>
 
@@ -72,3 +70,42 @@
       <!-- /.row -->
 
 </section>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+
+  $("#frmJurisdiction").validate({
+    rules: {
+      jurisdiction_code: {
+        required: true
+      },
+      jurisdiction: {
+        required:  true
+      },
+      remarks: {
+        required:  true
+      }
+    },
+    messages: {
+      jurisdiction_code: {
+        required: "Please enter jurisdiction code"
+      },
+      jurisdiction: {
+        required:  "Please enter jurisdiction name"
+      },
+      remarks: {
+        required:  "Please enter remarks"
+      }
+    }
+  });
+});
+</script>

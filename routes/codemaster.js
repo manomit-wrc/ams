@@ -4,10 +4,10 @@ module.exports = function(app, codemaster, codecategory) {
   var Codecategory = codecategory;
 
 	app.get('/admin/codemaster', function(req, res) {
-    Codemaster.belongsTo(Codecategory, {foreignKey: 'categoryid'});
-    Codemaster.findAll({
-      include: [{model: Codecategory}]
-    }).then(function(codemaster){
+    
+    Codemaster.findAll({order:[
+          ['id', 'ASC']
+        ]}).then(function(codemaster){
       console.log(codemaster);
 			res.render('admin/codemaster/index',{layout:'dashboard', codemaster:codemaster});
 		});
