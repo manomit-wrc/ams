@@ -182,12 +182,22 @@ if(approval_process === '1'){
     $('.level3').hide();
     $('.level4').hide();
 } else if(approval_process === '3'){
+	setTimeout(function() {
+		getDesigLevel2(1);
+},10);
 	getDesigLevel3(2);
     $('.level1').show();
     $('.level2').show();
     $('.level3').show();
     $('.level4').hide();
 } else if(approval_process === '4') {
+	setTimeout(function() {
+		getDesigLevel2(1);
+},10);
+setTimeout(function() {
+	getDesigLevel3(2);
+},10);
+getDesigLevel4(3);
     $('.level1').show();
     $('.level2').show();
     $('.level3').show();
@@ -426,7 +436,9 @@ $('#firm_jurisdiction').multiselect({
 	});
 
 </script>
+<!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - BEGIN $#$#$#$#$#$#$#$#-->
 <script>
+// @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
 function getDesigLevel2(id){
 	var datastring = "designation_id="+id;
 	// alert(datastring);
@@ -442,14 +454,12 @@ function getDesigLevel2(id){
 		}
 	});
 }
-</script>
-<script>
+// @@@@@@@@ 2nd call when approval level is three @@@@@@@@@@@//
 function getDesigLevel3(id){
 	var designation_id_1 = $("#designation_id_1").val();
 	var datastring = "designation_id="+designation_id_1+"&designation_id_2="+id;
-	$("#designation_id_2").find('option').not(':first').remove();
 	$("#designation_id_3").find('option').not(':first').remove();
-	alert(datastring);
+	// alert(datastring);
 	$.ajax({
 		data:datastring,
 		type: "POST",
@@ -462,6 +472,26 @@ function getDesigLevel3(id){
 		}
 	});
 }
+// @@@@@@@@ 3rd call when approval level is four @@@@@@@@@@@//
+function getDesigLevel4(id){
+	var designation_id_1 = $("#designation_id_1").val();
+	var designation_id_2 = $("#designation_id_2").val();
+	var datastring = "designation_id="+designation_id_1+"&designation_id_2="+designation_id_2+"&designation_id_3="+id;
+	$("#designation_id_4").find('option').not(':first').remove();
+	// alert(datastring);
+	$.ajax({
+		data:datastring,
+		type: "POST",
+		url: "/admin/firm/ajaxGetLevelDesig4",
+		success: function (return_data) {
+			// alert(return_data);
+			for(var i=0;i<return_data.length;i++){
+				$("#designation_id_4").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+			}
+		}
+	});
+}
 </script>
+<!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - END $#$#$#$#$#$#$#$#-->
   	</body>
 </html>

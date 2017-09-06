@@ -229,6 +229,7 @@ models.firm.update({
 });
 
 });
+//@#@#@#@#@#@ Ajax calls for approvals - BEGIN @#@#@#@#@#@#@//
 app.post("/admin/firm/ajaxGetLevelDesig2", function(req, res){
 
 	models.designation.findAll({
@@ -239,24 +240,35 @@ app.post("/admin/firm/ajaxGetLevelDesig2", function(req, res){
 		res.send(result);
 	});
 
+});
+
 app.post("/admin/firm/ajaxGetLevelDesig3", function(req, res){
 var designation_id = req.body.designation_id;
 var designation_id_2 = req.body.designation_id_2;
-// console.log(designation);
-var designation_id_array = JSON.parse("[" + designation_id + "]");
-var designation_id_2_array = JSON.parse("[" + designation_id_2 + "]");
-var designation_array = designation_id_array.concat(designation_id_2_array);
-// var designation = designation_array.toString();
-// alert(designation);
 
 models.designation.findAll({
-	where:{
-		id:{$notIN:[designation_array]}
-	}
+	where: {
+		 id: { $notIn: [designation_id,designation_id_2] }
+	 }
 }).then(function(result){
 	res.send(result);
 });
 
 });
-})
+
+app.post("/admin/firm/ajaxGetLevelDesig4", function(req, res){
+var designation_id = req.body.designation_id;
+var designation_id_2 = req.body.designation_id_2;
+var designation_id_3 = req.body.designation_id_3;
+
+models.designation.findAll({
+	where: {
+		 id: { $notIn: [designation_id,designation_id_2,designation_id_3] }
+	 }
+}).then(function(result){
+	res.send(result);
+});
+
+});
+//@#@#@#@#@#@ Ajax calls for approvals - END @#@#@#@#@#@#@//
 };
