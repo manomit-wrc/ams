@@ -476,7 +476,7 @@ function getDesigLevel3(id){
 function getDesigLevel4(id){
 	var designation_id_1 = $("#designation_id_1").val();
 	var designation_id_2 = $("#designation_id_2").val();
-	var datastring = "designation_id="+designation_id_1+"&designation_id_2="+designation_id_2+"&designation_id_3="+id;
+	var datastring = "designation_id_1="+designation_id_1+"&designation_id_2="+designation_id_2+"&designation_id_3="+id;
 	$("#designation_id_4").find('option').not(':first').remove();
 	// alert(datastring);
 	$.ajax({

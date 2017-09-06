@@ -257,7 +257,7 @@ models.designation.findAll({
 });
 
 app.post("/admin/firm/ajaxGetLevelDesig4", function(req, res){
-var designation_id = req.body.designation_id;
+var designation_id = req.body.designation_id_1;
 var designation_id_2 = req.body.designation_id_2;
 var designation_id_3 = req.body.designation_id_3;
 
@@ -271,4 +271,29 @@ models.designation.findAll({
 
 });
 //@#@#@#@#@#@ Ajax calls for approvals - END @#@#@#@#@#@#@//
+
+// app.post("/admin/firm/update-generalInfo", function(req, res){
+//
+// var firm_id = req.body.firmId;
+// // console.log(req.body);
+// var section = req.body.sections.toString();
+// var practice_area = req.body.practice_area.toString();
+// var jurisdiction = req.body.firm_jurisdiction.toString();
+// // console.log(section);
+//
+// models.firm.update({
+// 	name: req.body.firmName,
+// 	code: req.body.firm_code,
+// 	registration_no: req.body.firmRegistration,
+// 	section: section,
+// 	practice_area: practice_area,
+// 	jurisdiction: jurisdiction
+// }, {where: {id: firm_id}}).then(function(result){
+// 	res.send("2");
+// }).catch(function(err){
+//
+// });
+//
+// });
+
 };
