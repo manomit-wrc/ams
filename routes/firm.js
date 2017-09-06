@@ -115,11 +115,11 @@ module.exports = function(app, models) {
 				where: {
 					user_id:id
 				}
-			})
-
+			}),
+			models.designation.findAll({attributes: ['id', 'designation']}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result);
+			// console.log(result[6][0]);
 			   var firm_table_array_details = result[1][0]['firms'];
 
 			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
@@ -130,6 +130,7 @@ module.exports = function(app, models) {
 			   //  firm_table_array_details.push(k, result[1][0][k]);
 			   // }
 			   // console.log(firm_table_array_details);
+
 			   res.render('admin/firm/my-profile',{
 			    layout:'dashboard',
 			    countries: result[0],
@@ -141,7 +142,8 @@ module.exports = function(app, models) {
 			    section_array: section_array,
 			    practice_area_array: practice_area_array,
 			    jurisdiction_array: jurisdiction_array,
-					firm: result[5][0]
+					firm: result[5][0],
+					designation: result[6]
 			   });
 		});
 
@@ -227,4 +229,14 @@ models.firm.update({
 });
 
 });
+app.post("/admin/firm/ajaxGetLevelDesig2", function(req, res){
+	// console.log(req.body);
+	 designation_id: req.body.designation_id
+	//  console.log(designation_id);
+	models.designation.findAll({
+		where:{
+			id:{$not:[designation_id]}
+		}
+	})
+})
 };

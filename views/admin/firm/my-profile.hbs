@@ -205,20 +205,20 @@
 
               <!-- /@@@@@@@@@@@@ third tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane" id="approval">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="approvalForm" name="approvalForm" method="POST">
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Single Point Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="spName" placeholder="Single Point Name">
+                      <input type="text" class="form-control" id="spName" placeholder="Single Point Name" name="spName">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Single Point Contact</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="spContact" placeholder="Single Point Contact">
+                      <input type="text" class="form-control" id="spContact" placeholder="Single Point Contact" name="spContact">
                     </div>
                   </div>
-                  <div class="col-md-12" style="padding-left: 0; padding-right: 0; margin-bottom: 20px;">
+                  <div class="col-md-12" style="padding-left: 50px; padding-right: 0; margin-bottom: 20px;">
                         <div style=" width: 100%; display: inline-block">
                           <h3 class="hint"> Approval Process Information </h3>
                         <div class="form-group approval_process">
@@ -244,41 +244,41 @@
                         <div style=" width: 100%; display: inline-block">
                           <div class="form-group required level1">
                             <label class="control-label">Level 1</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_1" class="form-control">
-                                <option value="">Select Designation</option>
-                                <option value="1">Designation 1</option>
-                                <option value="1">Designation 2</option>
-                                <option value="1">Designation 3</option>
+                            <select name="designation_code_radio_type[]" id="designation_code_1" class="form-control" onchange="getDesigLevel2(this.value)">
+                                <option value="" disabled>Select Designation</option>
+                                {{#each designation}}
+                                  <option value="{{this.id}}">{{this.designation}}</option>
+                                  {{/each}}
                             </select>
                           </div>
 
                           <div class="form-group required level2">
                             <label class="control-label">Level 2</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_2" class="form-control">
-                                <option value="">Select Designation</option>
-                                <option value="1">Designation 1</option>
-                                <option value="1">Designation 2</option>
-                                <option value="1">Designation 3</option>
+                            <select name="designation_code_radio_type[]" id="designation_code_2" class="form-control"onchange="getDesigLevel3(this.value)">
+                                <option value="" disabled>Select Designation</option>
+                                {{#each designation}}
+                                  <option value="{{this.id}}">{{this.designation}}</option>
+                                  {{/each}}
                             </select>
                           </div>
 
                           <div class="form-group required level3">
                             <label class="control-label">Level 3</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_3" class="form-control">
-                                <option value="">Select Designation</option>
-                                <option value="1">Designation 1</option>
-                                <option value="1">Designation 2</option>
-                                <option value="1">Designation 3</option>
+                            <select name="designation_code_radio_type[]" id="designation_code_3" class="form-control"onchange="getDesigLevel4({{this.value}})">
+                                <option value="" disabled>Select Designation</option>
+                                {{#each designation}}
+                                  <option value="{{this.id}}">{{this.designation}}</option>
+                                  {{/each}}
                             </select>
                           </div>
 
                           <div class="form-group required level4">
                             <label class="control-label">Level 4</label>
                             <select name="designation_code_radio_type[]" id="designation_code_4" class="form-control">
-                                <option value="">Select Designation</option>
-                                <option value="1">Designation 1</option>
-                                <option value="1">Designation 2</option>
-                                <option value="1">Designation 3</option>
+                                <option value="" disabled>Select Designation</option>
+                                {{#each designation}}
+                                  <option value="{{this.id}}">{{this.designation}}</option>
+                                  {{/each}}
                             </select>
                           </div>
                         </div>

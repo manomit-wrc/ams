@@ -284,7 +284,7 @@ $('#firm_jurisdiction').multiselect({
 
   </div>
 <!-- ./wrapper -->
-      <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(e){
 		$("#avator").change(function(e){
 
@@ -422,6 +422,23 @@ $('#firm_jurisdiction').multiselect({
 
     $("input[type=text]").attr('maxlength','50');
 	});
+
+</script>
+<script>
+function getDesigLevel2(id){
+	var datastring = "designation_id="+id;
+	// alert(datastring);
+	$.ajax({
+		data:datastring,
+		type: POST,
+		url: "/admin/firm/ajaxGetLevelDesig2",
+		success:function(return_data){
+			$("designation_code_2").html(return_data);
+		}
+	})
+	type
+
+}
 </script>
   	</body>
 </html>
