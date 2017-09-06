@@ -230,7 +230,7 @@ models.firm.update({
 
 });
 app.post("/admin/firm/ajaxGetLevelDesig2", function(req, res){
-	
+
 	models.designation.findAll({
 		where:{
 			id:{$not:[req.body.designation_id]}
@@ -238,5 +238,25 @@ app.post("/admin/firm/ajaxGetLevelDesig2", function(req, res){
 	}).then(function(result){
 		res.send(result);
 	});
+
+app.post("/admin/firm/ajaxGetLevelDesig3", function(req, res){
+var designation_id = req.body.designation_id;
+var designation_id_2 = req.body.designation_id_2;
+// console.log(designation);
+var designation_id_array = JSON.parse("[" + designation_id + "]");
+var designation_id_2_array = JSON.parse("[" + designation_id_2 + "]");
+var designation_array = designation_id_array.concat(designation_id_2_array);
+// var designation = designation_array.toString();
+// alert(designation);
+
+models.designation.findAll({
+	where:{
+		id:{$notIN:[designation_array]}
+	}
+}).then(function(result){
+	res.send(result);
+});
+
+});
 })
 };

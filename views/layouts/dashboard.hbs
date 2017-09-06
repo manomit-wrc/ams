@@ -171,7 +171,6 @@ $('.level4').hide();
 $('.approval_process').on('click', function(){
 var approval_process = $(this).val();
 if(approval_process === '1'){
-   
    $('.level1').show();
    $('.level2').hide();
    $('.level3').hide();
@@ -183,6 +182,7 @@ if(approval_process === '1'){
     $('.level3').hide();
     $('.level4').hide();
 } else if(approval_process === '3'){
+	getDesigLevel3(2);
     $('.level1').show();
     $('.level2').show();
     $('.level3').show();
@@ -430,18 +430,37 @@ $('#firm_jurisdiction').multiselect({
 function getDesigLevel2(id){
 	var datastring = "designation_id="+id;
 	// alert(datastring);
-  $("#designation_code_2").find('option').not(':first').remove();
+  $("#designation_id_2").find('option').not(':first').remove();
 	$.ajax({
 		data:datastring,
 		type: "POST",
 		url: "/admin/firm/ajaxGetLevelDesig2",
 		success:function(return_data){
 			for(var i=0;i<return_data.length;i++) {
-          $("#designation_code_2").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+          $("#designation_id_2").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
       }
 		}
 	});
-
+}
+</script>
+<script>
+function getDesigLevel3(id){
+	var designation_id_1 = $("#designation_id_1").val();
+	var datastring = "designation_id="+designation_id_1+"&designation_id_2="+id;
+	$("#designation_id_2").find('option').not(':first').remove();
+	$("#designation_id_3").find('option').not(':first').remove();
+	alert(datastring);
+	$.ajax({
+		data:datastring,
+		type: "POST",
+		url: "/admin/firm/ajaxGetLevelDesig3",
+		success: function (return_data) {
+			// alert(return_data);
+			for(var i=0;i<return_data.length;i++){
+				$("#designation_id_3").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+			}
+		}
+	});
 }
 </script>
   	</body>

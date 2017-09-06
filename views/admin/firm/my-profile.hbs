@@ -244,8 +244,8 @@
                         <div style=" width: 100%; display: inline-block">
                           <div class="form-group required level1">
                             <label class="control-label">Level 1</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_1" class="form-control" onchange="getDesigLevel2(this.value)">
-                                <option value="" disabled>Select Designation</option>
+                            <select name="designation_code_radio_type[]" id="designation_id_1" class="form-control" onchange="getDesigLevel2(this.value)">
+                                <option value="">Select Designation</option>
                                 {{#each designation}}
                                   <option value="{{this.id}}">{{this.designation}}</option>
                                   {{/each}}
@@ -254,8 +254,8 @@
 
                           <div class="form-group required level2">
                             <label class="control-label">Level 2</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_2" class="form-control"onchange="getDesigLevel3(this.value)">
-                                <option value="" disabled>Select Designation</option>
+                            <select name="designation_code_radio_type[]" id="designation_id_2" class="form-control"onchange="getDesigLevel3(this.value)">
+                                <option value="">Select Designation</option>
                                 {{#each designation}}
                                   <option value="{{this.id}}">{{this.designation}}</option>
                                   {{/each}}
@@ -264,8 +264,8 @@
 
                           <div class="form-group required level3">
                             <label class="control-label">Level 3</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_3" class="form-control"onchange="getDesigLevel4({{this.value}})">
-                                <option value="" disabled>Select Designation</option>
+                            <select name="designation_code_radio_type[]" id="designation_id_3" class="form-control"onchange="getDesigLevel4(this.value)">
+                                <option value="">Select Designation</option>
                                 {{#each designation}}
                                   <option value="{{this.id}}">{{this.designation}}</option>
                                   {{/each}}
@@ -274,8 +274,8 @@
 
                           <div class="form-group required level4">
                             <label class="control-label">Level 4</label>
-                            <select name="designation_code_radio_type[]" id="designation_code_4" class="form-control">
-                                <option value="" disabled>Select Designation</option>
+                            <select name="designation_code_radio_type[]" id="designation_id_4" class="form-control">
+                                <option value="">Select Designation</option>
                                 {{#each designation}}
                                   <option value="{{this.id}}">{{this.designation}}</option>
                                   {{/each}}
