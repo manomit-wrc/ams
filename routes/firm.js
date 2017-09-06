@@ -230,13 +230,13 @@ models.firm.update({
 
 });
 app.post("/admin/firm/ajaxGetLevelDesig2", function(req, res){
-	// console.log(req.body);
-	 designation_id: req.body.designation_id
-	//  console.log(designation_id);
+	
 	models.designation.findAll({
 		where:{
-			id:{$not:[designation_id]}
+			id:{$not:[req.body.designation_id]}
 		}
-	})
+	}).then(function(result){
+		res.send(result);
+	});
 })
 };

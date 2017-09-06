@@ -171,11 +171,13 @@ $('.level4').hide();
 $('.approval_process').on('click', function(){
 var approval_process = $(this).val();
 if(approval_process === '1'){
+   
    $('.level1').show();
    $('.level2').hide();
    $('.level3').hide();
    $('.level4').hide();
 } else if(approval_process === '2') {
+    getDesigLevel2(1);
     $('.level1').show();
     $('.level2').show();
     $('.level3').hide();
@@ -428,15 +430,17 @@ $('#firm_jurisdiction').multiselect({
 function getDesigLevel2(id){
 	var datastring = "designation_id="+id;
 	// alert(datastring);
+  $("#designation_code_2").find('option').not(':first').remove();
 	$.ajax({
 		data:datastring,
-		type: POST,
+		type: "POST",
 		url: "/admin/firm/ajaxGetLevelDesig2",
 		success:function(return_data){
-			$("designation_code_2").html(return_data);
+			for(var i=0;i<return_data.length;i++) {
+          $("#designation_code_2").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+      }
 		}
-	})
-	type
+	});
 
 }
 </script>
