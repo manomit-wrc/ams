@@ -209,13 +209,13 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Single Point Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="spName" placeholder="Single Point Name" name="spName">
+                      <input type="text" class="form-control" id="spName" placeholder="Single Point Name" name="spName" value="{{firm.contact_person_name}}">
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Single Point Contact</label>
+                    <label for="inputName" class="col-sm-2 control-label">Single Point Contact Role</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="spContact" placeholder="Single Point Contact" name="spContact">
+                      <input type="text" class="form-control" id="spContact" placeholder="Single Point Contact Role" name="spContact" value="{{firm.contact_person_role}}">
                     </div>
                   </div>
                   <input type="hidden" class="form-control" id="firmId1" name="firmId1" placeholder="Firm ID" value="{{firm_table_array_details.id}}">
@@ -248,7 +248,7 @@
                             <select name="designation_id_1" id="designation_id_1" class="form-control">
                                 <option value="" disabled="disabled">Select Designation</option>
                                 {{#each designation}}
-                                  <option value="{{this.id}}">{{this.designation}}</option>
+                                  <option value="{{this.id}}" {{#if_eq this.id ../firm.level_1_designation}} selected = "selected" {{/if_eq}}>{{this.designation}}</option>
                                   {{/each}}
                             </select>
                           </div>
