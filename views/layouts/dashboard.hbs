@@ -396,7 +396,7 @@ $('#firm_jurisdiction').multiselect({
 
     $("#city_id").change(function(e){
 
-      var city_name = $("#city_id option:selected").text();;
+      var city_name = $("#city_id option:selected").text();
       $("#zipcode").find('option').not(':first').remove();
       if(city_name) {
 				flag = 1;
@@ -436,30 +436,29 @@ $('#firm_jurisdiction').multiselect({
     // @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
 		var approval_process = $(".approval_process:checked").val();
 		// alert(approval_process);
-		var designation_id_1 = "{{firm.level_2_designation}}";
+		var designation_id_1 = "{{firm.level_1_designation}}";
 		var designation_id_2 = "{{firm.level_2_designation}}";
 		var designation_id_3 = "{{firm.level_3_designation}}";
 		var designation_id_4 = "{{firm.level_4_designation}}";
-		// alert(designation_id_2);
-		if(approval_process){
+
+if(approval_process == 1){
+	$('.level1').show();
+	$('.level2').hide();
+	$('.level3').hide();
+	$('.level4').hide();
+} else {
 			$("#designation_id_1").trigger("change");
 
-
-			if(designation_id_1 && designation_id_2 && designation_id_3 && designation_id_4){
+			if(designation_id_1){
 				 $('.level1').show();
-				 $('.level2').hide();
-				 $('.level3').hide();
-				 $('.level4').hide();
-			} else if(designation_id_2 && designation_id_3 && designation_id_4) {
+			} else if(designation_id_1 && designation_id_2) {
 					setTimeout(function() {
 							$("#designation_id_1").trigger('change');
 					},10);
-
 					$('.level1').show();
 					$('.level2').show();
-					$('.level3').hide();
-					$('.level4').hide();
-			} else if(designation_id_3 && designation_id_4){
+
+			} else if(designation_id_1 && designation_id_2 && designation_id_3){
 				setTimeout(function() {
 							$("#designation_id_1").trigger('change');
 					},10);
@@ -467,8 +466,7 @@ $('#firm_jurisdiction').multiselect({
 					$('.level1').show();
 					$('.level2').show();
 					$('.level3').show();
-					$('.level4').hide();
-			} else if(designation_id_4) {
+			} else if(designation_id_1 && designation_id_2 && designation_id_3 && designation_id_4) {
 				setTimeout(function() {
 							$("#designation_id_1").trigger('change');
 					},10);
