@@ -257,7 +257,7 @@ models.designation.findAll({
 });
 
 app.post("/admin/firm/ajaxGetLevelDesig4", function(req, res){
-var designation_id = req.body.designation_id_1;
+var designation_id = req.body.designation_id;
 var designation_id_2 = req.body.designation_id_2;
 var designation_id_3 = req.body.designation_id_3;
 
