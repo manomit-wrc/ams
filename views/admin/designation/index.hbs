@@ -29,6 +29,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>Code</th>
                   <th>Designation</th>
                   <th>Remarks</th>
                   <th>Action</th>
@@ -37,6 +38,7 @@
                 <tbody>
                     {{#each designation}}
                      <tr>
+                      <td>{{this.code}}</td>
                       <td>{{this.designation}}</td>
                       <td>{{this.remarks}}
                       </td>
