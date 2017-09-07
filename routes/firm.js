@@ -276,8 +276,9 @@ models.designation.findAll({
 
 app.post("/admin/firm/update-approval", function(req, res){
 
-var firm_id = req.body.firmId1;
-console.log(req.body);
+
+var firm_id = parseInt(req.body.firmId1);
+
 var spName = req.body.spName;
 var spContact = req.body.spContact;
 var approval_process = req.body.approval_process;
@@ -290,22 +291,11 @@ var designation_id_4 = req.body.designation_id_4;
 models.firm.update({
 	contact_person_name: spName,
 	contact_person_role: spContact,
-if(approval_process === 1){
-	level_1_designation: designation_id_1
-} else if(approval_process === 2){
-	level_1_designation: designation_id_1,
-	level_2_designation: designation_id_2
-} else if(approval_process === 3){
-	level_1_designation: designation_id_1,
-	level_2_designation: designation_id_2,
-	level_3_designation: designation_id_3
-} else if(approval_process === 4){
-	level_1_designation: designation_id_1,
-	level_2_designation: designation_id_2,
-	level_3_designation: designation_id_3,
-	level_4_designation: designation_id_4
-}
-}, {where: {id: firm_id}}).then(function(result){
+	level_1_designation: ((approval_process === '1' || approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_1) : null),
+	level_2_designation: ((approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_2) : null),
+	level_3_designation: ((approval_process === '3' || approval_process === '4') ? parseInt(designation_id_3) : null),
+	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null)
+}, {where: {user_id: req.user.id}}).then(function(result){
 		res.send("3");
 }).catch(function(err){
 

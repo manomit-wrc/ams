@@ -293,7 +293,7 @@ $(document).ready(function(e){
 					designation_id_2: $("#designation_id_2").val(),
 					designation_id_3: $("#designation_id_3").val(),
 					designation_id_4: $("#designation_id_4").val(),
-					approval_process:$("#approval_process").val()
+					approval_process:$(".approval_process:checked").val()
 				},
 				success:function(response) {
 					if(response == "3") {
