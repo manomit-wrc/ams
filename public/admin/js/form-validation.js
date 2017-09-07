@@ -240,7 +240,8 @@ $(document).ready(function(e){
 					firm_code: $("#firm_code").val(),
 					sections: $("#sections").val(),
 					practice_area: $("#practice_area").val(),
-					firm_jurisdiction: $("#firm_jurisdiction").val()
+					firm_jurisdiction: $("#firm_jurisdiction").val(),
+
 				},
 				success:function(response) {
 					if(response == "2") {
@@ -255,73 +256,57 @@ $(document).ready(function(e){
 
 	}
 });
-	//@#@#@#@#@#@# Third tab of "my-profile" #@#@#@#@#@#@#@//});
+	//@#@#@#@#@#@# Third tab of "my-profile" #@#@#@#@#@#@#@//
 	//
-	// $("#approvalForm").validate({
-	// 	rules: {
-	// 		firmName:{
-	// 			required: true
-	// 		},
-	// 		firmRegistration: {
-	// 			required: true
-	// 		},
-	// 		firm_code: {
-	// 			required: true
-	// 		},
-	// 		"sections[]": {
-	// 				required: true
-	// 		 },
-	// 		 "practice_area[]": {
-	// 				required: true
-	// 		 },
-	// 		 "firm_jurisdiction[]": {
-	// 				required: true
-	// 		 }
-	//
-	// 	},
-	// 	messages: {
-	// 		firmName:{
-	// 			required: "Please enter Firm Name"
-	// 		},
-	// 		firmRegistration: {
-	// 			required: "Please enter Firm Registration"
-	// 		},
-	// 		firm_code: {
-	// 			required: "Please enter Firm Code"
-	// 		},
-	// 		"sections[]": {
-	// 				required: "Please select sections"
-	// 		 },
-	// 		 "practice_area[]": {
-	// 				required: "Please select practice area"
-	// 		 },
-	// 		 "firm_jurisdiction[]": {
-	// 				required: "Please select firm jurisdiction"
-	// 		 }
-	// 	},
-	// 	submitHandler:function(form) {
-	// 		$.ajax({
-	// 			type: "POST",
-	// 			url: "/admin/firm/update-generalInfo",
-	// 			data: {
-	// 				firmId: $("#firmId").val(),
-	// 				firmName: $("#firmName").val(),
-	// 				firmRegistration: $("#firmRegistration").val(),
-	// 				firm_code: $("#firm_code").val(),
-	// 				sections: $("#sections").val(),
-	// 				practice_area: $("#practice_area").val(),
-	// 				firm_jurisdiction: $("#firm_jurisdiction").val()
-	// 			},
-	// 			success:function(response) {
-	// 				if(response == "2") {
-	// 					$('#firm-tab').removeClass("disabled");
-	// 					$("#approval-tab").addClass("active").removeClass("disabled");
-	// 					$("#generalInfo").removeClass("active");
-	// 					$("#approval").addClass("active");
-	// 				}
-	// 			}
-	//
-	// 	});
-	//
-	// }
+	$("#approvalForm").validate({
+		rules: {
+			spName:{
+				required: true
+			},
+			spContact: {
+				required: true
+			},
+			designation_id_1: {
+				required: true
+			}
+		},
+		messages: {
+			spName:{
+				required: "Please enter single point contact name"
+			},
+			spContact: {
+				required: "Please enter single point contact role"
+			},
+			designation_id_1: {
+				required: "Please enter level 1 designation"
+			}
+		},
+		submitHandler:function(form) {
+			$.ajax({
+				type: "POST",
+				url: "/admin/firm/update-approval",
+				data: {
+					firmId: $("#firmId1").val(),
+					spName: $("#spName").val(),
+					spContact: $("#spContact").val(),
+					designation_id_1: $("#designation_id_1").val(),
+					designation_id_2: $("#designation_id_2").val(),
+					designation_id_3: $("#designation_id_3").val(),
+					designation_id_4: $("#designation_id_4").val(),
+					approval_process:$("#approval_process").val()
+				},
+				success:function(response) {
+					if(response == "3") {
+						$('#firm-tab').removeClass("disabled");
+						$("#approval-tab").removeClass("disabled")
+						$("#photo-tab").addClass("active").removeClass("disabled");
+						$("#approval").removeClass("active");
+						$("#picture").addClass("active");
+					}
+				}
+
+		});
+
+	}
+});
 });

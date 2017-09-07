@@ -260,40 +260,57 @@ app.post("/admin/firm/ajaxGetLevelDesig4", function(req, res){
 var designation_id = req.body.designation_id;
 var designation_id_2 = req.body.designation_id_2;
 var designation_id_3 = req.body.designation_id_3;
-
+// console.log(req.body);
 models.designation.findAll({
 	where: {
 		 id: { $notIn: [designation_id,designation_id_2,designation_id_3] }
 	 }
 }).then(function(result){
 	res.send(result);
+	// console.log(result);
+
 });
 
 });
 //@#@#@#@#@#@ Ajax calls for approvals - END @#@#@#@#@#@#@//
 
-// app.post("/admin/firm/update-generalInfo", function(req, res){
-//
-// var firm_id = req.body.firmId;
-// // console.log(req.body);
-// var section = req.body.sections.toString();
-// var practice_area = req.body.practice_area.toString();
-// var jurisdiction = req.body.firm_jurisdiction.toString();
-// // console.log(section);
-//
-// models.firm.update({
-// 	name: req.body.firmName,
-// 	code: req.body.firm_code,
-// 	registration_no: req.body.firmRegistration,
-// 	section: section,
-// 	practice_area: practice_area,
-// 	jurisdiction: jurisdiction
-// }, {where: {id: firm_id}}).then(function(result){
-// 	res.send("2");
-// }).catch(function(err){
-//
-// });
-//
-// });
+app.post("/admin/firm/update-approval", function(req, res){
+
+var firm_id = req.body.firmId1;
+console.log(req.body);
+var spName = req.body.spName;
+var spContact = req.body.spContact;
+var approval_process = req.body.approval_process;
+var designation_id_1 = req.body.designation_id_1;
+var designation_id_2 = req.body.designation_id_2;
+var designation_id_3 = req.body.designation_id_3;
+var designation_id_4 = req.body.designation_id_4;
+// console.log(section);
+
+models.firm.update({
+	contact_person_name: spName,
+	contact_person_role: spContact,
+if(approval_process === 1){
+	level_1_designation: designation_id_1
+} else if(approval_process === 2){
+	level_1_designation: designation_id_1,
+	level_2_designation: designation_id_2
+} else if(approval_process === 3){
+	level_1_designation: designation_id_1,
+	level_2_designation: designation_id_2,
+	level_3_designation: designation_id_3
+} else if(approval_process === 4){
+	level_1_designation: designation_id_1,
+	level_2_designation: designation_id_2,
+	level_3_designation: designation_id_3,
+	level_4_designation: designation_id_4
+}
+}, {where: {id: firm_id}}).then(function(result){
+		res.send("3");
+}).catch(function(err){
+
+});
+
+});
 
 };
