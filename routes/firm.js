@@ -130,7 +130,7 @@ module.exports = function(app, models) {
 			   //  firm_table_array_details.push(k, result[1][0][k]);
 			   // }
 			   // console.log(firm_table_array_details);
-
+			   console.log(result[5][0]);
 			   res.render('admin/firm/my-profile',{
 			    layout:'dashboard',
 			    countries: result[0],
@@ -292,7 +292,8 @@ models.firm.update({
 	level_1_designation: ((approval_process === '1' || approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_1) : null),
 	level_2_designation: ((approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_2) : null),
 	level_3_designation: ((approval_process === '3' || approval_process === '4') ? parseInt(designation_id_3) : null),
-	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null)
+	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null),
+	approval_process: approval_process
 }, {where: {user_id: req.user.id}}).then(function(result){
 		res.send("3");
 }).catch(function(err){

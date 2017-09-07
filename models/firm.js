@@ -133,6 +133,9 @@ module.exports = function(sequelize, DataTypes) {
     status:{
       type:DataTypes.INTEGER,
       defaultValue:1
+    },
+    approval_process:{
+      type:DataTypes.INTEGER
     }
 
   }, {

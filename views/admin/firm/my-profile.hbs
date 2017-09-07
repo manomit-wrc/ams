@@ -227,16 +227,17 @@
                             <br>
                             <div class="radio-list">
                                 <label class="radio-inline">
-                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process" value="1" checked="checked">  1
+                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process" value="1"
+                                    {{#if (or (eq 1 firm.approval_process)(eq null firm.approval_process))}} checked="checked" {{/if}}>  1
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process"   value="2">  2
+                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process" {{#if (eq 2 firm.approval_process)}} checked="checked" {{/if}}  value="2">  2
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process"   value="3">  3
+                                    <input type="radio" name="approval_process" class="approval_process" id="approval_process" value="3" {{#if (eq 3 firm.approval_process)}} checked="checked" {{/if}}>  3
                                 </label>
                                 <label class="radio-inline">
-                                     <input type="radio" name="approval_process" class="approval_process" id="approval_process"   value="4">  4
+                                     <input type="radio" name="approval_process" class="approval_process" id="approval_process" value="4" {{#if (eq 4 firm.approval_process)}} checked="checked" {{/if}}>  4
                                 </label>
                             </div>
                         </div>

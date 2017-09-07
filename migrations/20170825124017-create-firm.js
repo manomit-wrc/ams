@@ -63,6 +63,10 @@ module.exports = {
       status:{
         allowNull: false,
         type: Sequelize.INTEGER(1)
+      },
+      approval_process: {
+        allowNull: false,
+        type: Sequelize.INTEGER(11)
       }
     });
   },
