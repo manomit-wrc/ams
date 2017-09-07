@@ -119,7 +119,7 @@ module.exports = function(app, models) {
 			models.designation.findAll({attributes: ['id', 'designation']}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			// console.log(result[6][0]);
+			console.log(result[5][0]);
 			   var firm_table_array_details = result[1][0]['firms'];
 
 			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
@@ -275,8 +275,6 @@ models.designation.findAll({
 //@#@#@#@#@#@ Ajax calls for approvals - END @#@#@#@#@#@#@//
 
 app.post("/admin/firm/update-approval", function(req, res){
-
-
 var firm_id = parseInt(req.body.firmId1);
 
 var spName = req.body.spName;
