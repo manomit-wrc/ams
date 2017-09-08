@@ -114,6 +114,7 @@ require('./routes/index')(app, passport);
 app.use(function(req, res, next){
   if (req.isAuthenticated())
   {
+
     delete req.user.password;
     if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
       res.locals.image = "/profile/thumbs/"+req.user.avator;
@@ -124,7 +125,7 @@ app.use(function(req, res, next){
     res.locals.user = req.user;
 
     res.locals.active = req.path.split('/')[2];
-
+    
     return next();
   }
   res.redirect('/admin');

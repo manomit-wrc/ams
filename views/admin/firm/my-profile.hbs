@@ -307,15 +307,15 @@
                   <h3 class="hint">Profile Picture</h3>
                   <div class="form-group">
                       <div class="fileinput fileinput-new" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                          <div class="fileinput-new thumbnail" style="width: 200px; height: 250px;">
 
-                              <img src="http://localhost:8080/public/profile/{{firm_details.avator}}" alt="" class="profile-image" />
+                              <img src="{{image}}" alt="" class="profile-image" width="200px" height="150px" />
                           </div>
 
                           <div style=" height: 60px">
                               <span class="btn default btn-file">
                                   <span class="fileinput-new"> Select image </span>
-                                  <input type="file" name="profile_photo" id="profile_photo" class="control-label">
+                                  <input type="file" name="profile_photo" id="profile_photo" class="control-label" >
                                   {{!-- <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a> --}}
                           </div>
                       </div>

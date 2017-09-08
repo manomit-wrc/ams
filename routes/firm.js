@@ -8,7 +8,7 @@ module.exports = function(app, models) {
 	var fileName = '';
 	var storage = multer.diskStorage({
 	  destination: function (req, file, cb) {
-	    cb(null, 'public/profile');
+	    cb(null, 'public/profile/thumbs');
 	  },
 	  filename: function (req, file, cb) {
 	    fileExt = file.mimetype.split('/')[1];
