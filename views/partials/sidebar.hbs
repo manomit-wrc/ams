@@ -49,11 +49,11 @@
         </li>
         {{/if_eq}}
         {{#if_eq user.role_code "SITEADM"}}
-<<<<<<< HEAD
+
         <li class="treeview {{#if (or (eq active "firm")(eq active "firm"))}} active {{/if}}">
-=======
+
         <li class="treeview {{#if (or (eq active "firm")(eq active "attorney"))}} active {{/if}}">
->>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
+
           <a href="javascript:void(0)">
             <i class="fa fa-cog"></i> <span>Firm Operation</span>
             <span class="pull-right-container">
@@ -73,16 +73,15 @@
 
         {{#if_eq user.role_code "FIRMADM"}}
           <li class="{{#if (eq active "my-profile")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
-        
+
         {{/if_eq}}
-<<<<<<< HEAD
-=======
+
 
         {{#if_eq user.role_code "ATTR"}}
           <li class="{{#if (eq active "attorney")}} active {{/if}}"><a href="/admin/attorney/attorney-profile"><i class="fa fa-user" aria-hidden="true"></i> <span>Attorney Profile</span></a></li>
-        
+
         {{/if_eq}}
->>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
+
       </ul>
     </section>
     <!-- /.sidebar -->

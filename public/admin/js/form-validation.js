@@ -309,7 +309,7 @@ $(document).ready(function(e){
 
 	}
 });
-<<<<<<< HEAD
+
 	//@#@#@#@#@#@# Fourth tab of "my-profile" #@#@#@#@#@#@#@//
 	//
 	$("#imageForm").validate({
@@ -326,8 +326,8 @@ $(document).ready(function(e){
 			}
 		},
 		submitHandler:function(form) {
-			var fd = new FormData($("#imageForm").get(0));    
-			
+			var fd = new FormData($("#imageForm").get(0));
+
 			$.ajax({
 			  url: '/admin/firm/update-profile-photo',
 			  data: fd,
@@ -336,12 +336,11 @@ $(document).ready(function(e){
 			  type: 'POST',
 			  success: function(data){
 			    if(data == "4") {
-					window.location.href = "/admin/firm/my-profile";		
+					window.location.href = "/admin/firm/my-profile";
 				}
 			  }
 			});
 		}
 	});
-=======
->>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
+
 });

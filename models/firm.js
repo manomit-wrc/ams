@@ -133,7 +133,6 @@ module.exports = function(sequelize, DataTypes) {
     status:{
       type:DataTypes.INTEGER,
       defaultValue:1
-<<<<<<< HEAD
     },
     approval_process:{
       type:DataTypes.INTEGER
@@ -141,11 +140,8 @@ module.exports = function(sequelize, DataTypes) {
     menu_active:{
       type:DataTypes.INTEGER,
       defaultValue:1
-    },
-=======
     }
 
->>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
   }, {
     classMethods: {
       associate: function(models) {
