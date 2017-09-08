@@ -148,7 +148,7 @@ module.exports = function(app, models) {
 			models.designation.findAll({attributes: ['id', 'designation']}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result[5][0]);
+			// console.log(result);
 			   var firm_table_array_details = result[1][0]['firms'];
 
 			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
@@ -159,7 +159,7 @@ module.exports = function(app, models) {
 			   //  firm_table_array_details.push(k, result[1][0][k]);
 			   // }
 			   // console.log(firm_table_array_details);
-			   console.log(result[5][0]);
+			  //  console.log(result[1][0]);
 			   res.render('admin/firm/my-profile',{
 			    layout:'dashboard',
 			    countries: result[0],
@@ -332,7 +332,7 @@ models.firm.update({
 });
 
 app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), function(req, res) {
-	
+
 	models.admin.update({
 	avator: fileName
 	}, {where: {id: req.user.id}}).then(function(result){

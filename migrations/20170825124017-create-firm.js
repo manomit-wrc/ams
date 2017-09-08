@@ -67,6 +67,10 @@ module.exports = {
       approval_process: {
         allowNull: false,
         type: Sequelize.INTEGER(11)
+      },
+      menu_active: {
+        allowNull: false,
+        type: Sequelize.INTEGER(1)
       }
     });
   },

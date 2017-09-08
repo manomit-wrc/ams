@@ -136,8 +136,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     approval_process:{
       type:DataTypes.INTEGER
-    }
-
+    },
+    menu_active:{
+      type:DataTypes.INTEGER,
+      defaultValue:1
+    },
   }, {
     classMethods: {
       associate: function(models) {
