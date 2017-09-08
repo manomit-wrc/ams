@@ -294,27 +294,23 @@
               </div>
               <!-- /@@@@@@@@@@@@ fourth tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane" id="picture">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="imageForm" name="imageForm" method="POST" enctype="multipart/form-data">
                   <div style=" width: 100%; display: inline-block;">
                   <h3 class="hint">Profile Picture</h3>
                   <div class="form-group">
                       <div class="fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" class="profile-image" />
                           </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                          
                           <div style=" height: 60px">
                               <span class="btn default btn-file">
                                   <span class="fileinput-new"> Select image </span>
-                                  <span class="fileinput-exists"> Change </span>
                                   <input type="file" name="profile_photo" id="profile_photo" class="control-label">
-                                  <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                  {{!-- <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a> --}}
                           </div>
                       </div>
-                      <div class="clearfix margin-top-10">
-                          <span class="label label-danger" style=" margin-right:10px ">NOTE! </span>
-                          <span>Firm image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
-                      </div>
+                      
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">

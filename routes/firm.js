@@ -1,6 +1,35 @@
 module.exports = function(app, models) {
 
 	var md5 = require('md5');
+	var multer  = require('multer');
+	var im = require('imagemagick');
+	var fileExt = '';
+	var fileName = '';
+	var storage = multer.diskStorage({
+	  destination: function (req, file, cb) {
+	    cb(null, 'public/profile');
+	  },
+	  filename: function (req, file, cb) {
+	    fileExt = file.mimetype.split('/')[1];
+	    if (fileExt == 'jpeg'){ fileExt = 'jpg';}
+	    fileName = req.user.id + '-' + Date.now() + '.' + fileExt;
+	    cb(null, fileName);
+	  }
+	})
+
+	var restrictImgType = function(req, file, cb) {
+
+	    var allowedTypes = ['image/jpeg','image/gif','image/png'];
+	      if (allowedTypes.indexOf(req.file.mimetype) !== -1){
+	        // To accept the file pass `true`
+	        cb(null, true);
+	      } else {
+	        // To reject this file pass `false`
+	        cb(null, false);
+	       //cb(new Error('File type not allowed'));// How to pass an error?
+	      }
+	};
+	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
 		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
@@ -300,6 +329,21 @@ models.firm.update({
 
 });
 
+});
+
+app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), function(req, res) {
+	
+	models.admin.update({
+	avator: fileName
+	}, {where: {id: req.user.id}}).then(function(result){
+		models.firm.update({
+			status: 1
+		}, {where: {user_id: req.user.id}}).then(function(result_1){
+			res.send("4");
+		});
+	}).catch(function(err){
+
+	});
 });
 
 };

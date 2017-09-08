@@ -313,6 +313,23 @@ $('#firm_jurisdiction').multiselect({
     		}
 		});
 
+    $("#profile_photo").change(function(e){
+      if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-image').attr('src', e.target.result);
+                
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    /*$(".fileinput-exists").click(function(e){
+      $('.profile-image').attr('src', "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image");
+    });*/
+
 		$('#example2').DataTable({
 	      "paging": true,
 	      "lengthChange": false,
