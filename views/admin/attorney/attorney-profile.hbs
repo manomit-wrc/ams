@@ -1,0 +1,247 @@
+<section class="content-header">
+      <h1>
+        Add Attorney
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/admin/firm">Attorney</a></li>
+        <li class="active">Add</li>
+      </ol>
+
+      <section class="content">
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active tab" id="address-tab"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
+              <li class="tab" id="firm-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Attorney details</a></li>
+              <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
+            </ul>
+            <div class="tab-content">
+              <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane active" id="activity">
+                <form class="form-horizontal" name="frmFirmAddress" id="frmFirmAddress" method="post" action="#">
+                  <div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">Address Line 1</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="address" name="address" placeholder="Address 1" value="{{firm_details.address}}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="address_2" class="col-sm-2 control-label">Address Line 2</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address 2" value="{{firm_details.address_2}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="address_3" class="col-sm-2 control-label">Address Line 3</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address 3" value="{{firm_details.address_3}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone_no" class="col-sm-2 control-label">Phone No</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Phone" value="{{firm_details.phone_no}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="country_id" class="col-sm-2 control-label">Country</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="country_id" name="country_id">
+                        <option value="">Select Country</option>
+                        {{#each countries}}
+                        <option value="{{this.id}}" {{#if_eq this.id ../firm_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="state_id" class="col-sm-2 control-label">State</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="state_id" name="state_id">
+                        <option value="">Select State</option>
+
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="city_id" class="col-sm-2 control-label">City</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="city_id" name="city_id">
+                        <option value="">Select City</option>
+                        
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="zipcode" class="col-sm-2 control-label">Pincode</label>
+
+                    <div class="col-sm-10">
+                      <select class="form-control col-sm-2" id="zipcode" name="zipcode">
+                        <option value="">Select Pincode</option>
+
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="fax" class="col-sm-2 control-label">Fax</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="fax" name="fax" placeholder="Fax" value="{{firm_details.fax}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="mobile" class="col-sm-2 control-label">Mobile</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile" value="{{firm_details.mobile}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="website" class="col-sm-2 control-label">Website URL</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="website" name="website" placeholder="Website Url" value="{{firm_details.website}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="social" class="col-sm-2 control-label">Social URL</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="social" name="social" placeholder="Social Url" value="{{firm_details.social}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- /@@@@@@@@@@@@ second tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="generalInfo">
+                <form class="form-horizontal" name="formgeneralInfo" id="formgeneralInfo" method="POST" action="#">
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmName" name="firmName" placeholder="Firm Name" value="{{firm.name}}">
+                    </div>
+                  </div>
+                      <input type="hidden" class="form-control" id="firmId" name="firmId" placeholder="Firm ID" value="{{firm_table_array_details.id}}">
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Firm Code</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firm_code" name="firm_code" placeholder="Firm Code" value="{{firm.code}}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Registration</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firmRegistration" name="firmRegistration" placeholder="Firm Registration number" value="{{firm.registration_no}}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Section</label>
+                    <div class="col-sm-10">
+                      <select name="sections[]" id="sections" multiple="multiple" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}" {{#inArray ../section_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
+                    <div class="col-sm-10">
+                      <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
+                          {{#each practicearea}}
+                          <option value="{{this.id}}" {{#inArray ../practice_area_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
+                    <div class="col-sm-10">
+                      <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
+                        {{#each jurisdiction}}
+                          <option value="{{this.id}}" {{#inArray ../jurisdiction_array this.id}} selected="selected" {{/inArray}}>{{this.jurisdiction}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- /@@@@@@@@@@@@ fourth tab @@@@@@@@@@@@@@/ -->
+              <div class="tab-pane" id="picture">
+                <form class="form-horizontal">
+                  <div style=" width: 100%; display: inline-block;">
+                  <h3 class="hint">Profile Picture</h3>
+                  <div class="form-group">
+                      <div class="fileinput fileinput-new" data-provides="fileinput">
+                          <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                          </div>
+                          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                          <div style=" height: 60px">
+                              <span class="btn default btn-file">
+                                  <span class="fileinput-new"> Select image </span>
+                                  <span class="fileinput-exists"> Change </span>
+                                  <input type="file" name="profile_photo" id="profile_photo" class="control-label">
+                                  <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                          </div>
+                      </div>
+                      <div class="clearfix margin-top-10">
+                          <span class="label label-danger" style=" margin-right:10px ">NOTE! </span>
+                          <span>Firm image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    <div>
+
+</section>
+</section>

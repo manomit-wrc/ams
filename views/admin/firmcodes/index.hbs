@@ -1,0 +1,73 @@
+<section class="content-header">
+      <h1>
+        Firm Codes List
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+
+        <li class="active">Firm Codes List</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          {{#if message}}<div class="alert alert-success" id="result77" style="display:none;">{{message}}</div>{{/if}}
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Firm Codes List</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-group " style="display: inline-block; padding-top:8px; width:100%">
+              <label class="col-md-1 control-label"><span style="display: block; padding-top:8px">List of firms:</span></label>
+                    <div class="col-md-5">
+                      <form action="#" method="post" name="firm_id_post" id="firm_id_post">
+                        <select class="form-control" name="firm_id" id="firm_id">
+                            <option value="">Select One</option>
+                            {{#each codecategory}}
+                                <option value="{{this.id}}">{{this.categoryname}}</option>
+                            {{/each}}
+                        </select>
+                        <span class="text-danger"> </span>
+                        <div class="alert alert-danger fade in alert-dismissable" id="categoryid_error" style="display:none; margin-top:5px;"></div>
+                      </form>
+                    </div>
+                </div>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Code</th>
+                  <th>Short Description</th>
+                  <th>Long Description</th>
+                  <th>Remarks</th>
+                  <th>Action</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each codemaster}}
+                     <tr>
+                      <td>{{this.Codecategory.categoryname}}</td>
+                      <td>{{this.code}}</td>
+                      <td>{{this.shortdescription}}</td>
+                      <td>{{this.longdescription}}</td>
+                      <td>{{this.remarks}}</td>
+                      <td><a href="/admin/codemaster/view/{{this.id}}" >View</a></td>
+                    </tr>
+                     {{/each}}
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>

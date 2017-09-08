@@ -1,0 +1,156 @@
+<section class="content-header">
+  <h1>
+    User Profile
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="active">User profile</li>
+  </ol>
+</section>
+
+<section class="content">
+      <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              
+                  <img class="profile-user-img img-responsive img-circle" src="{{image}}" alt="User profile picture">
+             
+              <h3 class="profile-username text-center">{{user.first_name}} {{user.last_name}}</h3>
+
+              <p class="text-muted text-center">Administrator</p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              
+              <li class="active"><a href="#settings" data-toggle="tab">Profile</a></li>
+              <li class=""><a href="#change_password" data-toggle="tab">Change Password</a></li>
+            </ul>
+            <div class="tab-content">
+            	{{#if success_message}}
+              	<div class="alert alert-success" id="result77">
+              	{{success_message}}
+              	</div>
+              	{{/if}}
+              	{{#if error_message}}
+              	<div class="alert alert-danger" id="result77">
+              	{{error_message}}
+              	</div>
+              	{{/if}}
+               <div class="tab-pane active" id="settings">
+                <form name="frmProfile" method="post" action="/admin/profile" class="form-horizontal" enctype="multipart/form-data">
+                  
+                  <div class="form-group ">
+                    <label for="first_name" class="col-sm-2 control-label">First Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="first_name" placeholder="Enter First Name" name="first_name" value="{{user.first_name}}">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="last_name" placeholder="Enter Last Name" name="last_name" value="{{user.last_name}}">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail" name="email" placeholder="Email" readonly="readonly" value="{{user.email}}">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+
+                    <div class="col-sm-10">
+                      <textarea id="inputAddress" name="address" class="form-control">{{user.address}}</textarea>
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="phone_no" class="col-sm-2 control-label">Mobile</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="phone_no" placeholder="Mobile" name="phone_no" value="{{user.phone_no}}">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="avator" class="col-sm-2 control-label">Profile Image</label>
+
+                    <div class="col-sm-10">
+                      <input type="file" class="form-control" id="avator" name="avator" >
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.tab-pane -->
+
+
+
+              <div class="tab-pane" id="change_password">
+                <form name="frmProfile" id="change_pass_form" method="post" action="/admin/change_password" class="form-horizontal">
+                  
+                  <div class="form-group ">
+                    <label for="first_name" class="col-sm-2 control-label">Old Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="old_password" placeholder="Enter Old Password" name="old_password">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="last_name" class="col-sm-2 control-label">New Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="new_password" placeholder="Enter New Password" name="new_password">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group ">
+                    <label for="inputEmail" class="col-sm-2 control-label">Confirm Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.tab-pane -->
+
+
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+</section>

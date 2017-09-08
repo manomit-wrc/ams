@@ -1,0 +1,116 @@
+<section class="content-header">
+  <h1>
+    Designation
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="active">Designation - Add</li>
+  </ol>
+</section>
+
+<section class="content">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              
+              <li class="active"><a href="#settings" data-toggle="tab">Designation - Add</a></li>
+            </ul>
+            <div class="tab-content">
+            	
+              	{{#if error_designation_message}}
+                <div class="alert alert-danger" id="result77">
+                {{error_designation_message}}
+                </div>
+                {{/if}}
+               <div class="tab-pane active" id="settings">
+                <form name="frmDesignation" id="frmDesignation" method="post" action="/admin/designation/add" class="form-horizontal">
+                  
+                  <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Code</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control input-control" id="code" placeholder="Enter Designation Code" name="code" value="{{body.code}}">
+                      <span class="text-danger"></span>
+                      
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="description" class="col-sm-2 control-label">designation</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control input-control" id="designation" placeholder="Enter Designation Name" name="designation" value="{{body.practice_name}}">
+                      <span class="text-danger"></span>
+                      
+                    </div>
+                  </div>
+
+                  <div class="form-group ">
+                    <label for="remarks" class="col-sm-2 control-label">Remarks</label>
+
+                    <div class="col-sm-10">
+                      <textarea class="form-control input-control" id="remarks" placeholder="Enter Remarks" name="remarks" >{{body.remarks}}</textarea>
+                      <span class="text-danger"></span>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    
+  </div>
+  <!-- /.row -->
+
+</section>
+
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+
+  $("#frmDesignation").validate({
+    rules: {
+      code: {
+        required: true
+      },
+      designation: {
+        required:  true
+      },
+      remarks: {
+        required:  true
+      }
+    },
+    messages: {
+      code: {
+        required: "Please enter designation code"
+      },
+      designation: {
+        required:  "Please enter designation name"
+      },
+      remarks: {
+        required:  "Please enter remarks"
+      }
+    }
+  });
+});
+</script>
