@@ -1,30 +1,92 @@
 $(document).ready(function(e){
+	// make all tabs disable
 	$('.tab').attr('class', 'disabled');
+	// make only first tab enable on page loading
 	$('#address-tab').attr('class', 'active');
-	$('#address-tab').click(function(event){
-        if ($(this).hasClass('disabled')) {
-            return false;
-        }
 
-    });
-    $('#firm-tab').click(function(event){
-        if ($(this).hasClass('disabled')) {
-            return false;
-        }
+	//country is present in the first tab.If I forget to save the first tab on the next day the value(states, city) those are from on change of country will be saves as usual
+	var country_id = $("#attorney_country_id").val();
+	if(country_id) {
+		setTimeout(function() {
+        	$("#attorney_country_id").trigger('change');
+    	},10);
+	}
+	//end
 
-    });
-    $('#approval-tab').click(function(event){
-        if ($(this).hasClass('disabled')) {
-            return false;
-        }
+	// fetch all states of selected country in ajax (country on change)
+	$("#attorney_country_id").change(function(){
+		var country_id = $(this).val();
+		//to remove other options than first option
+		$("#attoney_state_id").find('option').not(':first').remove();
+		//end
+		if(country_id){
+			$.ajax({
+		          type: "POST",
+		          url: "/admin/attorney/fetch_state",
+		          data: {country_id:country_id},
+		          async: false,
+		          success:function(response) {
+		            for (var i = 0; i < response.length; i++) {
+		            	//console.log(response[i].name);
+		            	$('#attoney_state_id').append('<option value="'+response[i].id+'">'+response[i].name+'</option>');
+		            }
+		          }
+        	});
+		}
 
-    });
-    $('#photo-tab').click(function(event){
-        if ($(this).hasClass('disabled')) {
-            return false;
-        }
+		//$("#attoney_state_id").trigger('change');
 
-    });
+	});
+	//end
+
+
+	// fetch all cities of selected state in ajax (state on change)
+	$("#attoney_state_id").change(function(){
+		var state_id = $(this).val();
+		//to remove other options than first option
+		$("#attoney_city_id").find('option').not(':first').remove();
+		//end
+		if(state_id){
+			$.ajax({
+		          type: "POST",
+		          url: "/admin/attorney/fetch_city",
+		          data: {state_id:state_id},
+		          async: false,
+		          success:function(response) {
+		            for (var i = 0; i < response.length; i++) {
+		            	//console.log(response[i].name);
+		            	$('#attoney_city_id').append('<option value="'+response[i].id+'">'+response[i].name+'</option>');
+		            }
+		          }
+        	});
+		}
+
+		//$("#attoney_city_id").trigger('change');
+
+
+	});
+	//end
+
+
+	// fetch zipcode of selected city in ajax (city on change)
+	$("#attoney_city_id").change(function(){
+		var city_name = $('#attoney_city_id option:selected').text();
+		if(city_name){
+			$.ajax({
+		          type: "POST",
+		          url: "/admin/attorney/fetch_zipcode",
+		          data: {city_name:city_name},
+		          async: false,
+		          success:function(response) {
+		            $("#attorney_zip_code").val(response[0].zip);
+		          }
+        	});
+		}
+	});
+	//end
+
+
+
 	$("#frmFirm").validate({
 		rules: {
 			first_name: {
@@ -102,15 +164,9 @@ $(document).ready(function(e){
 		}
 	});
 //@#@#@#@#@#@ First tab of "my-profile" #@#@#@#@#@#//
-	$("#frmFirmAddress").validate({
+	$("#attorney_address").validate({
 		rules: {
 			address: {
-				required: true
-			},
-			address_2: {
-				required: true
-			},
-			address_3: {
 				required: true
 			},
 			phone_no: {
@@ -132,12 +188,6 @@ $(document).ready(function(e){
 		messages: {
 			address: {
 				required: "Please enter address 1"
-			},
-			address_2: {
-				required: "Please enter address 2"
-			},
-			address_3: {
-				required: "Please enter address 3"
 			},
 			phone_no: {
 				required: "Please enter phone no"

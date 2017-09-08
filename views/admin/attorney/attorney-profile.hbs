@@ -17,13 +17,13 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active tab" id="address-tab"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
-              <li class="tab" id="firm-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Attorney details</a></li>
+              <li class="tab" id="attorney-details-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Attorney details</a></li>
               <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
             </ul>
             <div class="tab-content">
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="activity">
-                <form class="form-horizontal" name="frmFirmAddress" id="frmFirmAddress" method="post" action="#">
+                <form class="form-horizontal" name="attorney_address" id="attorney_address" method="post">
                   <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
@@ -59,7 +59,7 @@
                     <label for="country_id" class="col-sm-2 control-label">Country</label>
 
                     <div class="col-sm-10">
-                      <select class="form-control col-sm-2" id="country_id" name="country_id">
+                      <select class="form-control col-sm-2" id="attorney_country_id" name="attorney_country_id">
                         <option value="">Select Country</option>
                         {{#each countries}}
                         <option value="{{this.id}}" {{#if_eq this.id ../firm_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
@@ -72,7 +72,7 @@
                     <label for="state_id" class="col-sm-2 control-label">State</label>
 
                     <div class="col-sm-10">
-                      <select class="form-control col-sm-2" id="state_id" name="state_id">
+                      <select class="form-control col-sm-2" id="attoney_state_id" name="attoney_state_id">
                         <option value="">Select State</option>
 
                       </select>
@@ -83,7 +83,7 @@
                     <label for="city_id" class="col-sm-2 control-label">City</label>
 
                     <div class="col-sm-10">
-                      <select class="form-control col-sm-2" id="city_id" name="city_id">
+                      <select class="form-control col-sm-2" id="attoney_city_id" name="attoney_city_id">
                         <option value="">Select City</option>
                         
                       </select>
@@ -94,10 +94,7 @@
                     <label for="zipcode" class="col-sm-2 control-label">Pincode</label>
 
                     <div class="col-sm-10">
-                      <select class="form-control col-sm-2" id="zipcode" name="zipcode">
-                        <option value="">Select Pincode</option>
-
-                      </select>
+                      <input type="text" class="form-control" id="attorney_zip_code" name="attorney_zip_code" placeholder="Pincode" value="{{firm_details.phone_no}}">
                     </div>
                   </div>
 

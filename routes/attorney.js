@@ -57,4 +57,40 @@ module.exports = function(app, models) {
 		});
 			
 	});
+
+	//fetch all states respect to selected country
+	app.post('/admin/attorney/fetch_state',function(req, res){
+		models.state.findAll({
+		   where: {
+    			country_id: req.body.country_id
+  			}
+		}).then(function(states){
+			res.send(states);
+		});
+			
+	});
+
+	//fetch all cities respect to selected state
+	app.post('/admin/attorney/fetch_city',function(req, res){
+		models.city.findAll({
+		   where: {
+    			state_id: req.body.state_id
+  			}
+		}).then(function(cities){
+			res.send(cities);
+		});
+			
+	});
+
+	//fetch zipcode respect to selected city
+	app.post('/admin/attorney/fetch_zipcode',function(req, res){
+		models.zipCode.findAll({
+		   where: {
+    			city_name: req.body.city_name
+  			}
+		}).then(function(zip_code){
+			res.send(zip_code);
+		});
+			
+	});
 };
