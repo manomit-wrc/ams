@@ -123,7 +123,9 @@
 <script src="/admin/js/validate.js"></script>
 
 <script src="/admin/js/form-validation.js"></script>
+
 <script src="/admin/js/attorney-validate.js"></script>
+
 
 <script>
 /*ckeditor implementation initialization*/
@@ -165,6 +167,7 @@ $(function () {
 });
 </script>
 <script>
+
 $('.level1').show();
 $('.level2').hide();
 $('.level3').hide();
@@ -312,6 +315,23 @@ $('#firm_jurisdiction').multiselect({
     		}
 		});
 
+    $("#profile_photo").change(function(e){
+      if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-image').attr('src', e.target.result);
+
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+
+    /*$(".fileinput-exists").click(function(e){
+      $('.profile-image').attr('src', "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image");
+    });*/
+
 		$('#example2').DataTable({
 	      "paging": true,
 	      "lengthChange": false,
@@ -359,7 +379,8 @@ $('#firm_jurisdiction').multiselect({
 				$('#state_id option:eq(1)').attr('selected', 'selected');
 			}
 
-      $("#state_id").trigger( "change" );
+      $( "#state_id" ).trigger( "change" );
+
 
     });
 
@@ -429,7 +450,50 @@ $('#firm_jurisdiction').multiselect({
           }
         }
     });
+
+		// <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab (approvals) - END $#$#$#$#$#$#$#$#-->
     // @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
+
+		// alert(approval_process);
+		var designation_id_1 = "{{firm.level_1_designation}}";
+		var designation_id_2 = "{{firm.level_2_designation}}";
+		var designation_id_3 = "{{firm.level_3_designation}}";
+		var designation_id_4 = "{{firm.level_4_designation}}";
+
+    var approval_process = "{{firm.approval_process}}";
+    if(designation_id_1) {
+        setTimeout(function() {
+          $("#designation_id_1").trigger('change');
+        },10);
+    }
+    if(approval_process == 1) {
+      $('.level1').show();
+      $('.level2').hide();
+      $('.level3').hide();
+      $('.level4').hide();
+
+    }
+    else if(approval_process == 2) {
+      $('.level1').show();
+      $('.level2').show();
+      $('.level3').hide();
+      $('.level4').hide();
+    }
+    else if(approval_process == 3) {
+      $('.level1').show();
+      $('.level2').show();
+      $('.level3').show();
+      $('.level4').hide();
+    }
+    else if(approval_process == 4) {
+      $('.level1').show();
+      $('.level2').show();
+      $('.level3').show();
+      $('.level4').show();
+    }
+
+    // @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
+
     $("#designation_id_1").change(function(e){
 
       $("#designation_id_2").find('option').not(':first').remove();
@@ -445,8 +509,17 @@ $('#firm_jurisdiction').multiselect({
         }
       });
 
+      if(designation_id_2) {
+      // alert(designation_id_2);
+        $("#designation_id_2").val(designation_id_2);
+      }
+      else {
+        $('#designation_id_2 option:eq(1)').attr('selected', 'selected');
+      }
+
       $("#designation_id_2").trigger('change');
     });
+
 
     // @@@@@@@@ 2nd call when approval level is three @@@@@@@@@@@//
 
@@ -464,6 +537,13 @@ $('#firm_jurisdiction').multiselect({
         }
       });
 
+      if(designation_id_3) {
+      // alert(designation_id_3);
+        $("#designation_id_3").val(designation_id_3);
+      }
+      else {
+        $('#designation_id_3 option:eq(1)').attr('selected', 'selected');
+      }
       $("#designation_id_3").trigger('change');
 
     });
@@ -484,13 +564,25 @@ $('#firm_jurisdiction').multiselect({
         }
       });
 
+      if(designation_id_4) {
+    // alert(designation_id_3);
+        $("#designation_id_4").val(designation_id_4);
+      }
+      else {
+        $('#designation_id_4 option:eq(1)').attr('selected', 'selected');
+      }
     });
 
     $("input[type=text]").attr('maxlength','50');
+    $(".btn-danger").html("Submit");
+
 	});
+
 
 </script>
 
+
 <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - END $#$#$#$#$#$#$#$#-->
+
   	</body>
 </html>

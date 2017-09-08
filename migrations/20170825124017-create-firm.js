@@ -63,6 +63,18 @@ module.exports = {
       status:{
         allowNull: false,
         type: Sequelize.INTEGER(1)
+<<<<<<< HEAD
+      },
+      approval_process: {
+        allowNull: false,
+        type: Sequelize.INTEGER(11)
+      },
+      menu_active: {
+        allowNull: false,
+        type: Sequelize.INTEGER(1),
+        defaultValue: 1
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
       }
     });
   },

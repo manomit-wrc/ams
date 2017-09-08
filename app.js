@@ -50,11 +50,14 @@ helpers: {
     inArray: function(array, value, block) {
       if (array.indexOf(value) !== -1) {
         return block.fn(this);
+
+    }
+    else {
+      return block.inverse(this);
+    }
+
       }
-      else {
-        return block.inverse(this);
-      }
-    },
+    ,
     eq: function (v1, v2) {
         return v1 === v2;
     },
@@ -111,6 +114,7 @@ require('./routes/index')(app, passport);
 app.use(function(req, res, next){
   if (req.isAuthenticated())
   {
+
     delete req.user.password;
     if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
       res.locals.image = "/profile/thumbs/"+req.user.avator;
@@ -121,7 +125,7 @@ app.use(function(req, res, next){
     res.locals.user = req.user;
 
     res.locals.active = req.path.split('/')[2];
-
+    
     return next();
   }
   res.redirect('/admin');

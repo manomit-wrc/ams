@@ -2,7 +2,6 @@ module.exports = function(app, models) {
 
 	var md5 = require('md5');
 
-	// get attorney index page (listing)
 	app.get('/admin/attorney',function(req, res){
 			res.render('admin/attorney/index',{layout:'dashboard'});
 	});
@@ -18,8 +17,6 @@ module.exports = function(app, models) {
 		});
 	});
 
-
-	// add attorney by site admin process
 	app.post('/admin/attorney/add', function(req, res){
 		models.admin.create({
 			first_name: req.body.first_name,
@@ -46,7 +43,15 @@ module.exports = function(app, models) {
 			        body: req.body
 	        	});
 			});
+		}).catch(function(err){
+			var validation_error = err.errors;
+	    	res.render('admin/attorney/add', {
+		        layout: 'dashboard',
+		        error_message: validation_error[0].message,
+		        body: req.body
+        	});
 		});
+
 	});
 
 
@@ -55,7 +60,7 @@ module.exports = function(app, models) {
 		models.country.findAll().then(function(countries){
 			res.render('admin/attorney/attorney-profile',{layout:'dashboard',countries:countries});
 		});
-			
+
 	});
 
 	//fetch all states respect to selected country

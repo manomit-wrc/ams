@@ -1,6 +1,37 @@
 module.exports = function(app, models) {
 
 	var md5 = require('md5');
+
+	var multer  = require('multer');
+	var im = require('imagemagick');
+	var fileExt = '';
+	var fileName = '';
+	var storage = multer.diskStorage({
+	  destination: function (req, file, cb) {
+	    cb(null, 'public/profile/thumbs');
+	  },
+	  filename: function (req, file, cb) {
+	    fileExt = file.mimetype.split('/')[1];
+	    if (fileExt == 'jpeg'){ fileExt = 'jpg';}
+	    fileName = req.user.id + '-' + Date.now() + '.' + fileExt;
+	    cb(null, fileName);
+	  }
+	})
+
+	var restrictImgType = function(req, file, cb) {
+
+	    var allowedTypes = ['image/jpeg','image/gif','image/png'];
+	      if (allowedTypes.indexOf(req.file.mimetype) !== -1){
+	        // To accept the file pass `true`
+	        cb(null, true);
+	      } else {
+	        // To reject this file pass `false`
+	        cb(null, false);
+	       //cb(new Error('File type not allowed'));// How to pass an error?
+	      }
+	};
+	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
+
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
 		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
@@ -119,7 +150,7 @@ module.exports = function(app, models) {
 			models.designation.findAll({attributes: ['id', 'designation']}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			// console.log(result[6][0]);
+
 			   var firm_table_array_details = result[1][0]['firms'];
 
 			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
@@ -276,7 +307,6 @@ models.designation.findAll({
 
 app.post("/admin/firm/update-approval", function(req, res){
 
-
 var firm_id = parseInt(req.body.firmId1);
 
 var spName = req.body.spName;
@@ -294,13 +324,31 @@ models.firm.update({
 	level_1_designation: ((approval_process === '1' || approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_1) : null),
 	level_2_designation: ((approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_2) : null),
 	level_3_designation: ((approval_process === '3' || approval_process === '4') ? parseInt(designation_id_3) : null),
-	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null)
+
+	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null),
+	approval_process: approval_process
 }, {where: {user_id: req.user.id}}).then(function(result){
 		res.send("3");
 }).catch(function(err){
 
 });
 
+});
+
+
+app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), function(req, res) {
+
+	models.admin.update({
+	avator: fileName
+	}, {where: {id: req.user.id}}).then(function(result){
+		models.firm.update({
+			status: 1
+		}, {where: {user_id: req.user.id}}).then(function(result_1){
+			res.send("4");
+		});
+	}).catch(function(err){
+
+	});
 });
 
 };

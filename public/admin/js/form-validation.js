@@ -309,4 +309,38 @@ $(document).ready(function(e){
 
 	}
 });
+
+	//@#@#@#@#@#@# Fourth tab of "my-profile" #@#@#@#@#@#@#@//
+	//
+	$("#imageForm").validate({
+		rules: {
+			profile_photo: {
+				required: true,
+				extension: 'jpg|png'
+			}
+		},
+		messages: {
+			profile_photo: {
+				required: "Please upload profile image",
+				extension: 'Image type must be jpg or png'
+			}
+		},
+		submitHandler:function(form) {
+			var fd = new FormData($("#imageForm").get(0));
+
+			$.ajax({
+			  url: '/admin/firm/update-profile-photo',
+			  data: fd,
+			  processData: false,
+			  contentType: false,
+			  type: 'POST',
+			  success: function(data){
+			    if(data == "4") {
+					window.location.href = "/admin/firm/my-profile";
+				}
+			  }
+			});
+		}
+	});
+
 });

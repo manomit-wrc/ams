@@ -1,16 +1,18 @@
 module.exports = function(app, practiceArea) {
- 	
+
  	var PracticeArea = practiceArea;
-	
+
 	// for index
 	app.get('/admin/practice-area', function(req, res) {
 		PracticeArea.findAll({order:[
           ['id', 'ASC']
         ]}).then(function(practiceArea){
 			//console.log(practiceArea[0].dataValues.id);
+
 			res.render('admin/practice-area/index',{layout:'dashboard', practiceArea:practiceArea,succ_add_msg:req.flash('succ_add_msg')[0]});
+
 		});
-		
+
 	});
 
 	//for add view
@@ -20,7 +22,7 @@ module.exports = function(app, practiceArea) {
 
 	//for add process
 	app.post('/admin/practice-area/add', function(req, res){
-		
+
 		PracticeArea.findAndCountAll({
 		   where: {
     			code: req.body.code
@@ -52,12 +54,12 @@ module.exports = function(app, practiceArea) {
 		    	var redirectUrl = '/admin/practice-area/add';
 	  			res.redirect(redirectUrl);
 	  		}
-		  	
+
 		});
-		
+
 	});
 
-	//for delete 
+	//for delete
 	app.get('/admin/practice-area/delete/:pid', function(req, res){
 		PracticeArea.destroy({
 		    where: {
@@ -78,21 +80,41 @@ module.exports = function(app, practiceArea) {
 
 	//for edit process
 	app.post('/admin/practice-area/edit/:pid', function(req, res){
-		PracticeArea.update({
-    		code: req.body.code,
-			name: req.body.practice_name,
-			remarks: req.body.remarks
-	    },{ where: { id: req.params['pid'] } }).then(function(result){
-	    	req.flash('succ_add_msg', 'Practice area edited successfully');
-	    	res.redirect('/admin/practice-area');
-	    }).catch(function(err){
-	    	
-	    	var validation_error = err.errors;
-	    	req.flash('error_message', validation_error[0].message);
-	    	var redirectUrl = '/admin/practice-area/edit/' + req.params['pid'];
-  			res.redirect(redirectUrl);
-	    	
-	    });
+
+		checkEdit(req.params['pid'], req.body.code).then(function(result){
+			if(result.count > 0) {
+				req.flash('error_message', 'Practice area code already exists');
+		    	var redirectUrl = '/admin/practice-area/edit/'+req.params['pid'];
+	  			res.redirect(redirectUrl);
+			}
+			else {
+				PracticeArea.update({
+		    		code: req.body.code,
+					name: req.body.practice_name,
+					remarks: req.body.remarks
+			    },{ where: { id: req.params['pid'] } }).then(function(result){
+			    	req.flash('succ_add_msg', 'Practice area edited successfully');
+			    	res.redirect('/admin/practice-area');
+			    }).catch(function(err){
+
+			    	var validation_error = err.errors;
+			    	req.flash('error_message', validation_error[0].message);
+			    	var redirectUrl = '/admin/practice-area/edit/' + req.params['pid'];
+		  			res.redirect(redirectUrl);
+
+			    });
+			}
+		});
+
 	});
+
+	function checkEdit(pid,code) {
+		return PracticeArea.findAndCountAll({
+		   where: {
+    			code: code,
+    			id: {$not:[pid]}
+  			}
+		});
+	}
 
 };

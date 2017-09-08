@@ -66,7 +66,9 @@ module.exports = function(app, jurisdiction) {
 		       id:req.params['id']
 		    }
 		}).then(function(response){
+
 			req.flash('succ_add_msg', 'Jurisdiction deleted successfully');
+
 			res.redirect('/admin/jurisdiction');
 		});
 	});

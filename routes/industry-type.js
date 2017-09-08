@@ -1,7 +1,7 @@
 module.exports = function(app, industry_type) {
- 	
+
  	var IndustryType = industry_type;
-	
+
 	// for index
 	app.get('/admin/industry-type', function(req, res) {
 		IndustryType.findAll({order:[
@@ -10,7 +10,7 @@ module.exports = function(app, industry_type) {
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/industry-type/index',{layout:'dashboard', industryType:industryType,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
-		
+
 	});
 
 	//for add view
@@ -20,7 +20,7 @@ module.exports = function(app, industry_type) {
 
 	//for add process
 	app.post('/admin/industry-type/add', function(req, res){
-		
+
 		IndustryType.findAndCountAll({
 		   where: {
 		      industry: {
@@ -38,7 +38,9 @@ module.exports = function(app, industry_type) {
 					industry: req.body.industry,
 					remark: req.body.remarks
 				}).then(function(result){
+
 					req.flash('succ_add_msg', 'Industry Type added successfully');
+
 					res.redirect('/admin/industry-type');
 				}).catch(function(err){
 					var validation_error = err.errors;
@@ -53,12 +55,12 @@ module.exports = function(app, industry_type) {
 		    	var redirectUrl = '/admin/industry-type/add';
 	  			res.redirect(redirectUrl);
 	  		}
-		  	
+
 		});
-		
+
 	});
 
-	//for delete 
+	//for delete
 	app.get('/admin/industry-type/delete/:type_id', function(req, res){
 		IndustryType.destroy({
 		    where: {
@@ -87,12 +89,12 @@ module.exports = function(app, industry_type) {
 	    	req.flash('succ_add_msg', 'Industry type edited successfully');
 	    	res.redirect('/admin/industry-type');
 	    }).catch(function(err){
-	    	
+
 	    	var validation_error = err.errors;
 	    	req.flash('error_message', validation_error[0].message);
 	    	var redirectUrl = '/admin/industry-type/edit/' + req.params['rid'];
   			res.redirect(redirectUrl);
-	    	
+
 	    });
 	});
 
