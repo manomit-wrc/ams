@@ -160,7 +160,7 @@ module.exports = function(app, models) {
 			   // for(var k in result[1][0]['firms']){
 			   //  firm_table_array_details.push(k, result[1][0][k]);
 			   // }
-			   // console.log(firm_table_array_details);
+			   console.log(firm_table_array_details);
 
 			   res.render('admin/firm/my-profile',{
 			    layout:'dashboard',
@@ -231,7 +231,11 @@ module.exports = function(app, models) {
 			website: req.body.website,
 			social: req.body.social
 		}, {where: {id :id}}).then(function(result){
-			res.send("1");
+			models.firm.update({
+				menu_active:1
+			}, {where: {user_id: req.user.id}}).then(function(result_1){
+				res.send("1");
+			});
 		}).catch(function(err){
 
 		});
@@ -252,7 +256,8 @@ models.firm.update({
 	registration_no: req.body.firmRegistration,
 	section: section,
 	practice_area: practice_area,
-	jurisdiction: jurisdiction
+	jurisdiction: jurisdiction,
+	menu_active:2
 }, {where: {id: firm_id}}).then(function(result){
 	res.send("2");
 }).catch(function(err){
@@ -326,7 +331,8 @@ models.firm.update({
 	level_3_designation: ((approval_process === '3' || approval_process === '4') ? parseInt(designation_id_3) : null),
 
 	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null),
-	approval_process: approval_process
+	approval_process: approval_process,
+	menu_active:3
 }, {where: {user_id: req.user.id}}).then(function(result){
 		res.send("3");
 }).catch(function(err){
@@ -342,7 +348,8 @@ app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), fun
 	avator: fileName
 	}, {where: {id: req.user.id}}).then(function(result){
 		models.firm.update({
-			status: 1
+			status: 1,
+			menu_active:4
 		}, {where: {user_id: req.user.id}}).then(function(result_1){
 			res.send("4");
 		});

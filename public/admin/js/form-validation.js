@@ -1,4 +1,5 @@
 $(document).ready(function(e){
+
 	$('.tab').attr('class', 'disabled');
 	$('#address-tab').click(function(event){
         if ($(this).hasClass('disabled')) {
@@ -171,15 +172,15 @@ $(document).ready(function(e){
 					fax: $("#fax").val(),
 					mobile: $("#mobile").val(),
 					website: $("#website").val(),
-					social: $("#social").val()
+					social: $("#social").val(),
 				},
 			    success:function(response) {
 			    	if(response == "1") {
-			    		$('#address-tab').removeClass("disabled");
+			    	$('#address-tab').removeClass("disabled");
 						$("#firm-tab").addClass("active").removeClass("disabled");
 						$("#activity").removeClass("active");
 						$("#generalInfo").addClass("active");
-			    	}
+					}
 			    }
 			});
 		}
