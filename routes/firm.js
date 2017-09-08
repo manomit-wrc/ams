@@ -1,6 +1,7 @@
 module.exports = function(app, models) {
 
 	var md5 = require('md5');
+<<<<<<< HEAD
 	var multer  = require('multer');
 	var im = require('imagemagick');
 	var fileExt = '';
@@ -30,6 +31,8 @@ module.exports = function(app, models) {
 	      }
 	};
 	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
 		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});
@@ -148,7 +151,11 @@ module.exports = function(app, models) {
 			models.designation.findAll({attributes: ['id', 'designation']}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
+<<<<<<< HEAD
 			// console.log(result);
+=======
+			// console.log(result[6][0]);
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 			   var firm_table_array_details = result[1][0]['firms'];
 
 			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
@@ -159,7 +166,11 @@ module.exports = function(app, models) {
 			   //  firm_table_array_details.push(k, result[1][0][k]);
 			   // }
 			   // console.log(firm_table_array_details);
+<<<<<<< HEAD
 			  //  console.log(result[1][0]);
+=======
+
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 			   res.render('admin/firm/my-profile',{
 			    layout:'dashboard',
 			    countries: result[0],
@@ -304,6 +315,11 @@ models.designation.findAll({
 //@#@#@#@#@#@ Ajax calls for approvals - END @#@#@#@#@#@#@//
 
 app.post("/admin/firm/update-approval", function(req, res){
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 var firm_id = parseInt(req.body.firmId1);
 
 var spName = req.body.spName;
@@ -321,8 +337,12 @@ models.firm.update({
 	level_1_designation: ((approval_process === '1' || approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_1) : null),
 	level_2_designation: ((approval_process === '2' || approval_process === '3' || approval_process === '4') ? parseInt(designation_id_2) : null),
 	level_3_designation: ((approval_process === '3' || approval_process === '4') ? parseInt(designation_id_3) : null),
+<<<<<<< HEAD
 	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null),
 	approval_process: approval_process
+=======
+	level_4_designation: ((approval_process === '4') ? parseInt(designation_id_4) : null)
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 }, {where: {user_id: req.user.id}}).then(function(result){
 		res.send("3");
 }).catch(function(err){
@@ -331,6 +351,7 @@ models.firm.update({
 
 });
 
+<<<<<<< HEAD
 app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), function(req, res) {
 
 	models.admin.update({
@@ -346,4 +367,6 @@ app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), fun
 	});
 });
 
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 };

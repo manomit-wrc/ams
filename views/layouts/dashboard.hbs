@@ -123,6 +123,10 @@
 <script src="/admin/js/validate.js"></script>
 
 <script src="/admin/js/form-validation.js"></script>
+<<<<<<< HEAD
+=======
+<script src="/admin/js/attorney-validate.js"></script>
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 
 <script>
 /*ckeditor implementation initialization*/
@@ -164,8 +168,11 @@ $(function () {
 });
 </script>
 <script>
+<<<<<<< HEAD
 // var approval_process = $(".approval_process:checked").val();
 
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 $('.level1').show();
 $('.level2').hide();
 $('.level3').hide();
@@ -313,6 +320,7 @@ $('#firm_jurisdiction').multiselect({
     		}
 		});
 
+<<<<<<< HEAD
     $("#profile_photo").change(function(e){
       if (this.files && this.files[0]) {
             var reader = new FileReader();
@@ -330,6 +338,8 @@ $('#firm_jurisdiction').multiselect({
       $('.profile-image').attr('src', "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image");
     });*/
 
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 		$('#example2').DataTable({
 	      "paging": true,
 	      "lengthChange": false,
@@ -377,7 +387,11 @@ $('#firm_jurisdiction').multiselect({
 				$('#state_id option:eq(1)').attr('selected', 'selected');
 			}
 
+<<<<<<< HEAD
       $( "#state_id" ).trigger( "change" );
+=======
+      $("#state_id").trigger( "change" );
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 
     });
 
@@ -434,8 +448,11 @@ $('#firm_jurisdiction').multiselect({
 				else {
 					$('#zipcode option:eq(1)').attr('selected', 'selected');
 				}
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
       }
     });
 
@@ -449,6 +466,7 @@ $('#firm_jurisdiction').multiselect({
           }
         }
     });
+<<<<<<< HEAD
 		// <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab (approvals) - END $#$#$#$#$#$#$#$#-->
     // @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
 		
@@ -491,6 +509,9 @@ $('#firm_jurisdiction').multiselect({
     }
 
 
+=======
+    // @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
     $("#designation_id_1").change(function(e){
 
       $("#designation_id_2").find('option').not(':first').remove();
@@ -506,6 +527,7 @@ $('#firm_jurisdiction').multiselect({
         }
       });
 
+<<<<<<< HEAD
       if(designation_id_2) {
       // alert(designation_id_2);
         $("#designation_id_2").val(designation_id_2);
@@ -517,6 +539,11 @@ $('#firm_jurisdiction').multiselect({
       $("#designation_id_2").trigger('change');
     });
 		
+=======
+      $("#designation_id_2").trigger('change');
+    });
+
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
     // @@@@@@@@ 2nd call when approval level is three @@@@@@@@@@@//
 
     $("#designation_id_2").change(function(e){
@@ -532,6 +559,7 @@ $('#firm_jurisdiction').multiselect({
           }
         }
       });
+<<<<<<< HEAD
       if(designation_id_3) {
       // alert(designation_id_3);
         $("#designation_id_3").val(designation_id_3);
@@ -543,6 +571,13 @@ $('#firm_jurisdiction').multiselect({
 
     });
 		
+=======
+
+      $("#designation_id_3").trigger('change');
+
+    });
+
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
     // @@@@@@@@ 3rd call when approval level is four @@@@@@@@@@@//
 
     $("#designation_id_3").change(function(e){
@@ -558,6 +593,7 @@ $('#firm_jurisdiction').multiselect({
           }
         }
       });
+<<<<<<< HEAD
       if(designation_id_4) {
     // alert(designation_id_3);
         $("#designation_id_4").val(designation_id_4);
@@ -576,5 +612,16 @@ $('#firm_jurisdiction').multiselect({
 </script>
 
 <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab (approvals) - END $#$#$#$#$#$#$#$#-->
+=======
+
+    });
+
+    $("input[type=text]").attr('maxlength','50');
+	});
+
+</script>
+
+<!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - END $#$#$#$#$#$#$#$#-->
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
   	</body>
 </html>

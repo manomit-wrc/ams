@@ -66,7 +66,11 @@ module.exports = function(app, jurisdiction) {
 		       id:req.params['id']
 		    }
 		}).then(function(response){
+<<<<<<< HEAD
 			req.flash('succ_add_msg', 'Group deleted successfully');
+=======
+			req.flash('succ_add_msg', 'Jurisdiction deleted successfully');
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 			res.redirect('/admin/jurisdiction');
 		});
 	});

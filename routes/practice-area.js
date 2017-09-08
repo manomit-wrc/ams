@@ -8,12 +8,16 @@ module.exports = function(app, practiceArea) {
           ['id', 'ASC']
         ]}).then(function(practiceArea){
 			//console.log(practiceArea[0].dataValues.id);
+<<<<<<< HEAD
 			res.render('admin/practice-area/index',{
 				layout:'dashboard', 
 				practiceArea:practiceArea,
 				succ_add_msg:req.flash('succ_add_msg')[0],
 				test_message: 'Chobon'
 			});
+=======
+			res.render('admin/practice-area/index',{layout:'dashboard', practiceArea:practiceArea,succ_add_msg:req.flash('succ_add_msg')[0]});
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 		});
 		
 	});
@@ -83,6 +87,7 @@ module.exports = function(app, practiceArea) {
 
 	//for edit process
 	app.post('/admin/practice-area/edit/:pid', function(req, res){
+<<<<<<< HEAD
 		checkEdit(req.params['pid'], req.body.code).then(function(result){
 			if(result.count > 0) {
 				req.flash('error_message', 'Practice area code already exists');
@@ -118,4 +123,23 @@ module.exports = function(app, practiceArea) {
   			}
 		});
 	}
+=======
+		PracticeArea.update({
+    		code: req.body.code,
+			name: req.body.practice_name,
+			remarks: req.body.remarks
+	    },{ where: { id: req.params['pid'] } }).then(function(result){
+	    	req.flash('succ_add_msg', 'Practice area edited successfully');
+	    	res.redirect('/admin/practice-area');
+	    }).catch(function(err){
+	    	
+	    	var validation_error = err.errors;
+	    	req.flash('error_message', validation_error[0].message);
+	    	var redirectUrl = '/admin/practice-area/edit/' + req.params['pid'];
+  			res.redirect(redirectUrl);
+	    	
+	    });
+	});
+
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 };

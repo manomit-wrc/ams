@@ -38,7 +38,11 @@ module.exports = function(app, industry_type) {
 					industry: req.body.industry,
 					remark: req.body.remarks
 				}).then(function(result){
+<<<<<<< HEAD
 					req.flash('succ_add_msg', 'Industry added successfully');
+=======
+					req.flash('succ_add_msg', 'Industry Type added successfully');
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 					res.redirect('/admin/industry-type');
 				}).catch(function(err){
 					var validation_error = err.errors;

@@ -50,10 +50,17 @@ helpers: {
     inArray: function(array, value, block) {
       if (array.indexOf(value) !== -1) {
         return block.fn(this);
+<<<<<<< HEAD
     }
     else {
       return block.inverse(this);
     }
+=======
+      }
+      else {
+        return block.inverse(this);
+      }
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
     },
     eq: function (v1, v2) {
         return v1 === v2;

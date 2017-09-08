@@ -309,6 +309,7 @@ $(document).ready(function(e){
 
 	}
 });
+<<<<<<< HEAD
 	//@#@#@#@#@#@# Fourth tab of "my-profile" #@#@#@#@#@#@#@//
 	//
 	$("#imageForm").validate({
@@ -341,4 +342,6 @@ $(document).ready(function(e){
 			});
 		}
 	});
+=======
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 });

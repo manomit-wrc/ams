@@ -21,8 +21,13 @@ module.exports = function(app, designation) {
 	app.post('/admin/designation/add', function(req, res){
 		Designation.findAndCountAll({
 		   where: {
+<<<<<<< HEAD
 		      code: {
 		        $eq: req.body.code
+=======
+		      designation: {
+		        $eq: req.body.designation
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 		      }
 		   }
 		})
@@ -46,7 +51,11 @@ module.exports = function(app, designation) {
 			        });
 				});
 			} else {
+<<<<<<< HEAD
 		    	req.flash('error_designation_message', 'Designation code already exists');
+=======
+		    	req.flash('error_designation_message', 'Designation already exists');
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 		    	var redirectUrl = '/admin/designation/add';
 	  			res.redirect(redirectUrl);
 	  		}
@@ -74,6 +83,7 @@ module.exports = function(app, designation) {
 
 	//for edit process
 	app.post('/admin/designation/edit/:did', function(req, res){
+<<<<<<< HEAD
 		checkEdit(req.params['did'], req.body.code).then(function(result){
 			if(result.count > 0){
 				req.flash('error_message', 'Designation code already exists');
@@ -110,4 +120,23 @@ module.exports = function(app, designation) {
 		});
 	}
 
+=======
+		Designation.update({
+    		code: req.body.code,
+			designation: req.body.designation,
+			remarks: req.body.remarks
+	    },{ where: { id: req.params['did'] } }).then(function(result){
+	    	req.flash('succ_add_msg', 'Designation edited successfully');
+	    	res.redirect('/admin/designation');
+	    }).catch(function(err){
+	    	
+	    	var validation_error = err.errors;
+	    	req.flash('error_message', validation_error[0].message);
+	    	var redirectUrl = '/admin/designation/edit/' + req.params['did'];
+  			res.redirect(redirectUrl);
+	    	
+	    });
+	});
+
+>>>>>>> 839b54ad85d9b3d82442894d6a0529fc6382acc4
 };
