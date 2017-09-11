@@ -59,7 +59,7 @@ $(document).ready(function(e){
 		$("#approval").css('cursor','pointer','important');
 		$("#picture").css('cursor','pointer','important');
 	}
-	
+
 
 		/*if(menu_active == 2){
 			// $('#address-tab').removeClass("disabled");
