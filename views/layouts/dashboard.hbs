@@ -445,7 +445,7 @@ $('#firm_jurisdiction').multiselect({
 
     $("input[type=text]").keypress(function(e){
         if (e.charCode != 0) {
-          var regex = new RegExp("^[a-zA-Z0-9\\-\\s]+$");
+          var regex = new RegExp("^[a-zA-Z0-9:.\\-\\s]+$");
           var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
           if (!regex.test(key)) {
             e.preventDefault();
