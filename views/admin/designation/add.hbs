@@ -12,11 +12,12 @@
         <div class="col-md-12">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              
+
               <li class="active"><a href="#settings" data-toggle="tab">Designation - Add</a></li>
             </ul>
+            <div class="topbtn"><a href="" onclick="history.back()"><button type="button" class="btn bg-purple btn-rightad">Back</button></a></div>
             <div class="tab-content">
-            	
+
               	{{#if error_designation_message}}
                 <div class="alert alert-danger" id="result77">
                 {{error_designation_message}}
@@ -24,24 +25,24 @@
                 {{/if}}
                <div class="tab-pane active" id="settings">
                 <form name="frmDesignation" id="frmDesignation" method="post" action="/admin/designation/add" class="form-horizontal">
-                  
-                  <div class="form-group">
+
+                  <div class="form-group required">
                     <label for="name" class="col-sm-2 control-label">Code</label>
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control input-control" id="code" placeholder="Enter Designation Code" name="code" value="{{body.code}}">
                       <span class="text-danger"></span>
-                      
+
                     </div>
                   </div>
 
-                  <div class="form-group ">
+                  <div class="form-group required">
                     <label for="description" class="col-sm-2 control-label">designation</label>
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control input-control" id="designation" placeholder="Enter Designation Name" name="designation" value="{{body.practice_name}}">
                       <span class="text-danger"></span>
-                      
+
                     </div>
                   </div>
 
@@ -53,7 +54,7 @@
                       <span class="text-danger"></span>
                     </div>
                   </div>
-                  
+
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>
@@ -70,7 +71,7 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
-    
+
   </div>
   <!-- /.row -->
 
@@ -96,9 +97,9 @@ $(document).ready(function(e){
       designation: {
         required:  true
       },
-      remarks: {
-        required:  true
-      }
+      // remarks: {
+      //   required:  true
+      // }
     },
     messages: {
       code: {
@@ -107,9 +108,9 @@ $(document).ready(function(e){
       designation: {
         required:  "Please enter designation name"
       },
-      remarks: {
-        required:  "Please enter remarks"
-      }
+      // remarks: {
+      //   required:  "Please enter remarks"
+      // }
     }
   });
 });

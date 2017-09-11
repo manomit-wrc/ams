@@ -160,7 +160,7 @@ module.exports = function(app, models) {
 			   // for(var k in result[1][0]['firms']){
 			   //  firm_table_array_details.push(k, result[1][0][k]);
 			   // }
-			   console.log(firm_table_array_details);
+			  //  console.log(firm_table_array_details);
 
 			   res.render('admin/firm/my-profile',{
 			    layout:'dashboard',

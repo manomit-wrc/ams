@@ -6,16 +6,18 @@
     <li><a href="/admin/dashboard">Dashboard</a></li>
     <li class="active">Practice Area - Add</li>
   </ol>
+
 </section>
 
 <section class="content">
         <div class="col-md-12">
           <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs"> 
+            <ul class="nav nav-tabs">
               <li class="active"><a href="#settings" data-toggle="tab">Practice Area - Add</a></li>
             </ul>
+            <div class="topbtn"><a href="" onclick="history.back()"><button type="button" class="btn bg-purple btn-rightad">Back</button></a></div>
             <div class="tab-content">
-            	
+
               	{{#if error_message}}
               	<div class="alert alert-danger" id="result77">
               	{{error_message}}
@@ -23,24 +25,24 @@
               	{{/if}}
                <div class="tab-pane active" id="settings">
                 <form name="frmPracticeArea" id="frmPracticeArea" method="post" action="/admin/practice-area/add" class="form-horizontal">
-                  
-                  <div class="form-group">
+
+                  <div class="form-group required">
                     <label for="name" class="col-sm-2 control-label">Code</label>
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control input-control" id="code" placeholder="Enter Practice Code" name="code" value="{{body.code}}">
                       <span class="text-danger"></span>
-                      
+
                     </div>
                   </div>
 
-                  <div class="form-group ">
+                  <div class="form-group required">
                     <label for="description" class="col-sm-2 control-label">Name</label>
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control input-control" id="practice_name" placeholder="Enter Practice Name" name="practice_name" value="{{body.practice_name}}">
                       <span class="text-danger"></span>
-                      
+
                     </div>
                   </div>
 
@@ -52,7 +54,7 @@
                       <span class="text-danger"></span>
                     </div>
                   </div>
-                  
+
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>
@@ -92,9 +94,9 @@ $(document).ready(function(e){
       practice_name: {
         required:  true
       },
-      remarks: {
-        required:  true
-      }
+      // remarks: {
+      //   required:  true
+      // }
     },
     messages: {
       code: {
@@ -103,9 +105,9 @@ $(document).ready(function(e){
       practice_name: {
         required:  "Please enter practice area name"
       },
-      remarks: {
-        required:  "Please enter remarks"
-      }
+      // remarks: {
+      //   required:  "Please enter remarks"
+      // }
     }
   });
 });

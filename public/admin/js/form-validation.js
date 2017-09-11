@@ -155,12 +155,12 @@ $(document).ready(function(e){
 			address: {
 				required: true
 			},
-			address_2: {
-				required: true
-			},
-			address_3: {
-				required: true
-			},
+			// address_2: {
+			// 	required: true
+			// },
+			// address_3: {
+			// 	required: true
+			// },
 			phone_no: {
 				required: true
 			},
@@ -181,12 +181,12 @@ $(document).ready(function(e){
 			address: {
 				required: "Please enter address 1"
 			},
-			address_2: {
-				required: "Please enter address 2"
-			},
-			address_3: {
-				required: "Please enter address 3"
-			},
+			// address_2: {
+			// 	required: "Please enter address 2"
+			// },
+			// address_3: {
+			// 	required: "Please enter address 3"
+			// },
 			phone_no: {
 				required: "Please enter phone no"
 			},

@@ -57,6 +57,10 @@
     color:#f00;
     font-weight: bold;
   }
+	.form-group.required .control-label:after {
+		content:"*";
+		color:red;
+	}
   </style>
 </head>
 
@@ -250,6 +254,7 @@ $('#firm_jurisdiction').multiselect({
     });
   </script>
 
+
 <!-- modal  -->
 <div class="modal fade" id="inviteFriend" role="dialog">
     <div class="modal-dialog">
@@ -440,7 +445,7 @@ $('#firm_jurisdiction').multiselect({
 
     $("input[type=text]").keypress(function(e){
         if (e.charCode != 0) {
-          var regex = new RegExp("^[a-zA-Z0-9\\-\\s]+$");
+          var regex = new RegExp("^[a-zA-Z0-9:.\\-\\s]+$");
           var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
           if (!regex.test(key)) {
             e.preventDefault();
@@ -579,6 +584,21 @@ $('#firm_jurisdiction').multiselect({
 	});
 
 // alert(123);
+// $('.website').keyup(function(){
+//         if (
+//             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
+//             {
+//             $(this).val('http://' + $(this).val());
+//             }
+//     });
+//
+//     $('.social').keyup(function(){
+//         if (
+//             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
+//             {
+//             $(this).val('http://' + $(this).val());
+//             }
+//     });
 
 </script>
 
