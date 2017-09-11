@@ -242,8 +242,6 @@ $('#firm_jurisdiction').multiselect({
 });
 </script>
   <script>
-
-
     $(document).ready(function(){
       setTimeout(function() {
         $('#result7').fadeOut('fast');
@@ -462,7 +460,7 @@ $('#firm_jurisdiction').multiselect({
 
     var approval_process = "{{firm.approval_process}}";
 		var menu_active = "{{firm.menu_active}}";
-		alert(menu_active);
+		// alert(menu_active);
     if(designation_id_1) {
         setTimeout(function() {
           $("#designation_id_1").trigger('change');

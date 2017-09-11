@@ -1,5 +1,5 @@
 $(document).ready(function(e){
-
+	var menu_active = $('#menu_active').val();
 	$('.tab').attr('class', 'disabled');
 	$('#address-tab').click(function(event){
         if ($(this).hasClass('disabled')) {
@@ -25,6 +25,19 @@ $(document).ready(function(e){
         }
 
     });
+
+		if(menu_active == 2){
+			// $('#address-tab').removeClass("disabled");
+			$('#firm-tab').addClass("active").removeClass("disabled");
+			$('#generalInfo').addClass("active");
+		} else if(menu_active == 3){
+			// $('#address-tab').removeClass("disabled");
+			$('#firm-tab').addClass("active").removeClass("disabled");
+			$('#approval-tab').addClass("active").removeClass("disabled");
+			$('#generalInfo').addClass("active");
+			$('#approval').addClass("active");
+
+		}
 	$("#frmFirm").validate({
 		rules: {
 			first_name: {
