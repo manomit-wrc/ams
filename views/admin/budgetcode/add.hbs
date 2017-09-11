@@ -16,6 +16,7 @@
 
               <li class="active"><a href="#settings" data-toggle="tab">Budget Code - Add</a></li>
             </ul>
+            <div class="topbtn"><a href="" onclick="history.back()"><button type="button" class="btn bg-purple btn-rightad">Back</button></a></div>
             <div class="tab-content">
 
               	{{#if error_message}}
@@ -26,7 +27,7 @@
                <div class="tab-pane active" id="settings">
                 <form name="frmBudget" id="frmBudget" method="post" action="/admin/budgetcode/add" class="form-horizontal">
 
-                  <div class="form-group ">
+                  <div class="form-group required">
                     <label class="col-sm-2 control-label">Budget Type</label>
                           <div class="col-sm-10">
                               <select class="form-control" name="budget_code_type_id" id="budget_code_type_id" >
@@ -38,7 +39,7 @@
 
                           </div>
                       </div>
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="name" class="col-sm-2 control-label">Code</label>
 
                     <div class="col-sm-10">
@@ -47,7 +48,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group ">
+                  <div class="form-group required">
                     <label for="description" class="col-sm-2 control-label">Budget Code Name</label>
 
                     <div class="col-sm-10">
@@ -107,9 +108,9 @@ $(document).ready(function(e){
       budget_code: {
         required: true
       },
-      remarks: {
-        required: true
-      }
+      // remarks: {
+      //   required: true
+      // }
     },
     messages: {
       budget_code_type_id: {
@@ -121,9 +122,9 @@ $(document).ready(function(e){
       budget_code: {
         required: "Please enter budget name"
       },
-      remarks: {
-        required: "Pleae enter remarks"
-      }
+      // remarks: {
+      //   required: "Pleae enter remarks"
+      // }
     }
   });
 });

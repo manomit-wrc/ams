@@ -57,6 +57,10 @@
     color:#f00;
     font-weight: bold;
   }
+	.form-group.required .control-label:after {
+		content:"*";
+		color:red;
+	}
   </style>
 </head>
 
@@ -249,6 +253,7 @@ $('#firm_jurisdiction').multiselect({
       }, 2000);
     });
   </script>
+
 
 <!-- modal  -->
 <div class="modal fade" id="inviteFriend" role="dialog">
@@ -579,6 +584,21 @@ $('#firm_jurisdiction').multiselect({
 	});
 
 // alert(123);
+// $('.website').keyup(function(){
+//         if (
+//             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
+//             {
+//             $(this).val('http://' + $(this).val());
+//             }
+//     });
+//
+//     $('.social').keyup(function(){
+//         if (
+//             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
+//             {
+//             $(this).val('http://' + $(this).val());
+//             }
+//     });
 
 </script>
 

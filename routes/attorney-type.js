@@ -1,7 +1,7 @@
 module.exports = function(app, attorney_type) {
- 	
+
  	var AttorneyType = attorney_type;
-	
+
 	// for index
 	app.get('/admin/attorney-type', function(req, res) {
 		AttorneyType.findAll({order:[
@@ -10,7 +10,7 @@ module.exports = function(app, attorney_type) {
 			//console.log(practiceArea[0].dataValues.id);
 			res.render('admin/attorney-type/index',{layout:'dashboard', attorney_type:attorney_type,succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
-		
+
 	});
 
 	//for add view
@@ -20,7 +20,7 @@ module.exports = function(app, attorney_type) {
 
 	//for add process
 	app.post('/admin/attorney-type/add', function(req, res){
-		
+
 		AttorneyType.findAndCountAll({
 		   where: {
 		      attorney: {
@@ -38,7 +38,7 @@ module.exports = function(app, attorney_type) {
 					attorney: req.body.attorney,
 					remark: req.body.remark
 				}).then(function(result){
-					req.flash('succ_add_msg', 'Attorney added successfully');
+					req.flash('succ_add_msg', 'Attorney type added successfully');
 					res.redirect('/admin/attorney-type');
 				}).catch(function(err){
 					var validation_error = err.errors;
@@ -53,12 +53,12 @@ module.exports = function(app, attorney_type) {
 		    	var redirectUrl = '/admin/attorney-type/add';
 	  			res.redirect(redirectUrl);
 	  		}
-		  	
+
 		});
-		
+
 	});
 
-	//for delete 
+	//for delete
 	app.get('/admin/attorney-type/delete/:attorney_id', function(req, res){
 		AttorneyType.destroy({
 		    where: {
@@ -87,12 +87,12 @@ module.exports = function(app, attorney_type) {
 	    	req.flash('succ_add_msg', 'Attorney type edited successfully');
 	    	res.redirect('/admin/attorney-type');
 	    }).catch(function(err){
-	    	
+
 	    	var validation_error = err.errors;
 	    	req.flash('error_message', validation_error[0].message);
 	    	var redirectUrl = '/admin/attorney-type/edit/' + req.params['attorney_id'];
   			res.redirect(redirectUrl);
-	    	
+
 	    });
 	});
 };

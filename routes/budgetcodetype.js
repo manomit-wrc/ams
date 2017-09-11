@@ -41,7 +41,7 @@ module.exports = function(app, budgetcodetype) {
           status: 1
 				}).then(function(result){
 
-					req.flash('succ_add_msg', 'Budget Code Type added successfully');
+					req.flash('succ_add_msg', 'Budget Type added successfully');
 					res.redirect('/admin/budgetcodetype');
 				}).catch(function(err){
 					var validation_error = err.errors;
@@ -52,7 +52,7 @@ module.exports = function(app, budgetcodetype) {
 		        	});
 				});
 			} else {
-		    	req.flash('error_message', 'Budget Code Type already exists');
+		    	req.flash('error_message', 'Budget Type already exists');
 		    	var redirectUrl = '/admin/budgetcodetype/add';
 	  			res.redirect(redirectUrl);
 	  		}

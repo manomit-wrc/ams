@@ -28,7 +28,7 @@
               <div class="tab-pane active" id="activity">
                 <form class="form-horizontal" name="frmFirmAddress" id="frmFirmAddress" method="post" action="#">
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
                     <div class="col-sm-10">
@@ -36,7 +36,7 @@
                       <input type="text" class="form-control" id="address" name="address" placeholder="Address 1" value="{{firm_details.address}}">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group ">
                     <label for="address_2" class="col-sm-2 control-label">Address Line 2</label>
 
                     <div class="col-sm-10">
@@ -44,7 +44,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group ">
                     <label for="address_3" class="col-sm-2 control-label">Address Line 3</label>
 
                     <div class="col-sm-10">
@@ -52,7 +52,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="phone_no" class="col-sm-2 control-label">Phone No</label>
 
                     <div class="col-sm-10">
@@ -60,7 +60,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="country_id" class="col-sm-2 control-label">Country</label>
 
                     <div class="col-sm-10">
@@ -73,7 +73,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="state_id" class="col-sm-2 control-label">State</label>
 
                     <div class="col-sm-10">
@@ -84,7 +84,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="city_id" class="col-sm-2 control-label">City</label>
 
                     <div class="col-sm-10">
@@ -95,7 +95,7 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="zipcode" class="col-sm-2 control-label">Pincode</label>
 
                     <div class="col-sm-10">
@@ -126,7 +126,7 @@
                     <label for="website" class="col-sm-2 control-label">Website URL</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="website" name="website" placeholder="Website Url" value="{{firm_details.website}}">
+                      <input type="text" class="form-control website" id="website" name="website" placeholder="Website Url" value="{{firm_details.website}}">
                     </div>
                   </div>
 
@@ -134,7 +134,7 @@
                     <label for="social" class="col-sm-2 control-label">Social URL</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="social" name="social" placeholder="Social Url" value="{{firm_details.social}}">
+                      <input type="text" class="form-control social" id="social" name="social" placeholder="Social Url" value="{{firm_details.social}}">
                     </div>
                   </div>
 
@@ -149,27 +149,27 @@
               <!-- /@@@@@@@@@@@@ second tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane" id="generalInfo">
                 <form class="form-horizontal" name="formgeneralInfo" id="formgeneralInfo" method="POST" action="#">
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputName" class="col-sm-2 control-label">Firm Name</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="firmName" name="firmName" placeholder="Firm Name" value="{{firm.name}}">
                     </div>
                   </div>
                       <input type="hidden" class="form-control" id="firmId" name="firmId" placeholder="Firm ID" value="{{firm_table_array_details.id}}">
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputEmail" class="col-sm-2 control-label">Firm Code</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="firm_code" name="firm_code" placeholder="Firm Code" value="{{firm.code}}">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputName" class="col-sm-2 control-label">Firm Registration</label>
 
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="firmRegistration" name="firmRegistration" placeholder="Firm Registration number" value="{{firm.registration_no}}">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputExperience" class="col-sm-2 control-label">Section</label>
                     <div class="col-sm-10">
                       <select name="sections[]" id="sections" multiple="multiple" class="form-control">
@@ -179,7 +179,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
                     <div class="col-sm-10">
                       <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
@@ -189,7 +189,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
                     <div class="col-sm-10">
                       <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
@@ -199,7 +199,7 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group ">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
@@ -210,14 +210,14 @@
               <!-- /@@@@@@@@@@@@ third tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane" id="approval">
                 <form class="form-horizontal" id="approvalForm" name="approvalForm" method="POST">
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputName" class="col-sm-2 control-label">Single Point Name</label>
                     <div class="col-sm-10">
 
                       <input type="text" class="form-control" id="spName" placeholder="Single Point Name" name="spName" value="{{firm.contact_person_name}}">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group required">
                     <label for="inputName" class="col-sm-2 control-label">Single Point Contact Role</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="spContact" placeholder="Single Point Contact Role" name="spContact" value="{{firm.contact_person_role}}">
@@ -229,7 +229,7 @@
                   <div class="col-md-12" style="padding-left: 50px; padding-right: 0; margin-bottom: 20px;">
                         <div style=" width: 100%; display: inline-block">
                           <h3 class="hint"> Approval Process Information </h3>
-                        <div class="form-group approval_process">
+                        <div class="form-group approval_process ">
                             <label class="control-label                                                                                                                                                                                                                                         ">How many level/s for the approval process ?</label>
                             <br>
                             <div class="radio-list">
@@ -252,7 +252,7 @@
                         </div>
 
                         <div style=" width: 100%; display: inline-block">
-                          <div class="form-group required level1">
+                          <div class="form-group level1">
                             <label class="control-label">Level 1</label>
                             <select name="designation_id_1" id="designation_id_1" class="form-control">
                                 <option value="" disabled="disabled">Select Designation</option>
@@ -264,7 +264,7 @@
                             </select>
                           </div>
 
-                          <div class="form-group required level2">
+                          <div class="form-group level2">
                             <label class="control-label">Level 2</label>
                             <select name="designation_id_2" id="designation_id_2" class="form-control" >
                                 <option value="" disabled="disabled">Select Designation</option>
@@ -274,7 +274,7 @@
                             </select>
                           </div>
 
-                          <div class="form-group required level3">
+                          <div class="form-group level3">
                             <label class="control-label">Level 3</label>
                             <select name="designation_id_3" id="designation_id_3" class="form-control" >
                                 <option value="" disabled="disabled">Select Designation</option>
@@ -284,7 +284,7 @@
                             </select>
                           </div>
 
-                          <div class="form-group required level4">
+                          <div class="form-group level4">
                             <label class="control-label">Level 4</label>
                             <select name="designation_id_4" id="designation_id_4" class="form-control">
                                 <option value="" disabled="disabled">Select Designation</option>
@@ -309,7 +309,7 @@
 
                   <div style=" width: 100%; display: inline-block;">
                   <h3 class="hint">Profile Picture</h3>
-                  <div class="form-group">
+                  <div class="form-group required">
                       <div class="fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 200px; height: 250px;">
 
