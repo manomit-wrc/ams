@@ -22,13 +22,17 @@
               <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
             </ul>
             <div class="tab-content">
+
+            <input type="hidden" class="form-control" id="menu_active" name="menu_active" placeholder="Firm ID" value="{{firm_table_array_details.menu_active}}">
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="activity">
                 <form class="form-horizontal" name="frmFirmAddress" id="frmFirmAddress" method="post" action="#">
+
                   <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
                     <div class="col-sm-10">
+
                       <input type="text" class="form-control" id="address" name="address" placeholder="Address 1" value="{{firm_details.address}}">
                     </div>
                   </div>
