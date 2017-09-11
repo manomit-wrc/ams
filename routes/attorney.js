@@ -17,6 +17,7 @@ module.exports = function(app, models) {
 		});
 	});
 
+	// add attorney by site admin process
 	app.post('/admin/attorney/add', function(req, res){
 		models.admin.create({
 			first_name: req.body.first_name,
@@ -97,5 +98,32 @@ module.exports = function(app, models) {
 			res.send(zip_code);
 		});
 			
+	});
+
+	//update attorney address in first tab by ajax
+	app.post('/admin/attorney/update_attorney_address',function(req, res){
+		var user_id = req.user.id;
+		models.admin.update({
+    		address: req.body.address,
+			address_2: req.body.address_2,
+			address_3: req.body.address_3,
+			phone_no: req.body.phone_no,
+			country_id: req.body.attorney_country_id,
+			state_id: req.body.attoney_state_id,
+			city_id: req.body.attoney_city_id,
+			zipcode: req.body.attorney_zip_code,
+			fax: req.body.fax,
+			mobile: req.body.mobile,
+			website: req.body.website,
+			social: req.body.social,
+	    },{ where: { 
+	    		id: user_id 
+	    	} 
+	    }).then(function(result){
+	    	res.send('success');
+	    }).catch(function(err){	    	
+	    	res.send('fail');
+	    	
+	    });
 	});
 };

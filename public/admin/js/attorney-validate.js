@@ -29,12 +29,15 @@ $(document).ready(function(e){
 		            for (var i = 0; i < response.length; i++) {
 		            	//console.log(response[i].name);
 		            	$('#attoney_state_id').append('<option value="'+response[i].id+'">'+response[i].name+'</option>');
+		            	$('#attoney_state_id option:eq(1)').attr('selected', 'selected');
 		            }
 		          }
         	});
 		}
 
-		//$("#attoney_state_id").trigger('change');
+		//to keep selected states on changing country
+		$("#attoney_state_id").trigger('change');
+		//emd
 
 	});
 	//end
@@ -56,12 +59,15 @@ $(document).ready(function(e){
 		            for (var i = 0; i < response.length; i++) {
 		            	//console.log(response[i].name);
 		            	$('#attoney_city_id').append('<option value="'+response[i].id+'">'+response[i].name+'</option>');
+		            	$('#attoney_city_id option:eq(1)').attr('selected', 'selected');
 		            }
 		          }
         	});
 		}
 
-		//$("#attoney_city_id").trigger('change');
+		//to keep selected cities on changing country
+		$("#attoney_city_id").trigger('change');
+		//end
 
 
 	});
@@ -78,7 +84,9 @@ $(document).ready(function(e){
 		          data: {city_name:city_name},
 		          async: false,
 		          success:function(response) {
-		            $("#attorney_zip_code").val(response[0].zip);
+		          	if(response){
+		            	$("#attorney_zip_code").val(response[0].zip);
+		            }
 		          }
         	});
 		}
@@ -172,16 +180,16 @@ $(document).ready(function(e){
 			phone_no: {
 				required: true
 			},
-			country_id: {
+			attorney_country_id: {
 				required: true
 			},
-			state_id: {
+			attoney_state_id: {
 				required: true
 			},
-			city_id: {
+			attoney_city_id: {
 				required: true
 			},
-			zipcode: {
+			attorney_zip_code: {
 				required: true
 			}
 		},
@@ -192,16 +200,16 @@ $(document).ready(function(e){
 			phone_no: {
 				required: "Please enter phone no"
 			},
-			country_id: {
+			attorney_country_id: {
 				required: "Please select country"
 			},
-			state_id: {
+			attoney_state_id: {
 				required: "Please select state"
 			},
-			city_id: {
+			attoney_city_id: {
 				required: "Please select city"
 			},
-			zipcode: {
+			attorney_zip_code: {
 				required: "Please select pincode"
 			}
 		},
@@ -209,27 +217,28 @@ $(document).ready(function(e){
 
 			$.ajax({
 				type: "POST",
-				url: "/admin/firm/update-address",
+				url: "/admin/attorney/update_attorney_address",
 				data: {
 					address: $("#address").val(),
 					address_2: $("#address_2").val(),
 					address_3: $("#address_3").val(),
-					phone_no: $("#phone_no").val(),
-					country_id: $("#country_id").val(),
-					state_id: $("#state_id").val(),
-					city_id: $("#city_id").val(),
-					zipcode: $("#zipcode").val(),
+					phone_no: $("#phone_no").val(), 
+					attorney_country_id: $("#attorney_country_id").val(),
+					attoney_state_id: $("#attoney_state_id").val(),
+					attoney_city_id: $("#attoney_city_id").val(),
+					attorney_zip_code: $("#attorney_zip_code").val(),
 					fax: $("#fax").val(),
 					mobile: $("#mobile").val(),
 					website: $("#website").val(),
 					social: $("#social").val()
 				},
 			    success:function(response) {
-			    	if(response == "1") {
-			    		$('#address-tab').removeClass("disabled");
-						$("#firm-tab").addClass("active").removeClass("disabled");
-						$("#activity").removeClass("active");
-						$("#generalInfo").addClass("active");
+			    	if(response == "success") {
+			    		$('#attorney-details-tab').addClass('active').removeClass('disabled');
+			    		$('#activity').removeClass('active');
+			    		$('#generalInfo').addClass('active');
+			    	} else {
+			    		$("#alert-msg").html('<div class="alert alert-danger" id="result77">Something wrong</div>');
 			    	}
 			    }
 			});
