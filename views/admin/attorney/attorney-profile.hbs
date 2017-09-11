@@ -17,13 +17,12 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active tab" id="address-tab"><a href="#activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
-              <li class="tab" id="attorney-details-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">Attorney details</a></li>
+              <li class="tab" id="attorney-details-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">General Information</a></li>
               <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
             </ul>
             <div class="tab-content">
-              <div id="alert-msg"></div>
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
-              <div class="tab-pane active" id="activity">
+              <div class="tab-pane" id="activity">
                 <form class="form-horizontal" name="attorney_address" id="attorney_address" method="post">
                   <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
@@ -140,58 +139,154 @@
               </div>
 
               <!-- /@@@@@@@@@@@@ second tab @@@@@@@@@@@@@@/ -->
-              <div class="tab-pane" id="generalInfo">
-                <form class="form-horizontal" name="formgeneralInfo" id="formgeneralInfo" method="POST" action="#">
+              <div class="tab-pane active" id="generalInfo">
+                <form class="form-horizontal" name="attorney_general_info" id="attorney_general_info" method="POST">
                   <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Firm Name</label>
+                    <label for="inputName" class="col-sm-2 control-label">User Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="firmName" name="firmName" placeholder="Firm Name" value="{{firm.name}}">
+                      <input type="text" class="form-control" id="user_name" name="user_name" placeholder="User Name" value="{{firm.name}}">
                     </div>
                   </div>
-                      <input type="hidden" class="form-control" id="firmId" name="firmId" placeholder="Firm ID" value="{{firm_table_array_details.id}}">
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Firm Code</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="firm_code" name="firm_code" placeholder="Firm Code" value="{{firm.code}}">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Firm Registration</label>
 
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Group</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="firmRegistration" name="firmRegistration" placeholder="Firm Registration number" value="{{firm.registration_no}}">
+                      <select name="group" id="group" class="form-control">
+                          {{#each group}}
+                          <option value="{{this.id}}">{{this.group}}</option>
+                          {{/each}}
+                      </select>
                     </div>
                   </div>
+
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Section</label>
                     <div class="col-sm-10">
                       <select name="sections[]" id="sections" multiple="multiple" class="form-control">
                           {{#each section}}
-                          <option value="{{this.id}}" {{#inArray ../section_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
+                          <option value="{{this.id}}">{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Designation</label>
+                    <div class="col-sm-10">
+                      <select name="designation" id="designation" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-2 control-label">Attorney ID</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="attorney_id" name="attorney_id" placeholder="Attorney ID" value="{{firm.code}}">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Attorney Code</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="attorney_code" name="attorney_code" placeholder="Attorney Code" value="{{firm.registration_no}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Attorney Type</label>
+                    <div class="col-sm-10">
+                      <select name="attorney_type" id="attorney_type" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Education</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="education" name="education" placeholder="Education" value="{{firm.name}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Bar Registration</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="bar_reg" name="bar_reg" placeholder="Bar Registration" value="{{firm.name}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Job Type</label>
+                    <div class="col-sm-10">
+                      <select name="job_type" id="job_type" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Practice Date</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="practice_date" name="practice_date" placeholder="Practice Date" value="{{firm.name}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Firm Join Date</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="firm_join_date" name="firm_join_date" placeholder="Practice Date" value="{{firm.name}}">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputExperience" class="col-sm-2 control-label">Jurisdiction</label>
+                    <div class="col-sm-10">
+                      <select name="jurisdictions[]" id="jurisdictions" multiple="multiple" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
+                          {{/each}}
+                      </select>
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label for="inputExperience" class="col-sm-2 control-label">Practice Area</label>
                     <div class="col-sm-10">
-                      <select name="practice_area[]" id="practice_area"  multiple="multiple" class="form-control">
-                          {{#each practicearea}}
-                          <option value="{{this.id}}" {{#inArray ../practice_area_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
+                      <select name="practice_area[]" id="practice_area" multiple="multiple" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
                   </div>
+
                   <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Firm Jurisdiction</label>
+                    <label for="inputExperience" class="col-sm-2 control-label">Industry Type</label>
                     <div class="col-sm-10">
-                      <select name="firm_jurisdiction[]" id="firm_jurisdiction"  multiple="multiple" class="form-control">
-                        {{#each jurisdiction}}
-                          <option value="{{this.id}}" {{#inArray ../jurisdiction_array this.id}} selected="selected" {{/inArray}}>{{this.jurisdiction}}</option>
+                      <select name="industry_type" id="industry_type" class="form-control">
+                          {{#each section}}
+                          <option value="{{this.id}}">{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="social" class="col-sm-2 control-label">Remarks</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="social" name="social" placeholder="Social Url" value="{{firm_details.social}}">
+                    </div>
+                  </div>
+
+                  
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-danger">Submit</button>

@@ -84,8 +84,10 @@ $(document).ready(function(e){
 		          data: {city_name:city_name},
 		          async: false,
 		          success:function(response) {
-		          	if(response){
+		          	if(response.length > 0){
 		            	$("#attorney_zip_code").val(response[0].zip);
+		            } else {
+		            	$("#attorney_zip_code").val('');
 		            }
 		          }
         	});
@@ -173,6 +175,7 @@ $(document).ready(function(e){
 	});
 //@#@#@#@#@#@ First tab of "my-profile" #@#@#@#@#@#//
 
+	// to prevent alphabet character
 	jQuery('#phone_no').keyup(function() {
         this.value = this.value.replace(/[^0-9\+]/g, '');
     });
@@ -180,6 +183,11 @@ $(document).ready(function(e){
     jQuery('#mobile').keyup(function() {
         this.value = this.value.replace(/[^0-9\+]/g, '');
     });
+
+    jQuery('#fax').keyup(function() {
+        this.value = this.value.replace(/[^0-9\+]/g, '');
+    });
+    //end
 
 	$("#attorney_address").validate({
 		rules: {
@@ -207,7 +215,7 @@ $(document).ready(function(e){
 				required: "Please enter address 1"
 			},
 			phone_no: {
-				required: "Please enter phone no",
+				required: "Please enter phone no"
 			},
 			attorney_country_id: {
 				required: "Please select country"
@@ -252,6 +260,7 @@ $(document).ready(function(e){
 			    }
 			});
 		}
+
 
 	});
 	//@#@#@#@#@#@# Second tab of "my-profile" #@#@#@#@#@#@#@//

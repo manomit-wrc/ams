@@ -58,8 +58,14 @@ module.exports = function(app, models) {
 
 	//attorney profile view
 	app.get('/admin/attorney/attorney-profile',function(req, res){
-		models.country.findAll().then(function(countries){
-			res.render('admin/attorney/attorney-profile',{layout:'dashboard',countries:countries});
+		Promise.all([
+			models.country.findAll(),
+			models.group.findAll({attributes: ['id', 'group']}),
+			models.section.findAll({attributes: ['id', 'name']}),
+		]).then(function(values){
+			var result = JSON.parse(JSON.stringify(values));
+			//console.log(result[1]);
+			res.render('admin/attorney/attorney-profile',{layout:'dashboard',countries:result[0], group:result[1], section:result[2]});
 		});
 
 	});
