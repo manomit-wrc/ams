@@ -172,6 +172,15 @@ $(document).ready(function(e){
 		}
 	});
 //@#@#@#@#@#@ First tab of "my-profile" #@#@#@#@#@#//
+
+	jQuery('#phone_no').keyup(function() {
+        this.value = this.value.replace(/[^0-9\+]/g, '');
+    });
+
+    jQuery('#mobile').keyup(function() {
+        this.value = this.value.replace(/[^0-9\+]/g, '');
+    });
+
 	$("#attorney_address").validate({
 		rules: {
 			address: {
@@ -198,7 +207,7 @@ $(document).ready(function(e){
 				required: "Please enter address 1"
 			},
 			phone_no: {
-				required: "Please enter phone no"
+				required: "Please enter phone no",
 			},
 			attorney_country_id: {
 				required: "Please select country"
@@ -243,7 +252,6 @@ $(document).ready(function(e){
 			    }
 			});
 		}
-
 
 	});
 	//@#@#@#@#@#@# Second tab of "my-profile" #@#@#@#@#@#@#@//
