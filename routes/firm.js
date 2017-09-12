@@ -32,19 +32,7 @@ module.exports = function(app, models) {
 	};
 	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
 
-	var removePhoneMask = function(req, res, phone_no){
-// the format :(777) 777-7222
-		var phone_no_array = phone_no.split('-').map(function(value){ return +value+ 1});
-		var phone_no_array1 = phone_no_array[0];
-		var phone_no_array2 = phone_no_array[1];
-		var phone_no_array3 = phone_no_array1.split(' ').map(function(values){ return +values+ 1});
-		var phone_array1 = phone_no_array3[0];
-		var phone_array2 = phone_no_array3[1];
-		var phone_array3 = phone_array1.substr(1, -1);
-		var maskRemovedPhoneArray = phone_array3 + phone_array2 + phone_no_array2;
-		return maskRemovedPhoneArray;
-
-	};
+	
 
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
@@ -231,17 +219,18 @@ module.exports = function(app, models) {
 
 	app.post("/admin/firm/update-address", function(req, res){
 		var id = req.user.id;
+		var phone_no = removePhoneMask(req.body.phone_no);
 		models.admin.update({
 			address: req.body.address,
 			address_2: req.body.address_2,
 			address_3: req.body.address_3,
-			phone_no: req.body.phone_no,
+			phone_no: phone_no,
 			country_id: req.body.country_id,
 			state_id: req.body.state_id,
 			city_id: req.body.city_id,
 			zipcode: req.body.zipcode,
-			fax: req.body.fax,
-			mobile: req.body.mobile,
+			fax: removePhoneMask(req.body.fax),
+			mobile: removePhoneMask(req.body.mobile),
 			website: req.body.website,
 			social: req.body.social
 		}, {where: {id :id}}).then(function(result){
@@ -372,4 +361,14 @@ app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), fun
 	});
 });
 
+
+function removePhoneMask (phone_no){
+// the format :(777) 777-7222
+		var phone_no = phone_no.replace("-","");
+		phone_no = phone_no.replace(")","");
+		phone_no = phone_no.replace("(","");
+		phone_no = phone_no.replace(" ","");
+		return phone_no;
+
+	}
 };
