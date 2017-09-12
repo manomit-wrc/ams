@@ -32,6 +32,20 @@ module.exports = function(app, models) {
 	};
 	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
 
+	var removePhoneMask = function(req, res, phone_no){
+// the format :(777) 777-7222
+		var phone_no_array = phone_no.split('-').map(function(value){ return +value+ 1});
+		var phone_no_array1 = phone_no_array[0];
+		var phone_no_array2 = phone_no_array[1];
+		var phone_no_array3 = phone_no_array1.split(' ').map(function(values){ return +values+ 1});
+		var phone_array1 = phone_no_array3[0];
+		var phone_array2 = phone_no_array3[1];
+		var phone_array3 = phone_array1.substr(1, -1);
+		var maskRemovedPhoneArray = phone_array3 + phone_array2 + phone_no_array2;
+		return maskRemovedPhoneArray;
+
+	};
+
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
 		models.admin.belongsTo(models.country,{foreignKey: 'country_id'});

@@ -126,6 +126,7 @@
 <script src="/admin/js/bootstrap-toggle.min.js"></script>
 <script src="/admin/js/validate.js"></script>
 
+
 <script src="/admin/js/form-validation.js"></script>
 
 <script src="/admin/js/attorney-validate.js"></script>
@@ -219,6 +220,7 @@ if(approval_process === '1'){
 
 <link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
 <script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
+<script src="/admin/js/input-mask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
 <script>
 $('#sections').multiselect({
 		includeSelectAllOption: true,
@@ -583,22 +585,16 @@ $('#firm_jurisdiction').multiselect({
 
 	});
 
-// alert(123);
-// $('.website').keyup(function(){
-//         if (
-//             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
-//             {
-//             $(this).val('http://' + $(this).val());
-//             }
-//     });
-//
-//     $('.social').keyup(function(){
-//         if (
-//             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
-//             {
-//             $(this).val('http://' + $(this).val());
-//             }
-//     });
+$('.url_selector').keyup(function(){
+        if (
+            ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
+            {
+            $(this).val('http://' + $(this).val());
+					}
+    });
+		$(".number_validator").inputmask("mask", {
+				"mask": "(999) 999-9999"
+		});
 
 </script>
 
