@@ -5,9 +5,9 @@ module.exports = {
     return [
          queryInterface.addColumn(
            'admins',
-           'group',
+           'group_id',
            {
-             type: Sequelize.STRING(50),
+             type: Sequelize.INTEGER(50),
              allowNull: false,
              after: 'role_code'
            }
@@ -35,7 +35,7 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
     return [
-         queryInterface.removeColumn('admins', 'group'),
+         queryInterface.removeColumn('admins', 'group_id'),
          queryInterface.removeColumn('admins', 'reamrks'),
          queryInterface.removeColumn('admins', 'reg_type')
     ];

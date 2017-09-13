@@ -9,7 +9,7 @@ module.exports = {
            {
              type: Sequelize.STRING(20),
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -18,7 +18,7 @@ module.exports = {
            {
              type: Sequelize.INTEGER,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -27,7 +27,7 @@ module.exports = {
            {
              type: Sequelize.INTEGER(1),
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -36,7 +36,7 @@ module.exports = {
            {
              type: Sequelize.STRING(100),
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -45,7 +45,7 @@ module.exports = {
            {
              type: Sequelize.STRING(100),
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -54,7 +54,7 @@ module.exports = {
            {
              type: Sequelize.STRING(255),
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -63,7 +63,7 @@ module.exports = {
            {
              type: Sequelize.STRING(255),
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -72,7 +72,7 @@ module.exports = {
            {
              type: Sequelize.TEXT,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -81,7 +81,7 @@ module.exports = {
            {
              type: Sequelize.TEXT,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -90,7 +90,7 @@ module.exports = {
            {
              type: Sequelize.INTEGER,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -99,7 +99,7 @@ module.exports = {
            {
              type: Sequelize.INTEGER,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -108,7 +108,7 @@ module.exports = {
            {
              type: Sequelize.INTEGER,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          ),
          queryInterface.addColumn(
@@ -117,7 +117,7 @@ module.exports = {
            {
              type: Sequelize.STRING,
              allowNull: true,
-             after: 'group'
+             after: 'group_id'
            }
          )
        ];

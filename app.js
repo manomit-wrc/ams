@@ -151,6 +151,7 @@ require('./routes/budgetcode')(app, models.budgetcode, models.budgetcodetype);
 require('./routes/job-type')(app, models.jobtype);
 require('./routes/attorney-type')(app, models.attorneytype);
 require('./routes/attorney')(app,models);
+require('./routes/master-contact')(app, models);
 
 
 // catch 404 and forward to error handler
