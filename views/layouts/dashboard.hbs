@@ -219,16 +219,20 @@ if(approval_process === '1'){
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.0/jquery-confirm.min.js"></script>
 
 <link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
+
+<link rel="stylesheet" href="/admin/css/bootstrap-datepicker3.min.css">
 <script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
+
+<script type="text/javascript" src="/admin/js/bootstrap-datepicker.js"></script>
+
 <script src="/admin/js/input-mask/jquery.inputmask.bundle.min.js" type="text/javascript"></script>
+
 <script>
 $('#sections').multiselect({
 		includeSelectAllOption: true,
 		enableFiltering: true,
 		numberDisplayed: 3,
 		enableCaseInsensitiveFiltering: true,
-		maxHeight: 300,
-		maxWidth: 100
 });
 $('#practice_area').multiselect({
 		includeSelectAllOption: true,
@@ -245,6 +249,24 @@ $('#firm_jurisdiction').multiselect({
 		enableCaseInsensitiveFiltering: true,
 		maxHeight: 300,
 		maxWidth: 100
+});
+$('#jurisdictions').multiselect({
+    includeSelectAllOption: true,
+    enableFiltering: true,
+    numberDisplayed: 3,
+    enableCaseInsensitiveFiltering: true,
+    maxHeight: 300,
+    maxWidth: 100
+});
+
+$("#practice_date").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
+});
+
+$("#firm_join_date").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
 });
 </script>
   <script>

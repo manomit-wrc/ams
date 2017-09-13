@@ -18,6 +18,6 @@ module.exports = {
   down: function (queryInterface, Sequelize) {
     return [
          queryInterface.removeColumn('firms', 'user_id')
-       ];
+    ];
   }
 };

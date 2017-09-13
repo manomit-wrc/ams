@@ -5,11 +5,11 @@ module.exports = {
     return [
          queryInterface.addColumn(
            'attorneys',
-           'firm_id',
+           'practice_area',
            {
-             type: Sequelize.STRING,
-             after: 'id'
-
+             type: Sequelize.INTEGER(20),
+             allowNull: true,
+             after: 'industry_type_id'
            }
          )
     ];
@@ -17,7 +17,7 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
     return [
-         queryInterface.removeColumn('attorneys', 'firm_id')
+         queryInterface.removeColumn('attorneys', 'practice_area')
     ];
   }
 };

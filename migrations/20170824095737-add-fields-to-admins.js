@@ -7,7 +7,9 @@ module.exports = {
            'admins',
            'group_id',
            {
+
              type: Sequelize.INTEGER(50),
+
              allowNull: false,
              after: 'role_code'
            }

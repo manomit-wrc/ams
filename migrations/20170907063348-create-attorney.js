@@ -15,10 +15,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       section_id: {
-        type: Sequelize.INTEGER
-      },
-      designation_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       attorneyID: {
         type: Sequelize.STRING
@@ -45,7 +42,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       jurisdiction_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       industry_type_id: {
         type: Sequelize.INTEGER

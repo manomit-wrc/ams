@@ -49,7 +49,9 @@ module.exports = function(sequelize, DataTypes) {
     role_code: DataTypes.STRING,
     reg_type: DataTypes.STRING(1),
     remarks: DataTypes.TEXT,
-    group_id: DataTypes.INTEGER(50),
+
+    group_id: DataTypes.INTEGER(11),
+
     gender: DataTypes.STRING(20),
     designation_id: DataTypes.INTEGER,
     is_attorney: DataTypes.INTEGER(1),
