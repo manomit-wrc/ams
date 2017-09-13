@@ -1,8 +1,19 @@
 $(document).ready(function(e){
-	// make all tabs disable
-	$('.tab').attr('class', 'disabled');
-	// make only first tab enable on page loading
-	$('#address-tab').attr('class', 'active');
+	
+
+	 $('.nav li').not('.active').addClass('disabled');
+/*to actually disable clicking the bootstrap tab, as noticed in comments by user3067524*/
+    $('.nav li').not('.active').find('a').removeAttr("data-toggle");
+
+    $('button').click(function(){
+        /*enable next tab*/
+        $('.nav li.active').next('li').removeClass('disabled');
+        $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
+    });
+
+    // make only first tab enable on page loading
+	$('#attorney-address-tab').removeClass('disabled');
+	$('#attorney-address-tab').attr('class', 'active');
 
 	//country is present in the first tab.If I forget to save the first tab on the next day the value(states, city) those are from on change of country will be saves as usual
 	var country_id = $("#attorney_country_id").val();
@@ -68,7 +79,6 @@ $(document).ready(function(e){
 		//to keep selected cities on changing country
 		$("#attoney_city_id").trigger('change');
 		//end
-
 
 	});
 	//end
@@ -252,8 +262,9 @@ $(document).ready(function(e){
 			    success:function(response) {
 			    	if(response == "success") {
 			    		$('#attorney-details-tab').addClass('active').removeClass('disabled');
-			    		$('#activity').removeClass('active');
-			    		$('#generalInfo').addClass('active');
+			    		$('#attorney-address-tab').removeClass('active');
+			    		$('#attorney-activity').removeClass('active');
+			    		$('#attorney-generalInfo').addClass('active');
 			    	} else {
 			    		$("#alert-msg").html('<div class="alert alert-danger" id="result77">Something wrong</div>');
 			    	}
@@ -263,128 +274,85 @@ $(document).ready(function(e){
 
 
 	});
-	//@#@#@#@#@#@# Second tab of "my-profile" #@#@#@#@#@#@#@//
-	$("#formgeneralInfo").validate({
-		rules: {
-			firmName:{
-				required: true
-			},
-			firmRegistration: {
-				required: true
-			},
-			firm_code: {
-				required: true
-			},
-			"sections[]": {
-			    required: true
-			 },
-			 "practice_area[]": {
- 			    required: true
- 			 },
-			 "firm_jurisdiction[]": {
- 			    required: true
- 			 }
 
+	//attorney details form tab validation and submit
+	$("#attorney_general_info").validate({
+		rules: {
+			group: {
+				required: true
+			},
+			'sections[]': {
+				required: true
+			},
+			designation: {
+				required: true
+			},
+			attorney_id: {
+				required: true
+			},
+			attorney_code: {
+				required: true
+			},
+			'jurisdictions[]': {
+				required: true
+			}
 		},
 		messages: {
-			firmName:{
-				required: "Please enter Firm Name"
+			group: {
+				required: "Please select group"
 			},
-			firmRegistration: {
-				required: "Please enter Firm Registration"
+			'sections[]': {
+				required: "Please select section"
 			},
-			firm_code: {
-				required: "Please enter Firm Code"
+			designation: {
+				required: "Please select designation"
 			},
-			"sections[]": {
-			    required: "Please select sections"
-			 },
-			 "practice_area[]": {
- 			    required: "Please select practice area"
- 			 },
-			 "firm_jurisdiction[]": {
- 			    required: "Please select firm jurisdiction"
- 			 }
+			attorney_id: {
+				required: "Please enter attorney ID"
+			},
+			attorney_code: {
+				required: "Please enter attorney code"
+			},
+			'jurisdictions[]': {
+				required: "Please select jurisdictions"
+			}
 		},
 		submitHandler:function(form) {
 			$.ajax({
 				type: "POST",
-				url: "/admin/firm/update-generalInfo",
+				url: "/admin/attorney/update_attorney_details",
 				data: {
-					firmId: $("#firmId").val(),
-					firmName: $("#firmName").val(),
-					firmRegistration: $("#firmRegistration").val(),
-					firm_code: $("#firm_code").val(),
+					group: $("#group").val(),
 					sections: $("#sections").val(),
+					designation: $("#designation").val(),
+					attorney_id: $("#attorney_id").val(), 
+					attorney_code: $("#attorney_code").val(),
+					attorney_type: $("#attorney_type").val(),
+					education: $("#education").val(),
+					bar_reg: $("#bar_reg").val(),
+					job_type: $("#job_type").val(),
+					practice_date: $("#practice_date").val(),
+					firm_join_date: $("#firm_join_date").val(),
+					jurisdictions: $("#jurisdictions").val(),
 					practice_area: $("#practice_area").val(),
-					firm_jurisdiction: $("#firm_jurisdiction").val(),
+					industry_type: $("#industry_type").val(),
+					remarks: $("#remarks").val(),
 
 				},
-				success:function(response) {
-					if(response == "2") {
-						$('#firm-tab').removeClass("disabled");
-						$("#approval-tab").addClass("active").removeClass("disabled");
-						$("#generalInfo").removeClass("active");
-						$("#approval").addClass("active");
-					}
-				}
+			    success:function(response) {
+			    	if(response == "success") {
+			    		$('#attorney-photo-tab').addClass('active').removeClass('disabled');
+			    		$('#attorney-generalInfo').removeClass('active');
+			    		$('#attorney-picture').addClass('active');
+			    	} else {
+			    		$("#alert-msg").html('<div class="alert alert-danger" id="result77">Something wrong</div>');
+			    	}
+			    }
+			});
+		}
 
-		});
 
-	}
-});
-	//@#@#@#@#@#@# Third tab of "my-profile" #@#@#@#@#@#@#@//
-	//
-	$("#approvalForm").validate({
-		rules: {
-			spName:{
-				required: true
-			},
-			spContact: {
-				required: true
-			},
-			designation_id_1: {
-				required: true
-			}
-		},
-		messages: {
-			spName:{
-				required: "Please enter single point contact name"
-			},
-			spContact: {
-				required: "Please enter single point contact role"
-			},
-			designation_id_1: {
-				required: "Please enter level 1 designation"
-			}
-		},
-		submitHandler:function(form) {
-			$.ajax({
-				type: "POST",
-				url: "/admin/firm/update-approval",
-				data: {
-					firmId: $("#firmId1").val(),
-					spName: $("#spName").val(),
-					spContact: $("#spContact").val(),
-					designation_id_1: $("#designation_id_1").val(),
-					designation_id_2: $("#designation_id_2").val(),
-					designation_id_3: $("#designation_id_3").val(),
-					designation_id_4: $("#designation_id_4").val(),
-					approval_process:$(".approval_process:checked").val()
-				},
-				success:function(response) {
-					if(response == "3") {
-						$('#firm-tab').removeClass("disabled");
-						$("#approval-tab").removeClass("disabled")
-						$("#photo-tab").addClass("active").removeClass("disabled");
-						$("#approval").removeClass("active");
-						$("#picture").addClass("active");
-					}
-				}
+	});
 
-		});
-
-	}
-});
 });
  
