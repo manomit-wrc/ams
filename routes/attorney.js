@@ -2,6 +2,36 @@ module.exports = function(app, models) {
 
 	var md5 = require('md5');
 
+	var multer  = require('multer');
+	var im = require('imagemagick');
+	var fileExt = '';
+	var fileName = '';
+	var storage = multer.diskStorage({
+	  destination: function (req, file, cb) {
+	    cb(null, 'public/profile/thumbs');
+	  },
+	  filename: function (req, file, cb) {
+	    fileExt = file.mimetype.split('/')[1];
+	    if (fileExt == 'jpeg'){ fileExt = 'jpg';}
+	    fileName = req.user.id + '-' + Date.now() + '.' + fileExt;
+	    cb(null, fileName);
+	  }
+	})
+
+	var restrictImgType = function(req, file, cb) {
+
+	    var allowedTypes = ['image/jpeg','image/gif','image/png'];
+	      if (allowedTypes.indexOf(req.file.mimetype) !== -1){
+	        // To accept the file pass `true`
+	        cb(null, true);
+	      } else {
+	        // To reject this file pass `false`
+	        cb(null, false);
+	       //cb(new Error('File type not allowed'));// How to pass an error?
+	      }
+	};
+	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
+
 	app.get('/admin/attorney',function(req, res){
 			res.render('admin/attorney/index',{layout:'dashboard'});
 	});
@@ -95,11 +125,22 @@ module.exports = function(app, models) {
 			models.jurisdiction.findAll({attributes: ['id', 'jurisdiction']}),
 			models.practicearea.findAll({attributes: ['id', 'name']}),
 			models.industrytype.findAll({attributes: ['id', 'industry']}),
+			models.state.findAll({
+				where: {
+    				country_id: '233'
+  				}
+			}),
+			models.city.findAll({
+				where: {
+    				state_id: '1'
+  				}
+			}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			//console.log(result[1][0].section_id);
 			var section_result = result[1][0].section_id.split(',');
-			res.render('admin/attorney/attorney-profile',{layout:'dashboard', user_details:result[0][0], attorney_details:result[1][0], countries:result[2], group:result[3], section:section_result, designation:result[5], attorneytype:result[6], jobtype:result[7], jurisdiction:result[8], practice_area:result[9], industry_type:result[10]});
+			var jurisdiction_result = result[1][0].jurisdiction_id.split(',');
+			var practice_area_result = result[1][0].practice_area.split(',');
+			res.render('admin/attorney/attorney-profile',{layout:'dashboard', user_details:result[0][0], attorney_details:result[1][0], countries:result[2], group:result[3], section_array:section_result.map(Number), section:result[4], designation:result[5], attorneytype:result[6], jobtype:result[7], jurisdiction:result[8], jurisdiction_array:jurisdiction_result.map(Number), practice_area_array:practice_area_result.map(Number), practice_area:result[9], industry_type:result[10], states:result[11], cities:result[12]});
 		});
 
 	});
@@ -206,5 +247,23 @@ module.exports = function(app, models) {
 	    	res.send('fail');
 	    	
 	    });
+	});
+
+
+	//upload attorney profile picture
+
+	app.post("/admin/attorney/update-profile-photo", upload.single('profile_photo'), function(req, res) {
+
+		models.admin.update({
+			avator: fileName
+		}, {where: {id: req.user.id}}).then(function(result){
+			models.attorney.update({
+				status: 1
+			}, {where: {user_id: req.user.id}}).then(function(values){
+				res.send("success");
+			});
+		}).catch(function(err){
+			res.send('fail');
+		});
 	});
 };

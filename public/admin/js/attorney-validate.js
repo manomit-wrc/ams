@@ -1,14 +1,14 @@
 $(document).ready(function(e){
 	
 
-	 $('.nav li').not('.active').addClass('disabled');
+	 $('.tab-list li').not('.active').addClass('disabled');
 /*to actually disable clicking the bootstrap tab, as noticed in comments by user3067524*/
-    $('.nav li').not('.active').find('a').removeAttr("data-toggle");
+    $('.tab-list li').not('.active').find('a').removeAttr("data-toggle");
 
     $('button').click(function(){
         /*enable next tab*/
-        $('.nav li.active').next('li').removeClass('disabled');
-        $('.nav li.active').next('li').find('a').attr("data-toggle","tab")
+        $('.tab-list li.active').next('li').removeClass('disabled');
+        $('.tab-list li.active').next('li').find('a').attr("data-toggle","tab")
     });
 
     // make only first tab enable on page loading
@@ -48,7 +48,7 @@ $(document).ready(function(e){
 
 		//to keep selected states on changing country
 		$("#attoney_state_id").trigger('change');
-		//emd
+		//end
 
 	});
 	//end
@@ -79,6 +79,7 @@ $(document).ready(function(e){
 		//to keep selected cities on changing country
 		$("#attoney_city_id").trigger('change');
 		//end
+
 
 	});
 	//end
@@ -199,6 +200,7 @@ $(document).ready(function(e){
     });
     //end
 
+    //attorney address form validate and submit
 	$("#attorney_address").validate({
 		rules: {
 			address: {
@@ -344,6 +346,7 @@ $(document).ready(function(e){
 			    		$('#attorney-photo-tab').addClass('active').removeClass('disabled');
 			    		$('#attorney-generalInfo').removeClass('active');
 			    		$('#attorney-picture').addClass('active');
+			    		$('#attorney-details-tab').removeClass('active');
 			    	} else {
 			    		$("#alert-msg").html('<div class="alert alert-danger" id="result77">Something wrong</div>');
 			    	}
@@ -352,6 +355,39 @@ $(document).ready(function(e){
 		}
 
 
+	});
+
+
+	// upload attorney profile picture
+	$("#attorney_image_form").validate({
+		rules: {
+			profile_photo: {
+				required: true,
+				extension: 'jpg|png'
+			}
+		},
+		messages: {
+			profile_photo: {
+				required: "Please upload profile image",
+				extension: 'Image type must be jpg or png'
+			}
+		},
+		submitHandler:function(form) {
+			var fd = new FormData($("#attorney_image_form").get(0));
+
+			$.ajax({
+			  url: '/admin/attorney/update-profile-photo',
+			  data: fd,
+			  processData: false,
+			  contentType: false,
+			  type: 'POST',
+			  success: function(data){
+			    if(data == "success") {
+					$("#success-msg").html('<div class="alert alert-success" id="result77">Successfully updated your profile</div>');
+				}
+			  }
+			});
+		}
 	});
 
 });

@@ -15,12 +15,14 @@
 
         <div class="col-md-12">
           <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs tab-list">
               <li class="active tab" id="attorney-address-tab"><a href="#attorney-activity" data-toggle="tab" aria-expanded="true">Address Details</a></li>
               <li class="tab" id="attorney-details-tab"><a href="#attorney-generalInfo" data-toggle="tab" aria-expanded="false">General Information</a></li>
               <li class="tab" id="attorney-photo-tab"><a href="#attorney-picture" data-toggle="tab" aria-expanded="false">Upload Photo</a></li>
             </ul>
             <div class="tab-content">
+            <div id="success-msg"></div>
+            <div id="alert-msg"></div>
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="attorney-activity">
                 <form class="form-horizontal" name="attorney_address" id="attorney_address" method="post">
@@ -62,7 +64,7 @@
                       <select class="form-control col-sm-2" id="attorney_country_id" name="attorney_country_id">
                         <option value="">Select Country</option>
                         {{#each countries}}
-                        <option value="{{this.id}}" {{#if_eq this.id ../user_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
                         {{/each}}
                       </select>
                     </div>
@@ -74,7 +76,9 @@
                     <div class="col-sm-10">
                       <select class="form-control col-sm-2" id="attoney_state_id" name="attoney_state_id">
                         <option value="">Select State</option>
-
+                        {{#each states}}
+                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.state_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                        {{/each}}
                       </select>
                     </div>
                   </div>
@@ -85,7 +89,9 @@
                     <div class="col-sm-10">
                       <select class="form-control col-sm-2" id="attoney_city_id" name="attoney_city_id">
                         <option value="">Select City</option>
-                        
+                        {{#each cities}}
+                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.city_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                        {{/each}}
                       </select>
                     </div>
                   </div>
@@ -165,7 +171,7 @@
                     <div class="col-sm-10">
                       <select name="sections[]" id="sections" multiple="multiple" class="multiselect-ui form-control">
                           {{#each section}}
-                          <option value="{{this.id}}" {{#inArray this.id section}}selected="selected"{{/inArray}}>{{this.name}}</option>
+                          <option value="{{this.id}}" {{#inArray ../section_array this.id}} selected="selected"{{/inArray}}>{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -177,7 +183,7 @@
                       <select name="designation" id="designation" class="form-control">
                           <option value="">Select Designation</option>
                           {{#each designation}}
-                          <option value="{{this.id}}">{{this.designation}}</option>
+                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.designation_id}}selected="selected"{{/if_eq}}>{{this.designation}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -188,7 +194,7 @@
                     <label for="inputName" class="col-sm-2 control-label">Attorney Code</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="attorney_code" name="attorney_code" placeholder="Attorney Code" value="{{firm.registration_no}}">
+                      <input type="text" class="form-control" id="attorney_code" name="attorney_code" placeholder="Attorney Code" value="{{attorney_details.code}}">
                     </div>
                   </div>
 
@@ -198,7 +204,7 @@
                       <select name="attorney_type" id="attorney_type" class="form-control">
                           <option value="">Select Attornry Type</option>
                           {{#each attorneytype}}
-                          <option value="{{this.id}}">{{this.attorney}}</option>
+                          <option value="{{this.id}}"{{#if_eq this.id ../attorney_details.attorney_type_id}} selected="selected" {{/if_eq}}>{{this.attorney}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -207,14 +213,14 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Education</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="education" name="education" placeholder="Education" value="{{firm.name}}">
+                      <input type="text" class="form-control" id="education" name="education" placeholder="Education" value="{{attorney_details.education}}">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Bar Registration</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="bar_reg" name="bar_reg" placeholder="Bar Registration" value="{{firm.name}}">
+                      <input type="text" class="form-control" id="bar_reg" name="bar_reg" placeholder="Bar Registration" value="{{attorney_details.bar_reg}}">
                     </div>
                   </div>
 
@@ -224,7 +230,7 @@
                       <select name="job_type" id="job_type" class="form-control">
                           <option>Select Job Type</option>
                           {{#each jobtype}}
-                          <option value="{{this.id}}">{{this.job}}</option>
+                          <option value="{{this.id}}" {{#if_eq this.id ../attorney_details.job_type_id}} selected="selected" {{/if_eq}}>{{this.job}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -233,7 +239,7 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Practice Date</label>
                     <div class="col-sm-10">
-                      <input type="text" id="practice_date" name="practice_date" value=""  placeholder="DD-MM-YYYY" class="form-control">
+                      <input type="text" id="practice_date" name="practice_date" value="{{attorney_details.practice_date}}"  placeholder="DD-MM-YYYY" class="form-control">
 
                     </div>
                   </div>
@@ -241,7 +247,7 @@
                   <div class="form-group">
                     <label for="inputName" class="col-sm-2 control-label">Firm Join Date</label>
                     <div class="col-sm-10">
-                      <input type="text" id="firm_join_date" name="firm_join_date" value=""  placeholder="DD-MM-YYYY" class="form-control">
+                      <input type="text" id="firm_join_date" name="firm_join_date" value="{{attorney_details.firm_join_date}}"  placeholder="DD-MM-YYYY" class="form-control">
                     </div>
                   </div>
 
@@ -250,7 +256,7 @@
                     <div class="col-sm-10">
                       <select name="jurisdictions[]" id="jurisdictions" multiple="multiple" class="form-control">
                           {{#each jurisdiction}}
-                          <option value="{{this.id}}">{{this.jurisdiction}}</option>
+                          <option value="{{this.id}}" {{#inArray ../jurisdiction_array this.id}} selected="selected"{{/inArray}}>{{this.jurisdiction}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -261,7 +267,7 @@
                     <div class="col-sm-10">
                       <select name="practice_area[]" id="practice_area" multiple="multiple" class="form-control">
                           {{#each practice_area}}
-                          <option value="{{this.id}}">{{this.name}}</option>
+                          <option value="{{this.id}}" {{#inArray ../practice_area_array this.id}} selected="selected" {{/inArray}}>{{this.name}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -273,7 +279,7 @@
                       <select name="industry_type" id="industry_type" class="form-control">
                           <option value="">Select Industry Type</option>
                           {{#each industry_type}}
-                          <option value="{{this.id}}">{{this.industry}}</option>
+                          <option value="{{this.id}}" {{#if_eq this.id ../attorney_details.industry_type_id}} selected="selected" {{/if_eq}}>{{this.industry}}</option>
                           {{/each}}
                       </select>
                     </div>
@@ -283,7 +289,7 @@
                     <label for="social" class="col-sm-2 control-label">Remarks</label>
 
                     <div class="col-sm-10">
-                      <textarea class="form-control" id="remarks" name="remarks" placeholder="Remarks">{{firm_details.social}}</textarea>
+                      <textarea class="form-control" id="remarks" name="remarks" placeholder="Remarks">{{user_details.remarks}}</textarea>
                     </div>
                   </div>
 
@@ -298,21 +304,19 @@
 
               <!-- /@@@@@@@@@@@@ fourth tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane" id="attorney-picture">
-                <form class="form-horizontal">
+                <form class="form-horizontal" id="attorney_image_form" name="attorney_image_form" method="POST" enctype="multipart/form-data">
                   <div style=" width: 100%; display: inline-block;">
                   <h3 class="hint">Profile Picture</h3>
-                  <div class="form-group">
+                  <div class="form-group" style="margin-left:0px;">
                       <div class="fileinput fileinput-new" data-provides="fileinput">
                           <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+                              <img src="{{image}}" alt="" class="profile-image"/>
                           </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+                          {{!-- <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div> --}}
                           <div style=" height: 60px">
                               <span class="btn default btn-file">
                                   <span class="fileinput-new"> Select image </span>
-                                  <span class="fileinput-exists"> Change </span>
                                   <input type="file" name="profile_photo" id="profile_photo" class="control-label">
-                                  <a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>
                           </div>
                       </div>
                       <div class="clearfix margin-top-10">
@@ -321,7 +325,7 @@
                       </div>
                   </div>
                   <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-10" style="margin-left:0px;">
                       <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
