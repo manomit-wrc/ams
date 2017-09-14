@@ -1,11 +1,12 @@
 $(document).ready(function(e){
-	
+	var status = $('#status').val();
+	//alert(status);
 
-	 $('.tab-list li').not('.active').addClass('disabled');
+	$('.tab-list li').not('.active').addClass('disabled');
 /*to actually disable clicking the bootstrap tab, as noticed in comments by user3067524*/
     $('.tab-list li').not('.active').find('a').removeAttr("data-toggle");
 
-    $('button').click(function(){
+    $('.attorney_submit_btn').click(function(){
         /*enable next tab*/
         $('.tab-list li.active').next('li').removeClass('disabled');
         $('.tab-list li.active').next('li').find('a').attr("data-toggle","tab")
@@ -15,8 +16,12 @@ $(document).ready(function(e){
 	$('#attorney-address-tab').removeClass('disabled');
 	$('#attorney-address-tab').attr('class', 'active');
 
-	//country is present in the first tab.If I forget to save the first tab on the next day the value(states, city) those are from on change of country will be saves as usual
+	//to keep selected the previous (table stored) states and city
 	var country_id = $("#attorney_country_id").val();
+	var state_id = $("#hid_state_id").val() ? $("#hid_state_id").val(): '1';
+	var city_id = $("#hid_city_id").val() ? $("#hid_city_id").val(): '1';
+	
+	//country is present in the first tab.If I forget to save the first tab on the next day the value(states, city) those are from on change of country will be saves as usual
 	if(country_id) {
 		setTimeout(function() {
         	$("#attorney_country_id").trigger('change');
@@ -24,6 +29,7 @@ $(document).ready(function(e){
 	}
 	//end
 
+	
 	// fetch all states of selected country in ajax (country on change)
 	$("#attorney_country_id").change(function(){
 		var country_id = $(this).val();
@@ -40,14 +46,21 @@ $(document).ready(function(e){
 		            for (var i = 0; i < response.length; i++) {
 		            	//console.log(response[i].name);
 		            	$('#attoney_state_id').append('<option value="'+response[i].id+'">'+response[i].name+'</option>');
-		            	$('#attoney_state_id option:eq(1)').attr('selected', 'selected');
+		            	
+		            	//$('#attoney_state_id option:eq(1)').attr('selected', 'selected');
 		            }
+		            $('#attoney_state_id').val(state_id);
 		          }
         	});
 		}
 
 		//to keep selected states on changing country
-		$("#attoney_state_id").trigger('change');
+		if(state_id) {
+			setTimeout(function() {
+	        	$("#attoney_state_id").trigger('change');
+	    	},10);
+		}
+		//$("#attoney_state_id").trigger('change');
 		//end
 
 	});
@@ -70,8 +83,10 @@ $(document).ready(function(e){
 		            for (var i = 0; i < response.length; i++) {
 		            	//console.log(response[i].name);
 		            	$('#attoney_city_id').append('<option value="'+response[i].id+'">'+response[i].name+'</option>');
-		            	$('#attoney_city_id option:eq(1)').attr('selected', 'selected');
+
+		            	//$('#attoney_city_id option:eq(1)').attr('selected', 'selected');
 		            }
+		            $('#attoney_city_id').val(city_id);
 		          }
         	});
 		}
@@ -264,7 +279,7 @@ $(document).ready(function(e){
 			    success:function(response) {
 			    	if(response == "success") {
 			    		$('#attorney-details-tab').addClass('active').removeClass('disabled');
-			    		$('#attorney-address-tab').removeClass('active');
+			    		//$('#attorney-address-tab').removeClass('active');
 			    		$('#attorney-activity').removeClass('active');
 			    		$('#attorney-generalInfo').addClass('active');
 			    	} else {
@@ -346,7 +361,7 @@ $(document).ready(function(e){
 			    		$('#attorney-photo-tab').addClass('active').removeClass('disabled');
 			    		$('#attorney-generalInfo').removeClass('active');
 			    		$('#attorney-picture').addClass('active');
-			    		$('#attorney-details-tab').removeClass('active');
+			    		//$('#attorney-details-tab').removeClass('active');
 			    	} else {
 			    		$("#alert-msg").html('<div class="alert alert-danger" id="result77">Something wrong</div>');
 			    	}
@@ -362,13 +377,13 @@ $(document).ready(function(e){
 	$("#attorney_image_form").validate({
 		rules: {
 			profile_photo: {
-				required: true,
+				//required: true,
 				extension: 'jpg|png'
 			}
 		},
 		messages: {
 			profile_photo: {
-				required: "Please upload profile image",
+				//required: "Please upload profile image",
 				extension: 'Image type must be jpg or png'
 			}
 		},

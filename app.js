@@ -58,6 +58,7 @@ helpers: {
     }
     ,
     eq: function (v1, v2) {
+    	
         return v1 === v2;
     },
     ne: function (v1, v2) {
@@ -79,6 +80,7 @@ helpers: {
         return v1 && v2;
     },
     or: function (v1, v2) {
+
         return v1 || v2;
 
     }
@@ -119,7 +121,8 @@ app.use(function(req, res, next){
       res.locals.image = "/profile/thumbs/"+req.user.avator;
     }
     else {
-      res.locals.image = "/user2-160x160.jpg";
+      //res.locals.image = "/user2-160x160.jpg";
+      res.locals.image = "/admin/images/2.png";
     }
     res.locals.user = req.user;                              
 
