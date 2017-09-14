@@ -39,14 +39,14 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			// console.log(result[3]);
+			
 			res.render('admin/master_contact/add',
 				{
 					layout: 'dashboard',
 					countries: result[0],
 					industry_types: result[1],
 					attornies: result[2],
-					firms: result[3]
+					firm_id: result[3][0].id
 				}
 			);
 		});
@@ -61,7 +61,9 @@ module.exports = function(app, models) {
 		} else if((company_name) && first_name == 'NULL'){
 			var type = 'O';
 		}
-		console.log(req.body);
+
+		
+		
 	models.mastercontact.create({
 		firm_id: req.body.firm_id,
 		attorney_id: req.body.attorney_id,
@@ -98,9 +100,9 @@ module.exports = function(app, models) {
 		status:1,
 	record_type: 'M'
 }).then(function(mastercontact){
-	res.redirect('/admin/master_contact/index');
+	res.redirect('/admin/master_contact');
 }).catch(function(err){
-
+	console.log(err);
 });
 
 	});
