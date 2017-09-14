@@ -32,7 +32,7 @@ module.exports = function(app, models) {
 	};
 	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
 
-	
+
 
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
@@ -360,7 +360,6 @@ app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), fun
 
 	});
 });
-
 
 function removePhoneMask (phone_no){
 // the format :(777) 777-7222
