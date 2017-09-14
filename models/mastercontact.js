@@ -40,7 +40,7 @@ module.exports = function(sequelize, DataTypes) {
 
       },
     },
-    designation:{
+    designation_id:{
       type: DataTypes.STRING,
       allowNull: false,
       validate:
@@ -241,6 +241,17 @@ module.exports = function(sequelize, DataTypes) {
     },
     remarks_notes:{
       type: DataTypes.STRING
+    },
+    remarks_notes:{
+      type: DataTypes.STRING
+    },
+    status:{
+      type:DataTypes.INTEGER,
+      defaultValue:0
+    },
+    record_type:{
+      allowNull: false,
+      type: DataTypes.ENUM('M', 'R', 'C', 'T'),
     }
   }, {
     classMethods: {

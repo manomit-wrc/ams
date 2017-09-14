@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      designation: {
+      designation_id: {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
@@ -129,6 +129,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      status:{
+        allowNull: false,
+        type: Sequelize.INTEGER(1),
+        defaultValue: 0
+      },
+      record_type:{
+          allowNull: false,
+          type: Sequelize.ENUM('M', 'R', 'C', 'T')
       }
     });
   },
