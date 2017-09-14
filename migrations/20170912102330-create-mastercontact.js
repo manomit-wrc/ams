@@ -65,6 +65,7 @@ module.exports = {
       address_line_3: {
         type: Sequelize.TEXT
       },
+<<<<<<< HEAD
       country: {
         allowNull: false,
         type: Sequelize.STRING(255)
@@ -76,6 +77,19 @@ module.exports = {
       state: {
         allowNull: false,
         type: Sequelize.STRING(255)
+=======
+      country_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER(11)
+      },
+      city_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER(11)
+      },
+      state_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER(11)
+>>>>>>> 3492dfeee50c30cf6e441c342a52b1cd956a4491
       },
       postal_code: {
         type: Sequelize.STRING(255)

@@ -134,8 +134,8 @@ module.exports = function(sequelize, DataTypes) {
     address_line_3:{
       type: DataTypes.STRING,
     },
-    country:{
-      type: DataTypes.STRING,
+    country_id:{
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate:
       { notEmpty:
@@ -146,8 +146,8 @@ module.exports = function(sequelize, DataTypes) {
 
       },
     },
-    city:{
-      type: DataTypes.STRING,
+    city_id:{
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate:
       { notEmpty:
@@ -158,8 +158,8 @@ module.exports = function(sequelize, DataTypes) {
 
       },
     },
-    state:{
-      type: DataTypes.STRING,
+    state_id:{
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate:
       { notEmpty:

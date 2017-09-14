@@ -51,12 +51,11 @@ helpers: {
       if (array.indexOf(value) !== -1) {
         return block.fn(this);
 
+	    }
+	    else {
+	      return block.inverse(this);
+	    }
     }
-    else {
-      return block.inverse(this);
-    }
-
-      }
     ,
     eq: function (v1, v2) {
         return v1 === v2;
@@ -151,6 +150,7 @@ require('./routes/budgetcode')(app, models.budgetcode, models.budgetcodetype);
 require('./routes/job-type')(app, models.jobtype);
 require('./routes/attorney-type')(app, models.attorneytype);
 require('./routes/attorney')(app,models);
+require('./routes/master-contact')(app, models);
 
 
 // catch 404 and forward to error handler

@@ -10,13 +10,8 @@ module.exports = function(sequelize, DataTypes) {
           //allowNull: false,
     },
     section_id: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           //allowNull: false,
-    },
-    designation_id: {
-          type: DataTypes.INTEGER,
-         // allowNull: false,
-          
     },
     attorneyID: {
           type: DataTypes.STRING,
@@ -51,11 +46,15 @@ module.exports = function(sequelize, DataTypes) {
           //allowNull: false,
     },
     jurisdiction_id: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           //allowNull: false,
     },
     industry_type_id: {
           type: DataTypes.INTEGER,
+          //allowNull: false,
+    },
+    practice_area: {
+          type: DataTypes.STRING,
           //allowNull: false,
     },
     firm_id:{
