@@ -93,6 +93,7 @@ module.exports = function(app, models) {
 		models.admin.belongsTo(models.country, {foreignKey: 'country_id'});
 		models.admin.belongsTo(models.state, {foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city, {foreignKey: 'city_id'});
+		models.admin.belongsTo(models.zipCode, {foreignKey: 'zipcode'});
 		models.admin.belongsTo(models.group, {foreignKey: 'group_id'});
 		models.admin.belongsTo(models.designation, {foreignKey: 'designation_id'});
 		models.attorney.belongsTo(models.section, {foreignKey: 'section_id'});
@@ -135,12 +136,18 @@ module.exports = function(app, models) {
     				state_id: '1'
   				}
 			}),
+			models.zipCode.findAll({
+				where: {
+    				city_name: 'Acmar'
+  				}
+			}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
 			var section_result = result[1][0].section_id.split(',');
 			var jurisdiction_result = result[1][0].jurisdiction_id.split(',');
 			var practice_area_result = result[1][0].practice_area.split(',');
-			res.render('admin/attorney/attorney-profile',{layout:'dashboard', user_details:result[0][0], attorney_details:result[1][0], countries:result[2], group:result[3], section_array:section_result.map(Number), section:result[4], designation:result[5], attorneytype:result[6], jobtype:result[7], jurisdiction:result[8], jurisdiction_array:jurisdiction_result.map(Number), practice_area_array:practice_area_result.map(Number), practice_area:result[9], industry_type:result[10], states:result[11], cities:result[12]});
+
+			res.render('admin/attorney/attorney-profile',{layout:'dashboard', user_details:result[0][0], attorney_details:result[1][0], countries:result[2], group:result[3], section_array:section_result.map(Number), section:result[4], designation:result[5], attorneytype:result[6], jobtype:result[7], jurisdiction:result[8], jurisdiction_array:jurisdiction_result.map(Number), practice_area_array:practice_area_result.map(Number), practice_area:result[9], industry_type:result[10], states:result[11], cities:result[12], zipcode:result[13]});
 		});
 
 	});
@@ -188,13 +195,13 @@ module.exports = function(app, models) {
     		address: req.body.address,
 			address_2: req.body.address_2,
 			address_3: req.body.address_3,
-			phone_no: req.body.phone_no,
+			phone_no: removePhoneMask(req.body.phone_no) ,
 			country_id: req.body.attorney_country_id,
 			state_id: req.body.attoney_state_id,
 			city_id: req.body.attoney_city_id,
 			zipcode: req.body.attorney_zip_code,
 			fax: req.body.fax,
-			mobile: req.body.mobile,
+			mobile: removePhoneMask(req.body.mobile),
 			website: req.body.website,
 			social: req.body.social,
 	    },{ where: { 
@@ -266,4 +273,13 @@ module.exports = function(app, models) {
 			res.send('fail');
 		});
 	});
+
+	function removePhoneMask (phone_no){
+		var phone_no = phone_no.replace("-","");
+		phone_no = phone_no.replace(")","");
+		phone_no = phone_no.replace("(","");
+		phone_no = phone_no.replace(" ","");
+		return phone_no;
+
+	}
 };

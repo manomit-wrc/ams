@@ -26,6 +26,9 @@
               <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
               <div class="tab-pane active" id="attorney-activity">
                 <form class="form-horizontal" name="attorney_address" id="attorney_address" method="post">
+                  <input type="hidden" name="hid_state_id" id="hid_state_id" value="{{user_details.state_id}}">
+                  <input type="hidden" name="hid_city_id" id="hid_city_id" value="{{user_details.city_id}}">
+                  <input type="hidden" name="status" id="status" value="{{attorney_details.status}}">
                   <div class="form-group">
                     <label for="address" class="col-sm-2 control-label">Address Line 1</label>
 
@@ -53,7 +56,7 @@
                     <label for="phone_no" class="col-sm-2 control-label">Phone No</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="phone_no" name="phone_no" placeholder="Phone" value="{{user_details.phone_no}}">
+                      <input type="text" class="form-control number_validator" id="phone_no" name="phone_no" placeholder="Phone" value="{{user_details.phone_no}}">
                     </div>
                   </div>
 
@@ -64,7 +67,8 @@
                       <select class="form-control col-sm-2" id="attorney_country_id" name="attorney_country_id">
                         <option value="">Select Country</option>
                         {{#each countries}}
-                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                          <option value="{{this.id}}" {{#if (or (eq this.id ../user_details.country_id)(eq this.id 233))}} selected = "selected" {{/if}}
+                           >{{this.name}}</option>
                         {{/each}}
                       </select>
                     </div>
@@ -77,7 +81,8 @@
                       <select class="form-control col-sm-2" id="attoney_state_id" name="attoney_state_id">
                         <option value="">Select State</option>
                         {{#each states}}
-                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.state_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                          <option value="{{this.id}}" 
+                          >{{this.name}}</option>
                         {{/each}}
                       </select>
                     </div>
@@ -90,7 +95,7 @@
                       <select class="form-control col-sm-2" id="attoney_city_id" name="attoney_city_id">
                         <option value="">Select City</option>
                         {{#each cities}}
-                          <option value="{{this.id}}" {{#if_eq this.id ../user_details.city_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                          <option value="{{this.id}}">{{this.name}}</option>
                         {{/each}}
                       </select>
                     </div>
@@ -116,7 +121,7 @@
                     <label for="mobile" class="col-sm-2 control-label">Mobile</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile" value="{{user_details.mobile}}">
+                      <input type="text" class="form-control number_validator" id="mobile" name="mobile" placeholder="Mobile" value="{{user_details.mobile}}">
                     </div>
                   </div>
 
@@ -124,7 +129,7 @@
                     <label for="website" class="col-sm-2 control-label">Website URL</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="website" name="website" placeholder="Website Url" value="{{user_details.website}}">
+                      <input type="text" class="form-control url_selector" id="website" name="website" placeholder="Website Url" value="{{user_details.website}}">
                     </div>
                   </div>
 
@@ -132,13 +137,13 @@
                     <label for="social" class="col-sm-2 control-label">Social URL</label>
 
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="social" name="social" placeholder="Social Url" value="{{user_details.social}}">
+                      <input type="text" class="form-control url_selector" id="social" name="social" placeholder="Social Url" value="{{user_details.social}}">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-danger attorney_submit_btn">Submit</button>
                     </div>
                   </div>
                 </form>
@@ -296,7 +301,7 @@
                   
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-danger attorney_submit_btn">Submit</button>
                     </div>
                   </div>
                 </form>
@@ -326,7 +331,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10" style="margin-left:0px;">
-                      <button type="submit" class="btn btn-danger">Submit</button>
+                      <button type="submit" class="btn btn-danger attorney_submit_btn">Submit</button>
                     </div>
                   </div>
                 </form>

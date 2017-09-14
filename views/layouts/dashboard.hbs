@@ -607,11 +607,11 @@ $("#firm_join_date").datepicker({
 
 	});
 
-$('.url_selector').keyup(function(){
+    $('.url_selector').keyup(function(){
         if (
             ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
             {
-            $(this).val('http://' + $(this).val());
+            $(this).val('http://');
 					}
     });
 		$(".number_validator").inputmask("mask", {
@@ -623,5 +623,5 @@ $('.url_selector').keyup(function(){
 
 <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - END $#$#$#$#$#$#$#$#-->
 
-  	</body>
+  </body>
 </html>
