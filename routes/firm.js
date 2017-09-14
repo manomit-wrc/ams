@@ -32,7 +32,7 @@ module.exports = function(app, models) {
 	};
 	var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
 
-	
+
 
 	app.get('/admin/firm',function(req, res){
 		models.admin.hasMany(models.firm,{foreignKey: 'user_id'});
@@ -158,7 +158,7 @@ module.exports = function(app, models) {
 			   var section_array = JSON.parse("[" + firm_table_array_details[0]['section'] + "]");
 			   var practice_area_array = JSON.parse("[" + firm_table_array_details[0]['practice_area'] + "]");
 			   var jurisdiction_array = JSON.parse("[" + firm_table_array_details[0]['jurisdiction'] + "]");
-			   
+
 
 			   // for(var k in result[1][0]['firms']){
 			   //  firm_table_array_details.push(k, result[1][0][k]);
@@ -361,7 +361,6 @@ app.post("/admin/firm/update-profile-photo", upload.single('profile_photo'), fun
 
 	});
 });
-
 
 function removePhoneMask (phone_no){
 // the format :(777) 777-7222
