@@ -116,6 +116,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
 
     },
+    company_name:{
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate:
+      { notEmpty:
+        {
+            args: true,
+            msg: 'Company name cannot be null'
+        }
+
+      },
+
+    },
     address_line_1:{
       type: DataTypes.STRING,
       allowNull: false,
