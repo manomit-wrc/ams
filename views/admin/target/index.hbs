@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    {{#each master_contacts}}
+                    {{#each targets}}
                      <tr>
                       {{#if_eq this.record_type 'M'}}
                         <td>Master Contact</td>
@@ -54,11 +54,12 @@
                         <td>Target</td>
                      {{/if_eq}}
                       <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
-                      <td>{{this.company_name}}</td>
+                      <td>{{this.email}}</td>
+                      <td>{{this.company_name}}</td>                      
+                      <td>{{this.mobile_cell}}</td>
                       <td>{{this.phone}}</td>
-                      <td>{{this.mobile}}</td>
                       <td>{{this.association_status}}</td>
-                      <td><a href="/admin/master-contact/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/master-contact/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                      <td><a href="/admin/target/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/target/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                      </tr>
                     {{/each}}
                 </tbody>

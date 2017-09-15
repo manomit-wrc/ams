@@ -27,7 +27,7 @@
         <div class="col-md-6">
 
           <div class="form-group required">
-            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm_id}}">
+            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
             <label>First Name</label>
             <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter First Name">
           </div>
@@ -126,7 +126,7 @@
         <div class="col-md-6">
           <div class="form-group required">
             <label>Email</label>
-            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email">
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email">
           </div>
           <div class="form-group">
             <label>Phone</label>
@@ -146,7 +146,7 @@
           </div>
           <div class="form-group">
             <label>Social Url</label>
-            <input type="text" name="social_media_url" id="social_media_url" class="form-control" placeholder="Enter Social Url">
+            <input type="text" name="social_media_url" id="social_media_url" class="form-control url_selector" placeholder="Enter Social Url">
           </div>
           <div class="form-group required">
             <label>Address Line 1</label>
@@ -220,6 +220,20 @@ $(document).ready(function(e){
   $(".input-control").bind("copy paste", function(e){
     e.preventDefault();
   });
+
+  // to prevent alphabet character
+  jQuery('#phone').keyup(function() {
+      this.value = this.value.replace(/[^0-9\+]/g, '');
+  });
+
+  jQuery('#mobile_cell').keyup(function() {
+      this.value = this.value.replace(/[^0-9\+]/g, '');
+  });
+
+  jQuery('#fax').keyup(function() {
+      this.value = this.value.replace(/[^0-9\+]/g, '');
+  });
+  //end
 
   $("#dob").datepicker({
         'format': 'dd-mm-yyyy',

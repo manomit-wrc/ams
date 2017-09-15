@@ -1,6 +1,12 @@
 module.exports = function(app, models) {
 	app.get('/admin/target', function(req, res){
-			res.render('admin/target/index',{layout:'dashboard', master_contacts:'mastercontact'});
+		models.mastercontact.findAll({
+			where: {
+				record_type: 'T'
+			}
+		}).then(function(targets){
+			res.render('admin/target/index',{layout:'dashboard', targets:targets,succ_add_msg:req.flash('succ_add_msg')[0]});
+		});
 	});
 
 	app.get('/admin/target/add', function(req, res){
@@ -22,9 +28,8 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-
-			res.render('admin/target/add',{layout:'dashboard',succ_add_msg:req.flash('succ_add_msg')[0], countries:result[0], industry_types:result[1], designations:result[2], attorney:result[3], firm:result[4]});
-			
+			//console.log(result[4][0]);
+			res.render('admin/target/add',{layout:'dashboard', countries:result[0], industry_types:result[1], designations:result[2], attorney:result[3], firm:result[4][0]});			
 		});
 	});
 
@@ -85,5 +90,29 @@ module.exports = function(app, models) {
             });
 		});
 
+	});
+
+	app.get('/admin/target/delete/:id', function(req, res){
+		models.mastercontact.destroy({
+		    where: {
+		       id:req.params['id']
+		    }
+		}).then(function(response){
+			req.flash('succ_add_msg', 'Target deleted successfully');
+			res.redirect('/admin/target');
+		});
+	});
+
+	app.get('/admin/target/edit/:id', function(req, res){
+		// models dependancy
+		models.mastercontact.belongsTo(models.firm, {foreignKey: 'firm_id'});
+		models.mastercontact.belongsTo(models.attorney, {foreignKey: 'attorney_id'});
+		models.mastercontact.belongsTo(models.designation, {foreignKey: 'designation_id'});
+		models.mastercontact.belongsTo(models.country, {foreignKey: 'country_id'});
+		models.mastercontact.belongsTo(models.city, {foreignKey: 'city_id'});
+		models.mastercontact.belongsTo(models.state, {foreignKey: 'state_id'});
+		models.mastercontact.belongsTo(models.zipCode, {foreignKey: 'postal_code'});
+		models.mastercontact.belongsTo(models.industrytype, {foreignKey: 'industry_type'});
+		//end
 	});
 };

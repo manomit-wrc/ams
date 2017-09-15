@@ -46,7 +46,7 @@ module.exports = function(app, models) {
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
 
-			res.render('admin/master_contact/add',
+			res.render('admin/master-contact/add',
 				{
 					layout: 'dashboard',
 					countries: result[0],
