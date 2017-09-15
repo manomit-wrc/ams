@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      mastercontact_id: {
-        type: Sequelize.INTEGER
-      },
       firm_id: {
         type: Sequelize.INTEGER
       },
