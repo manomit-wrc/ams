@@ -64,8 +64,6 @@ module.exports = function(app, models) {
 			var type = 'O';
 		}
 
-
-
 	models.mastercontact.create({
 		firm_id: req.body.firm_id,
 		attorney_id: req.body.attorney_id,

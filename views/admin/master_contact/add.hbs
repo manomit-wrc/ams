@@ -18,6 +18,10 @@
     <!-- /.box-header -->
     <div class="box-body">
       <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
         <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/master-contact/add">
         <div class="col-md-6">
 
@@ -268,7 +272,6 @@ $(document).ready(function(e){
       zipcode: {
         required:  true
       }
-
 
     },
     messages: {

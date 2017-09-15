@@ -28,7 +28,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Code</th>
+                  <th>Record Type</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Company Name</th>
@@ -40,7 +40,18 @@
                 <tbody>
                     {{#each master_contacts}}
                      <tr>
-                      <td></td>
+                      {{#if_eq this.record_type "M"}}
+                        <td>Master Contact</td>
+                      {{/if_eq}}
+                      {{#if_eq this.record_type "R"}}
+                        <td>Referral</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type "C"}}
+                        <td>Client</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type "T"}}
+                        <td>Target</td>
+                     {{/if_eq}}
                       <td></td>
                       <td></td>
                       <td></td>
