@@ -1,11 +1,11 @@
 <section class="content-header">
       <h1>
-        Master Contact List
+        Client List
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Master Contact List</li>
+        <li class="active">Client List</li>
       </ol>
     </section>
 
@@ -18,7 +18,7 @@
             <div class="box-header">
             </div>
             <!-- /.box-header -->
-            <div class="topbtn"><a href="/admin/master-contact/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
+            <div class="topbtn"><a href="/admin/client/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
             <div class="box-body">
               {{#if succ_add_msg}}
                 <div class="alert alert-success" id="result77">
@@ -32,8 +32,7 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Company Name</th>
-                  <th>Mobile</th>
-                  <th>Phone</th>
+                  <th>Date Of Birth</th>
                   <th>Status</th>
                   <th>Action</th>
                 </tr>
@@ -41,23 +40,23 @@
                 <tbody>
                     {{#each master_contacts}}
                      <tr>
-                      {{#if_eq this.record_type 'M'}}
+                      {{#if_eq this.record_type "M"}}
                         <td>Master Contact</td>
                       {{/if_eq}}
-                      {{#if_eq this.record_type 'R'}}
+                      {{#if_eq this.record_type "R"}}
                         <td>Referral</td>
                      {{/if_eq}}
-                     {{#if_eq this.record_type 'C'}}
+                     {{#if_eq this.record_type "C"}}
                         <td>Client</td>
                      {{/if_eq}}
-                     {{#if_eq this.record_type 'T'}}
+                     {{#if_eq this.record_type "T"}}
                         <td>Target</td>
                      {{/if_eq}}
-                      <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
-                      <td>{{this.company_name}}</td>
-                      <td>{{this.phone}}</td>
-                      <td>{{this.mobile}}</td>
-                      <td>{{this.association_status}}</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
                       <td><a href="/admin/master-contact/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/master-contact/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                     </tr>
                      {{/each}}

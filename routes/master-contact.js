@@ -25,6 +25,7 @@ module.exports = function(app, models) {
 		Promise.all([
 			models.country.findAll(),
 			models.industrytype.findAll({attributes: ['id', 'industry']}),
+			models.designation.findAll({attributes: ['id', 'designation']}),
 			models.admin.findAll({
 				where: {
 					role_code: 'ATTR'
@@ -39,14 +40,15 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			
+
 			res.render('admin/master_contact/add',
 				{
 					layout: 'dashboard',
 					countries: result[0],
 					industry_types: result[1],
-					attornies: result[2],
-					firm_id: result[3][0].id
+					attornies: result[3],
+					designation: result[2],
+					firm_id: result[4][0].id
 				}
 			);
 		});
@@ -62,13 +64,11 @@ module.exports = function(app, models) {
 			var type = 'O';
 		}
 
-		
-		
 	models.mastercontact.create({
 		firm_id: req.body.firm_id,
 		attorney_id: req.body.attorney_id,
 		code: req.body.code,
-		designation: req.body.designation,
+		designation_id: req.body.designation_id,
 		first_name: req.body.first_name,
 		last_name: req.body.last_name,
 		type: type,

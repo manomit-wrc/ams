@@ -48,7 +48,6 @@ module.exports = {
         type: Sequelize.STRING(50)
       },
       social_security_no: {
-        allowNull: false,
         type: Sequelize.INTEGER(10)
       },
       company_name: {
