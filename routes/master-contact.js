@@ -115,4 +115,38 @@ module.exports = function(app, models) {
 			});
 
 	});
+	app.get('/admin/master-contact/edit/:id', function(req, res){
+		models.mastercontact.findById(req.params['id']).then(function(mastercontact){
+		Promise.all([
+			models.country.findAll(),
+			models.industrytype.findAll({attributes: ['id', 'industry']}),
+			models.designation.findAll({attributes: ['id', 'designation']}),
+			models.admin.findAll({
+				where: {
+					role_code: 'ATTR'
+				},
+				attributes: ['id', 'first_name','last_name']
+			}),
+			models.firm.findAll({
+				where:{
+					user_id: req.user.id
+				},
+				attributes : ['id', 'name']
+			})
+		]).then(function(mastercontact){
+			var result = JSON.parse(JSON.stringify(mastercontact));
+console.log(mastercontact)
+			res.render('admin/master-contact/edit',
+				{
+					layout: 'dashboard',
+					countries: result[0],
+					industry_types: result[1],
+					attornies: result[3],
+					designation: result[2],
+					firm_id: result[4][0].id
+				}
+			);
+		});
+});
+	});
 };
