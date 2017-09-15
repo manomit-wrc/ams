@@ -1,0 +1,75 @@
+<section class="content-header">
+      <h1>
+        Target List
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+
+        <li class="active">Target List</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+            </div>
+            <!-- /.box-header -->
+            <div class="topbtn"><a href="/admin/target/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
+            <div class="box-body">
+              {{#if succ_add_msg}}
+                <div class="alert alert-success" id="result77">
+                {{succ_add_msg}}
+                </div>
+              {{/if}}
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Record Type</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Company Name</th>
+                  <th>Mobile</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each master_contacts}}
+                     <tr>
+                      {{#if_eq this.record_type 'M'}}
+                        <td>Master Contact</td>
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'R'}}
+                        <td>Referral</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type 'C'}}
+                        <td>Client</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type 'T'}}
+                        <td>Target</td>
+                     {{/if_eq}}
+                      <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
+                      <td>{{this.company_name}}</td>
+                      <td>{{this.phone}}</td>
+                      <td>{{this.mobile}}</td>
+                      <td>{{this.association_status}}</td>
+                      <td><a href="/admin/master-contact/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/master-contact/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                     </tr>
+                    {{/each}}
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
