@@ -112,7 +112,6 @@ module.exports = function(app, models) {
 
 	});
 	app.get('/admin/master-contact/edit/:id', function(req, res){
-		models.mastercontact.findById(req.params['id']).then(function(mastercontact){
 		Promise.all([
 			models.country.findAll(),
 			models.industrytype.findAll({attributes: ['id', 'industry']}),
@@ -136,19 +135,18 @@ module.exports = function(app, models) {
 			})
 		]).then(function(mastercontact){
 			var result = JSON.parse(JSON.stringify(mastercontact));
-			// console.log(result[5]);
+			
 			res.render('admin/master-contact/edit',
 				{
 					layout: 'dashboard',
-					master_contacts: result[5],
+					master_contacts: result[5][0],
 					industry_types: result[1],
 					country: result[0],
 					designation: result[2],
-					firm_id: result[1][0].id,
+					firm_id: result[4][0].id,
 					designation: result[3],
 				}
 			);
 		});
-});
 	});
 };

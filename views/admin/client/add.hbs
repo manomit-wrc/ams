@@ -23,7 +23,11 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/client/add">
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/client/add">
+        <div class="col-md-12">
+          <input type="radio" name="type" class="client-type" checked="checked" value="I">Individual Client
+          <input type="radio" name="type" class="client-type" value="O">Organization
+        </div>
         <div class="col-md-6">
 
           <div class="form-group required">
@@ -34,6 +38,10 @@
           <div class="form-group required">
             <label>Last Name</label>
             <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter Last Name">
+          </div>
+          <div class="form-group required">
+            <label>Company</label>
+            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name">
           </div>
           <div class="form-group required">
             <label>Code</label>
@@ -62,13 +70,14 @@
             </select>
           </div>
           <div class="form-group required">
-            <label>Contact Status</label>
-            <select class="form-control" style="width: 100%;" id="association_status" name="association_status">
-              <option value="">Select Any</option>
-              <option value="NEW TARGET">NEW TARGET</option>
-              <option value="CONVERTED">CONVERTED TO CLIENT</option>
-              <option value="TS-INTERIM">INTERIM - REVIEW IN-PROGRESS</option>
-            </select>
+            <input type="radio" name="tags" class="client-tags" checked="checked" value="N">New
+          <input type="radio" name="tags" class="client-tags" value="E">Existing
+          </div>
+          <div class="form-group required">
+            <input type="text" name="tag_id" id="tag_id" class="form-control">
+          </div>
+          <div class="form-group required">
+            <input type="text" name="existing_tag_id" id="existing_tag_id" class="form-control">
           </div>
           <div class="form-group required">
             <label>Industry Type</label>
@@ -92,10 +101,7 @@
             <label>Social Security No</label>
             <input type="text" name="social_security_no" id="social_security_no" class="form-control" placeholder="Enter Social Security No">
           </div>
-          <div class="form-group required">
-            <label>Master Contact Company</label>
-            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name">
-          </div>
+          
           <div class="form-group">
             <label>Twitter Url</label>
             <input type="text" name="twitter" id="twitter" class="form-control" placeholder="Enter Twitter Url">
@@ -211,7 +217,35 @@
 </section>
 <script type="text/javascript">
 $(document).ready(function(e){
+  var type_value = $(".client-type:checked").val();
+  var tags_value = $(".client-tags").val();
+  if(type_value == "I") {
+    $("#company_name").closest("div").show();
+    $("#first_name").closest("div").show();
+    $("#last_name").closest("div").show();
+    $("#designation_id").closest("div").show();
+    $("#dob").closest("div").show();
+    $("#gender").closest("div").show();
+    $("#association_status").closest("div").show();
+  }
+  else {
+    $("#company_name").closest("div").hide();
+    $("#first_name").closest("div").hide();
+    $("#last_name").closest("div").hide();
+    $("#designation_id").closest("div").hide();
+    $("#dob").closest("div").hide();
+    $("#gender").closest("div").hide();
+    $("#association_status").closest("div").hide();
+  }
 
+  if(tags_value == "N") {
+    $("#tag_id").show();
+    $("#existing_tag_id").hide();
+  }
+  else {
+    $("#tag_id").hide();
+    $("#existing_tag_id").show();
+  }
   $(".input-control").on("keydown input", function(e) {
     if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
         e.preventDefault();
@@ -220,7 +254,40 @@ $(document).ready(function(e){
   $(".input-control").bind("copy paste", function(e){
     e.preventDefault();
   });
-  $("#frmMasterContact").validate({
+
+  $(".client-type").click(function(e){
+    if($(this).val() == "I") {
+
+      $("#first_name").closest("div").show();
+      $("#last_name").closest("div").show();
+      $("#designation_id").closest("div").show();
+      $("#dob").closest("div").show();
+      $("#gender").closest("div").show();
+      $("#association_status").closest("div").show();
+    }
+    else {
+      
+      $("#first_name").closest("div").hide();
+      $("#last_name").closest("div").hide();
+      $("#designation_id").closest("div").hide();
+      $("#dob").closest("div").hide();
+      $("#gender").closest("div").hide();
+      $("#association_status").closest("div").hide();
+    }
+  });
+  $(".client-tags").click(function(){
+    if($(this).val() == "N")
+    {
+      $("#tag_id").show();
+      $("#existing_tag_id").hide();
+    }
+    else {
+      $("#tag_id").hide();
+      $("#existing_tag_id").show();
+    }
+  });
+
+  $("#frmClient").validate({
     rules: {
       first_name: {
         required: true

@@ -116,6 +116,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
 
     },
+
     company_name:{
       type: DataTypes.TEXT,
       allowNull: false,
@@ -265,6 +266,9 @@ module.exports = function(sequelize, DataTypes) {
     record_type:{
       allowNull: false,
       type: DataTypes.ENUM('M', 'R', 'C', 'T'),
+    },
+    tag_id:{
+      type: DataTypes.STRING
     }
   }, {
     classMethods: {
