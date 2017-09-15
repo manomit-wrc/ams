@@ -1,0 +1,334 @@
+<section class="content-header">
+  <h1>
+    Master Contact
+    <small>Edit</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/master-contact">Master Contact</a></li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/master-contact/edit/{{master_contacts.id}}">
+        <div class="col-md-6">
+
+          <div class="form-group required">
+            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm_id}}">
+            <label>First Name</label>
+            <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter First Name">
+          </div>
+          <div class="form-group required">
+            <label>Last Name</label>
+            <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter Last Name">
+          </div>
+          <div class="form-group required">
+            <label>Code</label>
+            <input type="text" name="code" id="code" class="form-control" placeholder="Enter Master Contact Code">
+          </div>
+          <div class="form-group required">
+            <label>Designation</label>
+            <select class="form-control" style="width: 100%;" id="designation_id" name="designation_id">
+              <option value="">Select Any</option>
+              {{#each designation}}
+              <option value="{{this.id}}">{{this.designation}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Date Of Birth</label>
+            <input type="text" name="dob" id="dob" class="form-control" placeholder="Enter Date Of Birth">
+          </div>
+          <div class="form-group required">
+            <label>Gender</label>
+            <select class="form-control" style="width: 100%;" id="gender" name="gender">
+              <option value="">Select Any</option>
+              <option value="MALE">MALE</option>
+              <option value="FEMALE">FEMALE</option>
+              <option value="OTHERS">OTHERS</option>
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Contact Status</label>
+            <select class="form-control" style="width: 100%;" id="association_status" name="association_status">
+              <option value="">Select Any</option>
+              <option value="NEW TARGET">NEW TARGET</option>
+              <option value="CONVERTED">CONVERTED TO CLIENT</option>
+              <option value="TS-INTERIM">INTERIM - REVIEW IN-PROGRESS</option>
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Industry Type</label>
+            <select class="form-control" style="width: 100%;" id="industry_type" name="industry_type">
+              <option value="">Select Any</option>
+              {{#each industry_types}}
+              <option value="{{this.id}}">{{this.industry}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Attorney</label>
+            <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
+              <option value="">Select Any</option>
+              {{#each attornies}}
+              <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Social Security No</label>
+            <input type="text" name="social_security_no" id="social_security_no" class="form-control" placeholder="Enter Social Security No">
+          </div>
+          <div class="form-group required">
+            <label>Master Contact Company</label>
+            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name">
+          </div>
+          <div class="form-group">
+            <label>Twitter Url</label>
+            <input type="text" name="twitter" id="twitter" class="form-control" placeholder="Enter Twitter Url">
+          </div>
+          <div class="form-group">
+            <label>Linkedin Url</label>
+            <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="Enter Linkedin Url">
+          </div>
+          <div class="form-group">
+            <label>G+ Url</label>
+            <input type="text" name="google" id="google" class="form-control" placeholder="Enter Google Plus Url">
+          </div>
+          <div class="form-group">
+            <label>Youtube Url</label>
+            <input type="text" name="youtube" id="youtube" class="form-control" placeholder="Enter Youtube Url">
+          </div>
+          <div class="form-group">
+            <label>IM</label>
+            <input type="text" name="im" id="im" class="form-control" placeholder="Enter IM">
+          </div>
+          <div class="form-group">
+            <label>Remarks</label>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group required">
+            <label>Email</label>
+            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone No">
+          </div>
+          <div class="form-group">
+            <label>Fax</label>
+            <input type="text" name="fax" id="fax" class="form-control" placeholder="Enter Fax">
+          </div>
+          <div class="form-group">
+            <label>Mobile</label>
+            <input type="text" name="mobile_cell" id="mobile_cell" class="form-control" placeholder="Enter Mobile">
+          </div>
+          <div class="form-group">
+            <label>Website Url</label>
+            <input type="text" name="website_url" id="website_url" class="form-control" placeholder="Enter Website Url">
+          </div>
+          <div class="form-group">
+            <label>Social Url</label>
+            <input type="text" name="social_media_url" id="social_media_url" class="form-control" placeholder="Enter Social Url">
+          </div>
+          <div class="form-group required">
+            <label>Address Line 1</label>
+            <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Enter Address Line 1">
+          </div>
+          <div class="form-group">
+            <label>Address Line 2</label>
+            <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Enter Address Line 2">
+          </div>
+          <div class="form-group">
+            <label>Address Line 3</label>
+            <input type="text" name="address_line_3" id="address_line_3" class="form-control" placeholder="Enter Address Line 3">
+          </div>
+          <div class="form-group required">
+            <label>Country</label>
+            <select class="form-control" style="width: 100%;" id="country_id" name="country_id">
+              <option value="">Select Any</option>
+              {{#each countries}}
+              <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>State</label>
+            <select class="form-control" style="width: 100%;" id="state_id" name="state_id">
+              <option value="">Select Any</option>
+
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>City</label>
+            <select class="form-control" style="width: 100%;" id="city_id" name="city_id">
+              <option value="">Select Any</option>
+
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Postal Code</label>
+            <select class="form-control" style="width: 100%;" id="zipcode" name="zipcode">
+              <option value="">Select Any</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+  $("#frmMasterContact").validate({
+    rules: {
+      first_name: {
+        required: true
+      },
+      last_name: {
+        required:  true
+      },
+      code: {
+        required:  true
+      },
+      designation_id: {
+        required:  true
+      },
+      dob: {
+        required:  true
+      },
+      gender: {
+        required:  true
+      },
+      association_status: {
+        required:  true
+      },
+      industry_type: {
+        required:  true
+      },
+      attorney_id: {
+        required:  true
+      },
+      company_name: {
+        required:  true
+      },
+      email: {
+        required:  true
+      },
+      mobile_cell: {
+        required:  true
+      },
+      address_line_1: {
+        required:  true
+      },
+      country_id: {
+        required:  true
+      },
+      state_id: {
+        required:  true
+      },
+      city_id: {
+        required:  true
+      },
+      zipcode: {
+        required:  true
+      }
+
+    },
+    messages: {
+      first_name: {
+        required: "Please enter first name"
+      },
+      last_name: {
+        required:  "Please enter last name"
+      },
+      code: {
+        required:  "Please enter code"
+      },
+      designation_id: {
+        required:  "Please select designation"
+      },
+      dob: {
+        required:  "Please enter date of birth"
+      },
+      gender: {
+        required:  "Please select gender"
+      },
+      association_status: {
+        required:  "Please enter select association status"
+      },
+      industry_type: {
+        required:  "Please select industry type"
+      },
+      attorney_id: {
+        required:  "Please select an attorney"
+      },
+      company_name: {
+        required:  "Please enter company name"
+      },
+      email: {
+        required:  "Please enter email"
+      },
+      mobile_cell: {
+        required:  "Please enter mobile number"
+      },
+      address_line_1: {
+        required:  "Please enter address line 1"
+      },
+      country_id: {
+        required:  "Please select country"
+      },
+      state_id: {
+        required:  "Please select state"
+      },
+      city_id: {
+        required:  "Please select city"
+      },
+      zipcode: {
+        required:  "Please select zipcode"
+      }
+    }
+  });
+
+});
+</script>
