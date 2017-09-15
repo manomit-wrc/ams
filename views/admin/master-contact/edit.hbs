@@ -23,16 +23,15 @@
         {{error_message}}
         </div>
         {{/if}}
-
+        {{master_contacts}}.devosmita
         <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/master-contact/edit/{{master_contacts.id}}">
         <div class="col-md-6">
-
           <div class="form-group required">
             <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm_id}}">
             <label>First Name</label>
             <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter First Name" value="{{master_contacts.first_name}}">
           </div>
-          {{master_contacts.id}}.devosmita
+
           <div class="form-group required">
             <label>Last Name</label>
             <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter Last Name" value="{{master_contacts.last_name}}">

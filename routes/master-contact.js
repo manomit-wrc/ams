@@ -116,7 +116,7 @@ module.exports = function(app, models) {
 
 	});
 	app.get('/admin/master-contact/edit/:id', function(req, res){
-		models.mastercontact.findById(req.params['id']).then(function(mastercontact){
+		// models.mastercontact.findById(req.params['id']).then(function(mastercontact){
 		Promise.all([
 			models.country.findAll(),
 			models.industrytype.findAll({attributes: ['id', 'industry']}),
@@ -148,11 +148,11 @@ module.exports = function(app, models) {
 					industry_types: result[1],
 					country: result[0],
 					designation: result[2],
-					firm_id: result[1][0].id,
+					firm_id: result[4][0].id,
 					designation: result[3],
 				}
 			);
 		});
-});
+// });
 	});
 };
