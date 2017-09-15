@@ -1,11 +1,11 @@
 <section class="content-header">
       <h1>
-        Master Contact List
+        Client List
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Master Contact List</li>
+        <li class="active">Client List</li>
       </ol>
     </section>
 
@@ -18,7 +18,7 @@
             <div class="box-header">
             </div>
             <!-- /.box-header -->
-            <div class="topbtn"><a href="/admin/master-contact/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
+            <div class="topbtn"><a href="/admin/client/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
             <div class="box-body">
               {{#if succ_add_msg}}
                 <div class="alert alert-success" id="result77">
@@ -57,7 +57,7 @@
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td><a href="/admin/client/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/client/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                      <td><a href="/admin/master-contact/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/master-contact/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                     </tr>
                      {{/each}}
                 </tbody>
