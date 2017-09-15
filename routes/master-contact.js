@@ -116,7 +116,6 @@ module.exports = function(app, models) {
 
 	});
 	app.get('/admin/master-contact/edit/:id', function(req, res){
-		// models.mastercontact.findById(req.params['id']).then(function(mastercontact){
 		Promise.all([
 			models.country.findAll(),
 			models.industrytype.findAll({attributes: ['id', 'industry']}),
@@ -153,6 +152,5 @@ module.exports = function(app, models) {
 				}
 			);
 		});
-// });
 	});
 };
