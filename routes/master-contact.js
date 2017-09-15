@@ -17,7 +17,7 @@ module.exports = function(app, models) {
 			include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
 		}).then(function(mastercontact){
 			var result = JSON.parse(JSON.stringify(mastercontact));
-			// console.log(result[0]);
+			console.log(result[0]);
 			res.render('admin/master-contact/index',
 			{
 				layout:'dashboard',

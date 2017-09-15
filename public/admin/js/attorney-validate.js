@@ -1,20 +1,28 @@
 $(document).ready(function(e){
 	var status = $('#status').val();
 	//alert(status);
+	if(status == 1) {
+		$('#attorney-address-tab').addClass('active');
+		$('.tab-list li').removeClass('disabled');
+		$("#attorney-activity").css('cursor','pointer','important');
+		$("#attorney-generalInfo").css('cursor','pointer','important');
+		$("#attorney-picture").css('cursor','pointer','important');
+	} else {
 
-	$('.tab-list li').not('.active').addClass('disabled');
-/*to actually disable clicking the bootstrap tab, as noticed in comments by user3067524*/
-    $('.tab-list li').not('.active').find('a').removeAttr("data-toggle");
+		$('.tab-list li').not('.active').addClass('disabled');
+		/*to actually disable clicking the bootstrap tab, as noticed in comments by user3067524*/
+	    $('.tab-list li').not('.active').find('a').removeAttr("data-toggle");
 
-    $('.attorney_submit_btn').click(function(){
-        /*enable next tab*/
-        $('.tab-list li.active').next('li').removeClass('disabled');
-        $('.tab-list li.active').next('li').find('a').attr("data-toggle","tab")
-    });
+	    $('.attorney_submit_btn').click(function(){
+	        /*enable next tab*/
+	        $('.tab-list li.active').next('li').removeClass('disabled');
+	        $('.tab-list li.active').next('li').find('a').attr("data-toggle","tab")
+	    });
 
-    // make only first tab enable on page loading
-	$('#attorney-address-tab').removeClass('disabled');
-	$('#attorney-address-tab').attr('class', 'active');
+	    // make only first tab enable on page loading
+		$('#attorney-address-tab').removeClass('disabled');
+		$('#attorney-address-tab').attr('class', 'active');
+	}
 
 	//to keep selected the previous (table stored) states and city
 	var country_id = $("#attorney_country_id").val();
@@ -406,4 +414,3 @@ $(document).ready(function(e){
 	});
 
 });
- 

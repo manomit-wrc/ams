@@ -155,6 +155,7 @@ require('./routes/attorney-type')(app, models.attorneytype);
 require('./routes/attorney')(app,models);
 require('./routes/master-contact')(app, models);
 require('./routes/client')(app, models);
+require('./routes/target')(app, models);
 
 
 // catch 404 and forward to error handler
