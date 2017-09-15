@@ -23,7 +23,7 @@
         {{error_message}}
         </div>
         {{/if}}
-        
+
         <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/master-contact/edit/{{master_contacts.id}}">
         <div class="col-md-6">
           <div class="form-group required">
@@ -45,7 +45,7 @@
             <select class="form-control" style="width: 100%;" id="designation_id" name="designation_id">
               <option value="">Select Any</option>
               {{#each designation}}
-              <option value="{{this.id}}">{{this.designation}}</option>
+              <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.designation_id}} selected = "selected" {{/if_eq}}>{{this.designation}}</option>
               {{/each}}
             </select>
           </div>
@@ -57,18 +57,18 @@
             <label>Gender</label>
             <select class="form-control" style="width: 100%;" id="gender" name="gender">
               <option value="">Select Any</option>
-              <option value="MALE">MALE</option>
-              <option value="FEMALE">FEMALE</option>
-              <option value="OTHERS">OTHERS</option>
+              <option value="MALE" {{#if_eq 'MALE' master_contacts.gender}} selected = "selected" {{/if_eq}}>MALE</option>
+              <option value="FEMALE" {{#if_eq 'FEMALE' master_contacts.gender}} selected = "selected" {{/if_eq}}>FEMALE</option>
+              <option value="OTHERS" {{#if_eq 'OTHERS' master_contacts.gender}} selected = "selected" {{/if_eq}}>OTHERS</option>
             </select>
           </div>
           <div class="form-group required">
             <label>Contact Status</label>
             <select class="form-control" style="width: 100%;" id="association_status" name="association_status">
               <option value="">Select Any</option>
-              <option value="NEW TARGET">NEW TARGET</option>
-              <option value="CONVERTED">CONVERTED TO CLIENT</option>
-              <option value="TS-INTERIM">INTERIM - REVIEW IN-PROGRESS</option>
+              <option value="NEW TARGET"{{#if_eq 'NEW TARGET' master_contacts.association_status}} selected = "selected" {{/if_eq}}>NEW TARGET</option>
+              <option value="CONVERTED"{{#if_eq 'CONVERTED' master_contacts.association_status}} selected = "selected" {{/if_eq}}>CONVERTED TO CLIENT</option>
+              <option value="TS-INTERIM"{{#if_eq 'TS-INTERIM' master_contacts.association_status}} selected = "selected" {{/if_eq}}>INTERIM - REVIEW IN-PROGRESS</option>
             </select>
           </div>
           <div class="form-group required">
@@ -76,7 +76,7 @@
             <select class="form-control" style="width: 100%;" id="industry_type" name="industry_type">
               <option value="">Select Any</option>
               {{#each industry_types}}
-              <option value="{{this.id}}">{{this.industry}}</option>
+              <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.industry_type}} selected = "selected" {{/if_eq}}>{{this.industry}}</option>
               {{/each}}
             </select>
           </div>
@@ -84,8 +84,8 @@
             <label>Attorney</label>
             <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
               <option value="">Select Any</option>
-              {{#each attornies}}
-              <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+              {{#each attorney}}
+              <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.attorney_id}} selected = "selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
               {{/each}}
             </select>
           </div>
@@ -95,31 +95,31 @@
           </div>
           <div class="form-group required">
             <label>Master Contact Company</label>
-            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name">
+            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name" value={{master_contacts.company_name}}>
           </div>
           <div class="form-group">
             <label>Twitter Url</label>
-            <input type="text" name="twitter" id="twitter" class="form-control" placeholder="Enter Twitter Url">
+            <input type="text" name="twitter" id="twitter" class="form-control" placeholder="Enter Twitter Url" value = "{{master_contacts.twitter}}">
           </div>
           <div class="form-group">
             <label>Linkedin Url</label>
-            <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="Enter Linkedin Url">
+            <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="Enter Linkedin Url" value = "{{master_contacts.linkedin}}">
           </div>
           <div class="form-group">
             <label>G+ Url</label>
-            <input type="text" name="google" id="google" class="form-control" placeholder="Enter Google Plus Url">
+            <input type="text" name="google" id="google" class="form-control" placeholder="Enter Google Plus Url" value = "{{master_contacts.google}}">
           </div>
           <div class="form-group">
             <label>Youtube Url</label>
-            <input type="text" name="youtube" id="youtube" class="form-control" placeholder="Enter Youtube Url">
+            <input type="text" name="youtube" id="youtube" class="form-control" placeholder="Enter Youtube Url" value = "{{master_contacts.youtube}}">
           </div>
           <div class="form-group">
             <label>IM</label>
-            <input type="text" name="im" id="im" class="form-control" placeholder="Enter IM">
+            <input type="text" name="im" id="im" class="form-control" placeholder="Enter IM" value = "{{master_contacts.im}}">
           </div>
           <div class="form-group">
             <label>Remarks</label>
-            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control">{{master_contacts.remarks_notes}}</textarea>
           </div>
         </div>
 
@@ -127,46 +127,46 @@
         <div class="col-md-6">
           <div class="form-group required">
             <label>Email</label>
-            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email">
+            <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email" value="{{master_contacts.email}}">
           </div>
           <div class="form-group">
             <label>Phone</label>
-            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone No">
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone No" value="{{master_contacts.phone}}">
           </div>
           <div class="form-group">
             <label>Fax</label>
-            <input type="text" name="fax" id="fax" class="form-control" placeholder="Enter Fax">
+            <input type="text" name="fax" id="fax" class="form-control" placeholder="Enter Fax" value="{{master_contacts.fax}}">
           </div>
           <div class="form-group">
             <label>Mobile</label>
-            <input type="text" name="mobile_cell" id="mobile_cell" class="form-control" placeholder="Enter Mobile">
+            <input type="text" name="mobile_cell" id="mobile_cell" class="form-control" placeholder="Enter Mobile" value="{{master_contacts.mobile_cell}}">
           </div>
           <div class="form-group">
             <label>Website Url</label>
-            <input type="text" name="website_url" id="website_url" class="form-control" placeholder="Enter Website Url">
+            <input type="text" name="website_url" id="website_url" class="form-control" placeholder="Enter Website Url" value="{{master_contacts.website_url}}">
           </div>
           <div class="form-group">
             <label>Social Url</label>
-            <input type="text" name="social_media_url" id="social_media_url" class="form-control" placeholder="Enter Social Url">
+            <input type="text" name="social_media_url" id="social_media_url" class="form-control" placeholder="Enter Social Url" value="{{master_contacts.social_media_url}}">
           </div>
           <div class="form-group required">
             <label>Address Line 1</label>
-            <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Enter Address Line 1">
+            <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Enter Address Line 1" value="{{master_contacts.address_line_1}}">
           </div>
           <div class="form-group">
             <label>Address Line 2</label>
-            <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Enter Address Line 2">
+            <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Enter Address Line 2" value="{{master_contacts.address_line_2}}">
           </div>
           <div class="form-group">
             <label>Address Line 3</label>
-            <input type="text" name="address_line_3" id="address_line_3" class="form-control" placeholder="Enter Address Line 3">
+            <input type="text" name="address_line_3" id="address_line_3" class="form-control" placeholder="Enter Address Line 3" value="{{master_contacts.address_line_3}}">
           </div>
           <div class="form-group required">
             <label>Country</label>
             <select class="form-control" style="width: 100%;" id="country_id" name="country_id">
               <option value="">Select Any</option>
-              {{#each countries}}
-              <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
+              {{#each country}}
+              <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
               {{/each}}
             </select>
           </div>
