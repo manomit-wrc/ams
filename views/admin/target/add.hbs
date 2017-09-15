@@ -23,7 +23,7 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/master-contact/add">
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/target/add">
         <div class="col-md-6">
 
           <div class="form-group required">
@@ -37,13 +37,13 @@
           </div>
           <div class="form-group required">
             <label>Code</label>
-            <input type="text" name="code" id="code" class="form-control" placeholder="Enter Master Contact Code">
+            <input type="text" name="code" id="code" class="form-control" placeholder="Enter Target Code">
           </div>
           <div class="form-group required">
             <label>Designation</label>
             <select class="form-control" style="width: 100%;" id="designation_id" name="designation_id">
-              <option value="">Select Any</option>
-              {{#each designation}}
+              <option value="">Select Designation</option>
+              {{#each designations}}
               <option value="{{this.id}}">{{this.designation}}</option>
               {{/each}}
             </select>
@@ -83,7 +83,7 @@
             <label>Attorney</label>
             <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
               <option value="">Select Any</option>
-              {{#each attornies}}
+              {{#each attorney}}
               <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
               {{/each}}
             </select>
@@ -163,7 +163,7 @@
           <div class="form-group required">
             <label>Country</label>
             <select class="form-control" style="width: 100%;" id="country_id" name="country_id">
-              <option value="">Select Any</option>
+              <option value="">Select Country</option>
               {{#each countries}}
               <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
               {{/each}}
@@ -172,21 +172,21 @@
           <div class="form-group required">
             <label>State</label>
             <select class="form-control" style="width: 100%;" id="state_id" name="state_id">
-              <option value="">Select Any</option>
+              <option value="">Select State</option>
 
             </select>
           </div>
           <div class="form-group required">
             <label>City</label>
             <select class="form-control" style="width: 100%;" id="city_id" name="city_id">
-              <option value="">Select Any</option>
+              <option value="">Select City</option>
 
             </select>
           </div>
           <div class="form-group required">
             <label>Postal Code</label>
             <select class="form-control" style="width: 100%;" id="zipcode" name="zipcode">
-              <option value="">Select Any</option>
+              <option value="">Select Zipcode</option>
 
             </select>
           </div>
@@ -220,6 +220,12 @@ $(document).ready(function(e){
   $(".input-control").bind("copy paste", function(e){
     e.preventDefault();
   });
+
+  $("#dob").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
+  });
+
   $("#frmMasterContact").validate({
     rules: {
       first_name: {
