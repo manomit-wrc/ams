@@ -17,7 +17,7 @@ module.exports = function(app, models) {
 			include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
 		}).then(function(mastercontact){
 			var result = JSON.parse(JSON.stringify(mastercontact));
-			console.log(result[0]);
+			// console.log(result[0]);
 			res.render('admin/master-contact/index',
 			{
 				layout:'dashboard',
@@ -116,7 +116,6 @@ module.exports = function(app, models) {
 
 	});
 	app.get('/admin/master-contact/edit/:id', function(req, res){
-		models.mastercontact.findById(req.params['id']).then(function(mastercontact){
 		Promise.all([
 			models.country.findAll(),
 			models.industrytype.findAll({attributes: ['id', 'industry']}),
@@ -132,21 +131,26 @@ module.exports = function(app, models) {
 					user_id: req.user.id
 				},
 				attributes : ['id', 'name']
+			}),
+			models.mastercontact.findAll({
+				where:{
+					id: req.params['id']
+				}
 			})
 		]).then(function(mastercontact){
 			var result = JSON.parse(JSON.stringify(mastercontact));
-console.log(mastercontact)
+			
 			res.render('admin/master-contact/edit',
 				{
 					layout: 'dashboard',
-					countries: result[0],
+					master_contacts: result[5][0],
 					industry_types: result[1],
-					attornies: result[3],
+					country: result[0],
 					designation: result[2],
-					firm_id: result[4][0].id
+					firm_id: result[4][0].id,
+					designation: result[3],
 				}
 			);
 		});
-});
 	});
 };
