@@ -124,7 +124,7 @@ app.use(function(req, res, next){
       //res.locals.image = "/user2-160x160.jpg";
       res.locals.image = "/admin/images/2.png";
     }
-    res.locals.user = req.user;                              
+    res.locals.user = req.user;                            
 
     res.locals.active = req.path.split('/')[2];
     

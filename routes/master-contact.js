@@ -111,7 +111,7 @@ module.exports = function(app, models) {
 							layout: 'dashboard',
 							error_message: validation_error[0].message,
 							body: req.body
-						});
+					});
 			});
 
 	});

@@ -220,7 +220,9 @@ if(approval_process === '1'){
 
 <link  media="all" type="text/css" rel="stylesheet" href="/admin/css/bootstrap-multiselect.css">
 
-<link rel="stylesheet" href="/admin/css/bootstrap-datepicker3.min.css">
+{{!-- <link rel="stylesheet" href="/admin/css/bootstrap-datepicker3.min.css"> --}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 <script type="text/javascript" src="/admin/js/bootstrap-multiselect.js"></script>
 
 <script type="text/javascript" src="/admin/js/bootstrap-datepicker.js"></script>
@@ -607,16 +609,16 @@ $("#firm_join_date").datepicker({
 
 	});
 
-    $('.url_selector').keyup(function(){
-        if (
-            ($(this).val().length > 5) && ($(this).val().substr(0,7) !== 'http://') || ($(this).val() === ''))
-            {
-            $(this).val('http://');
-					}
-    });
-		$(".number_validator").inputmask("mask", {
-				"mask": "(999) 999-9999"
-		});
+  $('.url_selector').keyup(function(){
+      //alert('kkkk');
+      if (($(this).val().substr(0,7) !== 'http://') || ($(this).val() === '')) {
+          $(this).val('http://');
+			}
+  });
+
+	$(".number_validator").inputmask("mask", {
+			"mask": "(999) 999-9999"
+	});
 
 </script>
 
