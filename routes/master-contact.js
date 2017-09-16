@@ -12,7 +12,8 @@ module.exports = function(app, models) {
 				['id', 'ASC']
 			],
 			where:{
-				status:1
+				status:1,
+				record_type: 'M'
 			},
 			include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
 		}).then(function(mastercontact){
