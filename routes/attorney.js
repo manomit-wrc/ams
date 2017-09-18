@@ -93,7 +93,7 @@ module.exports = function(app, models) {
 		models.admin.belongsTo(models.country, {foreignKey: 'country_id'});
 		models.admin.belongsTo(models.state, {foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city, {foreignKey: 'city_id'});
-		models.admin.belongsTo(models.zipCode, {foreignKey: 'zipcode'});
+		models.admin.belongsTo(models.zipcode, {foreignKey: 'zipcode'});
 		models.admin.belongsTo(models.group, {foreignKey: 'group_id'});
 		models.admin.belongsTo(models.designation, {foreignKey: 'designation_id'});
 		models.attorney.belongsTo(models.section, {foreignKey: 'section_id'});
@@ -136,7 +136,7 @@ module.exports = function(app, models) {
     				state_id: '1'
   				}
 			}),
-			models.zipCode.findAll({
+			models.zipcode.findAll({
 				where: {
     				city_name: 'Acmar'
   				}
@@ -178,7 +178,7 @@ module.exports = function(app, models) {
 
 	//fetch zipcode respect to selected city
 	app.post('/admin/attorney/fetch_zipcode',function(req, res){
-		models.zipCode.findAll({
+		models.zipcode.findAll({
 		   where: {
     			city_name: req.body.city_name
   			}

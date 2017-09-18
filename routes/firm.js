@@ -206,7 +206,7 @@ module.exports = function(app, models) {
 	});
 
 	app.post("/admin/firm/get-zipcode", function(req, res){
-		models.zipCode.findAll({
+		models.zipcode.findAll({
 		  where: {
 		    city_name: req.body.city_name
 		  },
