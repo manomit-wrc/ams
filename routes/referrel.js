@@ -28,11 +28,17 @@ module.exports = function(app, models) {
 					record_type: 'C'
 				},
 				attributes : ['id','first_name' ,'last_name']
+			}),
+			models.firm.findAll({
+				where:{
+					user_id: req.user.id
+				},
+				attributes : ['id', 'name']
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
 			//console.log(result[4][0]);
-			res.render('admin/referrel/add',{layout:'dashboard', countries:result[0], industry_types:result[1], designations:result[2], attorney:result[3], firm:result[4][0]});			
+			res.render('admin/referrel/add',{layout:'dashboard', attorney:result[0], targets:result[1], clients:result[2], firm:result[3]});			
 		});
 	});
 
