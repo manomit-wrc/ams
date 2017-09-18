@@ -20,42 +20,42 @@ module.exports = {
         type: Sequelize.INTEGER(10)
       },
       code: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(50)
       },
       designation_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(50)
       },
       first_name: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(255)
       },
       last_name: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(255)
       },
       type: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(50)
       },
       dob: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(255)
       },
       gender: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING(50)
       },
       social_security_no: {
         type: Sequelize.INTEGER(10)
       },
       company_name: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.TEXT
       },
       address_line_1: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.TEXT
       },
       address_line_2: {
@@ -65,15 +65,15 @@ module.exports = {
         type: Sequelize.TEXT
       },
       country_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER(11)
       },
       city_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER(11)
       },
       state_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.INTEGER(11)
       },
       postal_code: {
@@ -135,7 +135,7 @@ module.exports = {
         defaultValue: 0
       },
       record_type:{
-          allowNull: false,
+          allowNull: true,
           type: Sequelize.ENUM('M', 'R', 'C', 'T')
       }
     });

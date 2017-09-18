@@ -6,111 +6,43 @@ module.exports = function(sequelize, DataTypes) {
     },
     firm_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Firm id cannot be null'
-        }
-
-      },
+      allowNull: false
     },
     attorney_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Attorney id cannot be null'
-        }
-
-      },
+      allowNull: false
+    },
+    referrel_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     code: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Code cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     designation_id:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Designation cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'First name cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     last_name:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Last name cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     type:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Type cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     dob:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Date of birth cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     gender: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'gendercannot be null'
-        }
-
-      },
+      allowNull: true
     },
     social_security_no:{
       type: DataTypes.INTEGER,
@@ -119,28 +51,12 @@ module.exports = function(sequelize, DataTypes) {
 
     company_name:{
       type: DataTypes.TEXT,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Company name cannot be null'
-        }
-
-      },
+      allowNull: true
 
     },
     address_line_1:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Address cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     address_line_2:{
       type: DataTypes.STRING,
@@ -150,75 +66,27 @@ module.exports = function(sequelize, DataTypes) {
     },
     country_id:{
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Country cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     city_id:{
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'City cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     state_id:{
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'State cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     postal_code:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Postal code cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     email:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Email cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     phone:{
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:
-      { notEmpty:
-        {
-            args: true,
-            msg: 'Phone cannot be null'
-        }
-
-      },
+      allowNull: true
     },
     fax:{
       type: DataTypes.STRING
@@ -264,7 +132,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue:0
     },
     record_type:{
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.ENUM('M', 'R', 'C', 'T'),
     },
     tag_id:{

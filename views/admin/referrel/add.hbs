@@ -23,15 +23,19 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmClient" id="frmClient" method="POST" action="/admin/client/add">
-        <div class="col-md-12">
-          <input type="radio" name="referrel_type" class = "referrel_type" checked="checked" value="I">Individual Target
-          <input type="radio" name="referrel_type" class ="referrel_type" value="O">Organization
-        </div>
-        <div class="col-md-6">
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/referrel/add">
+          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+          <div class="form-group col-md-12">
+            <label class="radio-inline">
+              <input type="radio" name="referrel_type" class = "referrel_type" checked="checked" value="I">Individual Target
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="referrel_type" class ="referrel_type" value="O">Organization
+            </label>
+          </div>
+          <div class="col-md-6">
 
           <div class="form-group required">
-            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm_id}}">
 
             <div class="form-group required">
                 <label>Select Attorney</label>
@@ -47,41 +51,43 @@
               <label>Organisation Name</label>
               <input type="text" name="organisation" id="organisation" class="form-control" placeholder="Organisation">
             </div>
-
+          <div class="form-group fname required">
             <label>Referrel First Name</label>
             <input type="text" name="referrel_first_name" id="referrel_first_name" class="form-control" placeholder="Referrel First Name">
           </div>
-          <div class="form-group required">
+          <div class="form-group lname required">
             <label>Referrel Last Name</label>
             <input type="text" name="referrel_last_name" id="referrel_last_name" class="form-control" placeholder="Referrel Last Name">
           </div>
           <div class="form-group required">
             <label>Referrel Email</label>
-            <input type="text" name="referrel_email" id="referrel_email" class="form-control" placeholder="Referrel Email">
+            <input type="email" name="referrel_email" id="referrel_email" class="form-control" placeholder="Referrel Email">
           </div>
           <div class="form-group required">
             <label>Phone/mobile</label>
-            <input type="text" name="referrel_mobile" id="referrel_mobile" class="form-control" placeholder="Referrel Mobile">
+            <input type="text" name="referrel_mobile" id="mobile" class="form-control" placeholder="Referrel Phone/Mobile">
           </div>
           <div class="form-group required">
             <label>Referred By</label>
-            <input type="radio" name="referred_by" class="client-type" checked="checked" value="T">Target
-            <input type="radio" name="referred_by" class="client-type" value="C">Client
+            <label class="radio-inline">
+              <input type="radio" name="ref" class="referred_by" checked="checked" value="T">Target
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="ref" class="referred_by" value="C">Client
+            </label>
 
-            <div class="form-group required">
-                <label>Select targets</label>
-                <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
-                  <option value="">Select Any</option>
+            <div class="form-group targets required">
+                <select class="form-control" style="width: 100%;" id="target" name="referred_by_target">
+                  <option value="">Select Target</option>
                   {{#each targets}}
                     <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
                   {{/each}}
                 </select>
             </div>
 
-            <div class="form-group required">
-                <label>Select clients</label>
-                <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
-                  <option value="">Select Any</option>
+            <div class="form-group clients required" style="display:none">
+                <select class="form-control" style="width: 100%;" id="client" name="referred_by_client">
+                  <option value="">Select Client</option>
                   {{#each clients}}
                     <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
                   {{/each}}
@@ -117,117 +123,87 @@ $(document).ready(function(e){
       var referrel_type = $(this).val();
       if(referrel_type == 'O') {
           $('.organisation').show();
+          $('.fname').hide();
+          $('.lname').hide();
       } else {
           $('.organisation').hide();
+          $('.fname').show();
+          $('.lname').show();
       }
   });
 
+  $('.referred_by').click(function(){
+      var referred_by = $(this).val();
+      if(referred_by == 'C') {
+          $('.clients').show();
+          $('.targets').hide();
+      } else {
+          $('.targets').show();
+          $('.clients').hide();
+      }
+  });
+
+
+
   $("#frmClient").validate({
     rules: {
-      first_name: {
+      referrel_type: {
         required: true
       },
-      last_name: {
+      referrel_first_name: {
+        required: true
+      },
+      referrel_last_name: {
         required:  true
       },
-      code: {
+      organisation: {
         required:  true
       },
-      designation_id: {
+      referrel_email: {
+        required:  true,
+        email: true
+      },
+      referrel_mobile: {
         required:  true
       },
-      dob: {
+      referred_by: {
         required:  true
       },
-      gender: {
-        required:  true
-      },
-      association_status: {
-        required:  true
-      },
-      industry_type: {
+      remarks_notes: {
         required:  true
       },
       attorney_id: {
         required:  true
-      },
-      company_name: {
-        required:  true
-      },
-      email: {
-        required:  true
-      },
-      mobile_cell: {
-        required:  true
-      },
-      address_line_1: {
-        required:  true
-      },
-      country_id: {
-        required:  true
-      },
-      state_id: {
-        required:  true
-      },
-      city_id: {
-        required:  true
-      },
-      zipcode: {
-        required:  true
       }
-
     },
     messages: {
-      first_name: {
+      referrel_type: {
+        required: "Choose referrel type"
+      },
+      referrel_first_name: {
         required: "Please enter first name"
       },
-      last_name: {
+      referrel_last_name: {
         required:  "Please enter last name"
       },
-      code: {
-        required:  "Please enter code"
+      organisation: {
+        required:  "Please enter organisation"
       },
-      designation_id: {
-        required:  "Please select designation"
+      referrel_email: {
+        required:  "Please enter email",
+        email: "Enter valid email"
       },
-      dob: {
-        required:  "Please enter date of birth"
+      referrel_mobile: {
+        required:  "Please enter mobile"
       },
-      gender: {
-        required:  "Please select gender"
+      referred_by: {
+        required:  "Please select a referrel ID"
       },
-      association_status: {
-        required:  "Please enter select association status"
-      },
-      industry_type: {
-        required:  "Please select industry type"
+      remarks_notes: {
+        required:  "Please enter note"
       },
       attorney_id: {
         required:  "Please select an attorney"
-      },
-      company_name: {
-        required:  "Please enter company name"
-      },
-      email: {
-        required:  "Please enter email"
-      },
-      mobile_cell: {
-        required:  "Please enter mobile number"
-      },
-      address_line_1: {
-        required:  "Please enter address line 1"
-      },
-      country_id: {
-        required:  "Please select country"
-      },
-      state_id: {
-        required:  "Please select state"
-      },
-      city_id: {
-        required:  "Please select city"
-      },
-      zipcode: {
-        required:  "Please select zipcode"
       }
     }
   });

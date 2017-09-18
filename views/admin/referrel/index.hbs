@@ -32,34 +32,38 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Company Name</th>
-                  <th>Mobile</th>
                   <th>Phone</th>
-                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {{#each targets}}
+                    {{#each referrel}}
                      <tr>
                       {{#if_eq this.record_type 'M'}}
                         <td>Master Contact</td>
                       {{/if_eq}}
                       {{#if_eq this.record_type 'R'}}
                         <td>Referral</td>
-                     {{/if_eq}}
-                     {{#if_eq this.record_type 'C'}}
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'C'}}
                         <td>Client</td>
-                     {{/if_eq}}
-                     {{#if_eq this.record_type 'T'}}
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'T'}}
                         <td>Target</td>
-                     {{/if_eq}}
-                      <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
+                      {{/if_eq}}
+                      {{#if this.first_name}}
+                        <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
+                      {{else}}
+                        <td>N/A</td> 
+                      {{/if}}
                       <td>{{this.email}}</td>
-                      <td>{{this.company_name}}</td>                      
-                      <td>{{this.mobile_cell}}</td>
+                      {{#if this.company_name}}
+                        <td>{{this.company_name}}</td>
+                      {{else}}
+                        <td>N/A</td> 
+                      {{/if}}                   
                       <td>{{this.phone}}</td>
-                      <td>{{this.association_status}}</td>
-                      <td><a href="/admin/target/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/target/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                      <td><a href="/admin/target/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/referrel/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                      </tr>
                     {{/each}}
                 </tbody>
