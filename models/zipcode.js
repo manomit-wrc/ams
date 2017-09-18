@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var ZipCode = sequelize.define('zipCode', {
+  var ZipCode = sequelize.define('zipcode', {
     zip: DataTypes.STRING,
     city_name: DataTypes.STRING,
     lat: DataTypes.STRING,
