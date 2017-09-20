@@ -29,6 +29,7 @@
                 <thead>
                 <tr>
                   <th>Record Type</th>
+                  <th>Referred By</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Company Name</th>
@@ -51,6 +52,7 @@
                       {{#if_eq this.record_type 'T'}}
                         <td>Target</td>
                       {{/if_eq}}
+                      <td>{{referred_name this.referrel_id}}</td>
                       {{#if this.first_name}}
                         <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
                       {{else}}
@@ -63,7 +65,7 @@
                         <td>N/A</td> 
                       {{/if}}                   
                       <td>{{this.phone}}</td>
-                      <td><a href="/admin/target/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/referrel/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                      <td><a href="/admin/referrel/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/referrel/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
                      </tr>
                     {{/each}}
                 </tbody>

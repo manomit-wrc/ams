@@ -186,4 +186,24 @@ module.exports = function(app, models) {
 	    	
 	    });
 	});
+
+	app.post('/admin/target/move_to_client', function(req, res){
+		var checked_ids = req.body.checked_ids;
+		for (var i = 0; i < checked_ids.length; i++) {
+			models.mastercontact.update({
+				record_type: 'C'
+			},{ where: { id: checked_ids[i] }}).then(function(result){
+		    	res.send('success');
+		    }).catch(function(err){
+		    	res.send('fail');
+		    	
+		    });
+
+		    models.targettoclient.create({
+					mastercontact_id: checked_ids[i],
+			}).then(function(result){
+		    	res.send('insert_success');
+		    });
+		}
+	});
 };

@@ -18,16 +18,22 @@
             <div class="box-header">
             </div>
             <!-- /.box-header -->
-            <div class="topbtn"><a href="/admin/target/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a></div>
+            <div class="topbtn">
+              <a href="/admin/target/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a>
+              <a href="javascript:void(0)" id="move_to_client"><button type="button" class="btn bg-purple btn-rightad">Move to client</button></a>
+            </div>
             <div class="box-body">
+              <div id="success-msg"></div>
               {{#if succ_add_msg}}
                 <div class="alert alert-success" id="result77">
                 {{succ_add_msg}}
                 </div>
               {{/if}}
+
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>SL#</th>
                   <th>Record Type</th>
                   <th>Name</th>
                   <th>Email</th>
@@ -41,18 +47,19 @@
                 <tbody>
                     {{#each targets}}
                      <tr>
+                      <td><input type="checkbox" name="target_ck[]" class="chk_cls target_ck" value="{{this.id}}">&nbsp;{{this.id}}</td>
                       {{#if_eq this.record_type 'M'}}
                         <td>Master Contact</td>
                       {{/if_eq}}
                       {{#if_eq this.record_type 'R'}}
                         <td>Referral</td>
-                     {{/if_eq}}
-                     {{#if_eq this.record_type 'C'}}
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'C'}}
                         <td>Client</td>
-                     {{/if_eq}}
-                     {{#if_eq this.record_type 'T'}}
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'T'}}
                         <td>Target</td>
-                     {{/if_eq}}
+                      {{/if_eq}}
                       <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
                       <td>{{this.email}}</td>
                       <td>{{this.company_name}}</td>                      
@@ -74,3 +81,33 @@
       </div>
       <!-- /.row -->
     </section>
+
+<script type="text/javascript">
+  $(document).ready(function(e){
+      $('#move_to_client').click(function(){
+          var checked_ids = [];
+          $("input[name='target_ck[]']:checked").each(function (i) {               
+              checked_ids[i] = $(this).val();            
+          });            
+          checked_ids = JSON.stringify(checked_ids);            
+          checked_ids = JSON.parse(checked_ids);
+          if(checked_ids){
+            $.ajax({
+                type: "POST",
+                url: "/admin/target/move_to_client",
+                data: {checked_ids:checked_ids},
+                async: false,
+                success:function(response) {
+                    
+                      $("#success-msg").html('<div class="alert alert-success" id="result77">Successfully moved to client</div>');
+                      setTimeout(function(){
+                          window.location.reload();
+                      }, 1000);
+                    
+                }
+            });
+          }
+         
+      });
+  });
+</script>

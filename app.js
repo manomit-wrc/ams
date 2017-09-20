@@ -28,7 +28,6 @@ models.sequelize.sync().then(function() {
 
     console.log('Nice! Database looks fine')
 
-
 }).catch(function(err) {
 
     console.log(err, "Something went wrong with the Database Update!")
@@ -83,7 +82,20 @@ helpers: {
 
         return v1 || v2;
 
-    }
+    },
+    referred_name: function(value) {
+		var name = '';
+		models.mastercontact.findAll({
+			where: {
+				id: value
+			},
+			attributes : ['first_name' ,'last_name']
+		}).then(function(response){
+			name = response[0].first_name;
+
+		});
+		return name;
+	}
 }
 });
 app.engine('.hbs', hbs.engine);
