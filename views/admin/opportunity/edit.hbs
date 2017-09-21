@@ -1,0 +1,199 @@
+<section class="content-header">
+  <h1>
+    Opportunity
+    <small>Edit</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/master-contact">Opportunity</a></li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/opportunity/edit/{{opportunity.id}}">
+          <div class="col-md-6">
+
+          <div class="form-group required">
+
+            <div class="form-group required">
+                <label>Select Attorney</label>
+                <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
+                  <option value="">Select Any</option>
+                  {{#each attorney}}
+                    <option value="{{this.id}}"{{#if_eq this.id ../opportunity.attorney_id}} selected="selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                  {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Opportunity Name</label>
+                <textarea name="opportunity_name" id="opportunity_name" class="form-control">{{opportunity.opportunity_name}}</textarea>
+            </div>
+
+            <div class="form-group required">
+              <label>Referred By</label>
+              <label class="radio-inline">
+                <input type="radio" name="ref" class="referred_by" {{#if_eq opportunity.referrel_type 'T'}} checked="checked" {{/if_eq}} value="T">Target
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="ref" class="referred_by" {{#if_eq opportunity.referrel_type 'C'}} checked="checked" {{/if_eq}} value="C">Client
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="ref" class="referred_by" {{#if_eq opportunity.referrel_type 'R'}} checked="checked" {{/if_eq}} value="R">Referrel
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="ref" class="referred_by" {{#if_eq opportunity.referrel_type 'M'}} checked="checked" {{/if_eq}} value="M">Master Contact
+              </label>
+
+              <div class="form-group targets required">
+                  <select class="form-control" style="width: 100%;" id="target" name="referred_by_target">
+                    <option value="">Select Target</option>
+                    {{#each target}}
+                      <option value="{{this.id}}" {{#if_eq this.id ../opportunity.referrel_id}} selected="selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                    {{/each}}
+                  </select>
+              </div>
+
+              <div class="form-group clients required" style="display:none">
+                  <select class="form-control" style="width: 100%;" id="client" name="referred_by_client">
+                    <option value="">Select Client</option>
+                    {{#each client}}
+                      <option value="{{this.id}}" {{#if_eq this.id ../opportunity.referrel_id}} selected="selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                    {{/each}}
+                  </select>
+              </div>
+
+              <div class="form-group referrels required" style="display:none">
+                  <select class="form-control" style="width: 100%;" id="referrel" name="referred_by_referrel">
+                    <option value="">Select Referrel</option>
+                    {{#each referrel}}
+                      <option value="{{this.id}}" {{#if_eq this.id ../opportunity.referrel_id}} selected="selected" {{/if_eq}}>{{#if this.first_name}}{{this.first_name}}&nbsp;{{this.last_name}}{{else}}{{this.company_name}}{{/if}}</option>
+                    {{/each}}
+                  </select>
+              </div>
+
+              <div class="form-group master_contacts required" style="display:none">
+                  <select class="form-control" style="width: 100%;" id="master_contact" name="referred_by_master_contact">
+                    <option value="">Select Master contact</option>
+                    {{#each master_contact}}
+                      <option value="{{this.id}}" {{#if_eq this.id ../opportunity.referrel_id}} selected="selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                    {{/each}}
+                  </select>
+              </div>
+          </div>
+          <div class="form-group">
+            <label>Remarks</label>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control">{{opportunity.remarks}}</textarea>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  var referred_by = "{{opportunity.referrel_type}}";
+      if(referred_by == 'C') {
+          $('.clients').show();
+          $('.targets').hide();
+          $('.referrels').hide();
+          $('.master_contacts').hide();
+      } else if(referred_by == 'T') {
+          $('.targets').show();
+          $('.clients').hide();
+          $('.referrels').hide();
+          $('.master_contacts').hide();
+      } else if(referred_by == 'R') {
+          $('.referrels').show();
+          $('.clients').hide();
+          $('.targets').hide();
+          $('.master_contacts').hide();
+      } else {
+          $('.master_contacts').show();
+          $('.clients').hide();
+          $('.referrels').hide();
+          $('.targets').hide();
+      }
+
+  $('.referred_by').click(function(){
+      var referred_by = $(this).val();
+      if(referred_by == 'C') {
+          $('.clients').show();
+          $('.targets').hide();
+          $('.referrels').hide();
+          $('.master_contacts').hide();
+      } else if(referred_by == 'T') {
+          $('.targets').show();
+          $('.clients').hide();
+          $('.referrels').hide();
+          $('.master_contacts').hide();
+      } else if(referred_by == 'R') {
+          $('.referrels').show();
+          $('.clients').hide();
+          $('.targets').hide();
+          $('.master_contacts').hide();
+      } else {
+          $('.master_contacts').show();
+          $('.clients').hide();
+          $('.referrels').hide();
+          $('.targets').hide();
+      }
+  });
+
+
+
+  $("#frmClient").validate({
+    rules: {
+      attorney_id: {
+        required: true
+      },
+      opportunity_name: {
+        required: true
+      },
+      remarks_notes: {
+        required:  true
+      }
+    },
+    messages: {
+      opportunity_name: {
+        required: "Please enter opportunity name"
+      },
+      remarks_notes: {
+        required:  "Please enter note"
+      },
+      attorney_id: {
+        required:  "Please select an attorney"
+      }
+    }
+  });
+
+});
+</script>

@@ -169,6 +169,7 @@ require('./routes/master-contact')(app, models);
 require('./routes/client')(app, models);
 require('./routes/target')(app, models);
 require('./routes/referrel')(app, models);
+require('./routes/opportunity')(app, models);
 
 // catch 404 and forward to error handler
 

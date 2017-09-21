@@ -206,4 +206,20 @@ module.exports = function(app, models) {
 		    });
 		}
 	});
+
+	//target to client convert listing view//
+	app.get('/admin/target-to-client', function(req, res){
+		models.mastercontact.hasMany(models.targettoclient, {foreignKey: 'mastercontact_id'});
+		models.mastercontact.findAll({
+			include: [{model: models.targettoclient, required: true}],
+			where: {
+				record_type: 'C',
+			},
+			
+		}).then(function(result){
+			//console.log(result);
+			res.render('admin/target-to-client/index',{layout:'dashboard', result:result,succ_add_msg:req.flash('succ_add_msg')[0]});
+		});
+	}); 
+	//end//
 };
