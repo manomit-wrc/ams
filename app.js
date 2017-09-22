@@ -35,6 +35,7 @@ models.sequelize.sync().then(function() {
 });
 
 app.set('views', path.join(__dirname, 'views'));
+
 var hbs = exphbs.create({
 extname: '.hbs', //we will be creating this layout shortly
 helpers: {
@@ -54,8 +55,15 @@ helpers: {
 	    else {
 	      return block.inverse(this);
 	    }
-    }
-    ,
+    },
+
+    for: function(from, to, incr, block) {
+    	var accum = 0;
+	    for(var i = from; i < to; i += incr)
+	        accum += block.fn(i);
+	    return accum;
+	},
+    
     eq: function (v1, v2) {
     	
         return v1 === v2;
@@ -170,6 +178,7 @@ require('./routes/client')(app, models);
 require('./routes/target')(app, models);
 require('./routes/referrel')(app, models);
 require('./routes/opportunity')(app, models);
+require('./routes/attorney-goal')(app, models);
 
 // catch 404 and forward to error handler
 
