@@ -68,7 +68,6 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result);
 			res.render('admin/referrel/edit',{layout:'dashboard', attorney:result[0], firm:result[1][0], master_contact_result:result[2][0], targets:result[3], clients:result[4]});			
 		});
 	});
