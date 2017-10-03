@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter code'
+          msg: 'Please select attorney'
         },
       }
     },
@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter code'
+          msg: 'Firm id cannot be null'
         },
       }
     },
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter code'
+          msg: 'Please enter current year'
         },
       }
     },
@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter code'
+          msg: 'Please enter current year goal'
         },
       }
     },
@@ -47,7 +47,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter code'
+          msg: 'Please enter goal percentage'
         },
       }
     },
@@ -57,7 +57,7 @@ module.exports = function(sequelize, DataTypes) {
       { notEmpty: 
         {
           args: true,
-          msg: 'Please enter code'
+          msg: 'Please enter summary'
         },
       }
     },

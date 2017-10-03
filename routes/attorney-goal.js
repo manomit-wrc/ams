@@ -35,8 +35,8 @@ module.exports = function(app, models) {
 		}).then(function(result){
 			req.flash('succ_add_msg', 'Attorney goal added successfully');
 			res.redirect('/admin/attorney-goal');
+			
 		});
-
 	});
 
 	app.get('/admin/attorney-goal/delete/:id', function(req, res){
@@ -68,12 +68,11 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			//console.log(result[1][0]);
 			res.render('admin/attorney-goal/edit',{layout:'dashboard', attorney:result[0], attorney_goal_details:result[1][0]});			
 		});
 	});
 
-	app.post('/admin/attorney-goal/edit/:id', function(req, res){
+ 	app.post('/admin/attorney-goal/edit/:id', function(req, res){
 		models.attorneygoal.update({
 			attorney_id: req.body.attorney_id,
 			current_year: req.body.current_year,
@@ -88,8 +87,46 @@ module.exports = function(app, models) {
 	    	var validation_error = err.errors;
 	    	req.flash('error_message', validation_error[0].message);
 	    	var redirectUrl = '/admin/attorney-goal/edit/' + req.params['id'];
-  			res.redirect(redirectUrl);
-	    	
+  			res.redirect(redirectUrl);	    	
 	    });
 	});
+
+	// activity goal operations //
+	app.get('/admin/attorney-goal/activity-goal', function(req, res) {
+		models.activitygoal.belongsTo(models.admin,{foreignKey: 'attorney_seq_no'});
+		models.activitygoal.findAll({
+			include: [{model: models.admin, required: true}]
+		}).then(function(result){
+			//console.log(result);
+			res.render('admin/attorney-goal/activity-goal/index',{layout:'dashboard', result:result, succ_add_msg:req.flash('succ_add_msg')[0]});
+		});
+		
+	});
+
+	app.get('/admin/attorney-goal/activity-goal/add', function(req, res){
+		models.admin.findAll({
+			where: {
+				role_code: 'ATTR'
+			},
+			attributes: ['id', 'first_name','last_name']
+		}).then(function(values){
+			res.render('admin/attorney-goal/activity-goal/add',{layout:'dashboard', attorney:values});			
+		});
+	});
+
+	app.post('/admin/attorney-goal/activity-goal/add', function(req, res){
+		models.activitygoal.create({
+			attorney_seq_no: req.body.attorney_id,
+			firm_seq_no: req.body.firm_id,
+			activity_goal: req.body.activity_goal,
+			from_date: req.body.from_date,
+			to_date: req.body.to_date,
+			remarks: req.body.remarks_notes,
+		}).then(function(result){
+			req.flash('succ_add_msg', 'Activity goal added successfully');
+			res.redirect('/admin/attorney-goal/activity-goal');
+			
+		});
+	});
+	// end //
 };

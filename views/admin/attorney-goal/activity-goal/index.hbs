@@ -1,11 +1,11 @@
 <section class="content-header">
       <h1>
-        Attorney Goal List
+        Activity Goal List
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Attorney Goal List</li>
+        <li class="active">Activity Goal List</li>
       </ol>
     </section>
 
@@ -19,8 +19,7 @@
             </div>
             <!-- /.box-header -->
             <div class="topbtn">
-              <a href="/admin/attorney-goal/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a>
-              <a href="/admin/attorney-goal/activity-goal"><button type="button" style="margin-left: 8px;" class="btn bg-purple">Activity goals</button></a>
+              <a href="/admin/attorney-goal/activity-goal/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a>
             </div>
             <div class="box-body">
               {{#if succ_add_msg}}
@@ -32,20 +31,16 @@
                 <thead>
                 <tr>
                   <th>Attorney Name</th>
-                  <th>Current Year</th>
-                  <th>Current Year Goal</th>
-                  <th>Goal Percentage</th>
-                  <th>Action</th>
+                  <th>Activity Goals</th>
+                  <th>Remarks</th>
                 </tr>
                 </thead>
                 <tbody>
                     {{#each result}}
                      <tr>
                       <td>{{this.admin.first_name}}&nbsp;{{this.admin.last_name}}</td>
-                      <td>{{this.current_year}}</td>
-                      <td>{{this.current_year_goal}}</td>                   
-                      <td>{{this.goal_percentage}}%</td>
-                      <td><a href="/admin/attorney-goal/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/attorney-goal/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                      <td>{{this.activity_goal}}</td>                 
+                      <td>{{this.remarks}}</td>
                      </tr>
                     {{/each}}
                 </tbody>

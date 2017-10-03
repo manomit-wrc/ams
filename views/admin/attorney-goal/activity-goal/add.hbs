@@ -1,0 +1,140 @@
+<section class="content-header">
+  <h1>
+    Activity Goal
+    <small>Add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/attorney-goal">Activity Goal</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/attorney-goal/activity-goal/add">
+          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{user.id}}">
+          <div class="col-md-6">
+
+          <div class="form-group required">
+            <div class="form-group required">
+                <label>Select Attorney</label>
+                <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
+                  <option value="">Select Any</option>
+                  {{#each attorney}}
+                    <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                  {{/each}}
+                </select>
+            </div>
+            
+            <div class="form-group required">
+                <label>Activity Goal</label>
+                <textarea name="activity_goal" id="activity_goal" class="form-control" placeholder="Activity Goal"></textarea>
+            </div>
+
+            <div class="form-group required">
+              <label class="control-label">Duration</label>
+              <div class="col-md-12">
+                <div class="form-group col-md-6" style="padding-left:0; margin-left: -15px;">
+                  <label>From Date</label>
+                  <input type="text" name="from_date" id="from_date" class="form-control" placeholder="From date">
+                </div>
+
+                <div class="form-group col-md-6" style="padding-left:0; padding-right:0;">
+                  <label>To Date</label>
+                  <input type="text" name="to_date" id="to_date" class="form-control" placeholder="To date">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Remarks</label>
+              <textarea name="remarks_notes" id="remarks_notes" class="form-control" placeholder="Remarks"></textarea>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<style type="text/css">
+  .datepicker {
+      top: 189.4px;
+      left: 255px;
+      display: block;
+  }
+</style>
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  // form validation //
+  $("#frmClient").validate({
+    rules: {
+      activity_goal: {
+        required: true
+      },
+      from_date: {
+        required: true
+      },
+      to_date: {
+        required:  true
+      },
+      remarks_notes: {
+        required:  true
+      }
+    },
+    messages: {
+      activity_goal: {
+        required: "Please enter Activity goal"
+      },
+      from_date: {
+        required: "Please enter from date"
+      },
+      to_date: {
+        required:  "Please enter to date"
+      },
+      remarks_notes: {
+        required:  "Please enter Remarks"
+      }
+    }
+  });
+  // end //
+
+  // datepicker //
+  $("#to_date").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
+         
+  });
+
+  $("#from_date").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
+         
+  });
+  // end//
+
+});
+</script>
