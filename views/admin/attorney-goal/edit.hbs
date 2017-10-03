@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>
     Attorney Goal
-    <small>Add</small>
+    <small>Edit</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -22,8 +22,7 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmClient" id="frmClient" method="POST" action="/admin/attorney-goal/add">
-          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{user.id}}">
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/attorney-goal/edit/{{attorney_goal_details.id}}">
           <div class="col-md-6">
 
           <div class="form-group required">
@@ -32,7 +31,7 @@
                 <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
                   <option value="">Select Any</option>
                   {{#each attorney}}
-                    <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                    <option value="{{this.id}}" {{#if_eq this.id ../attorney_goal_details.attorney_id}} selected="selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
                   {{/each}}
                 </select>
             </div>
@@ -42,25 +41,25 @@
               <select class="form-control" style="width: 100%;" id="current_year" name="current_year">
                   <option value="">Select Current year</option>
                   {{#for 2017 2200 1}}
-                      <option value="{{this}}">{{this}}</option>
+                      <option value="{{this}}" {{#if_eq this ../attorney_goal_details.current_year}} selected="selected" {{/if_eq}}>{{this}}</option>
                   {{/for}}
               </select>
           </div>
           <div class="form-group fname required">
             <label>Current Year Goal</label>
-            <input type="text" name="current_year_goal" id="current_year_goal" class="form-control" placeholder="Current Year Goal">
+            <input type="text" name="current_year_goal" id="current_year_goal" class="form-control" placeholder="Current Year Goal" value="{{attorney_goal_details.current_year_goal}}">
           </div>
           <div class="form-group lname required">
             <label>Current Year Goal %</label>
-            <input type="text" name="goal_percentage" id="goal_percentage" class="form-control" placeholder="Current Year Goal Percentage">
+            <input type="text" name="goal_percentage" id="goal_percentage" class="form-control" placeholder="Current Year Goal Percentage" value="{{attorney_goal_details.goal_percentage}}">
           </div>
           <div class="form-group required">
             <label>Summary</label>
-            <input type="text" name="summary" id="summary" class="form-control" placeholder="Summary">
+            <input type="text" name="summary" id="summary" class="form-control" placeholder="Summary" value="{{attorney_goal_details.summary}}">
           </div>
           <div class="form-group">
             <label>Remarks</label>
-            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control">{{attorney_goal_details.remarks}}</textarea>
           </div>
         </div>
 

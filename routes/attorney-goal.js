@@ -68,29 +68,26 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			res.render('admin/referrel/edit',{layout:'dashboard', attorney:result[0], firm:result[1][0], master_contact_result:result[2][0], targets:result[3], clients:result[4]});			
+			//console.log(result[1][0]);
+			res.render('admin/attorney-goal/edit',{layout:'dashboard', attorney:result[0], attorney_goal_details:result[1][0]});			
 		});
 	});
 
-	app.post('/admin/referrel/edit/:id', function(req, res){
-		models.mastercontact.update({
+	app.post('/admin/attorney-goal/edit/:id', function(req, res){
+		models.attorneygoal.update({
 			attorney_id: req.body.attorney_id,
-			first_name: req.body.referrel_first_name,
-			last_name: req.body.referrel_last_name,
-			type: req.body.referrel_type,
-			company_name: req.body.organisation,
-			email: req.body.referrel_email,
-			phone: req.body.referrel_mobile,
-			referrel_id: req.body.referred_by_target ? req.body.referred_by_target: req.body.referred_by_client,
-			remarks_notes: req.body.remarks_notes,
+			current_year: req.body.current_year,
+			current_year_goal: req.body.current_year_goal,
+			goal_percentage: req.body.goal_percentage,
+			summary: req.body.summary,
+			remarks: req.body.remarks_notes
 	    },{ where: { id: req.params['id'] }}).then(function(result){
-	    	req.flash('succ_add_msg', 'Referrel edited successfully');
-	    	res.redirect('/admin/referrel');
-	    }).catch(function(err){
-	    	
+	    	req.flash('succ_add_msg', 'Attorney goal edited successfully');
+	    	res.redirect('/admin/attorney-goal');
+	    }).catch(function(err){	    	
 	    	var validation_error = err.errors;
 	    	req.flash('error_message', validation_error[0].message);
-	    	var redirectUrl = '/admin/referrel/edit/' + req.params['id'];
+	    	var redirectUrl = '/admin/attorney-goal/edit/' + req.params['id'];
   			res.redirect(redirectUrl);
 	    	
 	    });
