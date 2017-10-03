@@ -25,9 +25,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     remarks:{ type:DataTypes.STRING,
     },
-    from_date:{ type:DataTypes.DATE,
+    from_date:{ type:DataTypes.DATEONLY,
     },
-    to_date:{ type:DataTypes.DATE,
+    to_date:{ type:DataTypes.DATEONLY,
     }
   }, {
     classMethods: {
