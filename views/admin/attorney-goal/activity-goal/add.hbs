@@ -79,13 +79,6 @@
 
 
 </section>
-<style type="text/css">
-  .datepicker {
-      top: 189.4px;
-      left: 255px;
-      display: block;
-  }
-</style>
 <script type="text/javascript">
 $(document).ready(function(e){
 
@@ -126,11 +119,13 @@ $(document).ready(function(e){
   $("#to_date").datepicker({
         'format': 'dd-mm-yyyy',
         'autoclose': true,
+        'startDate': new Date()
   });
 
   $("#from_date").datepicker({
         'format': 'dd-mm-yyyy',
         'autoclose': true, 
+        'startDate': new Date()
   });
   // end//
 
