@@ -1,0 +1,193 @@
+<section class="content-header">
+  <h1>
+    Firm Location
+    <small>Add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/attorney-goal">Firm Location</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <form name="frmClient" id="firm_address_add" method="POST" action="/admin/firm-location/add">
+          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{user.id}}">
+          <div class="col-md-6">
+
+        <div class="form-group required">
+          <div class="form-group required">
+              <label>Firm Address Type</label>
+              <select class="form-control" style="width: 100%;" id="address_type" name="address_type">
+                <option value="">Select Any</option>
+                <option value="FIRM ADDDRESS-1">FIRM ADDDRESS-1</option>
+                <option value="FIRM ADDDRESS-2">FIRM ADDDRESS-2</option>
+                <option value="FIRM ADDDRESS-3">FIRM ADDDRESS-3</option>
+                <option value="FIRM ADDDRESS-4">FIRM ADDDRESS-4</option>
+                <option value="FIRM ADDDRESS-5">FIRM ADDDRESS-5</option>
+              </select>
+          </div>
+
+          <div class="form-group required">
+            <label>Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone No">
+          </div>
+          <div class="form-group">
+            <label>Fax</label>
+            <input type="text" name="fax" id="fax" class="form-control" placeholder="Enter Fax">
+          </div>
+          <div class="form-group">
+            <label>Mobile</label>
+            <input type="text" name="mobile_cell" id="mobile_cell" class="form-control" placeholder="Enter Mobile">
+          </div>
+          <div class="form-group">
+            <label>Website Url</label>
+            <input type="text" name="website_url" id="website_url" class="form-control url_selector" placeholder="Enter Website Url">
+          </div>
+          <div class="form-group">
+            <label>Social Url</label>
+            <input type="text" name="social_media_url" id="social_media_url" class="form-control url_selector" placeholder="Enter Social Url">
+          </div>
+          <div class="form-group required">
+            <label>Address Line 1</label>
+            <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Enter Address Line 1">
+          </div>
+          <div class="form-group">
+            <label>Address Line 2</label>
+            <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Enter Address Line 2">
+          </div>
+          <div class="form-group">
+            <label>Address Line 3</label>
+            <input type="text" name="address_line_3" id="address_line_3" class="form-control" placeholder="Enter Address Line 3">
+          </div>
+          <div class="form-group required">
+            <label>Country</label>
+            <select class="form-control" style="width: 100%;" id="country_id" name="country_id">
+              <option value="">Select Country</option>
+              {{#each countries}}
+              <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>State</label>
+            <select class="form-control" style="width: 100%;" id="state_id" name="state_id">
+              <option value="">Select State</option>
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>City</label>
+            <select class="form-control" style="width: 100%;" id="city_id" name="city_id">
+              <option value="">Select City</option>
+
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Postal Code</label>
+            <select class="form-control" style="width: 100%;" id="zipcode" name="zipcode">
+              <option value="">Select Zipcode</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  // to prevent alphabet character
+
+  jQuery('#goal_percentage').keyup(function() {
+        this.value = this.value.replace(/[^0-9\%]/g, '');
+  });
+  //end
+
+  $("#firm_address_add").validate({
+    rules: {
+      address_type: {
+        required: true
+      },
+      email: {
+        required:  true
+      },
+      mobile_cell: {
+        required:  true
+      },
+      address_line_1: {
+        required:  true
+      },
+      country_id: {
+        required:  true
+      },
+      state_id: {
+        required:  true
+      },
+      city_id: {
+        required:  true
+      },
+      zipcode: {
+        required:  true
+      }
+
+    },
+    messages: {
+      address_type: {
+        required: "Please Select a type"
+      },
+      email: {
+        required:  "Please enter email"
+      },
+      mobile_cell: {
+        required:  "Please enter mobile number"
+      },
+      address_line_1: {
+        required:  "Please enter address line 1"
+      },
+      country_id: {
+        required:  "Please select country"
+      },
+      state_id: {
+        required:  "Please select state"
+      },
+      city_id: {
+        required:  "Please select city"
+      },
+      zipcode: {
+        required:  "Please select zipcode"
+      }
+    }
+  });
+
+});
+</script>
