@@ -1,0 +1,286 @@
+<section class="content-header">
+  <h1>
+    Firm Location
+    <small>Edit</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/master-contact">Firm Location</a></li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/firm-location/edit/{{firm_location_details.id}}">
+        <div class="col-md-6">
+        <div class="form-group required">
+          <div class="form-group required">
+            <label>Firm Address Type</label>
+            <select class="form-control" style="width: 100%;" id="address_type" name="address_type">
+              <option value="">Select Any</option>
+              <option value="FIRM ADDDRESS-1" {{#if_eq firm_location_details.firm_address_type 'FIRM ADDDRESS-1'}} selected="selected" {{/if_eq}}>FIRM ADDDRESS-1</option>
+              <option value="FIRM ADDDRESS-2" {{#if_eq firm_location_details.firm_address_type 'FIRM ADDDRESS-2'}} selected="selected" {{/if_eq}}>FIRM ADDDRESS-2</option>
+              <option value="FIRM ADDDRESS-3" {{#if_eq firm_location_details.firm_address_type 'FIRM ADDDRESS-3'}} selected="selected" {{/if_eq}}>FIRM ADDDRESS-3</option>
+              <option value="FIRM ADDDRESS-4" {{#if_eq firm_location_details.firm_address_type 'FIRM ADDDRESS-4'}} selected="selected" {{/if_eq}}>FIRM ADDDRESS-4</option>
+              <option value="FIRM ADDDRESS-5" {{#if_eq firm_location_details.firm_address_type 'FIRM ADDDRESS-5'}} selected="selected" {{/if_eq}}>FIRM ADDDRESS-5</option>
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Email</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" value="{{firm_location_details.email}}">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone No" value="{{firm_location_details.phone}}">
+          </div>
+          <div class="form-group">
+            <label>Fax</label>
+            <input type="text" name="fax" id="fax" class="form-control" placeholder="Enter Fax" value="{{firm_location_details.fax}}">
+          </div>
+          <div class="form-group">
+            <label>Mobile</label>
+            <input type="text" name="mobile_cell" id="mobile_cell" class="form-control" placeholder="Enter Mobile" value="{{firm_location_details.mobile}}">
+          </div>
+          <div class="form-group">
+            <label>Website Url</label>
+            <input type="text" name="website_url" id="website_url" class="form-control url_selector" placeholder="Enter Website Url" value="{{firm_location_details.website_url}}">
+          </div>
+          <div class="form-group">
+            <label>Social Url</label>
+            <input type="text" name="social_media_url" id="social_media_url" class="form-control url_selector" placeholder="Enter Social Url" value="{{firm_location_details.social_url}}">
+          </div>
+          <div class="form-group required">
+            <label>Address Line 1</label>
+            <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Enter Address Line 1" value="{{firm_location_details.address_line1}}">
+          </div>
+          <div class="form-group">
+            <label>Address Line 2</label>
+            <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Enter Address Line 2" value="{{firm_location_details.address_line2}}">
+          </div>
+          <div class="form-group">
+            <label>Address Line 3</label>
+            <input type="text" name="address_line_3" id="address_line_3" class="form-control" placeholder="Enter Address Line 3" value="{{firm_location_details.address_line3}}">
+          </div>
+          <div class="form-group required">
+            <label>Country</label>
+            <select class="form-control" style="width: 100%;" id="firm_country_id" name="country_id">
+              <option value="">Select Country</option>
+              {{#each countries}}
+              <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>State</label>
+            <select class="form-control" style="width: 100%;" id="firm_state_id" name="state_id">
+              <option value="">Select State</option>
+
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>City</label>
+            <select class="form-control" style="width: 100%;" id="firm_city_id" name="city_id">
+              <option value="">Select City</option>
+
+            </select>
+          </div>
+          <div class="form-group required">
+            <label>Postal Code</label>
+            <select class="form-control" style="width: 100%;" id="firm_zipcode" name="zipcode">
+              <option value="">Select Zipcode</option>
+
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<script type="text/javascript">
+$(document).ready(function(e){
+    jQuery('#phone').keyup(function() {
+        this.value = this.value.replace(/[^0-9\%]/g, '');
+    });
+
+    jQuery('#mobile_cell').keyup(function() {
+        this.value = this.value.replace(/[^0-9\%]/g, '');
+    });
+    var country_id = $("#firm_country_id").val();
+    var state_id = "{{firm_location_details.state_id}}";
+    var city_id = "{{firm_location_details.city_id}}";
+    var zipcode = "{{firm_location_details.postal_code}}";
+    if(country_id) {
+      setTimeout(function() {
+        $("#firm_country_id").trigger('change');
+    },10);
+    }
+    $("#firm_country_id").change(function(e){
+
+      var country_id = $(this).val();
+      $("#firm_state_id").find('option').not(':first').remove();
+
+      if(country_id) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-state",
+          data: {country_id:country_id},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.states.length;i++) {
+
+              $("#firm_state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
+            }
+          }
+        });
+
+      }
+      if(state_id) {
+        $("#firm_state_id").val(state_id);
+      }
+      else {
+        $('#firm_state_id option:eq(1)').attr('selected', 'selected');
+      }
+
+      $( "#firm_state_id" ).trigger( "change" );
+
+
+    });
+
+    $("#firm_state_id").change(function(e){
+      var state_id = $(this).val();
+
+      $("#firm_city_id").find('option').not(':first').remove();
+      if(state_id) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-city",
+          data: {state_id:state_id},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.cities.length;i++) {
+
+              $("#firm_city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
+            }
+          }
+        });
+
+
+      }
+      if(city_id) {
+        $("#firm_city_id").val(city_id);
+      }
+      else {
+        $('#firm_city_id option:eq(1)').attr('selected', 'selected');
+      }
+      $( "#firm_city_id" ).trigger( "change" );
+    });
+
+    $("#firm_city_id").change(function(e){
+
+      var city_name = $("#firm_city_id option:selected").text();
+      $("#firm_zipcode").find('option').not(':first').remove();
+      if(city_name) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-zipcode",
+          data: {city_name:city_name},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.zipcodes.length;i++) {
+              $("#firm_zipcode").append('<option value="'+response.zipcodes[i].zip+'">'+response.zipcodes[i].zip+'</option>');
+            }
+          }
+        });
+        if(zipcode) {
+          $("#firm_zipcode").val(zipcode);
+        }
+        else {
+          $('#firm_zipcode option:eq(1)').attr('selected', 'selected');
+        }
+      }
+    });
+
+  $("#frmMasterContact").validate({
+    rules: {
+      address_type: {
+        required: true
+      },
+      email: {
+        required:  true
+      },
+      mobile_cell: {
+        required:  true
+      },
+      address_line_1: {
+        required:  true
+      },
+      country_id: {
+        required:  true
+      },
+      state_id: {
+        required:  true
+      },
+      city_id: {
+        required:  true
+      },
+      zipcode: {
+        required:  true
+      }
+
+    },
+    messages: {
+      address_type: {
+        required: "Please Select address type"
+      },
+      email: {
+        required:  "Please enter email"
+      },
+      mobile_cell: {
+        required:  "Please enter mobile number"
+      },
+      address_line_1: {
+        required:  "Please enter address line 1"
+      },
+      country_id: {
+        required:  "Please select country"
+      },
+      state_id: {
+        required:  "Please select state"
+      },
+      city_id: {
+        required:  "Please select city"
+      },
+      zipcode: {
+        required:  "Please select zipcode"
+      }
+    }
+  });
+
+});
+</script>

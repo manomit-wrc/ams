@@ -128,8 +128,12 @@ $(document).ready(function(e){
 
   // to prevent alphabet character
 
-  jQuery('#goal_percentage').keyup(function() {
+  jQuery('#phone').keyup(function() {
         this.value = this.value.replace(/[^0-9\%]/g, '');
+  });
+
+  jQuery('#mobile_cell').keyup(function() {
+      this.value = this.value.replace(/[^0-9\%]/g, '');
   });
   //end
 

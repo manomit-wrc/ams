@@ -73,7 +73,7 @@
         {{/if_eq}}
 
         {{#if_eq user.role_code "FIRMADM"}}
-          <li class="{{#if (eq active "firm")}} active {{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
+          <li class="{{#if (or (eq active "firm")(eq active "firm-location"))}} active{{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
 
           <li class="{{#if (eq active "master-contact")}} active {{/if}}"><a href="/admin/master-contact"><i class="fa fa-phone-square" aria-hidden="true"></i> <span>Master Contacts</span></a></li>
 
