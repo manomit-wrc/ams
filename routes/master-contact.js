@@ -1,4 +1,49 @@
-module.exports = function(app, models) {
+module.exports = function(app, models, fs) {
+	var md5 = require('md5');
+
+	var multer  = require('multer');
+	var fileExt = '';
+	var fileName = '';
+	var xlsx = require('node-xlsx');
+	var md5 = require('md5');
+	var storage = multer.diskStorage({
+	  destination: function (req, file, cb) {
+	    cb(null, 'public/import-contact-excel');
+	  },
+	  filename: function (req, file, cb) {
+	    fileExt = 'xlsx';
+	    fileName = req.user.id + '-' + Date.now() + '.' + fileExt;
+	    cb(null, fileName);
+	  }
+	})
+
+	var csv_storage = multer.diskStorage({
+	  destination: function (req, file, cb) {
+	    cb(null, 'public/import-contact-csv');
+	  },
+	  filename: function (req, file, cb) {
+	    fileExt = 'csv';
+	    fileName = req.user.id + '-' + Date.now() + '.' + fileExt;
+	    cb(null, fileName);
+	  }
+	})
+
+	var restrictImgType = function(req, file, cb) {
+
+	    var allowedTypes = ['application/vnd.ms-excel'];
+	      if (allowedTypes.indexOf(req.file.mimetype) !== -1){
+	        // To accept the file pass `true`
+	        cb(null, true);
+	      } else {
+	        // To reject this file pass `false`
+	        cb(null, false);
+	       //cb(new Error('File type not allowed'));// How to pass an error?
+	      }
+	};
+
+    var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
+    var upload_csv = multer({ storage: csv_storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
+
 	app.get('/admin/master-contact', function(req, res){
 		models.mastercontact.belongsTo(models.firm,{foreignKey: 'firm_id'});
 		models.mastercontact.belongsTo(models.attorney,{foreignKey: 'attorney_id'});
@@ -8,22 +53,31 @@ module.exports = function(app, models) {
 		models.mastercontact.belongsTo(models.designation,{foreignKey: 'designation_id'});
 		models.mastercontact.belongsTo(models.industrytype,{foreignKey: 'industry_type'});
 
-		models.mastercontact.findAll({order:[
-				['id', 'ASC']
-			],
-			where:{
-				status:1,
-				record_type: 'M'
-			},
-			include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
-		}).then(function(mastercontact){
+		Promise.all([
+			models.mastercontact.findAll({order:[
+					['id', 'ASC']
+				],
+				where:{
+					status:1,
+					record_type: 'M'
+				},
+				include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
+			}),
+			models.admin.findAll({
+				where: {
+					role_code: 'ATTR'
+				},
+				attributes: ['id', 'first_name','last_name']
+			}),
+			models.firm.findAll({
+				where:{
+					user_id: req.user.id
+				},
+				attributes : ['id', 'name']
+			})
+		]).then(function(mastercontact){
 			var result = JSON.parse(JSON.stringify(mastercontact));
-			console.log(result[0]);
-			res.render('admin/master-contact/index',
-			{
-				layout:'dashboard',
-				master_contacts:result
-			});
+			res.render('admin/master-contact/index',{layout:'dashboard', master_contacts:result[0], attornies:result[1], firm:result[2][0], succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 	});
 
@@ -46,7 +100,6 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-
 			res.render('admin/master-contact/add',
 				{
 					layout: 'dashboard',
@@ -58,7 +111,6 @@ module.exports = function(app, models) {
 				}
 			);
 		});
-
 	});
 	app.post('/admin/master-contact/add', function(req, res){
 		var first_name = req.body.first_name;
@@ -209,4 +261,105 @@ module.exports = function(app, models) {
 
 			});
 	});
+
+	app.post('/admin/master-contact/move_to_target', function(req, res){
+		var checked_ids = req.body.checked_ids;
+		for (var i = 0; i < checked_ids.length; i++) {
+			models.mastercontact.update({
+				record_type: 'T'
+			},{ where: { id: checked_ids[i] }}).then(function(result){
+		    	res.send('success');
+		    }).catch(function(err){
+		    	res.send('fail');		    	
+		    });
+		}
+	});
+
+	// import master contact excel file //
+	app.post('/admin/master-contact/upload_excel', upload.single('xls_file'),  function(req, res) {
+	    var array = xlsx.parse(fs.readFileSync('public/import-contact-excel/'+fileName));
+	    var importedData = JSON.stringify(convertToJSON(array[0].data));
+
+	    var resultSet = JSON.parse(importedData);
+	    for(var i=0;i<resultSet.length;i++) {
+	    	models.mastercontact.create({
+					firm_id: req.body.firm_id,
+					attorney_id: req.body.attorney_id,
+					first_name: resultSet[i].First_name,
+					last_name: resultSet[i].Last_name,
+					type: resultSet[i].Type,
+					dob: resultSet[i].DOB,
+					gender: resultSet[i].Gender,
+					company_name: resultSet[i].Company_name,
+					email: resultSet[i].Email,
+					phone: resultSet[i].Phone,
+					fax: resultSet[i].Fax,
+					address_line_1: resultSet[i].Address,
+					association_status: resultSet[i].Association_status,
+					status: resultSet[i].Status,
+					record_type: resultSet[i].record_Type
+			}).then(function(result){
+				req.flash('succ_add_msg', 'Master contact imported successfully');
+				res.redirect('/admin/master-contact');
+			}).catch(function(err){
+				console.log(err);
+			});
+	    }
+	    
+  	});
+
+	// import master contact csv file //
+  	app.post('/admin/master-contact/upload_csv', upload_csv.single('csv_file'),  function(req, res) {
+	    var array = xlsx.parse(fs.readFileSync('public/import-contact-csv/'+fileName));
+	    var importedData = JSON.stringify(convertToJSON(array[0].data));
+
+	    var resultSet = JSON.parse(importedData);
+	    for(var i=0;i<resultSet.length;i++) {
+	    	models.mastercontact.create({
+					firm_id: req.body.firm_id,
+					attorney_id: req.body.attorney_id,
+					first_name: resultSet[i].First_name,
+					last_name: resultSet[i].Last_name,
+					type: resultSet[i].Type,
+					dob: resultSet[i].DOB,
+					gender: resultSet[i].Gender,
+					company_name: resultSet[i].Company_name,
+					email: resultSet[i].Email,
+					phone: resultSet[i].Phone,
+					fax: resultSet[i].Fax,
+					address_line_1: resultSet[i].Address,
+					association_status: resultSet[i].Association_status,
+					status: resultSet[i].Status,
+					record_type: resultSet[i].record_Type
+			}).then(function(result){
+				req.flash('succ_add_msg', 'Master contact imported successfully');
+				res.redirect('/admin/master-contact');
+			}).catch(function(err){
+				console.log(err);
+			});
+	    }
+	    
+  	});
+
+  	//end //
+  	function convertToJSON(array) {
+	  var first = array[0].join()
+	  var headers = first.split(',');
+	  
+	  var jsonData = [];
+	  for ( var i = 1, length = array.length; i < length; i++ )
+	  {
+	    var myRow = array[i].join();
+	    var row = myRow.split(',');
+	    
+	    var data = {};
+	    for ( var x = 0; x < row.length; x++ )
+	    {
+	      data[headers[x]] = row[x];
+	    }
+	    jsonData.push(data);
+	 
+	  }
+	  return jsonData;
+	}
 };

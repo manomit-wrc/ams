@@ -233,10 +233,20 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="/admin/profile" class="btn btn-default btn-flat">Profile</a>
+                  <a href="/admin/profile" class="btn btn-default btn-flat" style="padding: 4px 7px;">Profile</a>
                 </div>
+                {{#if_eq is_attorney 1}}
+                  <div class="pull-right">
+                    <a href="/firm/act-as-attorney" class="btn btn-default btn-flat" style="padding: 4px 7px;">Act as Attorney</a>
+                  </div>
+                {{/if_eq}}
+                {{#if_eq is_attorney 2}}
+                  <div class="pull-right">
+                    <a href="/attorney/act-as-firm" class="btn btn-default btn-flat" style="padding: 4px 7px;">Act as Firm</a>
+                  </div>
+                {{/if_eq}}
                 <div class="pull-right">
-                  <a href="/admin/logout" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="/admin/logout" class="btn btn-default btn-flat" style="margin-right: 17px;padding: 4px 7px;">Sign out</a>
                 </div>
               </li>
             </ul>

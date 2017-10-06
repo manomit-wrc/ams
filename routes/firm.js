@@ -1,7 +1,7 @@
 module.exports = function(app, models) {
 
 	var md5 = require('md5');
-
+	var session = require('express-session');
 	var multer  = require('multer');
 	var im = require('imagemagick');
 	var fileExt = '';
@@ -206,7 +206,7 @@ module.exports = function(app, models) {
 	});
 
 	app.post("/admin/firm/get-zipcode", function(req, res){
-		models.zipcode.findAll({
+		models.zipCode.findAll({
 		  where: {
 		    city_name: req.body.city_name
 		  },
@@ -370,5 +370,37 @@ function removePhoneMask (phone_no){
 		phone_no = phone_no.replace(" ","");
 		return phone_no;
 
-	}
+}
+
+app.get('/firm/act-as-attorney',function(req, res){
+		models.firm.findAll({
+		   where: {
+    			user_id: req.user.id
+  			}
+		}).then(function(firm){
+			models.attorney.findAll({
+			   	where: {
+	    			firm_id: firm[0].id
+	  			}
+			}).then(function(attorney){
+				/*
+				res.locals.user.id = attorney[0].user_id;
+				res.locals.user.role_code = 'ATTR';
+				console.log(res.locals.user);
+				console.log(req.user.id);*/
+				req.user.id = attorney[0].user_id;
+				req.user.role_code = "ATTR";
+				console.log(req.user);
+				req.logIn(req.user, function(error) {
+		            if (!error) {
+		               res.locals.is_attorney = 2;
+		               res.render('admin/dashboard',{layout:'dashboard'});
+		            }
+        		});
+
+				
+			});
+			
+		});
+});
 };

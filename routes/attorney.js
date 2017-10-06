@@ -89,11 +89,12 @@ module.exports = function(app, models) {
 	//attorney profile view  *****we use Promise.all when more than one model query are executed*******
 	app.get('/admin/attorney/attorney-profile',function(req, res){
 		var user_id = req.user.id;
+		console.log(req.user);
 		// models dependancy
 		models.admin.belongsTo(models.country, {foreignKey: 'country_id'});
 		models.admin.belongsTo(models.state, {foreignKey: 'state_id'});
 		models.admin.belongsTo(models.city, {foreignKey: 'city_id'});
-		models.admin.belongsTo(models.zipcode, {foreignKey: 'zipcode'});
+		models.admin.belongsTo(models.zipCode, {foreignKey: 'zipcode'});
 		models.admin.belongsTo(models.group, {foreignKey: 'group_id'});
 		models.admin.belongsTo(models.designation, {foreignKey: 'designation_id'});
 		models.attorney.belongsTo(models.section, {foreignKey: 'section_id'});
@@ -136,7 +137,7 @@ module.exports = function(app, models) {
     				state_id: '1'
   				}
 			}),
-			models.zipcode.findAll({
+			models.zipCode.findAll({
 				where: {
     				city_name: 'Acmar'
   				}
@@ -178,7 +179,7 @@ module.exports = function(app, models) {
 
 	//fetch zipcode respect to selected city
 	app.post('/admin/attorney/fetch_zipcode',function(req, res){
-		models.zipcode.findAll({
+		models.zipCode.findAll({
 		   where: {
     			city_name: req.body.city_name
   			}
@@ -204,12 +205,12 @@ module.exports = function(app, models) {
 			mobile: removePhoneMask(req.body.mobile),
 			website: req.body.website,
 			social: req.body.social,
-	    },{ where: { 
+	    },{ where: {
 	    		id: user_id 
 	    	} 
 	    }).then(function(result){
 	    	res.send('success');
-	    }).catch(function(err){	    	
+	    }).catch(function(err){    	
 	    	res.send('fail');
 	    	
 	    });
@@ -222,7 +223,7 @@ module.exports = function(app, models) {
 		var sections = sections_array.toString();
 		var jurisdictions = req.body.jurisdictions.toString();
 		var practice_area = req.body.practice_area.toString();
-		models.attorney.update({   		
+		models.attorney.update({  		
 			section_id: sections,			
 			attorneyID: req.body.attorney_id,
 			code: req.body.attorney_code,
@@ -282,4 +283,30 @@ module.exports = function(app, models) {
 		return phone_no;
 
 	}
+
+	app.get('/attorney/act-as-firm',function(req, res){
+		models.attorney.findAll({
+		   where: {
+    			user_id: req.user.id
+  			}
+		}).then(function(attorney){
+			models.firm.findAll({
+			   	where: {
+	    			id: attorney[0].firm_id
+	  			}
+			}).then(function(firm){
+				//console.log(firm[0].user_id);
+				req.user.id = firm[0].user_id;
+				req.user.role_code = "FIRMADM";
+				console.log(req.user);
+				req.logIn(req.user, function(error) {
+		            if (!error) {
+
+		               res.render('admin/dashboard',{layout:'dashboard'});
+		            }
+        		});
+			});
+			
+		});
+	});
 };

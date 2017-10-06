@@ -124,8 +124,7 @@ module.exports = function(app, models) {
 			remarks: req.body.remarks_notes,
 		}).then(function(result){
 			req.flash('succ_add_msg', 'Activity goal added successfully');
-			res.redirect('/admin/attorney-goal/activity-goal');
-			
+			res.redirect('/admin/attorney-goal/activity-goal');			
 		});
 	});
 	// end //

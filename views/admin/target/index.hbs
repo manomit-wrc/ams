@@ -85,6 +85,7 @@
 <script type="text/javascript">
   $(document).ready(function(e){
       $('#move_to_client').click(function(){
+        if($('input[type="checkbox"]').prop("checked") == true){
           var checked_ids = [];
           $("input[name='target_ck[]']:checked").each(function (i) {               
               checked_ids[i] = $(this).val();            
@@ -107,7 +108,9 @@
                 }
             });
           }
-         
+        } else {
+          $("#success-msg").html('<div class="alert alert-danger" id="result77">No master contact checked</div>');
+        } 
       });
   });
 </script>

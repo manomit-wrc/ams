@@ -299,7 +299,6 @@ $(document).ready(function(e){
     });
 
     $("#target_city_id").change(function(e){
-
       var city_name = $("#target_city_id option:selected").text();
       $("#target_zipcode").find('option').not(':first').remove();
       if(city_name) {

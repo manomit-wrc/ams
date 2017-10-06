@@ -121,8 +121,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(session({
 	secret: 'W$q4=25*8%v-}UV',
-	resave: true,
-	saveUninitialized: true
+	resave: false,
+	saveUninitialized: false
  })); // session secret
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -153,6 +153,27 @@ app.use(function(req, res, next){
   res.redirect('/admin');
 });
 
+app.get('/admin/dashboard',function(req, res){
+    models.firm.findAll({
+       where: {
+          user_id: req.user.id
+        }
+    }).then(function(firm){
+      models.attorney.findAndCountAll({
+          where: {
+            firm_id: firm[0].id
+          }
+      }).then(function(result){
+        var count = result.count;
+        if(count > 0) {
+          res.locals.is_attorney = 1;
+        } 
+        res.render('admin/dashboard',{layout:'dashboard'});
+      });
+      
+    });
+  });
+
 require('./routes/profile')(app, models.admin);
 require('./routes/section')(app, models.section);
 require('./routes/practice-area')(app, models.practicearea);
@@ -173,7 +194,7 @@ require('./routes/budgetcode')(app, models.budgetcode, models.budgetcodetype);
 require('./routes/job-type')(app, models.jobtype);
 require('./routes/attorney-type')(app, models.attorneytype);
 require('./routes/attorney')(app,models);
-require('./routes/master-contact')(app, models);
+require('./routes/master-contact')(app, models,fs);
 require('./routes/client')(app, models);
 require('./routes/target')(app, models);
 require('./routes/referrel')(app, models);
