@@ -62,7 +62,7 @@ helpers: {
 	    for(var i = from; i < to; i += incr)
 	        accum += block.fn(i);
 	    return accum;
-	},
+	   },
     
     eq: function (v1, v2) {
     	
@@ -201,6 +201,7 @@ require('./routes/referrel')(app, models);
 require('./routes/opportunity')(app, models);
 require('./routes/attorney-goal')(app, models);
 require('./routes/firm-location')(app, models);
+require('./routes/activity')(app, models);
 
 // catch 404 and forward to error handler
 

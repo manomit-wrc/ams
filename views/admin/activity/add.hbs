@@ -1,0 +1,341 @@
+<section class="content-header">
+  <h1>
+    Activity
+    <small>Add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/master-contact">Activity</a></li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/target/add">
+        <div class="col-md-6">
+
+          <div class="form-group required">
+            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+            <label class="control-label">Firm Name</label>
+            <input type="text" name="firm_name" id="firm_name" class="form-control">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Activity Type</label>
+            <input type="text" name="activity_type" id="activity_type" class="form-control" placeholder="Enter Activity Type">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Activity Goal</label>
+            <input type="text" name="activity_goal" id="activity_goal" class="form-control" placeholder="Enter Activity Goal">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Practice area type</label>
+            <select class="form-control" style="width: 100%;" id="practice_area" name="practice_area">
+              <option value="">Select Practice area</option>
+              {{#each designations}}
+              <option value="{{this.id}}">{{this.designation}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Potential revenue</label>
+            <input type="text" name="potential_revenue" id="potential_revenue" class="form-control" placeholder="Enter Potential Revenue">
+          </div>
+          
+          <div class="form-group">
+            <label>Remarks</label>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group required">
+            <label class="control-label">Attorney name</label>
+            <input type="email" name="attorney_name" id="attorney_name" class="form-control">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Activity name</label>
+            <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Enter Activity Name">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Activity reason</label>
+            <input type="text" name="activity_reason" id="activity_reason" class="form-control" placeholder="Enter Activity reason">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Activity creation date</label>
+            <input type="text" name="creation_date" id="creation_date" class="form-control" placeholder="Enter Creation date">
+          </div>
+          <div class="form-group col-md-12">
+            <label class="col-md-12 control-label">Duration</label>
+            <div class="form-group col-md-6">
+              <label>From</label>
+              <input type="text" name="from_date" id="from_date" class="form-control url_selector" placeholder="Enter From date">
+            </div>
+            <div class="form-group col-md-6">
+              <label class="control-label">To</label>
+              <input type="text" name="to_date" id="to_date" class="form-control url_selector" placeholder="Enter To Date">
+            </div>
+          </div>
+
+          <h3 class="hint"> Client/Target Information </h3>
+          <div class="form-group required">
+            <label class="control-label">Activity Details status</label>
+            <input type="text" name="activity_details_status" id="activity_details_status" class="form-control url_selector" placeholder="Enter Social Url">
+          </div>
+          <div class="form-group required">
+            <label class="control-label">Activity budget details status</label>
+            <input type="text" name="budget_details_status" id="budget_details_status" class="form-control" placeholder="Enter Address Line 1">
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+
+            <button type="submit" class="btn btn-danger">Submit</button>
+
+          </div>
+        </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<script type="text/javascript">
+$(document).ready(function(e){
+
+  $(".input-control").on("keydown input", function(e) {
+    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
+        e.preventDefault();
+  });
+
+  $(".input-control").bind("copy paste", function(e){
+    e.preventDefault();
+  });
+
+  // to prevent alphabet character
+  jQuery('#phone').keyup(function() {
+      this.value = this.value.replace(/[^0-9\+]/g, '');
+  });
+
+  jQuery('#mobile_cell').keyup(function() {
+      this.value = this.value.replace(/[^0-9\+]/g, '');
+  });
+
+  jQuery('#fax').keyup(function() {
+      this.value = this.value.replace(/[^0-9\+]/g, '');
+  });
+  //end
+
+  $("#dob").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
+         
+  });
+
+  // country state city operation //
+  var country_id = $("#target_country_id").val();
+    if(country_id) {
+      setTimeout(function() {
+        $("#target_country_id").trigger('change');
+    },10);
+    }
+    $("#target_country_id").change(function(e){
+
+      var country_id = $(this).val();
+      $("#target_state_id").find('option').not(':first').remove();
+
+      if(country_id) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-state",
+          data: {country_id:country_id},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.states.length;i++) {
+
+              $("#target_state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
+            }
+          }
+        });
+
+      }
+        $('#target_state_id option:eq(1)').attr('selected', 'selected');
+
+        $( "#target_state_id" ).trigger( "change" );
+
+
+    });
+
+    $("#target_state_id").change(function(e){
+      var state_id = $(this).val();
+
+      $("#target_city_id").find('option').not(':first').remove();
+      if(state_id) {
+          $.ajax({
+            type: "POST",
+            url: "/admin/firm/get-city",
+            data: {state_id:state_id},
+            async: false,
+            success:function(response) {
+              for(var i=0;i<response.cities.length;i++) {
+
+                $("#target_city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
+              }
+            }
+          });
+      }
+        $('#target_city_id option:eq(1)').attr('selected', 'selected');
+
+        $( "#target_city_id" ).trigger( "change" );
+    });
+
+    $("#target_city_id").change(function(e){
+      var city_name = $("#target_city_id option:selected").text();
+      $("#target_zipcode").find('option').not(':first').remove();
+      if(city_name) {
+        $.ajax({
+          type: "POST",
+          url: "/admin/firm/get-zipcode",
+          data: {city_name:city_name},
+          async: false,
+          success:function(response) {
+            for(var i=0;i<response.zipcodes.length;i++) {
+              $("#target_zipcode").append('<option value="'+response.zipcodes[i].zip+'">'+response.zipcodes[i].zip+'</option>');
+            }
+          }
+        });
+          $('#target_zipcode option:eq(1)').attr('selected', 'selected');
+      }
+    });
+
+  // end //
+
+  $("#frmMasterContact").validate({
+    rules: {
+      first_name: {
+        required: true
+      },
+      last_name: {
+        required:  true
+      },
+      code: {
+        required:  true
+      },
+      designation_id: {
+        required:  true
+      },
+      dob: {
+        required:  true
+      },
+      gender: {
+        required:  true
+      },
+      association_status: {
+        required:  true
+      },
+      industry_type: {
+        required:  true
+      },
+      attorney_id: {
+        required:  true
+      },
+      company_name: {
+        required:  true
+      },
+      email: {
+        required:  true
+      },
+      mobile_cell: {
+        required:  true
+      },
+      address_line_1: {
+        required:  true
+      },
+      country_id: {
+        required:  true
+      },
+      state_id: {
+        required:  true
+      },
+      city_id: {
+        required:  true
+      },
+      zipcode: {
+        required:  true
+      }
+
+    },
+    messages: {
+      first_name: {
+        required: "Please enter first name"
+      },
+      last_name: {
+        required:  "Please enter last name"
+      },
+      code: {
+        required:  "Please enter code"
+      },
+      designation_id: {
+        required:  "Please select designation"
+      },
+      dob: {
+        required:  "Please enter date of birth"
+      },
+      gender: {
+        required:  "Please select gender"
+      },
+      association_status: {
+        required:  "Please enter select association status"
+      },
+      industry_type: {
+        required:  "Please select industry type"
+      },
+      attorney_id: {
+        required:  "Please select an attorney"
+      },
+      company_name: {
+        required:  "Please enter company name"
+      },
+      email: {
+        required:  "Please enter email"
+      },
+      mobile_cell: {
+        required:  "Please enter mobile number"
+      },
+      address_line_1: {
+        required:  "Please enter address line 1"
+      },
+      country_id: {
+        required:  "Please select country"
+      },
+      state_id: {
+        required:  "Please select state"
+      },
+      city_id: {
+        required:  "Please select city"
+      },
+      zipcode: {
+        required:  "Please select zipcode"
+      }
+    }
+  });
+
+});
+</script>

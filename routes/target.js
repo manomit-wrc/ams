@@ -207,6 +207,45 @@ module.exports = function(app, models) {
 		}
 	});
 
+	app.get('/admin/target/view_details/:id', function(req, res){
+		// models dependancy
+		models.mastercontact.belongsTo(models.firm, {foreignKey: 'firm_id'});
+		models.mastercontact.belongsTo(models.attorney, {foreignKey: 'attorney_id'});
+		models.mastercontact.belongsTo(models.designation, {foreignKey: 'designation_id'});
+		models.mastercontact.belongsTo(models.country, {foreignKey: 'country_id'});
+		models.mastercontact.belongsTo(models.city, {foreignKey: 'city_id'});
+		models.mastercontact.belongsTo(models.state, {foreignKey: 'state_id'});
+		models.mastercontact.belongsTo(models.zipCode, {foreignKey: 'postal_code'});
+		models.mastercontact.belongsTo(models.industrytype, {foreignKey: 'industry_type'});
+		//end
+		Promise.all([
+			models.country.findAll(),
+			models.industrytype.findAll({attributes: ['id', 'industry']}),
+			models.designation.findAll({attributes: ['id', 'designation']}),
+			models.admin.findAll({
+				where: {
+					role_code: 'ATTR'
+				},
+				attributes: ['id', 'first_name','last_name']
+			}),
+			models.firm.findAll({
+				where:{
+					user_id: req.user.id
+				},
+				attributes : ['id', 'name']
+			}),
+			models.mastercontact.findAll({
+				where: {
+					record_type: 'T',
+					id: req.params['id']
+				}
+			}),
+		]).then(function(values){
+			var result = JSON.parse(JSON.stringify(values));
+			res.render('admin/target/view_details',{layout:'dashboard', countries:result[0], industry_types:result[1], designations:result[2], attorney:result[3], firm:result[4][0], master_contact_result:result[5][0]});			
+		});
+	});
+
 	//target to client convert listing view//
 	app.get('/admin/target-to-client', function(req, res){
 		models.mastercontact.hasMany(models.targettoclient, {foreignKey: 'mastercontact_id'});

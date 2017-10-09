@@ -383,11 +383,6 @@ app.get('/firm/act-as-attorney',function(req, res){
 	    			firm_id: firm[0].id
 	  			}
 			}).then(function(attorney){
-				/*
-				res.locals.user.id = attorney[0].user_id;
-				res.locals.user.role_code = 'ATTR';
-				console.log(res.locals.user);
-				console.log(req.user.id);*/
 				req.user.id = attorney[0].user_id;
 				req.user.role_code = "ATTR";
 				console.log(req.user);
