@@ -23,28 +23,37 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/target/add">
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/activity/add">
         <div class="col-md-6">
-
+          <input type="hidden" name="firm_id" value="{{firm.id}}">
           <div class="form-group required">
-            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
             <label class="control-label">Firm Name</label>
-            <input type="text" name="firm_name" id="firm_name" class="form-control">
+            <input type="text" name="firm_name" id="firm_name" class="form-control" value="{{firm_details.name}}" readonly="readonly">
           </div>
           <div class="form-group required">
             <label class="control-label">Activity Type</label>
-            <input type="text" name="activity_type" id="activity_type" class="form-control" placeholder="Enter Activity Type">
+            <select class="form-control" style="width: 100%;" id="activity_type" name="activity_type">
+              <option value="">Select Activity Type</option>
+              {{#each code}}
+                <option value="{{this.id}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
           <div class="form-group required">
             <label class="control-label">Activity Goal</label>
-            <input type="text" name="activity_goal" id="activity_goal" class="form-control" placeholder="Enter Activity Goal">
+            <select class="form-control" style="width: 100%;" id="activity_goal" name="activity_goal">
+              <option value="">Select Activity Goal</option>
+              {{#each activity_goal}}
+                <option value="{{this.id}}">{{this.activity_goal}}</option>
+              {{/each}}
+            </select>
           </div>
           <div class="form-group required">
             <label class="control-label">Practice area type</label>
-            <select class="form-control" style="width: 100%;" id="practice_area" name="practice_area">
+            <select class="form-control" style="width: 100%;" id="practice_area_type" name="practice_area_type">
               <option value="">Select Practice area</option>
-              {{#each designations}}
-              <option value="{{this.id}}">{{this.designation}}</option>
+              {{#each practice_area}}
+              <option value="{{this.id}}">{{this.name}}</option>
               {{/each}}
             </select>
           </div>
@@ -63,7 +72,7 @@
         <div class="col-md-6">
           <div class="form-group required">
             <label class="control-label">Attorney name</label>
-            <input type="email" name="attorney_name" id="attorney_name" class="form-control">
+            <input type="text" name="attorney_name" id="attorney_name" class="form-control" value="{{attorney.first_name}}&nbsp;{{attorney.last_name}}" readonly="readonly">
           </div>
           <div class="form-group required">
             <label class="control-label">Activity name</label>
@@ -92,11 +101,21 @@
           <h3 class="hint"> Client/Target Information </h3>
           <div class="form-group required">
             <label class="control-label">Activity Details status</label>
-            <input type="text" name="activity_details_status" id="activity_details_status" class="form-control url_selector" placeholder="Enter Social Url">
+            <select class="form-control" style="width: 100%;" id="act_details_status" name="act_details_status">
+              <option value="">Select Activity Details</option>
+              {{#each activity_details}}
+              <option value="{{this.id}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
           <div class="form-group required">
             <label class="control-label">Activity budget details status</label>
-            <input type="text" name="budget_details_status" id="budget_details_status" class="form-control" placeholder="Enter Address Line 1">
+            <select class="form-control" style="width: 100%;" id="budget_details_status" name="budget_details_status">
+              <option value="">Select Budget Details</option>
+              {{#each budget_details}}
+              <option value="{{this.id}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
         </div>
 
@@ -120,219 +139,101 @@
 <script type="text/javascript">
 $(document).ready(function(e){
 
-  $(".input-control").on("keydown input", function(e) {
-    if ((e.which === 32 && !this.value.length) || (e.shiftKey && (e.which == 188 || e.which == 190)))
-        e.preventDefault();
+  $("#potential_revenue").inputmask("numeric", {
+        radixPoint: ".",
+        groupSeparator: ",",
+        digits: 2,
+        autoGroup: true,
+        prefix: '$ ', 
+        rightAlign: false
   });
 
-  $(".input-control").bind("copy paste", function(e){
-    e.preventDefault();
-  });
 
-  // to prevent alphabet character
-  jQuery('#phone').keyup(function() {
-      this.value = this.value.replace(/[^0-9\+]/g, '');
-  });
-
-  jQuery('#mobile_cell').keyup(function() {
-      this.value = this.value.replace(/[^0-9\+]/g, '');
-  });
-
-  jQuery('#fax').keyup(function() {
-      this.value = this.value.replace(/[^0-9\+]/g, '');
-  });
-  //end
-
-  $("#dob").datepicker({
+  $("#creation_date").datepicker({
         'format': 'dd-mm-yyyy',
         'autoclose': true,
          
   });
 
-  // country state city operation //
-  var country_id = $("#target_country_id").val();
-    if(country_id) {
-      setTimeout(function() {
-        $("#target_country_id").trigger('change');
-    },10);
-    }
-    $("#target_country_id").change(function(e){
+  $("#from_date").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,       
+  });
 
-      var country_id = $(this).val();
-      $("#target_state_id").find('option').not(':first').remove();
-
-      if(country_id) {
-        $.ajax({
-          type: "POST",
-          url: "/admin/firm/get-state",
-          data: {country_id:country_id},
-          async: false,
-          success:function(response) {
-            for(var i=0;i<response.states.length;i++) {
-
-              $("#target_state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
-            }
-          }
-        });
-
-      }
-        $('#target_state_id option:eq(1)').attr('selected', 'selected');
-
-        $( "#target_state_id" ).trigger( "change" );
-
-
-    });
-
-    $("#target_state_id").change(function(e){
-      var state_id = $(this).val();
-
-      $("#target_city_id").find('option').not(':first').remove();
-      if(state_id) {
-          $.ajax({
-            type: "POST",
-            url: "/admin/firm/get-city",
-            data: {state_id:state_id},
-            async: false,
-            success:function(response) {
-              for(var i=0;i<response.cities.length;i++) {
-
-                $("#target_city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
-              }
-            }
-          });
-      }
-        $('#target_city_id option:eq(1)').attr('selected', 'selected');
-
-        $( "#target_city_id" ).trigger( "change" );
-    });
-
-    $("#target_city_id").change(function(e){
-      var city_name = $("#target_city_id option:selected").text();
-      $("#target_zipcode").find('option').not(':first').remove();
-      if(city_name) {
-        $.ajax({
-          type: "POST",
-          url: "/admin/firm/get-zipcode",
-          data: {city_name:city_name},
-          async: false,
-          success:function(response) {
-            for(var i=0;i<response.zipcodes.length;i++) {
-              $("#target_zipcode").append('<option value="'+response.zipcodes[i].zip+'">'+response.zipcodes[i].zip+'</option>');
-            }
-          }
-        });
-          $('#target_zipcode option:eq(1)').attr('selected', 'selected');
-      }
-    });
-
-  // end //
+  $("#to_date").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,       
+  });
 
   $("#frmMasterContact").validate({
     rules: {
-      first_name: {
+      activity_type: {
         required: true
       },
-      last_name: {
+      activity_goal: {
         required:  true
       },
-      code: {
+      practice_area_type: {
         required:  true
       },
-      designation_id: {
+      potential_revenue: {
         required:  true
       },
-      dob: {
+      activity_name: {
         required:  true
       },
-      gender: {
+      activity_reason: {
         required:  true
       },
-      association_status: {
+      creation_date: {
         required:  true
       },
-      industry_type: {
+      from_date: {
         required:  true
       },
-      attorney_id: {
+      to_date: {
         required:  true
       },
-      company_name: {
+      act_details_status: {
         required:  true
       },
-      email: {
-        required:  true
-      },
-      mobile_cell: {
-        required:  true
-      },
-      address_line_1: {
-        required:  true
-      },
-      country_id: {
-        required:  true
-      },
-      state_id: {
-        required:  true
-      },
-      city_id: {
-        required:  true
-      },
-      zipcode: {
+      budget_details_status: {
         required:  true
       }
-
     },
     messages: {
-      first_name: {
-        required: "Please enter first name"
+      activity_type: {
+        required: "Please select activity type"
       },
-      last_name: {
-        required:  "Please enter last name"
+      activity_goal: {
+        required:  "Please select activity Goal"
       },
-      code: {
-        required:  "Please enter code"
+      practice_area_type: {
+        required:  "Please select practice area"
       },
-      designation_id: {
-        required:  "Please select designation"
+      potential_revenue: {
+        required:  "Please enter potential revenue"
       },
-      dob: {
-        required:  "Please enter date of birth"
+      activity_name: {
+        required:  "Please enter activity name"
       },
-      gender: {
-        required:  "Please select gender"
+      activity_reason: {
+        required:  "Please enter activity reason"
       },
-      association_status: {
-        required:  "Please enter select association status"
+      creation_date: {
+        required:  "Please enter creation date"
       },
-      industry_type: {
-        required:  "Please select industry type"
+      from_date: {
+        required:  "Please enter from date"
       },
-      attorney_id: {
-        required:  "Please select an attorney"
+      to_date: {
+        required:  "Please enter to date"
       },
-      company_name: {
-        required:  "Please enter company name"
+      act_details_status: {
+        required:  "Please select activity status"
       },
-      email: {
-        required:  "Please enter email"
-      },
-      mobile_cell: {
-        required:  "Please enter mobile number"
-      },
-      address_line_1: {
-        required:  "Please enter address line 1"
-      },
-      country_id: {
-        required:  "Please select country"
-      },
-      state_id: {
-        required:  "Please select state"
-      },
-      city_id: {
-        required:  "Please select city"
-      },
-      zipcode: {
-        required:  "Please select zipcode"
+      budget_details_status: {
+        required:  "Please select budget details status"
       }
     }
   });

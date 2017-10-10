@@ -2,14 +2,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Activity = sequelize.define('activity', {
     firm_id:{ type:DataTypes.INTEGER,
-      allowNull: false,
-      validate: 
-      { notEmpty: 
-        {
-          args: true,
-          msg: 'Firm id cannot be null'
-        },
-      }
+      
     },
     attorney_id:{ type:DataTypes.INTEGER,
       allowNull: false,
@@ -21,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
-    activity_type:{ type:DataTypes.STRING,
+    activity_type_id:{ type:DataTypes.INTEGER,
       allowNull: false,
       validate: 
       { notEmpty: 
@@ -71,7 +64,7 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
-    ativity_name:{ type:DataTypes.STRING,
+    activity_name:{ type:DataTypes.STRING,
       allowNull: false,
       validate: 
       { notEmpty: 
@@ -121,7 +114,7 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
-    activity_details_status:{ type:DataTypes.STRING,
+    activity_details_id:{ type:DataTypes.INTEGER,
       allowNull: false,
       validate: 
       { notEmpty: 
@@ -131,7 +124,7 @@ module.exports = function(sequelize, DataTypes) {
         },
       }
     },
-    budget_details_status:{ type:DataTypes.STRING,
+    budget_details_id:{ type:DataTypes.INTEGER,
       allowNull: false,
       validate: 
       { notEmpty: 

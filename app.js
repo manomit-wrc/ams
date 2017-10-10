@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-
+var count;
 
 
 var exphbs  = require('express-handlebars');
@@ -135,25 +135,69 @@ require('./routes/index')(app, passport);
 app.use(function(req, res, next){
   if (req.isAuthenticated())
   {
+    if(req.user.role_code == 'FIRMADM'){
+      models.firm.findAll({
+         where: {
+            user_id: req.user.id
+          }
+      }).then(function(firm){
+            models.attorney.findAndCountAll({
+                where: {
+                  firm_id: firm[0].id
+                }
+            }).then(function(result){
+                count = result.count;
+            }); 
+      });
+      if(count > 0) {
+            res.locals.is_attorney = 1;
 
-    delete req.user.password;
-    if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
-      res.locals.image = "/profile/thumbs/"+req.user.avator;
-    }
-    else {
-      //res.locals.image = "/user2-160x160.jpg";
-      res.locals.image = "/admin/images/2.png";
-    }
-    res.locals.user = req.user;                            
+            delete req.user.password;
+            if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
+              res.locals.image = "/profile/thumbs/"+req.user.avator;
+            }
+            else {
+              //res.locals.image = "/user2-160x160.jpg";
+              res.locals.image = "/admin/images/2.png";
+            }
+            res.locals.user = req.user;                            
 
-    res.locals.active = req.path.split('/')[2];
-    
-    return next();
+            res.locals.active = req.path.split('/')[2];
+            return next();
+      } else {
+            delete req.user.password;
+            if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
+              res.locals.image = "/profile/thumbs/"+req.user.avator;
+            }
+            else {
+              //res.locals.image = "/user2-160x160.jpg";
+              res.locals.image = "/admin/images/2.png";
+            }
+            res.locals.user = req.user;                            
+
+            res.locals.active = req.path.split('/')[2];
+            return next();
+      }
+    } else {
+            delete req.user.password;
+            if (fs.existsSync("public/profile/thumbs/"+req.user.avator) && req.user.avator != "") {
+              res.locals.image = "/profile/thumbs/"+req.user.avator;
+            }
+            else {
+              //res.locals.image = "/user2-160x160.jpg";
+              res.locals.image = "/admin/images/2.png";
+            }
+            res.locals.user = req.user;                            
+
+            res.locals.active = req.path.split('/')[2];
+            return next();  
+    }
   }
+
   res.redirect('/admin');
 });
 
-app.get('/admin/dashboard',function(req, res){
+/*app.get('/admin/dashboard',function(req, res){
     models.firm.findAll({
        where: {
           user_id: req.user.id
@@ -172,7 +216,7 @@ app.get('/admin/dashboard',function(req, res){
       });
       
     });
-  });
+  });*/
 
 require('./routes/profile')(app, models.admin);
 require('./routes/section')(app, models.section);

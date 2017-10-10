@@ -20,7 +20,6 @@
             <!-- /.box-header -->
             <div class="topbtn">
               <a href="/admin/activity/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a>
-              <a href="javascript:void(0)" id="move_to_client"><button type="button" class="btn bg-purple btn-rightad">Move to client</button></a>
             </div>
             <div class="box-body">
               <div id="success-msg"></div>
@@ -34,39 +33,26 @@
                 <thead>
                 <tr>
                   <th>SL#</th>
-                  <th>Record Type</th>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Company Name</th>
-                  <th>Mobile</th>
-                  <th>Phone</th>
-                  <th>Status</th>
+                  <th>Attorney name</th>
+                  <th>Activity type</th>
+                  <th>Activity Name</th>
+                  <th>Potential revenue</th>
+                  <th>Activity reason</th>
+                  {{!-- <th>Activity status</th> --}}
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {{#each targets}}
+                    {{#each result}}
                      <tr>
-                      <td><input type="checkbox" name="target_ck[]" class="chk_cls target_ck" value="{{this.id}}">&nbsp;{{this.id}}</td>
-                      {{#if_eq this.record_type 'M'}}
-                        <td>Master Contact</td>
-                      {{/if_eq}}
-                      {{#if_eq this.record_type 'R'}}
-                        <td>Referral</td>
-                      {{/if_eq}}
-                      {{#if_eq this.record_type 'C'}}
-                        <td>Client</td>
-                      {{/if_eq}}
-                      {{#if_eq this.record_type 'T'}}
-                        <td>Target</td>
-                      {{/if_eq}}
-                      <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
-                      <td>{{this.email}}</td>
-                      <td>{{this.company_name}}</td>                      
-                      <td>{{this.mobile_cell}}</td>
-                      <td>{{this.phone}}</td>
-                      <td>{{this.association_status}}</td>
-                      <td><a href="/admin/target/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/target/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a>&nbsp;|&nbsp;<a href="/admin/target/view_details/{{this.id}}" title="View"><i class="fa fa-file-code-o"></i></a></td>
+                      <td>{{this.id}}</td>
+                      <td>{{this.attorney_name}}</td>
+                      <td>{{this.code.short_description}}</td>
+                      <td>{{this.activity_name}}</td>                      
+                      <td>{{this.potential_revenue}}</td>
+                      <td>{{this.activity_reason}}</td>
+                      {{!-- <td>{{this.activitydetails.short_description}}</td> --}}
+                      <td><a href="/admin/target/edit/{{this.id}}" title="Edit">Edit</a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete">Delete</a></td>
                      </tr>
                     {{/each}}
                 </tbody>

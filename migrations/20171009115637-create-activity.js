@@ -14,8 +14,8 @@ module.exports = {
       attorney_id: {
         type: Sequelize.INTEGER
       },
-      activity_type: {
-        type: Sequelize.STRING
+      activity_type_id: {
+        type: Sequelize.INTEGER
       },
       activity_goal: {
         type: Sequelize.STRING
@@ -29,7 +29,7 @@ module.exports = {
       attorney_name: {
         type: Sequelize.STRING
       },
-      ativity_name: {
+      activity_name: {
         type: Sequelize.STRING
       },
       activity_reason: {
@@ -44,11 +44,11 @@ module.exports = {
       to_duration: {
         type: Sequelize.DATEONLY
       },
-      activity_details_status: {
-        type: Sequelize.STRING
+      activity_details_id: {
+        type: Sequelize.INTEGER
       },
-      budget_details_status: {
-        type: Sequelize.STRING
+      budget_details_id: {
+        type: Sequelize.INTEGER
       },
       remarks: {
         type: Sequelize.STRING
