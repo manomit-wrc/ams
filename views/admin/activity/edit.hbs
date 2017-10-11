@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>
     Activity
-    <small>Add</small>
+    <small>Edit</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -19,23 +19,18 @@
     <div class="box-body">
       <div class="row">
         {{#if error_message}}
-        <div class="alert alert-danger" id="result77">
-        {{error_message}}
-        </div>
-        {{/if}}
-        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/activity/add">
-        <div class="col-md-6">
-          <input type="hidden" name="firm_id" value="{{firm_details.id}}">
-          <div class="form-group required">
-            <label class="control-label">Firm Name</label>
-            <input type="text" name="firm_name" id="firm_name" class="form-control" value="{{firm_details.name}}" readonly="readonly">
+          <div class="alert alert-danger" id="result77">
+          {{error_message}}
           </div>
+        {{/if}}
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/activity/edit/{{details.id}}">
+        <div class="col-md-6">
           <div class="form-group required">
             <label class="control-label">Activity Type</label>
             <select class="form-control" style="width: 100%;" id="activity_type" name="activity_type">
               <option value="">Select Activity Type</option>
               {{#each code}}
-                <option value="{{this.id}}">{{this.short_description}}</option>
+                <option value="{{this.id}}" {{#if_eq this.id ../details.activity_type_id}} selected="selected" {{/if_eq}}>{{this.short_description}}</option>
               {{/each}}
             </select>
           </div>
@@ -43,8 +38,8 @@
             <label class="control-label">Activity Goal</label>
             <select class="form-control" style="width: 100%;" id="activity_goal" name="activity_goal">
               <option value="">Select Activity Goal</option>
-              {{#each activity_goal}}
-                <option value="{{this.id}}">{{this.activity_goal}}</option>
+              {{#each activity_goal_array}}
+                <option value="{{this.id}}" {{#if_eq this.id ../details.activity_goal}} selected="selected" {{/if_eq}}>{{this.activity_goal}}</option>
               {{/each}}
             </select>
           </div>
@@ -53,48 +48,44 @@
             <select class="form-control" style="width: 100%;" id="practice_area_type" name="practice_area_type">
               <option value="">Select Practice area</option>
               {{#each practice_area}}
-              <option value="{{this.id}}">{{this.name}}</option>
+              <option value="{{this.id}}" {{#if_eq this.id ../details.practice_area_type}} selected="selected" {{/if_eq}}>{{this.name}}</option>
               {{/each}}
             </select>
           </div>
           <div class="form-group required">
             <label class="control-label">Potential revenue</label>
-            <input type="text" name="potential_revenue" id="potential_revenue" class="form-control" placeholder="Enter Potential Revenue">
+            <input type="text" name="potential_revenue" id="potential_revenue" class="form-control" placeholder="Enter Potential Revenue" value="{{details.potential_revenue}}">
           </div>
           
           <div class="form-group">
             <label>Remarks</label>
-            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control">{{details.remarks}}</textarea>
           </div>
         </div>
 
 
         <div class="col-md-6">
           <div class="form-group required">
-            <label class="control-label">Attorney name</label>
-            <input type="text" name="attorney_name" id="attorney_name" class="form-control" value="{{attorney.first_name}}&nbsp;{{attorney.last_name}}" readonly="readonly">
-          </div>
-          <div class="form-group required">
             <label class="control-label">Activity name</label>
-            <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Enter Activity Name">
+            <input type="text" name="activity_name" id="activity_name" class="form-control" placeholder="Enter Activity Name" value="{{details.activity_name}}">
           </div>
           <div class="form-group required">
             <label class="control-label">Activity reason</label>
-            <input type="text" name="activity_reason" id="activity_reason" class="form-control" placeholder="Enter Activity reason">
+            <input type="text" name="activity_reason" id="activity_reason" class="form-control" placeholder="Enter Activity reason" value="{{details.activity_reason}}">
           </div>
           <div class="form-group required">
             <label class="control-label">Activity creation date</label>
-            <input type="text" name="creation_date" id="creation_date" class="form-control" placeholder="Enter Creation date">
+            <input type="text" name="creation_date" id="creation_date" class="form-control" placeholder="Enter Creation date" value="{{details.creation_date}}">
           </div>
           <div class="form-group col-md-12">
             <label class="col-md-12 control-label">Duration</label>
             <div class="form-group col-md-6">
               <label>From</label>
-              <input type="text" name="from_date" id="from_date" class="form-control url_selector" placeholder="Enter From date">
+              <input type="text" name="from_date" id="from_date" class="form-control url_selector" placeholder="Enter From date" value="{{details.from_duration}}">
             </div>
             <div class="form-group col-md-6">
               <label class="control-label">To</label>
-              <input type="text" name="to_date" id="to_date" class="form-control url_selector" placeholder="Enter To Date">
+              <input type="text" name="to_date" id="to_date" class="form-control url_selector" placeholder="Enter To Date" value="{{details.to_duration}}">
             </div>
           </div>
 
@@ -104,7 +95,7 @@
             <select class="form-control" style="width: 100%;" id="act_details_status" name="act_details_status">
               <option value="">Select Activity Details</option>
               {{#each activity_details}}
-              <option value="{{this.id}}">{{this.short_description}}</option>
+              <option value="{{this.id}}" {{#if_eq this.id ../details.activity_details_id}} selected="selected" {{/if_eq}}>{{this.short_description}}</option>
               {{/each}}
             </select>
           </div>
@@ -113,17 +104,10 @@
             <select class="form-control" style="width: 100%;" id="budget_details_status" name="budget_details_status">
               <option value="">Select Budget Details</option>
               {{#each budget_details}}
-              <option value="{{this.id}}">{{this.short_description}}</option>
+              <option value="{{this.id}}" {{#if_eq this.id ../details.budget_details_id}} selected="selected" {{/if_eq}}>{{this.short_description}}</option>
               {{/each}}
             </select>
           </div>
-          <div class="form-group col-md-12" style=" padding-left: 0; padding-right: 0; margin-top:10px ">
-              <label class="control-label">Budgets:</label>
-              <div class="col-md-12" style=" padding-right: 0">
-                  <a name="add_budget" id="add_budget" class="btn green pull-left" href="#responsive_budget" data-toggle="modal" style="margin-left: -14px;color:#fff;background-color: #717372; border-color: #717372; border-radius: 4px !important;">Add Budget</a>
-              </div>
-          </div>
-          
         </div>
 
         <div class="col-md-12">
@@ -143,7 +127,6 @@
 
 
 </section>
-
 <style type="text/css">
     .ui-datepicker-today {
         background: #fcc !important;

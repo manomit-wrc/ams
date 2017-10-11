@@ -1,0 +1,1468 @@
+<section class="content-header">
+  <h1>
+    Marketing Budget Code
+    <small>Add</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="/admin/master-contact">Marketing Budget Code</a></li>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+        {{error_message}}
+        </div>
+        {{/if}}
+        <div id="add_budget" tabindex="-1" aria-hidden="true">
+            <form action="#" method="post">
+                <div class="modal-body">
+                    <div>
+                         <div>
+                             <label>Please Select: </label>
+                             <input type="radio" name="type" value="eq"><strong> Evenly Equated</strong>
+                             <input type="radio" name="type" value="in" checked="checked"> <strong>Individual</strong>
+                         </div>
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th width="50%"></th>
+                                    <th width="15%">Code</th>
+                                    <th width="35%" style=" text-align:center">Budget</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="50%"></td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th width="50%" style=" text-align:center">Hours</th>
+                                                    <th width="50%" style=" text-align:center">Dollars</th>
+
+                                                </tr>
+                                            </thead>
+
+
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>Meals and Entertainment</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+
+
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Food and Beverage</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">ME01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="ME01_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="ME01_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Admission fees, tickets and venue fees</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">ME02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="ME02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="ME02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Room rental  - receptions and cocktail parties</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">ME03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="ME03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="ME03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Gifts and takeaways</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">ME04</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="ME04_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="ME04_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Labor and Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">ME05</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="ME05_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="ME05_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+
+                                <!-- main Loop End -->
+
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>Travel</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Transportation</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">TR01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="TR01_hr">
+                                                        </div>
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="TR01_bud">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody> 
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Lodging</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">TR02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="TR02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="TR02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Mileage</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">TR03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="TR03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="TR03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Car rental</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">TR04</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="TR04_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="TR04_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Taxis and Uber</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">TR05</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="TR05_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="TR05_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Client transportation (limo's, buses, vans etc.)</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">TR06</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="TR06_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="TR06_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- main Loop End -->
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>CONFERENCE AND EVENT FEES - ATTEND</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Bar and legal </td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CA01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CA01_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CA01_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Industry/other</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CA02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CA02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CA02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Conference materials</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CA03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CA03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CA03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+
+                                <!-- main Loop End -->
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>CONFERENCE AND EVENT FEES - CLIENTS</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Firm Sponsored venue costs</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC01_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC01_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Seminar materials</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Takeaways and attendee gifts</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Audio Video production costs</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC04</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC04_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC04_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Promotional costs</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC05</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC05_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC05_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Labor and Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC06</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC06_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC06_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Event planners</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">CC07</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="CC07_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="CC07_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+
+                                <!-- main Loop End -->
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>CONTENT/ INBOUND AND OTHER MARKETING SUPPORT</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Content/Inbound and Other Marketing Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB01_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB01_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Web Development</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Search Engine Optimization (SEO)</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Social Medial Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB04</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB04_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB04_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Production and Distribution costs</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB05</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB05_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB05_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Video Production Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB06</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB06_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB06_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Graphics Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB07</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB07_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB07_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Editorial Support</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB08</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB08_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB08_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">CRM/MAS Licensing Fees </td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB09</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB09_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB09_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Research Databases</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB10</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB10_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB10_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Paid Advertising and Promotion</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB11</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB11_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB11_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Content Development </td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">IB12</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="IB12_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="IB12_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+
+                                <!-- main Loop End -->
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>PROFESSIONAL SUPPORT</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Marketing</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">PS01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="PS01_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="PS01_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Public Relations</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">PS02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="PS02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="PS02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Advertising</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">PS03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="PS03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="PS03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Research</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">PS04</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="PS04_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="PS04_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Social Medial </td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">PS05</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="PS05_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="PS05_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <!-- main Loop End -->
+                                <!-- One Loop start -->
+                                <tr>
+                                    <td width="50%"><strong>STAFFING COSTS</strong> </td>
+                                    <td width="15%"></td>
+                                    <td width="35%">
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%"></td>
+                                                    <td width="50%"></td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- One Loop End -->
+                                <!-- main Loop start -->
+
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Marketing Director</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">SC01</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="SC01_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="SC01_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">Marketing Support Personnel</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">SC02</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="SC02_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="SC02_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="50%" style="  line-height: 20px; padding-bottom: 0; ">IT allocation</td>
+                                    <td width="15%" style="  line-height: 20px; padding-bottom: 0;  ">SC03</td>
+                                    <td width="35%" >
+                                        <table width="100%">
+
+                                            <tbody>
+                                                <tr>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:95%; height:30px; " type="text" class="form-control" name="SC03_hr">
+                                                        </div>
+
+                                                    </td>
+                                                    <td width="50%">
+                                                        <div class="form-group" style=" margin-bottom:0px">
+                                                            <input style=" width:100%; height:30px; " type="text" class="form-control dollar_sign" name="SC03_bud">
+                                                        </div>
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody> 
+
+                                        </table>
+
+                                    </td>
+                                </tr>
+
+                                <!-- main Loop End -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                  </div>
+                </div>
+            </form>
+          </div>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>
+<script type="text/javascript">
+$(document).ready(function(e){
+
+});
+</script>

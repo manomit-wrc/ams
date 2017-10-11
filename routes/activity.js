@@ -46,12 +46,10 @@ module.exports = function(app, models) {
 				}
 			}).then(function(firm){
 				firm_v = firm[0].dataValues;
-				console.log(firm_v);
+				res.render('admin/activity/add',{layout:'dashboard',firm_details:firm_v, attorney: result[1][0],activity_goal: result[2], code: result[3], practice_area: result[4], activity_details: result[5], budget_details: result[6] });
 			});
-			console.log(firm_v);
-			res.render('admin/activity/add',{layout:'dashboard',firm_details:firm_v, attorney: result[1][0],activity_goal: result[2], code: result[3], practice_area: result[4], activity_details: result[5], budget_details: result[6] }); 
-		});
-							
+ 
+		});			
 	});
 
 	app.post('/admin/activity/add', function(req, res){
@@ -96,82 +94,63 @@ module.exports = function(app, models) {
 		});
 	});
 
-	app.get('/admin/attorney-goal/edit/:id', function(req, res){
+	app.get('/admin/activity/edit/:id', function(req, res){
 		// models dependancy
-		models.attorneygoal.belongsTo(models.admin, {foreignKey: 'attorney_id'});
+		models.activity.belongsTo(models.activitygoal,{foreignKey: 'activity_goal'});
+		models.activity.belongsTo(models.code,{foreignKey: 'activity_type_id'});
+		models.activity.belongsTo(models.practicearea,{foreignKey: 'practice_area_type'});
+		models.activity.belongsTo(models.activitydetails,{foreignKey: 'activity_details_id'});
+		models.activity.belongsTo(models.budgetdetails,{foreignKey: 'budget_details_id'});
 		//end
 		Promise.all([
-			models.admin.findAll({
+			models.activitygoal.findAll({attributes: ['id', 'activity_goal']}),
+		  	models.code.findAll(),
+		  	models.practicearea.findAll(),
+			models.activitydetails.findAll({attributes: ['id', 'code', 'short_description']}),
+			models.budgetdetails.findAll({attributes: ['id', 'budget_code', 'short_description']}),
+			models.activity.findAll({
 				where: {
-					role_code: 'ATTR'
-				},
-				attributes: ['id', 'first_name','last_name']
-			}),
-			models.attorneygoal.findAll({
-				where:{
-					id: req.params['id']
-				}
+    				id: req.params['id']
+  				},
+  				include: [{model: models.activitygoal},{model: models.code},{model: models.practicearea},{model: models.activitydetails},{model: models.budgetdetails}]
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			res.render('admin/attorney-goal/edit',{layout:'dashboard', attorney:result[0], attorney_goal_details:result[1][0]});			
+			//console.log(result[5][0]);
+			res.render('admin/activity/edit',{layout:'dashboard',activity_goal_array: result[0], code: result[1], practice_area: result[2], activity_details: result[3], budget_details: result[4], details: result[5][0] });			
 		});
 	});
 
- 	app.post('/admin/attorney-goal/edit/:id', function(req, res){
-		models.attorneygoal.update({
-			attorney_id: req.body.attorney_id,
-			current_year: req.body.current_year,
-			current_year_goal: req.body.current_year_goal,
-			goal_percentage: req.body.goal_percentage,
-			summary: req.body.summary,
+ 	app.post('/admin/activity/edit/:id', function(req, res){
+		models.activity.update({
+			activity_type_id: req.body.activity_type,
+			activity_goal: req.body.activity_goal,
+			practice_area_type: req.body.practice_area_type,
+			potential_revenue: req.body.potential_revenue,
+			activity_name: req.body.activity_name,
+			activity_reason: req.body.activity_reason,
+			creation_date: req.body.creation_date,
+			from_duration: req.body.from_date,
+			to_duration: req.body.to_date,
+			activity_details_id: req.body.act_details_status,
+			budget_details_id: req.body.budget_details_status,
 			remarks: req.body.remarks_notes
 	    },{ where: { id: req.params['id'] }}).then(function(result){
-	    	req.flash('succ_add_msg', 'Attorney goal edited successfully');
-	    	res.redirect('/admin/attorney-goal');
+	    	req.flash('succ_add_msg', 'Activity edited successfully');
+	    	res.redirect('/admin/activity');
 	    }).catch(function(err){	    	
 	    	var validation_error = err.errors;
 	    	req.flash('error_message', validation_error[0].message);
-	    	var redirectUrl = '/admin/attorney-goal/edit/' + req.params['id'];
+	    	var redirectUrl = '/admin/activity/edit/' + req.params['id'];
   			res.redirect(redirectUrl);	    	
 	    });
 	});
 
-	// activity goal operations //
-	app.get('/admin/attorney-goal/activity-goal', function(req, res) {
-		models.activitygoal.belongsTo(models.admin,{foreignKey: 'attorney_seq_no'});
-		models.activitygoal.findAll({
-			include: [{model: models.admin, required: true}]
-		}).then(function(result){
-			//console.log(result);
-			res.render('admin/attorney-goal/activity-goal/index',{layout:'dashboard', result:result, succ_add_msg:req.flash('succ_add_msg')[0]});
-		});
-		
+	app.get('/admin/activity/budget', function(req, res) {
+			res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0]});		
 	});
 
-	app.get('/admin/attorney-goal/activity-goal/add', function(req, res){
-		models.admin.findAll({
-			where: {
-				role_code: 'ATTR'
-			},
-			attributes: ['id', 'first_name','last_name']
-		}).then(function(values){
-			res.render('admin/attorney-goal/activity-goal/add',{layout:'dashboard', attorney:values});			
-		});
+	app.get('/admin/activity/budget/add', function(req, res) {
+			res.render('admin/activity/budget/add',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0]});		
 	});
-
-	app.post('/admin/attorney-goal/activity-goal/add', function(req, res){
-		models.activitygoal.create({
-			attorney_seq_no: req.body.attorney_id,
-			firm_seq_no: req.body.firm_id,
-			activity_goal: req.body.activity_goal,
-			from_date: req.body.from_date,
-			to_date: req.body.to_date,
-			remarks: req.body.remarks_notes,
-		}).then(function(result){
-			req.flash('succ_add_msg', 'Activity goal added successfully');
-			res.redirect('/admin/attorney-goal/activity-goal');			
-		});
-	});
-	// end //
 };
