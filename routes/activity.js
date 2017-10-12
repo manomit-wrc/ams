@@ -146,11 +146,4 @@ module.exports = function(app, models) {
 	    });
 	});
 
-	app.get('/admin/activity/budget', function(req, res) {
-			res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0]});		
-	});
-
-	app.get('/admin/activity/budget/add', function(req, res) {
-			res.render('admin/activity/budget/add',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0]});		
-	});
 };

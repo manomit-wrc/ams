@@ -52,7 +52,7 @@
                       <td>{{this.potential_revenue}}</td>
                       <td>{{this.activity_reason}}</td>
                       <td>{{this.activitydetail.short_description}}</td>
-                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/budget" title="Budget"><i class="fa fa-usd" aria-hidden="true"></i></a></td>
+                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/budget/{{this.id}}" title="Activity Budget"><i class="fa fa-usd" aria-hidden="true"></i></a></td>
                      </tr>
                     {{/each}}
                 </tbody>

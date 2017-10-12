@@ -1,11 +1,11 @@
 <section class="content-header">
       <h1>
-        Invite Attorney List
+        Activity Budget List
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Invite Attorney</li>
+        <li class="active">Activity Budget List</li>
       </ol>
     </section>
 
@@ -19,7 +19,7 @@
             </div>
             <!-- /.box-header -->
             <div class="topbtn">
-              <a href="/admin/activity/budget/add"><button type="button" class="btn bg-purple btn-rightad">Add</button></a>
+              <a href="/admin/activity/budget/add/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Add</button></a>
             </div>
             <div class="box-body">
               <div id="success-msg"></div>
@@ -33,26 +33,34 @@
                 <thead>
                 <tr>
                   <th>SL#</th>
-                  <th>Attorney name</th>
-                  <th>Activity type</th>
-                  <th>Activity Name</th>
-                  <th>Potential revenue</th>
-                  <th>Activity reason</th>
-                  <th>Activity status</th>
+                  <th>Budget code</th>
+                  <th>Budget code hours</th>
+                  <th>Budget code cost</th>
+                  <th>Budget details status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                    {{#each result}}
+                    {{#each details}}
                      <tr>
                       <td>{{this.id}}</td>
-                      <td>{{this.attorney_name}}</td>
-                      <td>{{this.code.short_description}}</td>
-                      <td>{{this.activity_name}}</td>                      
-                      <td>{{this.potential_revenue}}</td>
-                      <td>{{this.activity_reason}}</td>
-                      <td>{{this.activitydetail.short_description}}</td>
-                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/invite_attorney" title="Add attorney"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                      {{#if this.budget_code}}
+                        <td>{{this.budget_code}}</td>
+                      {{else}}
+                        <td>N/A</td>
+                      {{/if}}
+                      {{#if this.budget_code_hours}}
+                        <td>{{this.budget_code_hours}}</td>
+                      {{else}}
+                        <td>N/A</td>
+                      {{/if}}
+                      {{#if this.budget_code_cost}}
+                        <td>{{this.budget_code_cost}}</td>
+                      {{else}}
+                        <td>N/A</td> 
+                      {{/if}}                
+                      <td>{{this.budget_dtl_status}}</td>
+                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a></td>
                      </tr>
                     {{/each}}
                 </tbody>

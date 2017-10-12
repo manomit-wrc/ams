@@ -135,7 +135,7 @@ require('./routes/index')(app, passport);
 app.use(function(req, res, next){
   if (req.isAuthenticated())
   {
-    if(req.user.role_code == 'FIRMADM'){
+    if(req.user.role_code == 'FIRMADM'){   // for 'act as attorney' allowance of a firm
       models.firm.findAll({
          where: {
             user_id: req.user.id
@@ -197,27 +197,6 @@ app.use(function(req, res, next){
   res.redirect('/admin');
 });
 
-/*app.get('/admin/dashboard',function(req, res){
-    models.firm.findAll({
-       where: {
-          user_id: req.user.id
-        }
-    }).then(function(firm){
-      models.attorney.findAndCountAll({
-          where: {
-            firm_id: firm[0].id
-          }
-      }).then(function(result){
-        var count = result.count;
-        if(count > 0) {
-          res.locals.is_attorney = 1;
-        } 
-        res.render('admin/dashboard',{layout:'dashboard'});
-      });
-      
-    });
-  });*/
-
 require('./routes/profile')(app, models.admin);
 require('./routes/section')(app, models.section);
 require('./routes/practice-area')(app, models.practicearea);
@@ -246,6 +225,7 @@ require('./routes/opportunity')(app, models);
 require('./routes/attorney-goal')(app, models);
 require('./routes/firm-location')(app, models);
 require('./routes/activity')(app, models);
+require('./routes/activity-budget')(app, models);
 
 // catch 404 and forward to error handler
 

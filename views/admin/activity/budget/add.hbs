@@ -24,14 +24,14 @@
         </div>
         {{/if}}
         <div id="add_budget" tabindex="-1" aria-hidden="true">
-            <form action="#" method="post">
+            <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/activity/budget/add/{{activity_id}}">
                 <div class="modal-body">
                     <div>
-                         <div>
+                         {{!-- <div>
                              <label>Please Select: </label>
                              <input type="radio" name="type" value="eq"><strong> Evenly Equated</strong>
                              <input type="radio" name="type" value="in" checked="checked"> <strong>Individual</strong>
-                         </div>
+                         </div> --}}
                         
                         <table class="table">
                             <thead>
