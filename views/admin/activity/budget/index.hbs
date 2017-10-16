@@ -19,7 +19,11 @@
             </div>
             <!-- /.box-header -->
             <div class="topbtn">
-              <a href="/admin/activity/budget/add/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Add</button></a>
+              {{#if budget_count}}
+                <a href="/admin/activity/budget/edit/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Edit Budget Report</button></a>
+              {{else}}
+                <a href="/admin/activity/budget/add/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Add</button></a>
+              {{/if}}
             </div>
             <div class="box-body">
               <div id="success-msg"></div>
@@ -37,7 +41,6 @@
                   <th>Budget code hours</th>
                   <th>Budget code cost</th>
                   <th>Budget details status</th>
-                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -60,7 +63,6 @@
                         <td>N/A</td> 
                       {{/if}}                
                       <td>{{this.budget_dtl_status}}</td>
-                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a></td>
                      </tr>
                     {{/each}}
                 </tbody>
