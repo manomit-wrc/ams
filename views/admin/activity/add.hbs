@@ -86,10 +86,10 @@
             <label class="control-label">Activity creation date</label>
             <input type="text" name="creation_date" id="creation_date" class="form-control" placeholder="Enter Creation date">
           </div>
-          <div class="form-group col-md-12">
+          <div class="form-group required" style="margin-left:-14px;">
             <label class="col-md-12 control-label">Duration</label>
             <div class="form-group col-md-6">
-              <label>From</label>
+              <label class="control-label">From</label>
               <input type="text" name="from_date" id="from_date" class="form-control url_selector" placeholder="Enter From date">
             </div>
             <div class="form-group col-md-6">
@@ -116,12 +116,6 @@
               <option value="{{this.id}}">{{this.short_description}}</option>
               {{/each}}
             </select>
-          </div>
-          <div class="form-group col-md-12" style=" padding-left: 0; padding-right: 0; margin-top:10px ">
-              <label class="control-label">Budgets:</label>
-              <div class="col-md-12" style=" padding-right: 0">
-                  <a name="add_budget" id="add_budget" class="btn green pull-left" href="#responsive_budget" data-toggle="modal" style="margin-left: -14px;color:#fff;background-color: #717372; border-color: #717372; border-radius: 4px !important;">Add Budget</a>
-              </div>
           </div>
           
         </div>

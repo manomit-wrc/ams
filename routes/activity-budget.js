@@ -3,19 +3,33 @@ module.exports = function(app, models) {
 	app.get('/admin/activity/budget/:id', function(req, res) {
 			var activity_id = req.params['id'];
 			var budget_count;
-			models.activitybudgetdetails.findAndCountAll({
-				where: {
-					activity_id: activity_id,
-				}
-			}).then(function(result){
-				budget_count = result.count;
-			});
-			models.activitybudgetdetails.findAll({
-				where: {
-					activity_id: activity_id,
-				}
-			}).then(function(values){
-				res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], details:values, activity_id:activity_id, budget_count:budget_count});	
+			Promise.all([
+				models.activitybudgetdetails.findAndCountAll({
+					where: {
+						activity_id: activity_id,
+					}
+				}),
+				models.activitybudgetdetails.findAll({
+					where: {
+						activity_id: activity_id,
+					}
+				}),
+				models.mastercontact.findAll({
+					where:{
+						record_type: 'T'
+					},
+					attributes : ['id','first_name' ,'last_name']
+				}),
+				models.mastercontact.findAll({
+					where:{
+						record_type: 'C'
+					},
+					attributes : ['id','first_name' ,'last_name']
+				})
+			]).then(function(values){
+				var result = JSON.parse(JSON.stringify(values));
+
+				res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], details:result[1], activity_id:activity_id, budget_count:result[0].count, target:result[2], client:result[3]});	
 			});
 				
 	});
@@ -135,4 +149,16 @@ module.exports = function(app, models) {
 	});
 
 	// END //
+
+	app.get('/admin/activity/budget/delete/:activity_id', function(req, res){
+		models.activitybudgetdetails.destroy({
+		    where: {
+		       activity_id:req.params['activity_id']
+		    }
+		}).then(function(response){
+			req.flash('succ_add_msg', 'Budget report deleted successfully');
+			var redirectUrl = '/admin/activity/budget/' + req.params['activity_id'];
+	  		res.redirect(redirectUrl);
+		});
+	});
 };

@@ -20,12 +20,6 @@
             <!-- /.box-header -->
             <div class="topbtn">
               <a href="#add_client_modal" data-toggle="modal"><button type="button" class="btn bg-purple btn-rightad">Add Target/Client <i class="fa fa-plus"></i></button></a>
-              {{#if budget_count}}
-                <a href="/admin/activity/budget/edit/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Edit Budget Report</button></a>
-                <a href="/admin/activity/budget/delete/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Delete Budget Report</button></a>
-              {{else}}
-                <a href="/admin/activity/budget/add/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Add</button></a>
-              {{/if}}
             </div>
             <div class="box-body">
               <div id="success-msg"></div>
@@ -79,6 +73,7 @@
       </div>
       <!-- /.row -->
     </section>
+
 <div id="add_client_modal" class="modal fade" role="dialog">
     <div class="modal-dialog modal-dialog-sm">
         <div class="modal-content">
@@ -92,7 +87,13 @@
                   <div id="message"></div>
                   <form name="add_target_or_client" id="add_target_or_client" action="/admin/firm-activity/add_client_or_target" method="post"> 
                       <input type="hidden" name="activity_id" id="activity_id" value="{{activity_id}}">
-                      <input type="hidden" name="attorney_id" id="attorney_id" value="{{user.id}}">
+                      <input type="hidden" name="attorney_id" id="attorney_id" value="{{attorney.attorney_id}}">
+                      <div class="form-group required">
+                        <label class="col-md-4 control-label">Firm:</label>
+                        <div class="col-md-8">
+                          <input type="text" name="firm_name" class="form-control" value="{{firm.name}}" readonly="readonly" style="margin-bottom: 10px;">
+                        </div>
+                      </div>  
                       <div class="form-group required">
                         <label class="col-md-4 control-label">Relation:</label>
                         <div class="col-md-8">
@@ -124,7 +125,6 @@
                             </select>
                           </div>
                       </div>
-                      
                       <div class="form-group required">
                         <label class="col-md-4 control-label">Potential Revenue:</label>
                         <div class="col-md-8">
