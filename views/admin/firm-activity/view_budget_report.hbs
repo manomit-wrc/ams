@@ -148,7 +148,7 @@
 
                       <div class=" col-md-12">
                         <button type="button" id="close_btn" data-dismiss="modal" class="btn bg-purple btn-rightad" style="margin-right: -18px;">Close</button>
-                        <button type="button" id="submit_target_or_client" class="btn bg-purple btn-rightad">Submit</button>
+                        <button type="submit" id="submit_target_or_client" class="btn bg-purple btn-rightad">Submit</button>
                       </div>
                   </form>
                 </div>
@@ -216,36 +216,36 @@
         activity_dtl_status: {
           required:  "Please select activity status"
         }
-      }
+      },
+      submitHandler: function(form) {
+        var relation_type = $('input[name=relation_type]:checked').val();
+        if(relation_type == 'T') {
+          var output = 'Target';
+        } else {
+          var output = 'Client';
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/firm-activity/add_client_or_target",
+            data: {
+              activity_id: $("#activity_id").val(),
+              attorney_id: $("#attorney_id").val(),
+              relation_type: relation_type,
+              contact_id: relation_type == 'T'?$('#relation_target').val():$('#relation_client').val(),
+              potential_rev: $("#potential_rev").val(),
+              activity_dtl_status: $("#activity_dtl_status").val(),
+            },
+            success:function(response) {
+              if(response == 'success') {
+                $('#message').html('<div class ="alert alert-success">'+output+' added successfully</div>');
+                setTimeout(function(){ $("#close_btn").trigger("click");}, 1000);
+              } else {
+                $('#message').html('<div class ="alert alert-danger">Some error</div>');
+              }
+            }
+        });
+      },
   });
 
-  $('#submit_target_or_client').click(function(){
-      var relation_type = $('input[name=relation_type]:checked').val();
-      if(relation_type == 'T') {
-        var output = 'Target';
-      } else {
-        var output = 'Client';
-      }
-      $.ajax({
-          type: "POST",
-          url: "/admin/firm-activity/add_client_or_target",
-          data: {
-            activity_id: $("#activity_id").val(),
-            attorney_id: $("#attorney_id").val(),
-            relation_type: relation_type,
-            contact_id: relation_type == 'T'?$('#relation_target').val():$('#relation_client').val(),
-            potential_rev: $("#potential_rev").val(),
-            activity_dtl_status: $("#activity_dtl_status").val(),
-          },
-          success:function(response) {
-            if(response == 'success') {
-              $('#message').html('<div class ="alert alert-success">'+output+' added successfully</div>');
-              setTimeout(function(){ $("#close_btn").trigger("click");}, 1000);
-            } else {
-              $('#message').html('<div class ="alert alert-danger">Some error</div>');
-            }
-          }
-      });
-  });
 });
 </script>

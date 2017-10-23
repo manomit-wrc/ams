@@ -93,6 +93,15 @@
                   <form name="add_target_or_client" id="add_target_or_client" action="/admin/firm-activity/add_client_or_target" method="post"> 
                       <input type="hidden" name="activity_id" id="activity_id" value="{{activity_id}}">
                       <input type="hidden" name="attorney_id" id="attorney_id" value="{{user.id}}">
+
+                      <div class="form-group required">
+                        <label class="col-md-4 control-label">Attorney:</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" name="attorney" id="attorney" value="{{attorney.first_name}}&nbsp;{{attorney.last_name}}" readonly="readonly">
+                          <span class="help-block"></span>
+                        </div>
+                      </div>
+
                       <div class="form-group required">
                         <label class="col-md-4 control-label">Relation:</label>
                         <div class="col-md-8">
@@ -101,6 +110,7 @@
                           <span class="help-block">  </span>
                         </div>
                       </div>
+
                       <div class="form-group targets required">
                         <label class="col-md-4 control-label">Target:</label>
                           <div class="col-md-8">
@@ -124,7 +134,7 @@
                             </select>
                           </div>
                       </div>
-                      
+
                       <div class="form-group required">
                         <label class="col-md-4 control-label">Potential Revenue:</label>
                         <div class="col-md-8">
@@ -148,7 +158,7 @@
 
                       <div class=" col-md-12">
                         <button type="button" id="close_btn" data-dismiss="modal" class="btn bg-purple btn-rightad" style="margin-right: -18px;">Close</button>
-                        <button type="button" id="submit_target_or_client" class="btn bg-purple btn-rightad">Submit</button>
+                        <button type="submit" id="submit_target_or_client" class="btn bg-purple btn-rightad">Submit</button>
                       </div>
                   </form>
                 </div>
@@ -216,36 +226,35 @@
         activity_dtl_status: {
           required:  "Please select activity status"
         }
-      }
-  });
-
-  $('#submit_target_or_client').click(function(){
-      var relation_type = $('input[name=relation_type]:checked').val();
-      if(relation_type == 'T') {
-        var output = 'Target';
-      } else {
-        var output = 'Client';
-      }
-      $.ajax({
-          type: "POST",
-          url: "/admin/firm-activity/add_client_or_target",
-          data: {
-            activity_id: $("#activity_id").val(),
-            attorney_id: $("#attorney_id").val(),
-            relation_type: relation_type,
-            contact_id: relation_type == 'T'?$('#relation_target').val():$('#relation_client').val(),
-            potential_rev: $("#potential_rev").val(),
-            activity_dtl_status: $("#activity_dtl_status").val(),
-          },
-          success:function(response) {
-            if(response == 'success') {
-              $('#message').html('<div class ="alert alert-success">'+output+' added successfully</div>');
-              setTimeout(function(){ $("#close_btn").trigger("click");}, 1000);
-            } else {
-              $('#message').html('<div class ="alert alert-danger">Some error</div>');
+      },
+      submitHandler: function(form) {
+        var relation_type = $('input[name=relation_type]:checked').val();
+        if(relation_type == 'T') {
+          var output = 'Target';
+        } else {
+          var output = 'Client';
+        }
+        $.ajax({
+            type: "POST",
+            url: "/admin/firm-activity/add_client_or_target",
+            data: {
+              activity_id: $("#activity_id").val(),
+              attorney_id: $("#attorney_id").val(),
+              relation_type: relation_type,
+              contact_id: relation_type == 'T'?$('#relation_target').val():$('#relation_client').val(),
+              potential_rev: $("#potential_rev").val(),
+              activity_dtl_status: $("#activity_dtl_status").val(),
+            },
+            success:function(response) {
+              if(response == 'success') {
+                $('#message').html('<div class ="alert alert-success">'+output+' added successfully</div>');
+                setTimeout(function(){ $("#close_btn").trigger("click");}, 1000);
+              } else {
+                $('#message').html('<div class ="alert alert-danger">Some error</div>');
+              }
             }
-          }
-      });
+        });
+      }
   });
 });
 </script>

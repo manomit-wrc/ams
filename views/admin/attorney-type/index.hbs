@@ -37,11 +37,11 @@
                 <tbody>
                     {{#each attorney_type}}
                      <tr>
-                      <td>{{this.attorney}}</td>
-                      <td>{{this.remark}}
-                      </td>
-                      <td><a href="/admin/attorney-type/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/attorney-type/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
-                    </tr>
+                        <td>{{this.attorney}}</td>
+                        <td>{{this.remark}}
+                        </td>
+                        <td><a href="/admin/attorney-type/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/attorney-type/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                     </tr>
                      {{/each}}
                 </tbody>
               </table>

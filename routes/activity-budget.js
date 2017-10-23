@@ -25,11 +25,17 @@ module.exports = function(app, models) {
 						record_type: 'C'
 					},
 					attributes : ['id','first_name' ,'last_name']
+				}),
+				models.admin.findAll({
+					where:{
+						id: req.user.id
+					},
+					attributes : ['id','first_name' ,'last_name']
 				})
 			]).then(function(values){
 				var result = JSON.parse(JSON.stringify(values));
 
-				res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], details:result[1], activity_id:activity_id, budget_count:result[0].count, target:result[2], client:result[3]});	
+				res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], details:result[1], activity_id:activity_id, budget_count:result[0].count, target:result[2], client:result[3], attorney:result[4][0]});	
 			});
 				
 	});
