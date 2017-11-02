@@ -5,7 +5,15 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>AM</b>S</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Attorney Management System</b></span>
+      {{#if_eq user.role_code "SITEADM"}}
+        <span class="logo-lg"><b>Site Admin</b></span>
+      {{/if_eq}}
+      {{#if_eq user.role_code "FIRMADM"}}
+        <span class="logo-lg"><b>Firm Admin</b></span>
+      {{/if_eq}}
+      {{#if_eq user.role_code "ATTR"}}
+        <span class="logo-lg"><b>Attorney</b></span>
+      {{/if_eq}}
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->

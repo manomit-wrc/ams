@@ -188,6 +188,7 @@ app.use(function(req, res, next){
             res.locals.user = req.user;                            
 
             res.locals.active = req.path.split('/')[2];
+            res.locals.next_active = req.path.split('/')[3];
             return next();  
     }
   }
@@ -225,6 +226,8 @@ require('./routes/firm-location')(app, models);
 require('./routes/activity')(app, models);
 require('./routes/activity-budget')(app, models);
 require('./routes/firm-activity')(app, models);
+require('./routes/attorney-target')(app, models);
+require('./routes/attorney-referrel')(app, models);
 
 // catch 404 and forward to error handler
 

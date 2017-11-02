@@ -81,9 +81,9 @@
 
           <li class="{{#if (eq active "target")}} active {{/if}}"><a href="/admin/target"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> <span>Targets</span></a></li>
 
-          <li class="{{#if (eq active "referrel")}} active {{/if}}"><a href="/admin/referrel"><i class="fa fa-black-tie" aria-hidden="true"></i> <span>Referrel</span></a></li>
+          <li class="{{#if (eq active "referrel")}} active {{/if}}"><a href="/admin/referrel"><i class="fa fa-black-tie" aria-hidden="true"></i> <span>Referral</span></a></li>
 
-          <li class="{{#if (eq active "target-to-client")}} active {{/if}}"><a href="/admin/target-to-client"><i class="fa fa-external-link" aria-hidden="true"></i> <span>Target-Client Conversation</span></a></li>
+          <li class="{{#if (eq active "target-to-client")}} active {{/if}}"><a href="/admin/target-to-client"><i class="fa fa-external-link" aria-hidden="true"></i> <span>Target-Client Conversion</span></a></li>
 
           <li class="{{#if (eq active "opportunity")}} active {{/if}}"><a href="/admin/opportunity"><i class="fa fa-tag" aria-hidden="true"></i> <span>Opportunity</span></a></li>
 
@@ -94,10 +94,27 @@
         {{/if_eq}}
 
 
-        {{#if_eq user.role_code "ATTR"}}
-          <li class="{{#if (eq active "attorney")}} active {{/if}}"><a href="/admin/attorney/attorney-profile"><i class="fa fa-user" aria-hidden="true"></i> <span>Attorney Profile</span></a></li>
+        {{#if_eq user.role_code "ATTR"}} 
+          <li class="{{#if (eq next_active "attorney-profile")}} active {{/if}}"><a href="/admin/attorney/attorney-profile"><i class="fa fa-user" aria-hidden="true"></i> <span>Attorney Profile</span></a></li>
 
           <li class="{{#if (eq active "activity")}} active {{/if}}"><a href="/admin/activity"><i class="fa fa-adn"></i> <span>Activity</span></a></li>
+
+          <li class="treeview {{#if_eq active "attorney"}} active {{/if_eq}}">
+            <a href="javascript:void(0)">
+              <i class="fa fa-magnet" aria-hidden="true"></i> <span>Attorney Operation</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+
+            <ul class="treeview-menu">
+              <li class="{{#if_eq next_active "master-contact"}} active {{/if_eq}}"><a href="/admin/attorney/master-contact"><i class="fa fa-phone-square" aria-hidden="true"></i>Master Contact</a></li>
+
+              <li class="{{#if_eq next_active "target"}} active {{/if_eq}}"><a href="/admin/attorney/target"><i class="fa fa-bullseye" aria-hidden="true"></i>Targets</a></li>
+
+              <li class="{{#if_eq next_active "referrel"}} active {{/if_eq}}"><a href="/admin/attorney/referrel"><i class="fa fa-black-tie" aria-hidden="true"></i>Referral</a></li>
+            </ul>
+          </li>
 
         {{/if_eq}}
 

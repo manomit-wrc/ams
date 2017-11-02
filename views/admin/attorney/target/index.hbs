@@ -1,0 +1,148 @@
+<section class="content-header">
+      <h1>
+        Target List
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+
+        <li class="active">Target List</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+            </div>
+            <div id="success-msg"></div>
+            <!-- /.box-header -->
+            <div class="topbtn">
+              <a href="/admin/attorney/target/add"><button type="button" class="btn bg-purple" style="margin: 0 10px 10px 8px;">ADD</button></a>
+              <a href="javascript:void(0)" id="move_to_client"><button type="button" style="margin: 0 10px 10px 8px;" class="btn bg-purple">Move To Client</button></a>
+            </div>
+            <div class="box-body">
+              {{#if succ_add_msg}}
+                <div class="alert alert-success" id="result77">
+                {{succ_add_msg}}
+                </div>
+              {{/if}}
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>SL#</th>
+                  <th>Record Type</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Company Name</th>
+                  <th>Mobile</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each master_contacts}}
+                     <tr>
+                      <td><input type="checkbox" name="master_contact_chk[]" class="chk_cls target_ck" value="{{this.id}}">&nbsp;{{this.id}}</td>
+                      {{#if_eq this.record_type 'M'}}
+                        <td>Master Contact</td>
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'R'}}
+                        <td>Referral</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type 'C'}}
+                        <td>Client</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type 'T'}}
+                        <td>Target</td>
+                     {{/if_eq}}
+                      <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
+                      <td>{{this.email}}</td>
+                      <td>{{this.company_name}}</td>
+                      <td>{{this.mobile_cell}}</td>
+                      <td>{{this.phone}}</td>
+                      <td>{{this.association_status}}</td>
+                      <td><a href="/admin/attorney/target/edit/{{this.id}}" >Edit</a>&nbsp;|&nbsp;<a href="/admin/attorney/target/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    </tr>
+                     {{/each}}
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+
+<script type="text/javascript">
+  $(document).ready(function(e){
+      $('#move_to_client').click(function(){
+          var checked_ids = [];
+          $("input[name='master_contact_chk[]']:checked").each(function (i) { 
+              checked_ids[i] = $(this).val();            
+          });         
+          if(checked_ids.length > 0){
+            $.ajax({
+                type: "POST",
+                url: "/admin/attorney/target/move_to_client",
+                data: {checked_ids:checked_ids},
+                async: false,
+                success:function(response) {            
+                  $("#success-msg").html('<div class="alert alert-success" id="result77">Successfully moved to Target</div>');
+                  setTimeout(function(){
+                      window.location.reload();
+                  }, 1000);                    
+                }
+            });
+          } else {
+            $("#success-msg").html('<div class="alert alert-danger" id="result77">No master contact checked</div>');
+          }
+        
+      });
+
+      $("#upload_excel").validate({
+          rules: {
+            attorney_id: {
+              required: true
+            },
+            xls_file: {
+              required: true
+            }
+          },
+          messages: {
+            attorney_id: {
+              required: "Select an attorney"
+            },
+            xls_file: {
+              required: "Please upload file"
+            }
+          }
+      });
+
+      $("#upload_csv").validate({
+          rules: {
+            attorney_id: {
+              required: true
+            },
+            csv_file: {
+              required: true
+            }
+          },
+          messages: {
+            attorney_id: {
+              required: "Select an attorney"
+            },
+            csv_file: {
+              required: "Please upload file"
+            }
+          }
+      });
+  });
+</script>

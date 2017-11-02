@@ -1,7 +1,7 @@
 <section class="content-header">
   <h1>
     Referral
-    <small>Edit</small>
+    <small>Add</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -22,15 +22,15 @@
         <div class="alert alert-danger" id="result77">
         {{error_message}}
         </div>
-        {{/if}} 
-        <form name="frmClient" id="frmClient" method="POST" action="/admin/referrel/edit/{{master_contact_result.id}}">
-          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+        {{/if}}
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/attorney/referrel/add">
+          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.firm_id}}">
           <div class="form-group col-md-12">
             <label class="radio-inline">
-              <input type="radio" name="referrel_type" class = "referrel_type" {{#if_eq master_contact_result.type 'I'}} checked="checked" {{/if_eq}} value="I">Individual Target
+              <input type="radio" name="referrel_type" class = "referrel_type" checked="checked" value="I">Individual Target
             </label>
             <label class="radio-inline">
-              <input type="radio" name="referrel_type" class ="referrel_type" {{#if_eq master_contact_result.type 'O'}} checked="checked" {{/if_eq}} value="O">Organization
+              <input type="radio" name="referrel_type" class ="referrel_type" value="O">Organization
             </label>
           </div>
           <div class="col-md-6">
@@ -42,30 +42,30 @@
                 <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
                   <option value="">Select Any</option>
                   {{#each attorney}}
-                    <option value="{{this.id}}" {{#if_eq this.id ../master_contact_result.attorney_id}} selected="selected"{{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                    <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
                   {{/each}}
                 </select>
             </div>
 
             <div class="form-group organisation required" style="display:none">
               <label>Organisation Name</label>
-              <input type="text" name="organisation" id="organisation" class="form-control" placeholder="Organisation" value="{{master_contact_result.company_name}}">
+              <input type="text" name="organisation" id="organisation" class="form-control" placeholder="Organisation">
             </div>
           <div class="form-group fname required">
             <label>Referral First Name</label>
-            <input type="text" name="referrel_first_name" id="referrel_first_name" class="form-control" placeholder="Referrel First Name" value="{{master_contact_result.first_name}}">
+            <input type="text" name="referrel_first_name" id="referrel_first_name" class="form-control" placeholder="Referrel First Name">
           </div>
           <div class="form-group lname required">
             <label>Referral Last Name</label>
-            <input type="text" name="referrel_last_name" id="referrel_last_name" class="form-control" placeholder="Referrel Last Name" value="{{master_contact_result.last_name}}">
+            <input type="text" name="referrel_last_name" id="referrel_last_name" class="form-control" placeholder="Referrel Last Name">
           </div>
           <div class="form-group required">
             <label>Referral Email</label>
-            <input type="email" name="referrel_email" id="referrel_email" class="form-control" placeholder="Referrel Email" value="{{master_contact_result.email}}">
+            <input type="email" name="referrel_email" id="referrel_email" class="form-control" placeholder="Referrel Email">
           </div>
           <div class="form-group required">
             <label>Phone/mobile</label>
-            <input type="text" name="referrel_mobile" id="mobile" class="form-control" placeholder="Referrel Phone/Mobile" value="{{master_contact_result.phone}}">
+            <input type="text" name="referrel_mobile" id="mobile" class="form-control" placeholder="Referrel Phone/Mobile" maxlength="10">
           </div>
           <div class="form-group required">
             <label>Referred By</label>
@@ -77,26 +77,26 @@
             </label>
 
             <div class="form-group targets required">
-              <select class="form-control" style="width: 100%;" id="target" name="referred_by_target">
-                <option value="">Select Target</option>
-                {{#each targets}}
-                  <option value="{{this.id}}" {{#if_eq this.id ../master_contact_result.referrel_id}} selected="selected"{{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
-                {{/each}}
-              </select>
+                <select class="form-control" style="width: 100%;" id="target" name="referred_by_target">
+                  <option value="">Select Target</option>
+                  {{#each targets}}
+                    <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                  {{/each}}
+                </select>
             </div>
 
             <div class="form-group clients required" style="display:none">
                 <select class="form-control" style="width: 100%;" id="client" name="referred_by_client">
                   <option value="">Select Client</option>
                   {{#each clients}}
-                    <option value="{{this.id}}" {{#if_eq this.id ../master_contact_result.referrel_id}} selected="selected"{{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                    <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
                   {{/each}}
                 </select>
             </div>
           </div>
           <div class="form-group">
             <label>Remarks</label>
-            <textarea name="remarks_notes" id="remarks_notes" class="form-control">{{master_contact_result.remarks_notes}}</textarea>
+            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
           </div>
         </div>
 
@@ -119,17 +119,6 @@
 </section>
 <script type="text/javascript">
 $(document).ready(function(e){
-  var ref_type = "{{master_contact_result.type}}";
-  if(ref_type == 'O') {
-      $('.organisation').show();
-      $('.fname').hide();
-      $('.lname').hide();
-  } else {
-      $('.organisation').hide();
-      $('.fname').show();
-      $('.lname').show();
-  }
-
   $('.referrel_type').click(function(){
       var referrel_type = $(this).val();
       if(referrel_type == 'O') {
@@ -175,7 +164,8 @@ $(document).ready(function(e){
         email: true
       },
       referrel_mobile: {
-        required:  true
+        required:  true,
+        maxlength: 10
       },
       referred_by: {
         required:  true
@@ -205,7 +195,8 @@ $(document).ready(function(e){
         email: "Enter valid email"
       },
       referrel_mobile: {
-        required:  "Please enter mobile"
+        required:  "Please enter mobile",
+        maxlength: "maximum length exceeds"
       },
       referred_by: {
         required:  "Please select a referrel ID"
