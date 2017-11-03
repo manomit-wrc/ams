@@ -38,7 +38,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    {{#each referrel}}
+                    {{#each new_array}}
                      <tr>
                       {{#if_eq this.record_type 'M'}}
                         <td>Master Contact</td>
@@ -52,7 +52,7 @@
                       {{#if_eq this.record_type 'T'}}
                         <td>Target</td>
                       {{/if_eq}}
-                      <td>{{referred_name this.referrel_id}}</td>
+                      <td>{{this.abc}}</td>
                       {{#if this.first_name}}
                         <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
                       {{else}}

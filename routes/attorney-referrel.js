@@ -1,3 +1,5 @@
+var refer;
+var new_array = new Array();
 module.exports = function(app, models) {
 
 	app.get('/admin/attorney/referrel', function(req, res){
@@ -7,7 +9,24 @@ module.exports = function(app, models) {
 				add_flag: 'ATTR'
 			}
 		}).then(function(referrel){
-			res.render('admin/attorney/referrel/index',{layout:'dashboard', referrel:referrel, succ_add_msg:req.flash('succ_add_msg')[0]});
+			//console.log(referrel);
+			for (var i = 0; i < Object.keys(referrel).length; i++) {
+				//console.log(referrel[Object.keys(referrel)[i]]['referrel_id']);
+				models.mastercontact.findAll({
+					where: {
+						id: referrel[Object.keys(referrel)[i]]['referrel_id'],
+					},
+					attributes: ['first_name','last_name', 'record_type']
+				}).then(function(result_value){
+					referrel['abc'] = result_value[0].first_name;
+					//console.log(referrel['abc']);
+					
+				});
+
+			}
+			new_array = referrel;
+			//console.log(new_array);
+			res.render('admin/attorney/referrel/index',{layout:'dashboard', new_array:new_array, succ_add_msg:req.flash('succ_add_msg')[0]});
 		});
 	});
 
@@ -85,7 +104,9 @@ module.exports = function(app, models) {
 		// models dependancy
 		models.mastercontact.belongsTo(models.firm, {foreignKey: 'firm_id'});
 		models.mastercontact.belongsTo(models.attorney, {foreignKey: 'attorney_id'});
+		
 		//end
+
 		Promise.all([
 			models.admin.findAll({
 				where: {
@@ -120,8 +141,24 @@ module.exports = function(app, models) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result[4]);
-			res.render('admin/attorney/referrel/edit',{layout:'dashboard', attorney:result[0], firm:result[1][0], master_contact_result:result[2][0], targets:result[3], clients:result[4], ref_type:req.body.ref});			
+			//console.log(result[2][0]);
+			models.mastercontact.findAll({
+				where: {
+					record_type: 'R',
+					id: req.params['id'],
+					add_flag: 'ATTR'
+				}
+			}).then(function(master){
+				models.mastercontact.findAll({
+					where: {
+						id: master[0]['referrel_id'],
+					},
+					attributes: ['first_name','last_name', 'record_type']
+				}).then(function(result_value){
+					refer = result_value[0];
+					res.render('admin/attorney/referrel/edit',{layout:'dashboard', attorney:result[0], firm:result[1][0], master_contact_result:result[2][0], targets:result[3], clients:result[4], ref:refer});
+				})
+			});							
 		});
 	});
 

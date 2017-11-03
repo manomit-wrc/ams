@@ -70,10 +70,10 @@
           <div class="form-group required">
             <label>Referred By</label>
             <label class="radio-inline">
-              <input type="radio" name="ref" class="referred_by" checked="checked" value="T">Target
+              <input type="radio" name="ref" class="referred_by" value="T" {{#if_eq ref.record_type 'T'}} checked="checked" {{/if_eq}}>Target
             </label>
             <label class="radio-inline">
-              <input type="radio" name="ref" class="referred_by" value="C">Client
+              <input type="radio" name="ref" class="referred_by" value="C" {{#if_eq ref.record_type 'C'}} checked="checked" {{/if_eq}}>Client
             </label>
 
             <div class="form-group targets required">
@@ -119,6 +119,15 @@
 </section>
 <script type="text/javascript">
 $(document).ready(function(e){
+
+  var new_ref = "{{ref.record_type}}";
+  if(new_ref == 'C') {
+      $('.clients').show();
+      $('.targets').hide();
+  } else {
+      $('.targets').show();
+      $('.clients').hide();
+  }
   var ref_type = "{{master_contact_result.type}}";
   if(ref_type == 'O') {
       $('.organisation').show();
