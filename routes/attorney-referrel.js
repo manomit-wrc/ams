@@ -20,7 +20,6 @@ module.exports = function(app, models) {
 				}).then(function(result_value){
 					referrel['abc'] = result_value[0].first_name;
 					//console.log(referrel['abc']);
-					
 				});
 
 			}

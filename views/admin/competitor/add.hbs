@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-    Target
+    Competitor
     <small>Add</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="/admin/master-contact">Target</a></li>
+    <li><a href="/admin/master-contact">Competitor</a></li>
 
   </ol>
 </section>
@@ -23,11 +23,19 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/target/add">
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/competitor/add">
         <div class="col-md-6">
-
+          <h3 class="hint"> General Information </h3>
           <div class="form-group required">
-            <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+            <input type="hidden" name="attorney_id" id="attorney_id" class="form-control" value = "{{user.id}}">
+            <label>Competitor ID</label>
+            <input type="text" name="competitor_id" id="competitor_id" class="form-control" placeholder="Enter Competitor ID">
+          </div>
+          <div class="form-group required">
+            <label>Competitor Code</label>
+            <input type="text" name="competitor_code" id="competitor_code" class="form-control" placeholder="Enter Competitor Code">
+          </div>
+          <div class="form-group required">
             <label>First Name</label>
             <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter First Name">
           </div>
@@ -36,94 +44,80 @@
             <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter Last Name">
           </div>
           <div class="form-group required">
-            <label>Code</label>
-            <input type="text" name="code" id="code" class="form-control" placeholder="Enter Target Code">
-          </div>
-          <div class="form-group required">
-            <label>Designation</label>
-            <select class="form-control" style="width: 100%;" id="designation_id" name="designation_id">
-              <option value="">Select Designation</option>
-              {{#each designations}}
-              <option value="{{this.id}}">{{this.designation}}</option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="form-group required">
             <label>Date Of Birth</label>
             <input type="text" name="dob" id="dob" class="form-control" placeholder="Enter Date Of Birth">
-          </div>
-          <div class="form-group required">
-            <label>Gender</label>
-            <select class="form-control" style="width: 100%;" id="gender" name="gender">
-              <option value="">Select Any</option>
-              <option value="MALE">MALE</option>
-              <option value="FEMALE">FEMALE</option>
-              <option value="OTHERS">OTHERS</option>
-            </select>
-          </div>
-          <div class="form-group required">
-            <label>Contact Status</label>
-            <select class="form-control" style="width: 100%;" id="association_status" name="association_status">
-              <option value="">Select Any</option>
-              <option value="NEW TARGET">NEW TARGET</option>
-              <option value="CONVERTED">CONVERTED TO CLIENT</option>
-              <option value="TS-INTERIM">INTERIM - REVIEW IN-PROGRESS</option>
-            </select>
           </div>
           <div class="form-group required">
             <label>Industry Type</label>
             <select class="form-control" style="width: 100%;" id="industry_type" name="industry_type">
               <option value="">Select Any</option>
               {{#each industry_types}}
-              <option value="{{this.id}}">{{this.industry}}</option>
+                <option value="{{this.id}}">{{this.industry}}</option>
               {{/each}}
             </select>
           </div>
           <div class="form-group required">
-            <label>Attorney</label>
-            <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
-              <option value="">Select Any</option>
-              {{#each attorney}}
-              <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+            <label>Experience</label>
+            <input type="text" name="experience" id="experience" class="form-control" placeholder="Enter Experience">
+          </div>
+          <div class="form-group required">
+            <label>Bar Date</label>
+            <input type="text" name="bar_date" id="bar_date" class="form-control" placeholder="Enter Bar Date">
+          </div>
+          <div class="form-group">
+            <label>Bar Belongs To State</label>
+            <input type="text" name="belongs_to_state" id="belongs_to_state" class="form-control" placeholder="Bar belongs to state">
+          </div>
+          <h3 class="hint"> Ranking </h3>
+          <div class="form-group required">
+            <label>Independent</label>
+            <select class="form-control" style="width: 100%;" id="independent" name="independent">
+              <option value="">Select Independent Ranking</option>
+              {{#each rank}}
+                <option value="{{this.short_description}}">{{this.short_description}}</option>
               {{/each}}
             </select>
           </div>
           <div class="form-group">
-            <label>Social Security No</label>
-            <input type="text" name="social_security_no" id="social_security_no" class="form-control" placeholder="Enter Social Security No">
-          </div>
-          <div class="form-group required">
-            <label>Master Contact Company</label>
-            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name">
-          </div>
-          <div class="form-group">
-            <label>Twitter Url</label>
-            <input type="text" name="twitter" id="twitter" class="form-control url_selector" placeholder="Enter Twitter Url">
+            <label>Chambers</label>
+            <select class="form-control" style="width: 100%;" id="chambers" name="chambers">
+              <option value="">Select Chambers Ranking</option>
+              {{#each rank}}
+                <option value="{{this.short_description}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
           <div class="form-group">
-            <label>Linkedin Url</label>
-            <input type="text" name="linkedin" id="linkedin" class="form-control url_selector" placeholder="Enter Linkedin Url">
+            <label>Best</label>
+            <select class="form-control" style="width: 100%;" id="best" name="best">
+              <option value="">Select Best Ranking</option>
+              {{#each rank}}
+                <option value="{{this.short_description}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
           <div class="form-group">
-            <label>G+ Url</label>
-            <input type="text" name="google" id="google" class="form-control url_selector" placeholder="Enter Google Plus Url">
+            <label>Martindale</label>
+            <select class="form-control" style="width: 100%;" id="martin" name="martin">
+              <option value="">Select Martindale Ranking</option>
+              {{#each rank}}
+                <option value="{{this.short_description}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
           <div class="form-group">
-            <label>Youtube Url</label>
-            <input type="text" name="youtube" id="youtube" class="form-control url_selector" placeholder="Enter Youtube Url">
-          </div>
-          <div class="form-group">
-            <label>IM</label>
-            <input type="text" name="im" id="im" class="form-control" placeholder="Enter IM">
-          </div>
-          <div class="form-group">
-            <label>Remarks</label>
-            <textarea name="remarks_notes" id="remarks_notes" class="form-control"></textarea>
+            <label>Super Lawyers</label>
+            <select class="form-control" style="width: 100%;" id="super_lawyer" name="super_lawyer">
+              <option value="">Select Super Lawyers Ranking</option>
+              {{#each rank}}
+                <option value="{{this.short_description}}">{{this.short_description}}</option>
+              {{/each}}
+            </select>
           </div>
         </div>
 
-
         <div class="col-md-6">
+          <h3 class="hint"> Enter Address </h3>
           <div class="form-group required">
             <label>Email</label>
             <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email">
@@ -165,7 +159,7 @@
             <select class="form-control" style="width: 100%;" id="target_country_id" name="country_id">
               <option value="">Select Country</option>
               {{#each countries}}
-              <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
+                <option value="{{this.id}}" {{#if_eq this.id "233"}} selected="selected" {{/if_eq}}>{{this.name}}</option>
               {{/each}}
             </select>
           </div>
@@ -190,6 +184,13 @@
 
             </select>
           </div>
+
+          <h3 class="hint"> Remarks </h3>
+          <div class="form-group required">
+            <label>Remarks</label>
+            <textarea class="form-control" name="remarks" id="remarks" name="remarks"></textarea>
+          </div>
+
         </div>
 
         <div class="col-md-12">
@@ -236,6 +237,12 @@ $(document).ready(function(e){
   //end
 
   $("#dob").datepicker({
+        'format': 'dd-mm-yyyy',
+        'autoclose': true,
+         
+  });
+
+  $("#bar_date").datepicker({
         'format': 'dd-mm-yyyy',
         'autoclose': true,
          
@@ -293,9 +300,9 @@ $(document).ready(function(e){
             }
           });
       }
-      $('#target_city_id option:eq(1)').attr('selected', 'selected');
+        $('#target_city_id option:eq(1)').attr('selected', 'selected');
 
-      $( "#target_city_id" ).trigger( "change" );
+        $( "#target_city_id" ).trigger( "change" );
     });
 
     $("#target_city_id").change(function(e){
@@ -321,16 +328,19 @@ $(document).ready(function(e){
 
   $("#frmMasterContact").validate({
     rules: {
+      competitor_id: {
+        required: true
+      },
+      competitor_code: {
+        required: true
+      },
       first_name: {
         required: true
       },
       last_name: {
         required:  true
       },
-      code: {
-        required:  true
-      },
-      designation_id: {
+      experience: {
         required:  true
       },
       dob: {
@@ -339,17 +349,29 @@ $(document).ready(function(e){
       gender: {
         required:  true
       },
-      association_status: {
-        required:  true
-      },
       industry_type: {
         required:  true
       },
-      attorney_id: {
+      bar_date: {
         required:  true
       },
-      company_name: {
+      belongs_to_state: {
         required:  true
+      },
+      independent: {
+        required: true
+      },
+      chambers: {
+        required: true
+      },
+      best: {
+        required: true
+      },
+      martin: {
+        required: true
+      },
+      super_lawyer: {
+        required: true
       },
       email: {
         required:  true
@@ -375,35 +397,50 @@ $(document).ready(function(e){
 
     },
     messages: {
+      competitor_id: {
+        required: "Please enter ID"
+      },
+      competitor_code: {
+        required: "Please enter code"
+      },
       first_name: {
         required: "Please enter first name"
       },
       last_name: {
         required:  "Please enter last name"
       },
-      code: {
-        required:  "Please enter code"
-      },
-      designation_id: {
-        required:  "Please select designation"
+      experience: {
+        required:  "Please enter experience"
       },
       dob: {
-        required:  "Please enter date of birth"
+        required:  "Please enter dob"
       },
       gender: {
         required:  "Please select gender"
       },
-      association_status: {
-        required:  "Please enter select association status"
-      },
       industry_type: {
-        required:  "Please select industry type"
+        required:  "Please enter select industry type"
       },
-      attorney_id: {
-        required:  "Please select an attorney"
+      bar_date: {
+        required:  "Please select bar date"
       },
-      company_name: {
-        required:  "Please enter company name"
+      belongs_to_state: {
+        required:  "Please enter belongs to state"
+      },
+      independent : {
+        required:  "Please select independent rank"
+      },
+      chambers: {
+        required:  "Please select chambers rank"
+      },
+      best: {
+        required:  "Please enter best rank"
+      },
+      martin: {
+        required:  "Please enter martin rank"
+      },
+      super_lawyer: {
+        required:  "Please enter super lawyer rank"
       },
       email: {
         required:  "Please enter email"
