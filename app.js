@@ -17,10 +17,10 @@ var port = process.env.PORT || 8080;
 
 var passport = require('passport');
 var flash    = require('connect-flash');
+
 var models = require("./models");
 
 require('./config/passport')(passport,models.admin);
-
 
 // view engine setup
 // Database test
@@ -39,6 +39,14 @@ app.set('views', path.join(__dirname, 'views'));
 var hbs = exphbs.create({
 extname: '.hbs', //we will be creating this layout shortly
 helpers: {
+    dateFormat: require('handlebars-dateformat'),
+
+    inc: function(value, options) {
+      return parseInt(value) + 1;
+    },
+    integer: function(value) {
+      return parseInt(value);
+    },
     if_eq: function (a, b, opts) {
 
         if (a == b) // Or === depending on your needs
@@ -62,7 +70,7 @@ helpers: {
 	    for(var i = from; i < to; i += incr)
 	        accum += block.fn(i);
 	    return accum;
-	},
+	 },
     
     eq: function (v1, v2) {
     	
@@ -229,7 +237,7 @@ require('./routes/firm-activity')(app, models);
 require('./routes/attorney-target')(app, models);
 require('./routes/attorney-referrel')(app, models);
 require('./routes/competitor')(app, models);
-
+require('./routes/attorney-budget-report')(app, models);
 // catch 404 and forward to error handler
 
 

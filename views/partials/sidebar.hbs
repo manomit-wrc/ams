@@ -73,6 +73,16 @@
         {{/if_eq}}
 
         {{#if_eq user.role_code "FIRMADM"}}
+
+          <div class="dropdown">
+            <button class="dropbtn {{#if (eq active "attorney-budget-report")}} active {{/if}}"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<span>Reports</span></button>
+            <div class="dropdown-content">
+              <a href="/admin/attorney-budget-report" class="{{#if (eq active "attorney-budget-report")}} active {{/if}}">Attorney Budget Report</a>
+              <a href="#">Budget Report Per Date</a>
+              <a href="#">Periodic Reports</a>
+            </div>
+          </div>
+
           <li class="{{#if (or (eq active "firm")(eq active "firm-location"))}} active{{/if}}"><a href="/admin/firm/my-profile"><i class="fa fa-dashboard"></i> <span>Firm Profile</span></a></li>
 
           <li class="{{#if (eq active "master-contact")}} active {{/if}}"><a href="/admin/master-contact"><i class="fa fa-phone-square" aria-hidden="true"></i> <span>Master Contacts</span></a></li>
@@ -90,6 +100,8 @@
           <li class="{{#if (eq active "attorney-goal")}} active {{/if}}"><a href="/admin/attorney-goal"><i class="fa fa-check-circle" aria-hidden="true"></i> <span>Attorney Goals</span></a></li>
 
           <li class="{{#if (eq active "firm-activity")}} active {{/if}}"><a href="/admin/firm-activity"><i class="fa fa-adn"></i> <span>Activity</span></a></li>
+
+          
 
         {{/if_eq}}
 
