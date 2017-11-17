@@ -240,7 +240,7 @@ var TableDatatablesResponsive = function () {
             //"language": {
             //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
             //},
-
+            dom: 'Bfrtip',
             // setup buttons extentension: http://datatables.net/extensions/buttons/
             buttons: [
                 {extend: 'excel', className: 'btn default'},

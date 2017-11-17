@@ -75,7 +75,7 @@
     border-left-color: #3c8dbc
 }
 
-.dropdown .active {
+.sidebar-menu .dropdown .active {
 	color: #fff;
     background: #1e282c;
     border-left-color: #3c8dbc

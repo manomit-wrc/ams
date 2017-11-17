@@ -54,3 +54,20 @@
       </div>
       <!-- /.row -->
     </section>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      $("#frmBudget").validate({
+          rules: {
+              attorney_id: {
+                  required: true
+              }
+          },
+          message: {
+              attorney_id: {
+                  required: "Select an attorney"
+              }
+          }
+      });
+  });
+</script>  

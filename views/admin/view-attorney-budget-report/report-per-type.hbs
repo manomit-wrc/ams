@@ -2,11 +2,11 @@
       <h1>
         Report
       </h1>
-      <h4 style="text-align:center;margin-top: -20px;"><strong>{{name}}</strong></h4>
+      <h4 style="text-align:center;margin-top: -20px;"><strong>{{des}}</strong></h4>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active"><a href="/admin/attorney-budget-report">Report</a></li>
+        <li class="active"><a href="/admin/attorney-budget-report/listing">Report</a></li>
       </ol>
     </section>
 
@@ -27,11 +27,11 @@
                 </div>
               {{/if}}
 
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="report_table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>SL#</th>
-                  <th>Budget Type</th>
+                  <th>Activity</th>
                   <th>Hours</th>
                   <th>Cost</th>
                   <th>Status</th>
@@ -42,9 +42,9 @@
                     {{#each result}}
                      <tr>
                         <td>{{inc @index}}</td>
-                        <td><a href="/admin/attorney-budget-report/report-per-type/{{this.budget_code}}">{{this.short_description}}</a></td>
-                        <td>{{integer this.total_hours}}</td>                      
-                        <td>{{integer this.total_cost}}</td>
+                        <td>{{this.activity_goal}}</td>
+                        <td>{{integer this.budget_code_hours}}</td>                      
+                        <td>{{integer this.budget_code_cost}}</td>
                         <td>{{this.budget_dtl_status}}</td>
                         <td>{{dateFormat this.createdAt 'DD-MM-YYYY'}}</td>
                      </tr>
