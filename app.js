@@ -239,6 +239,7 @@ require('./routes/attorney-referrel')(app, models);
 require('./routes/competitor')(app, models);
 require('./routes/attorney-budget-report')(app, models);
 require('./routes/budget-report-per-period')(app, models);
+require('./routes/periodic-report')(app, models);
 // catch 404 and forward to error handler
 
 
