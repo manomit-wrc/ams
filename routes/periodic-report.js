@@ -34,21 +34,23 @@ module.exports = function(app, models) {
 	});
 
 	app.post('/admin/periodic-report/check_type', function(req, res) {
+			var text = "Search By: budget types";
+
 			var sum_hours = 0;
 			var sum_cost = 0;
-			var details = [];
 
 			var type = req.body.budget_type;
-			for (var i = 0; i < Object.keys(type).length; i+=1) {
-   				//console.log(type[Object.keys(type)[i]]);
-   				var sql = "SELECT `activitybudgetdetails`.*, `codes`.`code`, `codes`.`short_description`, SUM(`budget_code_hours`) as `hours`, SUM(`budget_code_cost`) as `cost` FROM `activitybudgetdetails` INNER JOIN `codes` ON `activitybudgetdetails`.`budget_code_type` = `codes`.`code` WHERE `codes`.`category_type` = 'Budget Code Type' AND `activitybudgetdetails`.`budget_code_type` = '"+type[Object.keys(type)[i]]+"' GROUP BY `activitybudgetdetails`.`budget_code_type`";
+			var quotedAndCommaSeparated = "'" + type.join("','") + "'";
+			
+			var sql = "SELECT `activitybudgetdetails`.*, `codes`.`code`, `codes`.`short_description`, SUM(`budget_code_hours`) as `hours`, SUM(`budget_code_cost`) as `cost` FROM `activitybudgetdetails` INNER JOIN `codes` ON `activitybudgetdetails`.`budget_code_type` = `codes`.`code` WHERE `codes`.`category_type` = 'Budget Code Type' AND `activitybudgetdetails`.`budget_code_type` IN ("+quotedAndCommaSeparated+") GROUP BY `activitybudgetdetails`.`budget_code_type`";
+				//res.send(sql);
    				models.sequelize.query(sql, { type:models.sequelize.QueryTypes.SELECT})
    				.then(function(values){
-   					details.push(values);
-   					console.log(details);
+   					for (var i = 0; i < Object.keys(values).length; i+=1) {
+		   				sum_hours += parseInt(values[Object.keys(values)[i]].hours);
+		   				sum_cost += parseInt(values[Object.keys(values)[i]].cost);
+	   				}
+	   				res.render('admin/periodic-report/listing',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], result: values, sum_hours:sum_hours, sum_cost:sum_cost,text:text});
    				});
-   			}
-			//console.log(details);	
-			//res.render('admin/periodic-report/listing',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], result: details});
 	});
 }

@@ -240,11 +240,12 @@ var TableDatatablesResponsive = function () {
             //"language": {
             //   url: '//cdn.datatables.net/plug-ins/3cfcc339e89/i18n/Portuguese.json'
             //},
-            dom: 'Bfrtip',
-            // setup buttons extentension: http://datatables.net/extensions/buttons/
+            //dom: 'Bfrtip',
             buttons: [
-                {extend: 'excel', className: 'btn default'},
-                {extend: 'pdf', className: 'btn default'}
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
             ],
             // setup responsive extension: http://datatables.net/extensions/responsive/
             responsive: {
