@@ -1,0 +1,29 @@
+2017-11-17T09:10:48.434Z
+
+
+SELECT `activitybudgetdetails`.*, `activities`.`attorney_id`,`admins`.`first_nam
+e`, `admins`.`last_name`, SUM(`budget_code_hours`) as `hours`, SUM(`budget_code_
+cost`) as `cost` FROM `activitybudgetdetails` INNER JOIN `activities` ON `activi
+tybudgetdetails`.`activity_id` = `activities`.`id` INNER JOIN `admins` ON `activ
+ities`.`attorney_id` = `admins`.`id` WHERE `activitybudgetdetails`.`createdAt`<=
+'Fri Nov 17 2017 15:14:41 GMT+0530 (India Standard Time)' AND `activitybudgetdet
+ails`.`createdAt`>='Sun May 21 2017 15:14:41 GMT+0530 (India Standard Time)' GRO
+UP BY `activities`.`attorney_id`
+
+SELECT `activitybudgetdetails`.*, `activities`.`attorney_id`,`admins`.`first_name`, `admins`.`last_name`, SUM(`budget_code_hours`) as `hours`, SUM(`budget_code_cost`) as `cost` FROM `activitybudgetdetails` INNER JOIN `activities` ON `activitybudgetdetails`.`activity_id` = `activities`.`id` INNER JOIN `admins` ON `activities`.`attorney_id` = `admins`.`id` WHERE `activitybudgetdetails`.`createdAt`<= '2017-11-17T09:10:48.434Z' AND `activitybudgetdetails`.`createdAt` >= '2017-05-21T09:10:48.434Z'
+
+
+2017-11-20T06:13:13.310Z
+
+
+2017-05-24T06:13:13.310Z
+
+
+SELECT `activitybudgetdetails`.*, `activities`.`attorney_id`,`admins`.`first_nam
+e`, `admins`.`last_name`, SUM(`budget_code_hours`) as `hours`, SUM(`budget_code_
+cost`) as `cost` FROM `activitybudgetdetails` INNER JOIN `activities` ON `activi
+tybudgetdetails`.`activity_id` = `activities`.`id` INNER JOIN `admins` ON `activ
+ities`.`attorney_id` = `admins`.`id` WHERE `activitybudgetdetails`.`createdAt`<=
+'Mon Nov 20 2017 11:43:13 GMT+0530 (India Standard Time)' AND `activitybudgetdet
+ails`.`createdAt`>='Wed May 24 2017 11:43:13 GMT+0530 (India Standard Time)' GRO
+UP BY `activities`.`attorney_id`

@@ -1,0 +1,190 @@
+<section class="content-header">
+      <h1>
+        Periodic Report
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+
+        <li class="active">Periodic Report</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div id="success-msg"></div>
+              {{#if succ_add_msg}}
+                <div class="alert alert-success" id="result77">
+                {{succ_add_msg}}
+                </div>
+              {{/if}}
+
+              <div class="col-md-12" style="margin-bottom: 10px">
+                  <div class="form-group required">
+
+                      <label class="col-md-4 control-label">Select Option:</label>
+                      <div class="col-md-6">
+                          <select class="form-control" id="date_type" name="date_type" required="required">
+                              <option>Select one</option>
+                              <option value="date_range">Date Range</option>
+                              <option value="custom_date">Custom Date</option>
+                              <option value="budget_heads">Select budget heads</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-12 custom_div" style="display: none;top: -7px;">
+                <form action="/admin/periodic-report/custom_date_submit" autocomplete="off" name="frmBudget" id="frmBudget" method="post">
+                    <div class="form-group required">
+                        <label class="col-md-2 control-label">Date:</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="from_date" placeholder="From date" name="from_date">
+                            <span class="help-block">  </span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="to_date" placeholder="To date" name="to_date">
+                            <span class="help-block">  </span>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <span class="help-block">  </span>
+                        </div>
+                    </div>
+                </form>
+              </div>
+
+              <div class="form-group required date_range_div" style="display: none; margin-top: 10px;">
+                <form action="/admin/budget-report-per-period/listing" autocomplete="off" name="attorney_form" id="date_range_form" method="post">
+                    <label class="col-md-4 control-label">Date Range:</label>
+                    <div class="col-md-6">
+                        <select class="form-control" id="search_by" name="search_by" required="required">
+                            <option>Select one</option>
+                            <option value="fortnight">Last fortnight</option>
+                            <option value="last_month">Last month</option>
+                            <option value="last_six_month">Last 6 months</option>
+                            <option value="last_year">Last year</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <span class="help-block">  </span>
+                    </div>
+                </form>
+              </div>
+
+              <div class="form-group required budget_head_check_div" style="display: none; margin-top: 10px;">
+                <form action="/admin/periodic-report/check_type" autocomplete="off" name="type_form" id="type_form" method="post">
+                    <label class="col-md-4 control-label">Check Budget Heads:</label>
+                    <div class="col-md-6">
+                        <input type="checkbox" name="check_all" id="check_all" value="Check All">Check All<br/>
+                        {{#each result}}
+                            <input type="checkbox" name="budget_type[]" value="{{this.code}}">{{this.short_description}}<br/>
+                        {{/each}}
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <span class="help-block">  </span>
+                    </div>
+                </form>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+<script type="text/javascript">
+$(document).ready(function(e){
+    $('#date_type').change(function(){
+            if($(this).val()=='date_range') {
+                $('.date_range_div').css('display','block');
+                $('.custom_div').css('display','none');
+                $('.budget_head_check_div').css('display','none');
+            } else if($(this).val()=='custom_date') {
+                $('.custom_div').css('display','block');
+                $('.budget_head_check_div').css('display','none');
+                $('.date_range_div').css('display','none');
+            } else {
+                $('.budget_head_check_div').css('display','block');
+                $('.custom_div').css('display','none');
+                $('.date_range_div').css('display','none');
+            }
+        });
+
+        $("#check_all").click(function(){
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+
+        $('#from_date').datepicker({
+              autoclose: true,
+              format: 'yyyy-mm-dd',
+        });
+
+        var date = new Date();
+        var currentDate = date.getDate();
+        $('#to_date').datepicker({
+              autoclose: true,
+              format: 'yyyy-mm-dd',
+              endDate: date
+        });
+
+    $("#frmBudget").validate({
+        rules: {
+            from_date: {
+              required: true
+            },
+            to_date: {
+              required: true
+            }
+        },
+        message: {
+
+            from_date: {
+              required: "Enter from date"
+            },
+            to_date: {
+              required: "Enter to date"
+            }
+        }
+    });
+
+    $("#date_range_form").validate({
+        rules: {
+            'search_by': {
+              required: true
+            }
+        },
+        message: {
+
+            'search_by': {
+              required: "Select an option"
+            }
+        }
+    });
+
+    $("#type_form").validate({
+        rules: {
+            'budget_type[]': {
+              required: true
+            }
+        },
+        message: {
+
+            'budget_type[]': {
+              required: "check the type"
+            }
+        }
+    });
+});
+</script>

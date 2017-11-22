@@ -89,7 +89,6 @@ module.exports = function(app, models) {
 	//attorney profile view  *****we use Promise.all when more than one model query are executed*******
 	app.get('/admin/attorney/attorney-profile',function(req, res){
 		var user_id = req.user.id;
-		console.log(req.user);
 		// models dependancy
 		models.admin.belongsTo(models.country, {foreignKey: 'country_id'});
 		models.admin.belongsTo(models.state, {foreignKey: 'state_id'});
@@ -144,11 +143,16 @@ module.exports = function(app, models) {
 			}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			var section_result = result[1][0].section_id.split(',');
-			var jurisdiction_result = result[1][0].jurisdiction_id.split(',');
-			var practice_area_result = result[1][0].practice_area.split(',');
-
-			res.render('admin/attorney/attorney-profile',{layout:'dashboard', user_details:result[0][0], attorney_details:result[1][0], countries:result[2], group:result[3], section_array:section_result.map(Number), section:result[4], designation:result[5], attorneytype:result[6], jobtype:result[7], jurisdiction:result[8], jurisdiction_array:jurisdiction_result.map(Number), practice_area_array:practice_area_result.map(Number), practice_area:result[9], industry_type:result[10], states:result[11], cities:result[12], zipcode:result[13]});
+			if(result[1][0].section_id){
+				var section_result = result[1][0].section_id.split(',').map(Number);
+			}
+			if(result[1][0].jurisdiction_id){
+				var jurisdiction_result = result[1][0].jurisdiction_id.split(',').map(Number);
+			}
+			if(result[1][0].practice_area){
+				var practice_area_result = result[1][0].practice_area.split(',').map(Number);
+			}
+			res.render('admin/attorney/attorney-profile',{layout:'dashboard', user_details:result[0][0], attorney_details:result[1][0], countries:result[2], group:result[3], section_array:section_result, section:result[4], designation:result[5], attorneytype:result[6], jobtype:result[7], jurisdiction:result[8], jurisdiction_array:jurisdiction_result, practice_area_array:practice_area_result, practice_area:result[9], industry_type:result[10], states:result[11], cities:result[12], zipcode:result[13]});
 		});
 
 	});

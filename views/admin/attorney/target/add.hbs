@@ -23,7 +23,7 @@
         {{error_message}}
         </div>
         {{/if}}
-        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/target/add">
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/attorney/target/add">
         <div class="col-md-6">
 
           <div class="form-group required">
@@ -293,9 +293,9 @@ $(document).ready(function(e){
             }
           });
       }
-      $('#target_city_id option:eq(1)').attr('selected', 'selected');
+        $('#target_city_id option:eq(1)').attr('selected', 'selected');
 
-      $( "#target_city_id" ).trigger( "change" );
+        $( "#target_city_id" ).trigger( "change" );
     });
 
     $("#target_city_id").change(function(e){

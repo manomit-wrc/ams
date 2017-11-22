@@ -23,8 +23,8 @@
         {{error_message}}
         </div>
         {{/if}} 
-        <form name="frmClient" id="frmClient" method="POST" action="/admin/referrel/edit/{{master_contact_result.id}}">
-          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+        <form name="frmClient" id="frmClient" method="POST" action="/admin/attorney/referrel/edit/{{master_contact_result.id}}">
+          <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.firm_id}}">
           <div class="form-group col-md-12">
             <label class="radio-inline">
               <input type="radio" name="referrel_type" class = "referrel_type" {{#if_eq master_contact_result.type 'I'}} checked="checked" {{/if_eq}} value="I">Individual Target
@@ -70,6 +70,7 @@
           <div class="form-group required">
             <label>Referred By</label>
             <label class="radio-inline">
+
               <input type="radio" name="ref" class="referred_by" value="T" {{#if_eq ref.record_type 'T'}} checked="checked" {{/if_eq}}>Target
             </label>
             <label class="radio-inline">
@@ -119,7 +120,6 @@
 </section>
 <script type="text/javascript">
 $(document).ready(function(e){
-
   var new_ref = "{{ref.record_type}}";
   if(new_ref == 'C') {
       $('.clients').show();
@@ -128,6 +128,7 @@ $(document).ready(function(e){
       $('.targets').show();
       $('.clients').hide();
   }
+      
   var ref_type = "{{master_contact_result.type}}";
   if(ref_type == 'O') {
       $('.organisation').show();
