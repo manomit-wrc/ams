@@ -75,7 +75,7 @@
         {{#if_eq user.role_code "FIRMADM"}}
 
           <div class="dropdown">
-            <li class="dropbtn {{#if (or (eq active "attorney-budget-report")(eq active "budget-report-per-period"))}} active {{/if}}"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<span>Reports</span></button>
+            <li class="dropbtn {{#if (or (eq active "attorney-budget-report")(eq active "budget-report-per-period")(eq active "periodic-report"))}} active {{/if}}"><i class="fa fa-file-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;<span>Reports</span></button>
             <div class="dropdown-content">
               <a href="/admin/attorney-budget-report" class="{{#if (eq active "attorney-budget-report")}} active {{/if}}">Attorney Budget Report</a>
               <a href="/admin/budget-report-per-period" class="{{#if (eq active "budget-report-per-period")}} active {{/if}}">Budget Report Per Date</a>

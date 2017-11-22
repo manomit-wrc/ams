@@ -70,7 +70,7 @@ helpers: {
 	    for(var i = from; i < to; i += incr)
 	        accum += block.fn(i);
 	    return accum;
-	 },
+	  },
     
     eq: function (v1, v2) {
     	
@@ -106,9 +106,9 @@ helpers: {
 			attributes : ['first_name' ,'last_name']
 		}).then(function(response){
 			name = response[0].first_name;
-
+      return name;
 		});
-		return name;
+		
 	}
 }
 });
