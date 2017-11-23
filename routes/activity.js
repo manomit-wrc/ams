@@ -4,8 +4,12 @@ module.exports = function(app, models) {
 	app.get('/admin/activity', function(req, res) {
 		models.activity.belongsTo(models.code,{foreignKey: 'activity_type_id'});
 		models.activity.belongsTo(models.activitydetails,{foreignKey: 'activity_details_id'});
+		models.activity.belongsTo(models.activitygoal,{foreignKey: 'activity_goal'});
 		models.activity.findAll({
-			include: [{model: models.code},{model: models.activitydetails}]
+			include: [{model: models.code},{model: models.activitydetails}, {model: models.activitygoal}],
+			order: [
+    			['id', 'ASC'],
+    		]
 		}).then(function(values){
 			res.render('admin/activity/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], result:values});
 		})		
@@ -34,7 +38,11 @@ module.exports = function(app, models) {
 				attributes: ['id', 'first_name', 'last_name']
 		 	}),
 			models.activitygoal.findAll({attributes: ['id', 'activity_goal']}),
-		  	models.code.findAll(),
+		  	models.code.findAll({
+		  		where: {
+		  			category_type: 'Activity Type'
+		  		}
+		  	}),
 		  	models.practicearea.findAll(),
 			models.activitydetails.findAll({attributes: ['id', 'code', 'short_description']}),
 			models.budgetdetails.findAll({attributes: ['id', 'budget_code', 'short_description']}),

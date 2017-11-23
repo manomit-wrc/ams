@@ -61,22 +61,27 @@
                 </form>
               </div>
 
-              <div class="form-group required date_range_div" style="display: none; margin-top: 10px;">
-                <form action="/admin/budget-report-per-period/listing" autocomplete="off" name="attorney_form" id="date_range_form" method="post">
-                    <label class="col-md-4 control-label">Date Range:</label>
-                    <div class="col-md-6">
-                        <select class="form-control" id="search_by" name="search_by" required="required">
-                            <option>Select one</option>
-                            <option value="fortnight">Last fortnight</option>
-                            <option value="last_month">Last month</option>
-                            <option value="last_six_month">Last 6 months</option>
-                            <option value="last_year">Last year</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                          <span class="help-block">  </span>
-                    </div>
+              <div class="col-md-12 date_range_div" style="display: none; margin-top: 10px;">
+                <form name="attorney_select" id="date_range_form" method="post" action="/admin/budget-report-per-period/listing" class="form-horizontal">
+
+                  <div class="form-group required">
+                    <label class="col-md-2 control-label" style="text-align: center;">Search By</label>
+                      <div class="col-md-8">
+                          <select class="form-control" name="search_by" id="search_by">
+                              <option value="">Select One</option>
+                              <option value="fortnight">Last fortnight</option>
+                              <option value="last_month">Last month</option>
+                              <option value="last_six_month">Last 6 months</option>
+                              <option value="last_year">Last year</option> 
+                          </select>
+                      </div>
+
+                      <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger">Submit</button>
+                            <span class="help-block">  </span>
+                      </div>
+                  </div>
+
                 </form>
               </div>
 

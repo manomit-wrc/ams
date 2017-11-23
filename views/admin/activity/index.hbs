@@ -20,6 +20,7 @@
             <!-- /.box-header -->
             <div class="topbtn">
               <a href="/admin/activity/add"><button type="button" class="btn bg-purple btn-rightad">ADD</button></a>
+              <h4 style="margin-left: 10px;"><strong>ATTORNEY ACTIVITY LIST</strong></h4>
             </div>
             <div class="box-body">
               <div id="success-msg"></div>
@@ -31,28 +32,30 @@
 
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>SL#</th>
-                  <th>Attorney name</th>
-                  <th>Activity type</th>
-                  <th>Activity Name</th>
-                  <th>Potential revenue</th>
-                  <th>Activity reason</th>
-                  <th>Activity status</th>
-                  <th>Action</th>
-                </tr>
+                    <tr>
+                        <th>SL#</th>
+                        <th>Attorney</th>
+                        <th>Activity type</th>
+                        <th>Activity Name</th>
+                        <th>Goal</th>
+                        <th>Potential revenue</th>
+                        <th>reason</th>
+                        <th>status</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {{#each result}}
                      <tr>
-                      <td>{{this.id}}</td>
+                      <td>{{inc @index}}</td>
                       <td>{{this.attorney_name}}</td>
                       <td>{{this.code.short_description}}</td>
-                      <td>{{this.activity_name}}</td>                      
+                      <td>{{this.activity_name}}</td>
+                      <td>{{this.activitygoal.activity_goal}}</td>                      
                       <td>{{this.potential_revenue}}</td>
                       <td>{{this.activity_reason}}</td>
                       <td>{{this.activitydetail.short_description}}</td>
-                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/budget/{{this.id}}" title="Activity Budget"><i class="fa fa-usd" aria-hidden="true"></i></a></td>
+                      <td><a href="/admin/activity/edit/{{this.id}}" title="Edit"><i class="fa fa-edit"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/delete/{{this.id}}" onclick="return confirm('Are you sure?')" title="Delete"><i class="fa fa-trash"></i></a>&nbsp;|&nbsp;<a href="/admin/activity/budget/{{this.id}}" title="Add Activity Budget"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
                      </tr>
                     {{/each}}
                 </tbody>

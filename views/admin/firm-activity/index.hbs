@@ -1,6 +1,6 @@
 <section class="content-header">
       <h1>
-        Activity List
+        Firm Activity List
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,7 +22,7 @@
               <div id="success-msg"></div>
               {{#if succ_add_msg}}
                 <div class="alert alert-success" id="result77">
-                {{succ_add_msg}}
+                  {{succ_add_msg}}
                 </div>
               {{/if}}
 
@@ -42,7 +42,7 @@
                 <tbody>
                     {{#each details}}
                      <tr>
-                        <td>{{this.id}}</td>
+                        <td>{{inc @index}}</td>
                         <td>{{this.attorney_name}}</td>
                         <td>{{this.code.short_description}}</td>
                         <td>{{this.activity_name}}</td>                      

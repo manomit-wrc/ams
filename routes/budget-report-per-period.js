@@ -60,7 +60,7 @@ module.exports = function(app, models) {
 
 		//  SEARCH BY LAST SIX MONTHS //
 		if(search_by == 'last_six_month') {
-			var text = "Search By: Last Six Month";
+			var text = "Search By: Last Six Months";
 
 			var todayDate = new Date();
 			var todayDateISO = todayDate.toISOString();

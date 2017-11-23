@@ -2,10 +2,12 @@
       <h1>
         Activity Budget List
       </h1>
+      <h4 style="text-align:center;margin-top:-19px;">{{activity_details.code.short_description}}</h4>
+      <strong>Goal:</strong>{{activity_details.activitygoal.activity_goal}}
       <ol class="breadcrumb">
         <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
 
-        <li class="active">Activity Budget List</li>
+        <li class="active"><a href="/admin/activity">Activity List</a></li>
       </ol>
     </section>
 
@@ -22,7 +24,7 @@
               <a href="#add_client_modal" data-toggle="modal"><button type="button" class="btn bg-purple btn-rightad">Add Target/Client <i class="fa fa-plus"></i></button></a>
               {{#if budget_count}}
                 <a href="/admin/activity/budget/edit/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Edit Budget Report</button></a>
-                <a href="/admin/activity/budget/delete/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Delete Budget Report</button></a>
+                {{!-- <a href="/admin/activity/budget/delete/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Delete Budget Report</button></a> --}}
               {{else}}
                 <a href="/admin/activity/budget/add/{{activity_id}}"><button type="button" class="btn bg-purple btn-rightad">Add</button></a>
               {{/if}}
@@ -40,17 +42,17 @@
                 <tr>
                   <th>SL#</th>
                   <th>Budget code</th>
-                  <th>Budget code hours</th>
-                  <th>Budget code cost</th>
+                  <th>Hours</th>
+                  <th>Cost</th>
                   <th>Budget details status</th>
                 </tr>
                 </thead>
                 <tbody>
                     {{#each details}}
                      <tr>
-                      <td>{{this.id}}</td>
+                      <td>{{inc @index}}</td>
                       {{#if this.budget_code}}
-                        <td>{{this.budget_code}}</td>
+                        <td>{{this.short_description}}</td>
                       {{else}}
                         <td>N/A</td>
                       {{/if}}

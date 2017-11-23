@@ -141,20 +141,20 @@
  //id here
 function deldata(url){
   swal({
-    title: "Are you sure?",
-    text: "You want to delete this record!",
-    type: "error",
-    showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
-        closeOnConfirm: true,
-        closeOnCancel: true
-      }, function(isConfirm){
-        if (isConfirm){
-          window.location.href= url;
-        }
-      });
+      title: "Are you sure?",
+      text: "You want to delete this record!",
+      type: "error",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      closeOnConfirm: true,
+      closeOnCancel: true
+  }, function(isConfirm){
+      if (isConfirm){
+        window.location.href= url;
+      }
+  });
    /* function(){
     swal("Deleted!", "Your imaginary file has been deleted.", "success");
     });*/

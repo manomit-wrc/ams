@@ -3,17 +3,16 @@ module.exports = function(app, models) {
 	app.get('/admin/activity/budget/:id', function(req, res) {
 			var activity_id = req.params['id'];
 			var budget_count;
+			models.activity.belongsTo(models.code,{foreignKey: 'activity_type_id'});
+			models.activity.belongsTo(models.activitygoal,{foreignKey: 'activity_goal'});
 			Promise.all([
 				models.activitybudgetdetails.findAndCountAll({
 					where: {
 						activity_id: activity_id,
 					}
 				}),
-				models.activitybudgetdetails.findAll({
-					where: {
-						activity_id: activity_id,
-					}
-				}),
+
+   				models.sequelize.query("SELECT `activitybudgetdetails`.*, `codes`.`code`, `codes`.`short_description` FROM `activitybudgetdetails` INNER JOIN `codes` ON `activitybudgetdetails`.`budget_code` = `codes`.`code` WHERE `codes`.`category_type` = 'Budget Codes' AND `activitybudgetdetails`.`activity_id`="+activity_id, { type:models.sequelize.QueryTypes.SELECT}),
 				models.mastercontact.findAll({
 					where:{
 						record_type: 'T'
@@ -31,11 +30,20 @@ module.exports = function(app, models) {
 						id: req.user.id
 					},
 					attributes : ['id','first_name' ,'last_name']
-				})
+				}),
+				models.activity.findAll({
+					include: [{model: models.code}, {model: models.activitygoal}],
+					order: [
+		    			['id', 'ASC'],
+		    		],
+		    		where: {
+		    			id: activity_id
+		    		}
+				}),
 			]).then(function(values){
 				var result = JSON.parse(JSON.stringify(values));
-
-				res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], details:result[1], activity_id:activity_id, budget_count:result[0].count, target:result[2], client:result[3], attorney:result[4][0]});	
+				console.log(result[5]);
+				res.render('admin/activity/budget/index',{layout:'dashboard', succ_add_msg:req.flash('succ_add_msg')[0], details:result[1], activity_id:activity_id, budget_count:result[0].count, target:result[2], client:result[3], attorney:result[4][0], activity_details:result[5][0]});	
 			});
 				
 	});
