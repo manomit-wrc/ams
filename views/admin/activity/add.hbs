@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Add Attorney Activity
+    Add Activity
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -43,7 +43,7 @@
             <select class="form-control" style="width: 100%;" id="activity_goal" name="activity_goal">
               <option value="">Select Activity Goal</option>
               {{#each activity_goal}}
-                <option value="{{this.id}}">{{this.activity_goal}}</option>
+                <option value="{{this.id}}"  title="{{this.activity_goal}}">{{substring this.activity_goal}}...</option>
               {{/each}}
             </select>
           </div>

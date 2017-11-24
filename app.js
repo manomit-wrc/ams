@@ -39,6 +39,10 @@ app.set('views', path.join(__dirname, 'views'));
 var hbs = exphbs.create({
 extname: '.hbs', //we will be creating this layout shortly
 helpers: {
+	substring: function (str) {
+    	return str.split(/\s+/).slice(0,5).join(" ");
+	},
+
     dateFormat: require('handlebars-dateformat'),
 
     inc: function(value, options) {
@@ -70,7 +74,7 @@ helpers: {
 	    for(var i = from; i < to; i += incr)
 	        accum += block.fn(i);
 	    return accum;
-	  },
+	},
     
     eq: function (v1, v2) {
     	

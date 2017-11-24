@@ -16,14 +16,6 @@ module.exports = function(app, models) {
 	});
 
 	app.get('/admin/activity/add', function(req, res){
-		
-/*		models.activity.belongsTo(models.firm,{foreignKey: 'firm_id'});
-		models.activity.belongsTo(models.admin,{foreignKey: 'attorney_id'});
-		models.activity.belongsTo(models.activitygoal,{foreignKey: 'activity_goal'});
-		models.activity.belongsTo(models.code,{foreignKey: 'activity_type'});
-		models.activity.belongsTo(models.practicearea,{foreignKey: 'practice_area_type'});
-		models.activity.belongsTo(models.activitydetails,{foreignKey: 'code'});
-		models.activity.belongsTo(models.budgetdetails,{foreignKey: 'budget_code'});*/
 		Promise.all([
 			models.attorney.findAll({
 				where: {
