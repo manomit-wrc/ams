@@ -113,7 +113,9 @@
 
           <li class="{{#if (eq active "activity")}} active {{/if}}"><a href="/admin/activity"><i class="fa fa-adn"></i> <span>Activity</span></a></li>
 
-          <li class="treeview {{#if (or (eq active "attorney")(eq active "competitor"))}} active{{/if}}">
+          <li class="treeview {{#if (or (eq next_active "master-contact")(eq active "competitor"))}} active{{/if}}
+                {{#if (or (eq next_active "referrel")(eq next_active "target"))}} active{{/if}}
+          ">
             <a href="javascript:void(0)">
               <i class="fa fa-magnet" aria-hidden="true"></i> <span>Attorney Operation</span>
               <span class="pull-right-container">

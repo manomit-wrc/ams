@@ -36,7 +36,7 @@
                   <th>Potential revenue</th>
                   <th>Activity reason</th>
                   <th>Activity status</th>
-                  <th>Action</th>
+                  {{!-- <th>Action</th> --}}
                 </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                         <td>{{this.potential_revenue}}</td>
                         <td>{{this.activity_reason}}</td>
                         <td>{{this.activitydetail.short_description}}</td>
-                        <td><a href="/admin/firm-activity/view_budget_report/{{this.id}}" title="View budget report">View Budget</a></td>
+                        {{!-- <td><a href="/admin/firm-activity/view_budget_report/{{this.id}}" title="View budget report">View Budget</a></td> --}}
                      </tr>
                     {{/each}}
                 </tbody>

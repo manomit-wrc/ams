@@ -111,7 +111,7 @@ module.exports = function(app, models) {
 		models.mastercontact.belongsTo(models.country, {foreignKey: 'country_id'});
 		models.mastercontact.belongsTo(models.city, {foreignKey: 'city_id'});
 		models.mastercontact.belongsTo(models.state, {foreignKey: 'state_id'});
-		models.mastercontact.belongsTo(models.zipcode, {foreignKey: 'postal_code'});
+		models.mastercontact.belongsTo(models.zipCode, {foreignKey: 'postal_code'});
 		models.mastercontact.belongsTo(models.industrytype, {foreignKey: 'industry_type'});
 		//end
 		Promise.all([
