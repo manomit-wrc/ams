@@ -34,7 +34,7 @@ module.exports = function(app, models) {
 	});
 
 	app.post('/admin/periodic-report/check_type', function(req, res) {
-			var text = "Search By: budget types";
+			var text = "Search By: budget heads";
 
 			var sum_hours = 0;
 			var sum_cost = 0;

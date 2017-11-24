@@ -70,7 +70,8 @@ module.exports = function(app, models) {
 			}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			res.render('admin/firm-location/edit',{layout:'dashboard', countries:result[0], firm_location_details:result[1][0]});		
+			console.log(result);
+			//res.render('admin/firm-location/edit',{layout:'dashboard', countries:result[0], firm_location_details:result[1][0]});		
 		});
 	});
 

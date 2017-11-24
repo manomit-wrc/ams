@@ -4,7 +4,7 @@
 
       <ul class="sidebar-menu">
        <!--  <li class="header">MAIN NAVIGATION</li> -->
-        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+        <li class="{{#if (eq active "dashboard")}} active {{/if}}"><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
 
         {{#if_eq user.role_code "SITEADM"}}
         <li class="treeview {{#if (or (eq active "codecategory")(eq active "codemaster"))}} active{{/if}}
