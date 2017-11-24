@@ -59,7 +59,7 @@ module.exports = function(app, models) {
 		models.firmlocation.belongsTo(models.country, {foreignKey: 'country_id'});
 		models.firmlocation.belongsTo(models.city, {foreignKey: 'city_id'});
 		models.firmlocation.belongsTo(models.state, {foreignKey: 'state_id'});
-		models.firmlocation.belongsTo(models.zipcode, {foreignKey: 'postal_code'});
+		models.firmlocation.belongsTo(models.zipCode, {foreignKey: 'postal_code'});
 		//end
 		Promise.all([
 			models.country.findAll(),
@@ -70,8 +70,8 @@ module.exports = function(app, models) {
 			}),
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
-			console.log(result);
-			//res.render('admin/firm-location/edit',{layout:'dashboard', countries:result[0], firm_location_details:result[1][0]});		
+			//console.log(result);
+			res.render('admin/firm-location/edit',{layout:'dashboard', countries:result[0], firm_location_details:result[1][0]});		
 		});
 	});
 
