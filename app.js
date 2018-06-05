@@ -57,7 +57,6 @@ helpers: {
             return opts.fn(this);
         else
             return opts.inverse(this);
-
     },
     inArray: function(array, value, block) {
       if (array.indexOf(value) !== -1) {
@@ -77,7 +76,6 @@ helpers: {
 	},
     
     eq: function (v1, v2) {
-    	
         return v1 === v2;
     },
     ne: function (v1, v2) {
@@ -200,6 +198,7 @@ app.use(function(req, res, next){
             res.locals.user = req.user;                            
 
             res.locals.active = req.path.split('/')[2];
+            
             res.locals.next_active = req.path.split('/')[3];
             return next();  
     }
@@ -244,6 +243,8 @@ require('./routes/competitor')(app, models);
 require('./routes/attorney-budget-report')(app, models);
 require('./routes/budget-report-per-period')(app, models);
 require('./routes/periodic-report')(app, models);
+require('./routes/employees')(app, models);
+require('./routes/all_comp_rank')(app, models);
 // catch 404 and forward to error handler
 
 

@@ -1,0 +1,205 @@
+<section class="content-header">
+  <h1>
+    Master Contact
+    <small>Show</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <a href="/admin/site/master-contect"><button type="button" class="btn bg-purple btn-rightad" style="padding: 2px 5px 2px 5px;margin: -1px 2px 2px 8px;">Back</button></a>
+
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- SELECT2 EXAMPLE -->
+  <div class="box box-default">
+    <!-- /.box-header -->
+    <div class="box-body">
+      <div class="row">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+          {{error_message}}
+        </div>
+        {{/if}}
+
+        <form name="frmMasterContact" id="frmMasterContact" method="POST" action="/admin/master-contact/edit/{{master_contacts.id}}">
+          <div class="col-md-6">
+            <div class="form-group required">
+              <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm_id}}" >
+              <label>First Name</label>
+              <input type="text" name="first_name" id="first_name" class="form-control" placeholder="Enter First Name" value="{{master_contacts.first_name}}" disabled>
+            </div>
+
+            <div class="form-group required">
+              <label>Last Name</label>
+              <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Enter Last Name" value="{{master_contacts.last_name}}" disabled>
+            </div>
+            <div class="form-group required">
+              <label>Code</label>
+              <input type="text" name="code" id="code" class="form-control" placeholder="Enter Master Contact Code" value="{{master_contacts.code}}" disabled>
+            </div>
+            <div class="form-group required">
+              <label>Designation</label>
+              <select class="form-control" style="width: 100%;" id="designation_id" name="designation_id" disabled>
+                <option value="">Select Any</option>
+                {{#each designation}}
+                <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.designation_id}} selected = "selected" {{/if_eq}}>{{this.designation}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>Date Of Birth</label>
+              <input type="text" name="dob" id="dob" class="form-control" placeholder="Enter Date Of Birth" value="{{master_contacts.dob}}" disabled>
+            </div>
+            <div class="form-group required">
+              <label>Gender</label>
+              <select class="form-control" style="width: 100%;" id="gender" name="gender" disabled>
+                <option value="">Select Any</option>
+                <option value="MALE" {{#if_eq 'MALE' master_contacts.gender}} selected = "selected" {{/if_eq}}>MALE</option>
+                <option value="FEMALE" {{#if_eq 'FEMALE' master_contacts.gender}} selected = "selected" {{/if_eq}}>FEMALE</option>
+                <option value="OTHERS" {{#if_eq 'OTHERS' master_contacts.gender}} selected = "selected" {{/if_eq}}>OTHERS</option>
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>Contact Status</label>
+              <select class="form-control" style="width: 100%;" id="association_status" name="association_status" disabled>
+                <option value="">Select Any</option>
+                <option value="NEW TARGET"{{#if_eq 'NEW TARGET' master_contacts.association_status}} selected = "selected" {{/if_eq}}>NEW TARGET</option>
+                <option value="CONVERTED"{{#if_eq 'CONVERTED' master_contacts.association_status}} selected = "selected" {{/if_eq}}>CONVERTED TO CLIENT</option>
+                <option value="TS-INTERIM"{{#if_eq 'TS-INTERIM' master_contacts.association_status}} selected = "selected" {{/if_eq}}>INTERIM - REVIEW IN-PROGRESS</option>
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>Industry Type</label>
+              <select class="form-control" style="width: 100%;" id="industry_type" name="industry_type" disabled>
+                <option value="">Select Any</option>
+                {{#each industry_types}}
+                <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.industry_type}} selected = "selected" {{/if_eq}}>{{this.industry}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>Attorney</label>
+              <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id" disabled> 
+                <option value="">Select Any</option>
+                {{#each attorney}}
+                <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.attorney_id}} selected = "selected" {{/if_eq}}>{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Social Security No</label>
+              <input type="text" name="social_security_no" id="social_security_no" class="form-control" placeholder="Enter Social Security No" value="{{master_contacts.social_security_no}}" disabled>
+            </div>
+            <div class="form-group required">
+              <label>Master Contact Company</label>
+              <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Enter Company Name" value="{{master_contacts.company_name}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Twitter Url</label>
+              <input type="text" name="twitter" id="twitter" class="form-control" placeholder="Enter Twitter Url" value = "{{master_contacts.twitter}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Linkedin Url</label>
+              <input type="text" name="linkedin" id="linkedin" class="form-control" placeholder="Enter Linkedin Url" value = "{{master_contacts.linkedin}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>G+ Url</label>
+              <input type="text" name="google" id="google" class="form-control" placeholder="Enter Google Plus Url" value = "{{master_contacts.google}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Youtube Url</label>
+              <input type="text" name="youtube" id="youtube" class="form-control" placeholder="Enter Youtube Url" value = "{{master_contacts.youtube}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>IM</label>
+              <input type="text" name="im" id="im" class="form-control" placeholder="Enter IM" value = "{{master_contacts.im}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Remarks</label>
+              <textarea name="remarks_notes" id="remarks_notes" class="form-control" disabled>{{master_contacts.remarks_notes}}</textarea>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group required">
+              <label>Email</label>
+              <input type="text" name="email" id="email" class="form-control" placeholder="Enter Email" value="{{master_contacts.email}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Phone No" value="{{master_contacts.phone}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Fax</label>
+              <input type="text" name="fax" id="fax" class="form-control" placeholder="Enter Fax" value="{{master_contacts.fax}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Mobile</label>
+              <input type="text" name="mobile_cell" id="mobile_cell" class="form-control" placeholder="Enter Mobile" value="{{master_contacts.mobile_cell}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Website Url</label>
+              <input type="text" name="website_url" id="website_url" class="form-control" placeholder="Enter Website Url" value="{{master_contacts.website_url}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Social Url</label>
+              <input type="text" name="social_media_url" id="social_media_url" class="form-control" placeholder="Enter Social Url" value="{{master_contacts.social_media_url}}" disabled>
+            </div>
+            <div class="form-group required">
+              <label>Address Line 1</label>
+              <input type="text" name="address_line_1" id="address_line_1" class="form-control" placeholder="Enter Address Line 1" value="{{master_contacts.address_line_1}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Address Line 2</label>
+              <input type="text" name="address_line_2" id="address_line_2" class="form-control" placeholder="Enter Address Line 2" value="{{master_contacts.address_line_2}}" disabled>
+            </div>
+            <div class="form-group">
+              <label>Address Line 3</label>
+              <input type="text" name="address_line_3" id="address_line_3" class="form-control" placeholder="Enter Address Line 3" value="{{master_contacts.address_line_3}}" disabled> 
+            </div>
+            <div class="form-group required">
+              <label>Country</label>
+              <select class="form-control" style="width: 100%;" id="mastercontact_country_id" name="mastercontact_country_id" disabled>
+                <option value="">Select Any</option>
+                {{#each country}}
+                <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.country_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>State</label>
+              <select class="form-control" style="width: 100%;" id="mastercontact_state_id" name="mastercontact_state_id" disabled>
+                <option value="">Select Any</option>
+                {{#each state}}
+                <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.state_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>City</label>
+              <select class="form-control" style="width: 100%;" id="mastercontact_city_id" name="mastercontact_city_id" disabled>
+                <option value="">Select Any</option>
+                {{#each city}}
+                <option value="{{this.id}}" {{#if_eq this.id ../master_contacts.city_id}} selected = "selected" {{/if_eq}}>{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div class="form-group required">
+              <label>Postal Code</label>
+              <input type="text" name="mastercontact_zipcode" id="mastercontact_zipcode" class="form-control" value="{{master_contacts.postal_code}}" disabled> 
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <!-- /.row -->
+    </div>
+
+  </div>
+
+
+</section>

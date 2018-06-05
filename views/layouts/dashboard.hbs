@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Admin - Dashboard</title>
@@ -11,9 +11,9 @@
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-   <!-- Ionicons -->
+  <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-   <!-- DataTables -->
+  <!-- DataTables -->
   
 
   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/dataTables.bootstrap.css">
@@ -29,53 +29,53 @@
   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/AdminLTE.min.css">
 
   <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link media="all" type="text/css" rel="stylesheet" href="/admin/css/_all-skins.min.css">
+   folder instead of downloading all of them to reduce the load. -->
+   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/_all-skins.min.css">
 
-  <!-- custom css add here. -->
-  <link media="all" type="text/css" rel="stylesheet" href="/admin/css/custom.css">
+   <!-- custom css add here. -->
+   <link media="all" type="text/css" rel="stylesheet" href="/admin/css/custom.css">
 
-  <script src="/admin/js/jquery-2.2.3.min.js"></script>
+   <script src="/admin/js/jquery-2.2.3.min.js"></script>
 
-  <!-- Bootstrap 3.3.6 -->
-  <script src="/admin/js/bootstrap.min.js"></script>
+   <!-- Bootstrap 3.3.6 -->
+   <script src="/admin/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.js"></script>
 
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <script type="text/javascript">
-          var base_url = "http://localhst:8000";
-  </script>
-  <link rel="icon" href="/admin/images/favicon.ico" type="image/gif" >
-  <style type="text/css">
-  label.error {
-    color:#f00;
-    font-weight: bold;
-  }
-	.form-group.required .control-label:after {
-		content:"*";
-		color:red;
-	}
-  </style>
+<![endif]-->
+<script type="text/javascript">
+var base_url = "http://localhst:8000";
+</script>
+<link rel="icon" href="/admin/images/favicon.ico" type="image/gif" >
+<style type="text/css">
+label.error {
+  color:#f00;
+  font-weight: bold;
+}
+.form-group.required .control-label:after {
+  content:"*";
+  color:red;
+}
+</style>
 </head>
 
-  	<body class="hold-transition skin-blue sidebar-mini">
-  	<div class="wrapper">
-    	{{> header }}
-    	<!-- Left side column. contains the logo and sidebar -->
-      {{> sidebar }}
-    	 <!-- Content Wrapper. Contains page content -->
+<body class="hold-transition skin-blue sidebar-mini">
+ <div class="wrapper">
+   {{> header }}
+   <!-- Left side column. contains the logo and sidebar -->
+   {{> sidebar }}
+   <!-- Content Wrapper. Contains page content -->
 
-  <div class="content-wrapper">
+   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-   {{{body}}}
+    {{{body}}}
 
     <!-- /.content -->
   </div>
@@ -139,25 +139,25 @@
 <script>
 /*ckeditor implementation initialization*/
  //id here
-function deldata(url){
+ function deldata(url){
   swal({
-      title: "Are you sure?",
-      text: "You want to delete this record!",
-      type: "error",
-      showCancelButton: true,
-      confirmButtonColor: "#DD6B55",
-      confirmButtonText: "Yes",
-      cancelButtonText: "No",
-      closeOnConfirm: true,
-      closeOnCancel: true
+    title: "Are you sure?",
+    text: "You want to delete this record!",
+    type: "error",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes",
+    cancelButtonText: "No",
+    closeOnConfirm: true,
+    closeOnCancel: true
   }, function(isConfirm){
-      if (isConfirm){
-        window.location.href= url;
-      }
+    if (isConfirm){
+      window.location.href= url;
+    }
   });
    /* function(){
     swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });*/
+  });*/
 }
 
 $(function () {
@@ -173,7 +173,7 @@ $(function () {
       "info": true,
       "autoWidth": false
     });
-});
+  });
 </script>
 <script>
 
@@ -182,38 +182,38 @@ $('.level2').hide();
 $('.level3').hide();
 $('.level4').hide();
 $('.approval_process').on('click', function(){
-var approval_process = $(this).val();
-if(approval_process === '1'){
+  var approval_process = $(this).val();
+  if(approval_process === '1'){
    $('.level1').show();
    $('.level2').hide();
    $('.level3').hide();
    $('.level4').hide();
-} else if(approval_process === '2') {
-    setTimeout(function() {
-        $("#designation_id_1").trigger('change');
-    },10);
+ } else if(approval_process === '2') {
+  setTimeout(function() {
+    $("#designation_id_1").trigger('change');
+  },10);
 
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').hide();
-    $('.level4').hide();
+  $('.level1').show();
+  $('.level2').show();
+  $('.level3').hide();
+  $('.level4').hide();
 } else if(approval_process === '3'){
 	setTimeout(function() {
-        $("#designation_id_1").trigger('change');
-    },10);
+    $("#designation_id_1").trigger('change');
+  },10);
 
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').show();
-    $('.level4').hide();
+  $('.level1').show();
+  $('.level2').show();
+  $('.level3').show();
+  $('.level4').hide();
 } else if(approval_process === '4') {
 	setTimeout(function() {
-        $("#designation_id_1").trigger('change');
-    },10);
-    $('.level1').show();
-    $('.level2').show();
-    $('.level3').show();
-    $('.level4').show();
+    $("#designation_id_1").trigger('change');
+  },10);
+  $('.level1').show();
+  $('.level2').show();
+  $('.level3').show();
+  $('.level4').show();
 }
 
 });
@@ -235,254 +235,254 @@ if(approval_process === '1'){
 
 <script>
 $('#sections').multiselect({
-		includeSelectAllOption: true,
-		enableFiltering: true,
-		numberDisplayed: 3,
-		enableCaseInsensitiveFiltering: true,
+  includeSelectAllOption: true,
+  enableFiltering: true,
+  numberDisplayed: 3,
+  enableCaseInsensitiveFiltering: true,
 });
 $('#practice_area').multiselect({
-		includeSelectAllOption: true,
-		enableFiltering: true,
-		numberDisplayed: 3,
-		enableCaseInsensitiveFiltering: true,
-		maxHeight: 300,
-		maxWidth: 100
+  includeSelectAllOption: true,
+  enableFiltering: true,
+  numberDisplayed: 3,
+  enableCaseInsensitiveFiltering: true,
+  maxHeight: 300,
+  maxWidth: 100
 });
 $('#firm_jurisdiction').multiselect({
-		includeSelectAllOption: true,
-		enableFiltering: true,
-		numberDisplayed: 3,
-		enableCaseInsensitiveFiltering: true,
-		maxHeight: 300,
-		maxWidth: 100
+  includeSelectAllOption: true,
+  enableFiltering: true,
+  numberDisplayed: 3,
+  enableCaseInsensitiveFiltering: true,
+  maxHeight: 300,
+  maxWidth: 100
 });
 $('#jurisdictions').multiselect({
-    includeSelectAllOption: true,
-    enableFiltering: true,
-    numberDisplayed: 3,
-    enableCaseInsensitiveFiltering: true,
-    maxHeight: 300,
-    maxWidth: 100
+  includeSelectAllOption: true,
+  enableFiltering: true,
+  numberDisplayed: 3,
+  enableCaseInsensitiveFiltering: true,
+  maxHeight: 300,
+  maxWidth: 100
 });
 
 $("#practice_date").datepicker({
-        'format': 'dd-mm-yyyy',
-        'autoclose': true,
+  'format': 'dd-mm-yyyy',
+  'autoclose': true,
 });
 
 $("#firm_join_date").datepicker({
-        'format': 'dd-mm-yyyy',
-        'autoclose': true,
+  'format': 'dd-mm-yyyy',
+  'autoclose': true,
 });
 </script>
-  <script>
-    $(document).ready(function(){
-      setTimeout(function() {
-        $('#result7').fadeOut('fast');
-        $('#result8').fadeOut('fast');
-      }, 2000);
-    });
-  </script>
+<script>
+$(document).ready(function(){
+  setTimeout(function() {
+    $('#result7').fadeOut('fast');
+    $('#result8').fadeOut('fast');
+  }, 2000);
+});
+</script>
 
 
 <!-- modal  -->
 <div class="modal fade" id="inviteFriend" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Invite Friends</h4>
-        </div>
-        <div id="invite_friends_msg"></div>
-        <form method="POST" action="http://localhost:8000/invite_friends" accept-charset="UTF-8" role="form" id="invite_friends_form"><input name="_token" type="hidden" value="LbZ7S9IyyE2UUWkDO9KrOpaATyixcxmmTUeZUjU3">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Invite Friends</h4>
+      </div>
+      <div id="invite_friends_msg"></div>
+      <form method="POST" action="http://localhost:8000/invite_friends" accept-charset="UTF-8" role="form" id="invite_friends_form"><input name="_token" type="hidden" value="LbZ7S9IyyE2UUWkDO9KrOpaATyixcxmmTUeZUjU3">
         <input type="hidden" name="affilate_id" id="affilate_id" value="">
         <div class="modal-body">
-            <div class="form-group">
-              <label>Email</label>
-              <input class="form-control" placeholder="Enter email address" required="required" id="email" name="email" type="email" value="">
-            </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" placeholder="Enter email address" required="required" id="email" name="email" type="email" value="">
+          </div>
         </div>
         <div class="modal-body">
 
-            <div class="form-group">
-              <label>Text</label>
-              <textarea class="form-control" required="required" id="subject" name="subject" cols="50" rows="10">invite to friends</textarea>
-            </div>
+          <div class="form-group">
+            <label>Text</label>
+            <textarea class="form-control" required="required" id="subject" name="subject" cols="50" rows="10">invite to friends</textarea>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           <input class="btn btn-primary" id="invite_friends_button" type="submit" value="Submit">
+          <input class="btn btn-primary" id="invite_friends_button" type="submit" value="Submit">
         </div>
       </div>
 
     </div>
   </div>
-<!-- end modal  -->
+  <!-- end modal  -->
 
 
-<footer class="main-footer">
+  <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
     <strong>&copy; <script>document.write(new Date().getFullYear())</script> <a href="#">Performlaw.com</a>.</strong> All rights
     reserved.
-</footer>
+  </footer>
 
 
-  </div>
+</div>
 <!-- ./wrapper -->
 <script type="text/javascript">
-	$(document).ready(function(e){
-		$("#avator").change(function(e){
+$(document).ready(function(e){
+  $("#avator").change(function(e){
 
-			if (this.files && this.files[0]) {
-		        var reader = new FileReader();
+   if (this.files && this.files[0]) {
+    var reader = new FileReader();
 
-		        reader.onload = function (e) {
-		            $('.profile-user-img').attr('src', e.target.result);
-		            $('.header-image').attr('src', e.target.result);
-		        }
+    reader.onload = function (e) {
+      $('.profile-user-img').attr('src', e.target.result);
+      $('.header-image').attr('src', e.target.result);
+    }
 
-		        reader.readAsDataURL(this.files[0]);
-    		}
-		});
+    reader.readAsDataURL(this.files[0]);
+  }
+});
 
-    $("#profile_photo").change(function(e){
-      if (this.files && this.files[0]) {
-            var reader = new FileReader();
+  $("#profile_photo").change(function(e){
+    if (this.files && this.files[0]) {
+      var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('.profile-image').attr('src', e.target.result);
+      reader.onload = function (e) {
+        $('.profile-image').attr('src', e.target.result);
 
-            }
+      }
 
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
+      reader.readAsDataURL(this.files[0]);
+    }
+  });
 
     /*$(".fileinput-exists").click(function(e){
       $('.profile-image').attr('src', "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image");
     });*/
 
-		$('#example2').DataTable({
-	      "paging": true,
-	      "lengthChange": false,
-	      "searching": false,
-	      "ordering": true,
-	      "info": true,
-	      "autoWidth": false
-	    });
+    $('#example2').DataTable({
+     "paging": true,
+     "lengthChange": false,
+     "searching": false,
+     "ordering": true,
+     "info": true,
+     "autoWidth": false
+   });
     $('.alert').fadeOut(6000);
 
-		var country_id = $("#country_id").val();
-		var state_id = "{{user.state_id}}";
-		var city_id = "{{user.city_id}}";
-		var zipcode = "{{user.zipcode}}";
-		var flag = 0;
-		if(country_id) {
-			setTimeout(function() {
-        $("#country_id").trigger('change');
+    var country_id = $("#country_id").val();
+    var state_id = "{{user.state_id}}";
+    var city_id = "{{user.city_id}}";
+    var zipcode = "{{user.zipcode}}";
+    var flag = 0;
+    if(country_id) {
+     setTimeout(function() {
+      $("#country_id").trigger('change');
     },10);
-		}
-    $("#country_id").change(function(e){
+   }
+   $("#country_id").change(function(e){
 
-      var country_id = $(this).val();
-      $("#state_id").find('option').not(':first').remove();
+    var country_id = $(this).val();
+    $("#state_id").find('option').not(':first').remove();
 
-      if(country_id) {
-        $.ajax({
-          type: "POST",
-          url: "/admin/firm/get-state",
-          data: {country_id:country_id},
-          async: false,
-          success:function(response) {
-            for(var i=0;i<response.states.length;i++) {
+    if(country_id) {
+      $.ajax({
+        type: "POST",
+        url: "/admin/firm/get-state",
+        data: {country_id:country_id},
+        async: false,
+        success:function(response) {
+          for(var i=0;i<response.states.length;i++) {
 
-              $("#state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
-            }
-          }
-        });
-
-      }
-			if(state_id) {
-				$("#state_id").val(state_id);
-			}
-			else {
-				$('#state_id option:eq(1)').attr('selected', 'selected');
-			}
-
-      $( "#state_id" ).trigger( "change" );
-
-
-    });
-
-    $("#state_id").change(function(e){
-      var state_id = $(this).val();
-
-      $("#city_id").find('option').not(':first').remove();
-      if(state_id) {
-				 flag = 1;
-        $.ajax({
-          type: "POST",
-          url: "/admin/firm/get-city",
-          data: {state_id:state_id},
-          async: false,
-          success:function(response) {
-            for(var i=0;i<response.cities.length;i++) {
-
-              $("#city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
-            }
-          }
-        });
-
-
-      }
-			if(city_id && flag == 0) {
-				$("#city_id").val(city_id);
-			}
-			else {
-				$('#city_id option:eq(1)').attr('selected', 'selected');
-			}
-      $( "#city_id" ).trigger( "change" );
-    });
-
-    $("#city_id").change(function(e){
-
-      var city_name = $("#city_id option:selected").text();
-      $("#zipcode").find('option').not(':first').remove();
-      if(city_name) {
-				flag = 1;
-        $.ajax({
-          type: "POST",
-          url: "/admin/firm/get-zipcode",
-          data: {city_name:city_name},
-          async: false,
-          success:function(response) {
-            for(var i=0;i<response.zipcodes.length;i++) {
-              $("#zipcode").append('<option value="'+response.zipcodes[i].zip+'">'+response.zipcodes[i].zip+'</option>');
-            }
-          }
-        });
-				if(zipcode && flag == 0) {
-					$("#zipcode").val(zipcode);
-				}
-				else {
-					$('#zipcode option:eq(1)').attr('selected', 'selected');
-				}
-      }
-    });
-
-    $("input[type=text]").keypress(function(e){
-        if (e.charCode != 0) {
-          var regex = new RegExp("^[a-zA-Z0-9:.\\-\\s]+$");
-          var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-          if (!regex.test(key)) {
-            e.preventDefault();
-            return false;
+            $("#state_id").append('<option value="'+response.states[i].id+'">'+response.states[i].name+'</option>');
           }
         }
+      });
+
+    }
+    if(state_id) {
+      $("#state_id").val(state_id);
+    }
+    else {
+      $('#state_id option:eq(1)').attr('selected', 'selected');
+    }
+
+    $( "#state_id" ).trigger( "change" );
+
+
+  });
+
+   $("#state_id").change(function(e){
+    var state_id = $(this).val();
+
+    $("#city_id").find('option').not(':first').remove();
+    if(state_id) {
+     flag = 1;
+     $.ajax({
+      type: "POST",
+      url: "/admin/firm/get-city",
+      data: {state_id:state_id},
+      async: false,
+      success:function(response) {
+        for(var i=0;i<response.cities.length;i++) {
+
+          $("#city_id").append('<option value="'+response.cities[i].id+'">'+response.cities[i].name+'</option>');
+        }
+      }
     });
+
+
+   }
+   if(city_id && flag == 0) {
+    $("#city_id").val(city_id);
+  }
+  else {
+    $('#city_id option:eq(1)').attr('selected', 'selected');
+  }
+  $( "#city_id" ).trigger( "change" );
+});
+
+   $("#city_id").change(function(e){
+
+    var city_name = $("#city_id option:selected").text();
+    $("#zipcode").find('option').not(':first').remove();
+    if(city_name) {
+      flag = 1;
+      $.ajax({
+        type: "POST",
+        url: "/admin/firm/get-zipcode",
+        data: {city_name:city_name},
+        async: false,
+        success:function(response) {
+          for(var i=0;i<response.zipcodes.length;i++) {
+            $("#zipcode").append('<option value="'+response.zipcodes[i].zip+'">'+response.zipcodes[i].zip+'</option>');
+          }
+        }
+      });
+      if(zipcode && flag == 0) {
+       $("#zipcode").val(zipcode);
+     }
+     else {
+       $('#zipcode option:eq(1)').attr('selected', 'selected');
+     }
+   }
+ });
+
+   $("input[type=text]").keypress(function(e){
+    if (e.charCode != 0) {
+      var regex = new RegExp("^[a-zA-Z0-9:.\\-\\s]+$");
+      var key = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+      if (!regex.test(key)) {
+        e.preventDefault();
+        return false;
+      }
+    }
+  });
 
 		// <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab (approvals) - END $#$#$#$#$#$#$#$#-->
     // @@@@@@@@ 1st call when approval level is two @@@@@@@@@@@//
@@ -494,12 +494,12 @@ $("#firm_join_date").datepicker({
 		var designation_id_4 = "{{firm.level_4_designation}}";
 
     var approval_process = "{{firm.approval_process}}";
-		var menu_active = "{{firm.menu_active}}";
+    var menu_active = "{{firm.menu_active}}";
 		// alert(menu_active);
     if(designation_id_1) {
-        setTimeout(function() {
-          $("#designation_id_1").trigger('change');
-        },10);
+      setTimeout(function() {
+        $("#designation_id_1").trigger('change');
+      },10);
     }
     if(approval_process == 1) {
       $('.level1').show();
@@ -539,21 +539,21 @@ $("#firm_join_date").datepicker({
         async:false,
         success:function(return_data){
           for(var i=0;i<return_data.length;i++) {
-              $("#designation_id_2").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+            $("#designation_id_2").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
           }
         }
       });
 
       if(designation_id_2) {
       // alert(designation_id_2);
-        $("#designation_id_2").val(designation_id_2);
-      }
-      else {
-        $('#designation_id_2 option:eq(1)').attr('selected', 'selected');
-      }
+      $("#designation_id_2").val(designation_id_2);
+    }
+    else {
+      $('#designation_id_2 option:eq(1)').attr('selected', 'selected');
+    }
 
-      $("#designation_id_2").trigger('change');
-    });
+    $("#designation_id_2").trigger('change');
+  });
 
 
     // @@@@@@@@ 2nd call when approval level is three @@@@@@@@@@@//
@@ -567,21 +567,21 @@ $("#firm_join_date").datepicker({
         async:false,
         success:function(return_data){
           for(var i=0;i<return_data.length;i++) {
-              $("#designation_id_3").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+            $("#designation_id_3").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
           }
         }
       });
 
       if(designation_id_3) {
       // alert(designation_id_3);
-        $("#designation_id_3").val(designation_id_3);
-      }
-      else {
-        $('#designation_id_3 option:eq(1)').attr('selected', 'selected');
-      }
-      $("#designation_id_3").trigger('change');
+      $("#designation_id_3").val(designation_id_3);
+    }
+    else {
+      $('#designation_id_3 option:eq(1)').attr('selected', 'selected');
+    }
+    $("#designation_id_3").trigger('change');
 
-    });
+  });
 
     // @@@@@@@@ 3rd call when approval level is four @@@@@@@@@@@//
 
@@ -594,40 +594,741 @@ $("#firm_join_date").datepicker({
         async:false,
         success:function(return_data){
           for(var i=0;i<return_data.length;i++) {
-              $("#designation_id_4").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
+            $("#designation_id_4").append('<option value="'+return_data[i].id+'">'+return_data[i].designation+'</option>');
           }
         }
       });
 
       if(designation_id_4) {
     // alert(designation_id_3);
-        $("#designation_id_4").val(designation_id_4);
-      }
-      else {
-        $('#designation_id_4 option:eq(1)').attr('selected', 'selected');
-      }
-    });
+    $("#designation_id_4").val(designation_id_4);
+  }
+  else {
+    $('#designation_id_4 option:eq(1)').attr('selected', 'selected');
+  }
+});
 
     $("input[type=text]").attr('maxlength','50');
     $(".btn-danger").html("Submit");
 
-	});
-
-  $('.url_selector').keyup(function(){
-      //alert('kkkk');
-      if (($(this).val().substr(0,7) !== 'http://') || ($(this).val() === '')) {
-          $(this).val('http://');
-			}
   });
 
-	$(".number_validator").inputmask("mask", {
-			"mask": "(999) 999-9999"
-	});
+$('.url_selector').keyup(function(){
+      //alert('kkkk');
+      if (($(this).val().substr(0,7) !== 'http://') || ($(this).val() === '')) {
+        $(this).val('http://');
+      }
+    });
 
-</script>
+$(".number_validator").inputmask("mask", {
+ "mask": "(999) 999-9999"
+});
 
+/*===============Start jquery validation of EMPLOYEE/STAFF section===============*/
+$(document).ready(function(){
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#frmEmpCredential").validate({
+          rules: {
+            email: {
+              required: true
+            },
+            password: {
+              required:true
+            },
+            group_id: {
+              required: true
+            },
+            designation_id: {
+              required: true
+            }
+          },
+          messages: {
+            email: {
+              required: "Please enter email id"
+            },
+            password: {
+              required:"Please enter password"
+            },
+            group_id: {
+              required: "Please select group name"
+            },
+            designation_id: {
+              required: "Please select designation"
+            }
+          },
+          submitHandler: function (form) {
+            var email = $("#email").val();
+            localStorage.setItem('email', email);
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees1",
+              data: $("#frmEmpCredential").serialize(),
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  $('#address-tab').removeClass("disabled");
+                  $("#firm-tab").addClass("active").removeClass("disabled");
+                  $("#activity").removeClass("active");
+                  $("#generalInfo").addClass("active");
+                }
+                else if(response.error == 2)
+                {
+                  swal('Email ID already exists!');
+                }
+              },
+              error:function(xhr){
 
-<!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - END $#$#$#$#$#$#$#$#-->
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
 
-  </body>
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#form_general_Info").validate({
+          rules: {
+            firm_id: {
+              required: true
+            },
+            emp_staff_id: {
+              required: true
+            },
+            emp_staff_code: {
+              required: true
+            },
+            first_name:{
+              required: true
+            },
+            last_name: {
+              required: true
+            },
+            gender: {
+              required: true
+            },
+            education: {
+              required: true
+            }
+          },
+          messages: {
+            firm_id: {
+              required: "Please enter firm name"
+            },
+            emp_staff_id: {
+              required: "Please enter employee staff ID"
+            },
+            emp_staff_code: {
+              required: "Please enter employee staff code"
+            },
+            first_name:{
+              required: "Please enter first name"
+            },
+            last_name: {
+              required: "Please enter last name"
+            },
+            gender: {
+              required: "Please select gender"
+            },
+            education: {
+              required: "Please enter employee's education"
+            }
+          },
+          submitHandler: function (form) {
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees2/"+localStorage.getItem("email"),
+              data: $("#form_general_Info").serialize()+"&email="+localStorage.getItem("email"),
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  $('#firm-tab').removeClass("disabled");
+                  $("#approval-tab").addClass("active").removeClass("disabled");
+                  $("#generalInfo").removeClass("active");
+                  $("#approval").addClass("active");
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#frm_Emp_Info").validate({
+          rules: {
+            emp_staff_title: {
+              required: true
+            },
+            job_type: {
+              required: true
+            },
+            firm_join_date: {
+              required: true
+            },
+            staff_exp:{
+              required: true
+            },
+            salary_cost: {
+              required: true
+            },
+            benefit_cost: {
+              required: true
+            },
+            overhead_factor: {
+              required: true
+            }
+          },
+          messages: {
+            emp_staff_title: {
+              required: "Please enter employee staff title"
+            },
+            job_type: {
+              required: "Please select job type"
+            },
+            firm_join_date: {
+              required: "Please enter firm join date"
+            },
+            staff_exp:{
+              required: "Please enter staff experience"
+            },
+            salary_cost: {
+              required: "Please enter salary cost"
+            },
+            benefit_cost: {
+              required: "Please enter benefit cost"
+            },
+            overhead_factor: {
+              required: "Please enter overhead factor"
+            }
+          },
+          submitHandler: function (form) {
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees3/"+localStorage.getItem("email"),
+              data: $("#frm_Emp_Info").serialize()+"&email="+localStorage.getItem("email"),
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  $('#firm-tab').removeClass("disabled");
+                  $("#approval-tab").removeClass("disabled")
+                  $("#photo-tab").addClass("active").removeClass("disabled");
+                  $("#approval").removeClass("active");
+                  $("#picture").addClass("active");
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#frm_Address_Detail").validate({
+          rules: {
+            phone_no: {
+              required: true
+            },
+            fax: {
+              required: true
+            },
+            mobile: {
+              required: true
+            },
+            website_url: {
+              required: true
+            },
+            social_url: {
+              required: true
+            },
+            address_1: {
+              required: true
+            },
+            address_2: {
+              required: true
+            },
+            address_3: {
+              required: true
+            },
+            attorney_country_id: {
+              required: true
+            },
+            profile_photo: {
+              required: true,
+              extension: 'jpg|png'
+            }
+          },
+          messages: {
+            phone_no: {
+              required: "Please enter phone number"
+            },
+            fax: {
+              required: "Please enter fax"
+            },
+            mobile: {
+              required: "Please enter mobile number"
+            },
+            website_url: {
+              required: "Please enter website url"
+            },
+            social_url: {
+              required: "Please enter social url"
+            },
+            address_1: {
+              required: "Please enter address 1"
+            },
+            address_2: {
+              required: "Please enter address 2"
+            },
+            address_3: {
+              required: "Please enter address 3"
+            },
+            attorney_country_id: {
+              required: "Please select country"
+            },
+            profile_photo: {
+              required: "Please upload profile image",
+              extension: 'Image type must be jpg or png'
+            }
+          },
+          submitHandler: function (form) {
+            var fd = new FormData($("#frm_Address_Detail").get(0));
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees4/"+localStorage.getItem("email"),
+              data:fd,
+              processData: false,
+              contentType: false,
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  swal({
+                    title: "Success!",
+                    text: "Employee Added Successfully", 
+                    type: "success"
+                  }, function() {
+                    window.location.href = "/admin/employees";
+                  });
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+});
+
+  /*===============Ends jquery validation of EMPLOYEE/STAFF ADD section===============*/
+
+  /*===============Starts jquery validation of EMPLOYEE/STAFF EDIT section===============*/
+
+  $(document).ready(function(){
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#frmEmpCredentialEdit").validate({
+          rules: {
+            email: {
+              required: true
+            },
+            password: {
+              required:true
+            },
+            group_id: {
+              required: true
+            },
+            designation_id: {
+              required: true
+            }
+          },
+          messages: {
+            email: {
+              required: "Please enter email id"
+            },
+            password: {
+              required:"Please enter password"
+            },
+            group_id: {
+              required: "Please select group name"
+            },
+            designation_id: {
+              required: "Please select designation"
+            }
+          },
+          submitHandler: function (form) {
+            var email = $("#email").val();
+            var emp_id = $("#emp_id").val();
+            localStorage.setItem('email', email);
+            $.ajax({
+              type: "POST",
+              url: "/admin/edit-employees1/"+emp_id,
+              data: $("#frmEmpCredentialEdit").serialize(),
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  $('#address-tab').removeClass("disabled");
+                  $("#firm-tab").addClass("active").removeClass("disabled");
+                  $("#activity").removeClass("active");
+                  $("#generalInfo").addClass("active");
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#form_general_Info").validate({
+          rules: {
+            firm_id: {
+              required: true
+            },
+            emp_staff_id: {
+              required: true
+            },
+            emp_staff_code: {
+              required: true
+            },
+            first_name:{
+              required: true
+            },
+            last_name: {
+              required: true
+            },
+            gender: {
+              required: true
+            },
+            education: {
+              required: true
+            }
+          },
+          messages: {
+            firm_id: {
+              required: "Please enter firm name"
+            },
+            emp_staff_id: {
+              required: "Please enter employee staff ID"
+            },
+            emp_staff_code: {
+              required: "Please enter employee staff code"
+            },
+            first_name:{
+              required: "Please enter first name"
+            },
+            last_name: {
+              required: "Please enter last name"
+            },
+            gender: {
+              required: "Please select gender"
+            },
+            education: {
+              required: "Please enter employee's education"
+            }
+          },
+          submitHandler: function (form) {
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees2/"+localStorage.getItem("email"),
+              data: $("#form_general_Info").serialize()+"&email="+localStorage.getItem("email"),
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  $('#firm-tab').removeClass("disabled");
+                  $("#approval-tab").addClass("active").removeClass("disabled");
+                  $("#generalInfo").removeClass("active");
+                  $("#approval").addClass("active");
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#frm_Emp_Info").validate({
+          rules: {
+            emp_staff_title: {
+              required: true
+            },
+            job_type: {
+              required: true
+            },
+            firm_join_date: {
+              required: true
+            },
+            staff_exp:{
+              required: true
+            },
+            salary_cost: {
+              required: true
+            },
+            benefit_cost: {
+              required: true
+            },
+            overhead_factor: {
+              required: true
+            }
+          },
+          messages: {
+            emp_staff_title: {
+              required: "Please enter employee staff title"
+            },
+            job_type: {
+              required: "Please select job type"
+            },
+            firm_join_date: {
+              required: "Please enter firm join date"
+            },
+            staff_exp:{
+              required: "Please enter staff experience"
+            },
+            salary_cost: {
+              required: "Please enter salary cost"
+            },
+            benefit_cost: {
+              required: "Please enter benefit cost"
+            },
+            overhead_factor: {
+              required: "Please enter overhead factor"
+            }
+          },
+          submitHandler: function (form) {
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees3/"+localStorage.getItem("email"),
+              data: $("#frm_Emp_Info").serialize()+"&email="+localStorage.getItem("email"),
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  $('#firm-tab').removeClass("disabled");
+                  $("#approval-tab").removeClass("disabled")
+                  $("#photo-tab").addClass("active").removeClass("disabled");
+                  $("#approval").removeClass("active");
+                  $("#picture").addClass("active");
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+  (function ($, W, D)
+  {
+    var JQUERY4U = {};
+    JQUERY4U.UTIL =
+    {
+      setupFormValidation: function ()
+      {
+        $("#frm_Address_Detail").validate({
+          rules: {
+            phone_no: {
+              required: true
+            },
+            fax: {
+              required: true
+            },
+            mobile: {
+              required: true
+            },
+            website_url: {
+              required: true
+            },
+            social_url: {
+              required: true
+            },
+            address_1: {
+              required: true
+            },
+            address_2: {
+              required: true
+            },
+            address_3: {
+              required: true
+            },
+            attorney_country_id: {
+              required: true
+            },
+            profile_photo: {
+              required: true,
+              extension: 'jpg|png'
+            }
+          },
+          messages: {
+            phone_no: {
+              required: "Please enter phone number"
+            },
+            fax: {
+              required: "Please enter fax"
+            },
+            mobile: {
+              required: "Please enter mobile number"
+            },
+            website_url: {
+              required: "Please enter website url"
+            },
+            social_url: {
+              required: "Please enter social url"
+            },
+            address_1: {
+              required: "Please enter address 1"
+            },
+            address_2: {
+              required: "Please enter address 2"
+            },
+            address_3: {
+              required: "Please enter address 3"
+            },
+            attorney_country_id: {
+              required: "Please select country"
+            },
+            profile_photo: {
+              required: "Please upload profile image",
+              extension: 'Image type must be jpg or png'
+            }
+          },
+          submitHandler: function (form) {
+            var fd = new FormData($("#frm_Address_Detail").get(0));
+            $.ajax({
+              type: "POST",
+              url: "/admin/add-employees4/"+localStorage.getItem("email"),
+              data:fd,
+              processData: false,
+              contentType: false,
+              cache: false,
+              success:function(response){
+                if(response.a == 1)
+                {
+                  swal({
+                    title: "Success!",
+                    text: "Employee Added Successfully", 
+                    type: "success"
+                  }, function() {
+                    window.location.href = "/admin/employees";
+                  });
+                }
+              },
+              error:function(xhr){
+
+              }
+            });
+            return false;
+          }
+        });
+      }
+    }
+    $(D).ready(function ($) {
+      JQUERY4U.UTIL.setupFormValidation();
+    });
+  })(jQuery, window, document);
+
+});
+
+  /*===============Ends jquery validation of EMPLOYEE/STAFF EDIT section===============*/
+  </script>
+  <!--$#$#$#$#$#$#$# Ajax calls for vanishing drop down in firm 3rd tab approvals - END $#$#$#$#$#$#$#$#-->
+
+</body>
 </html>

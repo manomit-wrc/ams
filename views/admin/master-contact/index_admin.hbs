@@ -1,0 +1,232 @@
+<section class="content-header">
+      <h1>
+        Master Contact List
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+
+        <li class="active">Master Contact List</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box">
+            <div class="box-header">
+            </div>
+            <div id="success-msg"></div>
+            <!-- /.box-header -->
+            <div class="topbtn">
+              <a href="#import_contact_excel" data-toggle="modal"><button type="button" style="margin: 0 10px 10px 8px;" class="btn bg-purple">Import Excel <i class="fa fa-plus"></i></button></a>
+              <a href="#import_contact_csv" data-toggle="modal"><button type="button" style="margin: 0 10px 10px 8px;" class="btn bg-purple">Import CSV <i class="fa fa-plus"></i></button></a>
+              <a href="javascript:void(0)" id="move_to_target"><button type="button" style="margin: 0 10px 10px 8px;" class="btn bg-purple">Move To Target</button></a>
+            </div>
+            <div class="box-body">
+              {{#if succ_add_msg}}
+                <div class="alert alert-success" id="result77">
+                {{succ_add_msg}}
+                </div>
+              {{/if}}
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>SL#</th>
+                  <th>Record Type</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Firm Name</th>
+                  <th>Mobile</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each master_contacts}}
+                     <tr>
+                      <td><input type="checkbox" name="master_contact_chk[]" class="chk_cls target_ck" value="{{this.id}}">&nbsp;{{this.id}}</td>
+                      {{#if_eq this.record_type 'M'}}
+                        <td>Master Contact</td>
+                      {{/if_eq}}
+                      {{#if_eq this.record_type 'R'}}
+                        <td>Referral</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type 'C'}}
+                        <td>Client</td>
+                     {{/if_eq}}
+                     {{#if_eq this.record_type 'T'}}
+                        <td>Target</td>
+                     {{/if_eq}}
+                      <td>{{this.first_name}} &nbsp; {{this.last_name}}</td>
+                      <td>{{this.email}}</td>
+                      <td>{{this.firm.name}}</td>
+                      <td>{{this.mobile_cell}}</td>
+                      <td>{{this.phone}}</td>
+                      <td>{{this.association_status}}</td>
+                      <td><a href="/admin/site/master-contact/view/{{this.id}}" >View</a>&nbsp;|&nbsp;<a href="/admin/master-contact/delete/{{this.id}}" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    </tr>
+                     {{/each}}
+                </tbody>
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+
+    <div id="import_contact_excel" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-title"><span style=" color:#333" class="glyphicon glyphicon-pencil text-purple2 mr10"></span><b style=" color:#333">Import Master Contacts Excel</b></div>
+                    </div>
+                    <div class="modal-body">
+                        <div id="create_event" class=" mt10">
+                            <div class="col-md-12">
+                                <form name="upload_excel" id="upload_excel" action="/admin/master-contact/upload_excel" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+                                    <div class="form-group required">
+                                      <label>Attorney</label>
+                                      <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
+                                        <option value="">Select Any</option>
+                                        {{#each attornies}}
+                                        <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                                        {{/each}}
+                                      </select>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label>Upload Excel File</label>
+                                        <div class="form-group required">
+                                            <input style=" border:none; padding-top: 0;" type="file" class="form-control" name="xls_file" id="xls_file" required="">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-12">
+                                      <button type="button" data-dismiss="modal" class="btn bg-purple btn-rightad" style="margin-right: -18px;">Close</button>
+                                      <button type="submit" id="submit_excel" class="btn bg-purple btn-rightad">Submit</button>                                    
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="import_contact_csv" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <div class="modal-title"><span style=" color:#333" class="glyphicon glyphicon-pencil text-purple2 mr10"></span><b style=" color:#333">Import Master Contacts CSV</b></div>
+                    </div>
+                    <div class="modal-body">
+                        <div id="create_event" class=" mt10">
+                            <div class="col-md-12">
+                                <form name="upload_csv" id="upload_csv" action="/admin/master-contact/upload_csv" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="firm_id" id="firm_id" class="form-control" value = "{{firm.id}}">
+                                    <div class="form-group required">
+                                      <label>Attorney</label>
+                                      <select class="form-control" style="width: 100%;" id="attorney_id" name="attorney_id">
+                                        <option value="">Select Any</option>
+                                        {{#each attornies}}
+                                        <option value="{{this.id}}">{{this.first_name}}&nbsp;{{this.last_name}}</option>
+                                        {{/each}}
+                                      </select>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label>Upload CSV File</label>
+                                        <div class="form-group required">
+                                            <input style=" border:none; padding-top: 0;" type="file" class="form-control" name="csv_file" id="csv_file" required="">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-12">
+                                      <button type="button" data-dismiss="modal" class="btn bg-purple btn-rightad" style="margin-right: -18px;">Close</button>
+                                      <button type="submit" id="submit_excel" class="btn bg-purple btn-rightad">Submit</button>                                    
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+  $(document).ready(function(e){
+      $('#move_to_target').click(function(){
+          var checked_ids = [];
+          $("input[name='master_contact_chk[]']:checked").each(function (i) {       
+              checked_ids[i] = $(this).val();            
+          });         
+          if(checked_ids.length > 0){
+            $.ajax({
+                type: "POST",
+                url: "/admin/master-contact/move_to_target",
+                data: {checked_ids:checked_ids},
+                async: false,
+                success:function(response) {                   
+                  $("#success-msg").html('<div class="alert alert-success" id="result77">Successfully moved to Target</div>');
+                  setTimeout(function(){
+                      window.location.reload();
+                  }, 1000);                    
+                }
+            });
+          } else {
+            $("#success-msg").html('<div class="alert alert-danger" id="result77">No master contact checked</div>');
+          }
+      });
+
+      $("#upload_excel").validate({
+          rules: {
+            attorney_id: {
+              required: true
+            },
+            xls_file: {
+              required: true
+            }
+          },
+          messages: {
+            attorney_id: {
+              required: "Select an attorney"
+            },
+            xls_file: {
+              required: "Please upload file"
+            }
+          }
+      });
+
+      $("#upload_csv").validate({
+          rules: {
+            attorney_id: {
+              required: true
+            },
+            csv_file: {
+              required: true
+            }
+          },
+          messages: {
+            attorney_id: {
+              required: "Select an attorney"
+            },
+            csv_file: {
+              required: "Please upload file"
+            }
+          }
+      });
+  });
+</script>

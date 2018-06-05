@@ -39,9 +39,9 @@ module.exports = function(app, models) {
 	// add attorney by site admin view
 	app.get('/admin/attorney/add', function(req, res){
 		models.firm.findAll({
-		   where: {
-    			status: '1'
-  			}
+			where: {
+				status: '1'
+			}
 		}).then(function(firm){
 			res.render('admin/attorney/add',{layout:'dashboard', firm:firm, succ_add_msg: req.flash('succ_add_msg')[0]});
 		});

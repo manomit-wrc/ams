@@ -55,7 +55,7 @@ module.exports = function(app, models, fs) {
 
 		Promise.all([
 			models.mastercontact.findAll({order:[
-					['id', 'ASC']
+					['id', 'DESC']
 				],
 				where:{
 					status:1,
@@ -100,6 +100,7 @@ module.exports = function(app, models, fs) {
 			})
 		]).then(function(values){
 			var result = JSON.parse(JSON.stringify(values));
+			console.log(result[4]);
 			res.render('admin/master-contact/add',
 				{
 					layout: 'dashboard',
@@ -683,4 +684,65 @@ module.exports = function(app, models, fs) {
 		    });
 		}
 	});
+
+	/*================== miki 30-05-2018 ========================*/
+
+	app.get('/admin/site/master-contect', function(req, res){
+		models.mastercontact.belongsTo(models.firm,{foreignKey: 'firm_id'});
+		models.mastercontact.belongsTo(models.attorney,{foreignKey: 'attorney_id'});
+		models.mastercontact.belongsTo(models.country,{foreignKey: 'country_id'});
+		models.mastercontact.belongsTo(models.state,{foreignKey: 'state_id'});
+		models.mastercontact.belongsTo(models.city,{foreignKey: 'city_id'});
+		models.mastercontact.belongsTo(models.designation,{foreignKey: 'designation_id'});
+		models.mastercontact.belongsTo(models.industrytype,{foreignKey: 'industry_type'});
+
+		Promise.all([
+			models.mastercontact.findAll({order:[
+					['id', 'DESC']
+				],
+				where:{
+					status:1,
+					record_type: 'M'
+				},
+				include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
+			})
+		]).then(function(mastercontact){
+			var result = JSON.parse(JSON.stringify(mastercontact));
+			res.render('admin/master-contact/index_admin',{layout:'dashboard', master_contacts:result[0], succ_add_msg:req.flash('succ_add_msg')[0]});
+		});
+	});
+	app.get('/admin/site/master-contact/view/:id', function(req, res){
+		models.mastercontact.belongsTo(models.firm,{foreignKey: 'firm_id'});
+		models.mastercontact.belongsTo(models.attorney,{foreignKey: 'attorney_id'});
+		models.mastercontact.belongsTo(models.country,{foreignKey: 'country_id'});
+		models.mastercontact.belongsTo(models.state,{foreignKey: 'state_id'});
+		models.mastercontact.belongsTo(models.city,{foreignKey: 'city_id'});
+		models.mastercontact.belongsTo(models.designation,{foreignKey: 'designation_id'});
+		models.mastercontact.belongsTo(models.industrytype,{foreignKey: 'industry_type'});
+
+		Promise.all([
+			models.mastercontact.findAll({
+				where:{
+					id: req.params['id']
+				},
+				include:[{model: models.firm}, {model: models.attorney}, {model: models.country},{model: models.state},{model: models.city},{model:models.designation},{model:models.industrytype}]
+			}),
+			models.country.findAll(),
+			models.industrytype.findAll({attributes: ['id', 'industry']}),
+			models.designation.findAll({attributes: ['id', 'designation']}),
+			models.admin.findAll({
+				where: {
+					role_code: 'ATTR'
+				},
+				attributes: ['id', 'first_name','last_name']
+			}),
+			models.state.findAll(),
+			models.city.findAll()
+		]).then(function(mastercontact){
+			var result = JSON.parse(JSON.stringify(mastercontact));
+			//res.send(result[4]);
+			res.render('admin/master-contact/view_admin',{layout:'dashboard', master_contacts:result[0][0], designation:result[3], industry_types:result[2], attorney:result[4], country:result[1], state: result[5], city:result[6]});
+		});
+	});
+	/*================== miki 30-05-2018 ========================*/
 };

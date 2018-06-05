@@ -27,12 +27,11 @@ module.exports = function(app, admin) {
 	        // To reject this file pass `false`
 	        cb(null, false);
 	       //cb(new Error('File type not allowed'));// How to pass an error?
-	      }
+	     }
 	};
 
     var upload = multer({ storage: storage, limits: {fileSize:3000000, fileFilter:restrictImgType} });
 	app.get('/admin/dashboard', function(req, res) {
-
 		res.render('admin/dashboard',{layout:'dashboard'});
 	});
 

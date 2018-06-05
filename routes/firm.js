@@ -176,8 +176,8 @@ module.exports = function(app, models) {
 			    section_array: section_array,
 			    practice_area_array: practice_area_array,
 			    jurisdiction_array: jurisdiction_array,
-					firm: result[5][0],
-					designation: result[6]
+				firm: result[5][0],
+				designation: result[6]
 			   });
 		});
 

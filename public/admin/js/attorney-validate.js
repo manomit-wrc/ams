@@ -70,7 +70,6 @@ $(document).ready(function(e){
 		}
 		//$("#attoney_state_id").trigger('change');
 		//end
-
 	});
 	//end
 

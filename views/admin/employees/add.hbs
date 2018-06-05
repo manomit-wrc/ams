@@ -1,0 +1,335 @@
+<section class="content-header">
+  <h1>
+    Add Employee/staff
+
+  </h1>
+  <ol class="breadcrumb">
+  </ol>
+
+  <section class="content">
+
+
+    <div class="row">
+
+      <div class="col-md-12">
+        {{#if error_message}}
+        <div class="alert alert-danger" id="result77">
+          {{error_message}}
+        </div>
+        {{/if}}
+        <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+            <li class="active" id="address-tab"><a href="#activity" data-toggle="tab" aria-expanded="true">Employee credentials</a></li>
+            <li class="tab" id="firm-tab"><a href="#generalInfo" data-toggle="tab" aria-expanded="false">General Informations</a></li>
+            <li class="tab" id="approval-tab"><a href="#approval" data-toggle="tab" aria-expanded="false">Employment Information</a></li>
+            <li class="tab" id="photo-tab"><a href="#picture" data-toggle="tab" aria-expanded="false">Address Details</a></li>
+          </ul>
+          <div class="tab-content">
+            <!-- /@@@@@@@@@@@@ first tab @@@@@@@@@@@@@@/ -->
+            <div class="tab-pane active" id="activity">
+              <form class="form-horizontal" name="frmEmpCredential" id="frmEmpCredential" method="post" >
+                <div class="form-group required">
+                  <label for="email" class="col-sm-2 control-label">Email Id</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                  </div>
+                </div>
+
+                <div class="form-group required">
+                  <label for="password" class="col-sm-2 control-label">Password</label>
+
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="group" class="col-sm-2 control-label">Group</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="group_id" id="group_id">
+                      <option value="">Select Group</option>
+                      {{#each group}}
+                      <option value="{{this.id}}">{{this.group}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="designation" class="col-sm-2 control-label">Designation</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="designation_id" id="designation_id">
+                      <option value="">Select Designation</option>
+                      {{#each designation}}
+                      <option value="{{this.id}}">{{this.designation}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" name="frmEmpCredential1" id="frmEmpCredential1" class="btn btn-danger">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- /@@@@@@@@@@@@ second tab @@@@@@@@@@@@@@/ -->
+            <div class="tab-pane" id="generalInfo">
+              <form class="form-horizontal" name="form_general_Info" id="form_general_Info" method="POST" action="#">
+                <div class="form-group">
+                  <label for="designation" class="col-sm-2 control-label">Base Firm Name</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="firm_id" id="firm_id">
+                      <option value="">Select Firm Name</option>
+                      {{#each firm}}
+                      <option value="{{this.id}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="firm_name" class="col-sm-2 control-label">EmpStaff ID </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="emp_staff_id" name="emp_staff_id" placeholder="EmpStaff ID ">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="firm_name" class="col-sm-2 control-label">EmpStaff Code </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="emp_staff_code" name="emp_staff_code" placeholder="EmpStaff Code ">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="first_name" class="col-sm-2 control-label">First Name</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="designation" class="col-sm-2 control-label">Gender</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="gender" id="gender">
+                      <option value="">Select Gender</option>
+                      <option value="male">MALE</option>
+                      <option value="female">FEMALE</option>
+                      <option value="others">OTHERS</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="education" class="col-sm-2 control-label">Education </label>
+                  <div class="col-sm-10">
+                    <textarea name="education" id="education" class="form-control" placeholder="Education"></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- /@@@@@@@@@@@@ third tab @@@@@@@@@@@@@@/ -->
+            <div class="tab-pane" id="approval">
+              <form class="form-horizontal" id="frm_Emp_Info" name="frm_Emp_Info" method="POST">
+                <div class="form-group required">
+                  <label for="emp_staff_title" class="col-sm-2 control-label">EmpStaff Title </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="emp_staff_title" name="emp_staff_title" placeholder="EmpStaff Title ">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="job_type" class="col-sm-2 control-label">Job Type</label>
+                  <div class="col-sm-10">
+                    <select class="form-control" name="job_type" id="job_type">
+                      <option value="">Select Job Type</option>
+                      {{#each job_types}}
+                      <option value="{{this.id}}">{{this.job}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputName" class="col-sm-2 control-label">Firm Join Date</label>
+                  <div class="col-sm-10">
+                    <input type="text" id="firm_join_date" name="firm_join_date" placeholder="DD-MM-YYYY" class="form-control">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="staff_exp" class="col-sm-2 control-label">Staff Experience </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="staff_exp" name="staff_exp" placeholder="Staff Experience">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="salary_cost" class="col-sm-2 control-label">Salary Cost ($) </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="salary_cost" name="salary_cost" placeholder="Salary Cost">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="benefit_cost" class="col-sm-2 control-label">Benefit Cost ($) </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="benefit_cost" name="benefit_cost" placeholder="Benefit Cost">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="overhead_factor" class="col-sm-2 control-label">Overhead Factor% </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="overhead_factor" name="overhead_factor" placeholder="Overhead Factor%">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /@@@@@@@@@@@@ fourth tab @@@@@@@@@@@@@@/ -->
+            <div class="tab-pane" id="picture">
+
+              <form class="form-horizontal" id="frm_Address_Detail" name="frm_Address_Detail" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="phone_no" class="col-sm-2 control-label">Phone No</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control number_validator" id="phone_no" name="phone_no" placeholder="Phone">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="fax" class="col-sm-2 control-label">Fax</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control number_validator" id="fax" name="fax" placeholder="Fax">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="mobile" class="col-sm-2 control-label">Mobile</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control number_validator" id="mobile" name="mobile" placeholder="Mobile">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="website_url" class="col-sm-2 control-label">Website URL </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="website_url" name="website_url" placeholder="Website URL">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="social_url" class="col-sm-2 control-label">Social URL </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="social_url" name="social_url" placeholder="Social URL">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="address_1" class="col-sm-2 control-label">Address Line 1 </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address_1" name="address_1" placeholder="Address Line 1">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="address_2" class="col-sm-2 control-label">Address Line 2 </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address_2" name="address_2" placeholder="Address Line 2">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label for="address_3" class="col-sm-2 control-label">Address Line 3 </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address_3" name="address_3" placeholder="Address Line 3">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="country_id" class="col-sm-2 control-label">Country</label>
+
+                  <div class="col-sm-10">
+                    <select class="form-control col-sm-2" id="attorney_country_id" name="attorney_country_id">
+                      <option value="">Select Country</option>
+                      {{#each countries}}
+                      <option value="{{this.id}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="state_id" class="col-sm-2 control-label">State</label>
+
+                  <div class="col-sm-10">
+                    <select class="form-control col-sm-2" id="attoney_state_id" name="attoney_state_id">
+                      <option value="">Select State</option>
+                      {{#each states}}
+                      <option value="{{this.id}}" 
+                      >{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="city_id" class="col-sm-2 control-label">City</label>
+
+                  <div class="col-sm-10">
+                    <select class="form-control col-sm-2" id="attoney_city_id" name="attoney_city_id">
+                      <option value="">Select City</option>
+                      {{#each cities}}
+                      <option value="{{this.id}}">{{this.name}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="zipcode" class="col-sm-2 control-label">Pincode</label>
+
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="attorney_zip_code" name="attorney_zip_code" placeholder="Pincode">
+                  </div>
+                </div>
+                <div style=" width: 100%; display: inline-block;">
+                  <label for="zipcode" class="col-sm-2 control-label">Picture</label>
+                  <div class="form-group col-sm-10" style="margin-left:0px;">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail col-sm-10" style="width: 200px; height: 165px;">
+                        <img src="{{image}}" alt="" class="profile-image"/>
+                      </div>
+                      {{!-- <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div> --}}
+                      <div style=" height: 60px" class="col-sm-10">
+                        <span class="btn default btn-file">
+                          <span class="fileinput-new btn-sm btn-warning"> Select image </span>
+                          <input type="file" name="profile_photo" id="profile_photo" class="control-label">
+                        </div>
+                      </div>
+                      <div class="clearfix margin-top-10 col-sm-10">
+                        <span class="label label-danger" style=" margin-right:10px ">NOTE! </span>
+                        <span>Firm image thumbnail is supported in Latest Firefox, Chrome, Opera, Safari and Internet Explorer 10 only </span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div>
+
+        </section>
+      </section>
